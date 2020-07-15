@@ -1,7 +1,7 @@
 <template>
   <div class="homepage">
     <h1>Marketing message</h1>
-      <router-link to="/stations">Stations</router-link> 
+      <router-link to="/stations">Get Started</router-link> 
   </div>
 </template>
 

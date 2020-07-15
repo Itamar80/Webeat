@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import home from '../views/homepage.vue';
 import about from '../views/about.vue';
 import dashboard from '../views/dashboard.vue';
-import stations from '../views/stations.vue';
+import stations from '../views/stations-app.vue';
 
 Vue.use(VueRouter)
 

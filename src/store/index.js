@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import stationStore from './stations.store.js'
-import userStore from './user.store.js'
+import { stationStore } from './stations-store.js'
+import { userStore } from './user-store.js'
 
 Vue.use(Vuex)
 
