@@ -1,7 +1,6 @@
 <template>
   <div class="station-app">
     <station-filter @filterStations="setFilter"/>
-    <h1>This is the stations page</h1>
      <station-list :stations="stations"></station-list>
   </div>
 </template>

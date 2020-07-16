@@ -1,4 +1,7 @@
 .station-preview {
+    // background-color: #272728;
+    // padding: 20px;
+    // border-radius: 10px;
     .station-cover {
         position: relative;
         img {
@@ -8,9 +11,10 @@
             width: 230px;
             object-fit: cover;
             z-index: 0;
-            filter: opacity(50%);
+            filter: opacity(100%);
         }
         h4 {
+            opacity: 100%;
             // margin: 0 auto;
             text-align: center;
             font-size: rem(35px);
@@ -24,6 +28,15 @@
             text-shadow: #000 0px 0px 2px;
             -webkit-font-smoothing: antialiased;
             // background-color: $clr1;
+        }
+    }
+    &:hover {
+        cursor: pointer;
+        img {
+            filter: opacity(50%);
+        }
+        h4 {
+            opacity: 50%;
         }
     }
 }
