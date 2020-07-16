@@ -1,6 +1,5 @@
 <template>
-  <div class="station-app">
-    <h1>This is the stations page</h1>
+  <div class="station-app ">
      <station-list :stations="stations"></station-list>
   </div>
 </template>
