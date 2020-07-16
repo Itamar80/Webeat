@@ -1,7 +1,11 @@
 <template>
+<<<<<<< HEAD
   <div class="station-app">
     <station-filter @filterStations="setFilter"/>
     <h1>This is the stations page</h1>
+=======
+  <div class="station-app ">
+>>>>>>> e9d974d07b466f648978dd753cdd8b0b161bb3a3
      <station-list :stations="stations"></station-list>
   </div>
 </template>
