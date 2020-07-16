@@ -1,0 +1,33 @@
+//Setup
+@import "setup/variables.scss";
+@import "setup/functions.scss";
+@import "setup/mixins.scss";
+@import "setup/typography.scss";
+//Basics
+@import "basics/helpers.scss";
+@import "basics/layout.scss";
+@import "basics/base.scss";
+@import "basics/links.scss";
+@import "basics/buttons.scss";
+//Components
+@import "components/chat-app.scss";
+@import "components/filter-stations.scss";
+@import "components/song-search.scss";
+@import "components/station-list.scss";
+@import "components/station-preview.scss";
+//Views
+@import "views/homepage.scss";
+@import "views/about.scss";
+@import "views/dashboard.scss";
+@import "views/login-signup.scss";
+@import "views/station-app.scss";
+@import "views/station-details.scss";
+@import "views/station-edit.scss";
+@import "views/user-details.scss";
+body {
+    background-color: $clr2;
+}
+
+h1 {
+    color: $clr1;
+}
