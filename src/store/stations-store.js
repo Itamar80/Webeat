@@ -10,11 +10,16 @@ export const stationStore = {
         filterBy: {
             name: '',
         },
+        currSong: {}
     },
     getters: {
         stations(state) {
             return state.stations
         },
+        currSong(state) {
+            console.log('getters', state.currSong)
+            return state.currSong
+        }
 
     },
     mutations: {
@@ -34,6 +39,10 @@ export const stationStore = {
         addStation(state, savedStation) {
             state.stations.unshift(savedStation)
             console.log(state.stations);
+        },
+        setCurrSong(state, { currSong }) {
+            console.log('mutations', currSong)
+            state.currSong = currSong;
         }
     },
     actions: {
@@ -51,6 +60,13 @@ export const stationStore = {
                     commit({ type, station: savedStation })
                 })
         },
+        async setCurrSong({ commit }, { song }) {
+            const currSong = stationService.setCurrSong(song);
+            commit({ type: 'setCurrSong', currSong })
+            return currSong
+
+
+        }
         // removeStation({commit}, {id}){
         //     return stationService.remove(id)
         //         .then(()=>{

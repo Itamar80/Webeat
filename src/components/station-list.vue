@@ -2,7 +2,7 @@
   <div class="station-list">
     <ul class="clean-list grid">
       <li v-for="station in stations" :key="station._id">
-        <station-preview :station="station"></station-preview>
+        <station-preview :station="station" @toggleLike="toggleLike"></station-preview>
       </li>
     </ul>
   </div>
@@ -15,6 +15,10 @@ export default {
     computed: {
     },
     methods: {
+    toggleLike(id, isLiked){
+      
+     this.$emit('toggleLike', id, isLiked)
+    },
       
         // setFilter(filterBy){
         //     this.$store.commit({type: 'updateFilterBy', filter: filterBy})

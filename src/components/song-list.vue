@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: 'song-list',
     props:{
         songs:Array
     },
@@ -15,7 +16,16 @@ export default {
         return{
             
         }
-    }
+    },
+    created(){
+      this.start()
+    },
+    methods:{
+      start(){
+        this.$emit('setCurrSong', {song: 'song', title: 'omg'})
+
+        }
+      }
 }
 </script>
 

@@ -1,20 +1,16 @@
 <template>
   <div class="station-preview ratio-card flex col align-center justify-center" @click="openDetails(station._id)">
-     <section class="station-cover ">
-     <span class="top-details"> Created By: {{station.createdBy.fullName}}</span>
-        <h4>{{station.name}}</h4>
-        <img :src="station.imgUrl"/>
-      <!-- <span>{{createdAt}}</span> -->
+    <section class="station-cover ">
+      <span class="top-details"> Created By: {{station.createdBy.fullName}}</span>
+      <h4>{{station.name}}</h4>
+      <img :src="station.imgUrl"/>
       <div class="bottom-details">
-        
-          <font-awesome-icon icon="heart" size="lg"  class="heart-icon" @click.stop="addLike" /> 
-       
+        <font-awesome-icon icon="heart" size="lg"  class="heart-icon" @click.stop="toggleLike(station._id)" /> 
         <span>{{station.likedByUsers.length}}</span>
         <font-awesome-icon size="lg" :icon="['far', 'clock']" class="clock-icon"/>
         <span> {{station.songs.length}} tracks</span>
-        </div>
-        
-      </section>
+      </div>  
+    </section>
        
        
   </div>
@@ -32,6 +28,11 @@ library.add(faHeart)
 
 export default {
   props:['station'],
+  data(){
+    return {
+      isLiked: false
+    }
+  },
   created(){
     console.log(this.station.imgUrl)
   },
@@ -44,10 +45,12 @@ export default {
     openDetails(id){
       this.$router.push(`stations/details/${id}`)
     },
-    addLike(){
-      console.log('like!')
+    toggleLike(id){
+    this.isLiked = !this.isLiked
+    this.$emit('toggleLike', id, this.isLiked)
     }
-  },components:{
+  },
+  components:{
     fontAwsomeIcon
   }
 }
