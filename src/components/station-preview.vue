@@ -1,16 +1,14 @@
 <template>
-  <div class="station-preview" @click="openDetails(station._id)">
-    <div>
-      <section class="station-cover">
-      <h4>{{station.name}}</h4>
-      <img :src="station.imgUrl"/>
+  <div class="station-preview ratio-card flex col align-center justify-center" @click="openDetails(station._id)">
+      <section class="station-cover ">
+        <h4>{{station.name}}</h4>
+        <img :src="station.imgUrl"/>
       </section>
-      createdAt: {{station.createdAt}}
-      createdBy.fullName: {{station.createdBy.fullName}}
-      'userIMG'
-      likedByUsersCount: {{station.likedByUsers.length}}
-      songsCount: {{station.songs.length}}
-   </div>
+       createdAt: {{station.createdAt}}
+       createdBy.fullName: {{station.createdBy.fullName}}
+        'userIMG'
+        likedByUsersCount: {{station.likedByUsers.length}}
+        songsCount: {{station.songs.length}}
   </div>
 </template>
 
