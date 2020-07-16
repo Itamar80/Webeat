@@ -1,6 +1,6 @@
 <template>
   <div class="station-app">
-    <station-filter @filterStations="setFilter"/>
+    <station-filter class="filter" @filterStations="setFilter"/>
      <router-link to="/edit">Create station</router-link>
      <station-list :stations="stations" @toggleLike="toggleLike"></station-list>
   </div>

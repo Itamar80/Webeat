@@ -1,0 +1,48 @@
+h1 {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.creator-list {
+    li {
+        list-style-type: none;
+        margin: 3rem;
+        border: 1px solid rgb(148, 148, 148);
+        border-radius: 1rem;
+        padding: 3rem;
+        transition: .5s;
+        &:hover {
+            border: 1px solid white;
+            box-shadow: 9px 9px 9px -4px rgba(0, 0, 0, 0.75);
+        }
+        img {
+            width: 10rem;
+            border-radius: 5rem;
+            margin-right: 2rem;
+        }
+        .icon {
+            margin: .5rem;
+            cursor: pointer;
+            font-size: 1.8rem;
+            margin-top: 1rem;
+            transition: .3s;
+            color: white;
+            &:hover {
+                color: $clr4;
+            }
+        }
+    }
+    .social-about {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+    }
+    .creator-info {
+        h3 {
+            margin-bottom: 1.9rem;
+        }
+    }
+}
+
+.cofferights {
+    text-align: center;
+}
