@@ -19,7 +19,7 @@ function query(filterBy) {
         .then(res => res.data)
 }
 
-function getById(id) {
+async function getById(id) {
     return axios.get(`${_getURL(id)}`)
         .then(res => res.data)
 }

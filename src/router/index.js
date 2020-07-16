@@ -4,6 +4,7 @@ import home from '../views/homepage.vue';
 import about from '../views/about.vue';
 import dashboard from '../views/dashboard.vue';
 import stations from '../views/stations-app.vue';
+import stationDetails from '../views/station-details.vue';
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,11 @@ const routes = [{
         path: '/stations',
         name: 'stations',
         component: stations
+    },
+    {
+        path: '/stations/details/:id',
+        name: 'stations-details',
+        component: stationDetails
     },
 ]
 

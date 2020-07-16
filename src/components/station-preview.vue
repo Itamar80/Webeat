@@ -1,5 +1,11 @@
 <template>
-  <div class="station-preview">
-    <h1>This is the station-preview component</h1>
-  </div>
+  <router-link :to="'/stations/details/'+station._id" class="station-preview">
+  {{station.name}}
+  </router-link>
 </template>
+
+<script>
+export default {
+  props:['station'],
+}
+</script>
