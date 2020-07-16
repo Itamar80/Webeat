@@ -6,7 +6,8 @@ export const stationService = {
     remove,
     save,
     getEmptyStation,
-
+    setCurrSong,
+    toggleLike
 }
 
 const BASE_URL = (process.env.NODE_ENV !== 'development') ? '/station' : '//localhost:3000/station';
@@ -24,6 +25,31 @@ function query(filterBy) {
 async function getById(id) {
     const station = await axios.get(`${_getURL(id)}`)
     return station.data
+}
+
+async function toggleLike(id, loggedInUser, isLiked) {
+    const station = await getById(id);
+    console.log('start ', station.likedByUsers)
+    if (isLiked) {
+        (loggedInUser) ? station.likedByUsers.push(loggedInUser): station.likedByUsers.push({ username: 'Guest' })
+        save(station)
+        console.log('added: ', station.likedByUsers)
+    } else {
+        if (loggedInUser) {
+            var idx = station.likedByUsers.findIndex((user) => user._id === loggedInUser._id)
+            station.likedByUsers.splice(idx, 1)
+            save(station)
+        } else {
+            console.log('before: ', station.likedByUsers)
+            var idx = station.likedByUsers.findIndex((user) => user.username === 'Guest')
+            console.log(' idx ', idx)
+            station.likedByUsers.splice(idx, 1)
+            console.log('deleted: ', station.likedByUsers)
+            save(station)
+        }
+
+    }
+
 }
 
 function remove(id) {
@@ -55,4 +81,8 @@ function _update(station) {
 function _add(station) {
     return axios.post(`${_getURL()}`, station)
         .then(res => res.data)
+}
+
+function setCurrSong(song) {
+    return song
 }

@@ -34,7 +34,11 @@ export default {
       }else{
         this.$emit('toggleList')
       }
-    }
+    },
+     start(){
+        this.$emit('setCurrSong', {song: 'song', title: 'omg'})
+
+        }
   },
   components: {
     songListPrev,
