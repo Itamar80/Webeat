@@ -24,6 +24,17 @@ export const stationStore = {
         setFilter(state, { filterBy }) {
             state.filterBy = filterBy
         },
+        updateStation(state, { savedStation }) {
+            let stationIdx = state.stations.findIndex(station => {
+                return station._id === savedStation._id
+            })
+            state.stations.splice(stationIdx, 1, savedStation)
+            console.log(state.stations);
+        },
+        addStation(state, savedStation) {
+            state.stations.unshift(savedStation)
+            console.log(state.stations);
+        }
     },
     actions: {
         loadStations({ commit, state }) {
@@ -33,13 +44,13 @@ export const stationStore = {
                     return stations
                 })
         },
-        // saveStation({commit}, {station}) {
-        //     const type = (station._id)? 'updateStation' : 'addStation'
-        //     return stationService.save(station)
-        //         .then((savedStation)=>{
-        //             commit({type ,station: savedStation})
-        //         })
-        // },
+        saveStation({ commit }, { station }) {
+            const type = (station._id) ? 'updateStation' : 'addStation'
+            return stationService.save(station)
+                .then((savedStation) => {
+                    commit({ type, station: savedStation })
+                })
+        },
         // removeStation({commit}, {id}){
         //     return stationService.remove(id)
         //         .then(()=>{

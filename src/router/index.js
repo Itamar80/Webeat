@@ -6,6 +6,7 @@ import dashboard from '../views/dashboard.vue';
 import stations from '../views/stations-app.vue';
 import stationDetails from '../views/station-details.vue';
 import login from '../views/login-signup.vue';
+import editStation from '../views/station-edit.vue';
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [{
         path: '/dashboard',
         name: 'dashboard',
         component: dashboard
+    },
+    {
+        path: '/edit/:id?',
+        name: 'editStation',
+        component: editStation
     },
     {
         path: '/stations',
