@@ -1,6 +1,6 @@
 <template>
   <div class="station-list">
-    <ul class="clean-list card-grid">
+    <ul class="clean-list grid">
       <li v-for="station in stations" :key="station._id">
         <station-preview :station="station"></station-preview>
       </li>
