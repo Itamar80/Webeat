@@ -24,6 +24,7 @@ export default {
     setFilter(filterBy){
       this.$store.commit({type: 'setFilter', filterBy: {...filterBy}})
       this.$store.dispatch({type: 'loadStations'})
+      this.loadStations()
     }, 
     async toggleLike(id, isLiked){
     const loggedInUser = this.$store.getters.loggedInUser

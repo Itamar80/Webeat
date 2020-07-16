@@ -29,6 +29,7 @@ export const stationStore = {
     },
     mutations: {
         setStations(state, { stations }) {
+            console.log(stations);
             state.stations = stations;
         },
         setFilter(state, { filterBy }) {
