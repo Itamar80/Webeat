@@ -8,7 +8,7 @@ export const stationService = {
     getEmptyStation
 }
 
-const BASE_URL = (process.env.NODE_ENV !== 'development') ? '/api/station' : '//localhost:3000/station';
+const BASE_URL = (process.env.NODE_ENV !== 'development') ? '/station' : '//localhost:3000/station';
 
 function _getURL(id = '') {
     return `${BASE_URL}/${id}`
@@ -20,11 +20,8 @@ function query(filterBy) {
 }
 
 async function getById(id) {
-    // const station = await axios.get(`${_getURL(id)}`)
-    // console.log(station.data);
-    // return station.data
-    return axios.get(`${_getURL(id)}`)
-        .then(res => res.data)
+    const station = await axios.get(`${_getURL(id)}`)
+    return station.data
 }
 
 function remove(id) {
@@ -38,10 +35,13 @@ function save(station) {
 function getEmptyStation() {
     return {
         name: '',
-        price: null,
-        type: null,
+        imgUrl: '',
+        tags: [],
         createdAt: Date.now(),
-        inStock: null,
+        createdBy: {},
+        likedByUsers: [],
+        songs: []
+
     }
 }
 
