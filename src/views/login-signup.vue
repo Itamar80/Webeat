@@ -11,8 +11,9 @@
     </div>
   <div v-if="!loggedinUser" class="login">
       <form v-if="isUser" @submit="login">
-      Email:  <input type="text" v-model="loginCred.username">
+        Email:  <input type="text" v-model="loginCred.username">
      Password:  <input type="password" v-model="loginCred.password">
+
      <button>Login</button>
       </form>
       <form v-if="!isUser" @submit="signup">

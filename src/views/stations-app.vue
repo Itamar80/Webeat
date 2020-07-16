@@ -33,7 +33,6 @@ export default {
     },
     async loadStations(){
     this.stations = await this.$store.dispatch({type: 'loadStations'})
-    console.log(this.stations)
     }
   },
     

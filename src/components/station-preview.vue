@@ -33,9 +33,9 @@ export default {
       isLiked: false
     }
   },
-  created(){
-    console.log(this.station.imgUrl)
-  },
+  // created(){
+  //   console.log(this.station.imgUrl)
+  // },
   computed:{
     createdAt(){
      return moment(this.station.createdAt).subtract(10, 'days').calendar()
