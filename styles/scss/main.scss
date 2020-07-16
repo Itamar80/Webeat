@@ -17,6 +17,7 @@
 @import "components/station-preview.scss";
 //Views
 @import "views/homepage.scss";
+@import "views/main-header.scss";
 @import "views/about.scss";
 @import "views/dashboard.scss";
 @import "views/login-signup.scss";
@@ -24,3 +25,7 @@
 @import "views/station-details.scss";
 @import "views/station-edit.scss";
 @import "views/user-details.scss";
+body {
+    box-sizing: border-box;
+    margin: 0;
+}

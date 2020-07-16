@@ -6,11 +6,13 @@ Vue.use(Vuex)
 export const stationStore = {
     strict: true,
     state: {
-        stations: []
+        stations: [],
+        filterBy: {
+            name: '',
+        },
     },
     getters: {
         stations(state) {
-            console.log(state.stations);
             return state.stations
         },
 
@@ -19,10 +21,13 @@ export const stationStore = {
         setStations(state, { stations }) {
             state.stations = stations;
         },
+        setFilter(state, { filterBy }) {
+            state.filterBy = filterBy
+        },
     },
     actions: {
         loadStations({ commit, state }) {
-            return stationService.query()
+            return stationService.query(state.filterBy)
                 .then(stations => {
                     commit({ type: 'setStations', stations })
                     return stations

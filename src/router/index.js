@@ -5,6 +5,7 @@ import about from '../views/about.vue';
 import dashboard from '../views/dashboard.vue';
 import stations from '../views/stations-app.vue';
 import stationDetails from '../views/station-details.vue';
+import login from '../views/login-signup.vue';
 
 Vue.use(VueRouter)
 
@@ -17,6 +18,11 @@ const routes = [{
         path: '/about',
         name: 'About',
         component: about
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: login
     },
     {
         path: '/dashboard',

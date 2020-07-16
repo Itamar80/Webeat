@@ -1,5 +1,23 @@
 <template>
   <div class="filter-stations">
-    <h1>This is the filter stations component</h1>
+    <input @input="filterStations" type="text" placeholder="filter stations" v-model="filterBy.name">
   </div>
 </template>
+
+<script>
+export default {
+  data(){
+    return{
+      filterBy:{
+        name:null
+      }
+    }
+  },
+methods:{
+  filterStations(){
+    this.$emit('filterStations',this.filterBy)
+  }
+}
+}
+</script>
+

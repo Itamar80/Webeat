@@ -15,7 +15,8 @@ function _getURL(id = '') {
 }
 
 function query(filterBy) {
-    return axios.get(`${_getURL()}`)
+    const filterStr = `?name_like=${filterBy.name}`;
+    return axios.get(`${_getURL()}${filterStr}`)
         .then(res => res.data)
 }
 
