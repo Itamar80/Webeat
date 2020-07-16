@@ -1,0 +1,9 @@
+.router-link {
+    text-decoration: none;
+    color: $clr1;
+    font-size: 1.2rem;
+    font-weight: 600;
+    &:hover {
+        color: $clr3;
+    }
+}
