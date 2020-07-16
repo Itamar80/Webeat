@@ -1,6 +1,7 @@
 <template>
   <div class="station-app">
     <station-filter @filterStations="setFilter"/>
+     <router-link to="/edit">Create station</router-link>
      <station-list :stations="stations"></station-list>
   </div>
 </template>
@@ -16,7 +17,7 @@ export default {
     },
     methods: {
         setFilter(filterBy){
-            this.$store.commit({type: 'setFilter', filterBy: filterBy})
+            this.$store.commit({type: 'setFilter', filterBy: {...filterBy}})
             this.$store.dispatch({type: 'loadStations'})
         }, 
     },
