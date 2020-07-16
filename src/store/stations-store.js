@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { stationService } from '../services/station-service.js'
+import { songService } from '../services/song-service.js'
 
 Vue.use(Vuex)
 export const stationStore = {
@@ -10,11 +11,15 @@ export const stationStore = {
         filterBy: {
             name: '',
         },
+        songList: null
     },
     getters: {
         stations(state) {
             return state.stations
         },
+        songList(state) {
+            return state.songList
+        }
 
     },
     mutations: {
@@ -34,6 +39,9 @@ export const stationStore = {
         addStation(state, savedStation) {
             state.stations.unshift(savedStation)
             console.log(state.stations);
+        },
+        setSongList(state, { songList }) {
+            state.songList = songList
         }
     },
     actions: {
@@ -51,6 +59,16 @@ export const stationStore = {
                     commit({ type, station: savedStation })
                 })
         },
+        searchSong({ commit }, { songStr }) {
+            // console.log('in store', songStr);
+            return songService.searchSong(songStr)
+                .then(songList => {
+                    commit({ type: 'setSongList', songList: songList })
+                })
+
+
+        }
+
         // removeStation({commit}, {id}){
         //     return stationService.remove(id)
         //         .then(()=>{

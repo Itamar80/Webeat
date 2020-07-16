@@ -5,7 +5,8 @@ export const stationService = {
     getById,
     remove,
     save,
-    getEmptyStation
+    getEmptyStation,
+
 }
 
 const BASE_URL = (process.env.NODE_ENV !== 'development') ? '/station' : '//localhost:3000/station';

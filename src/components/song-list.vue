@@ -1,24 +1,47 @@
 <template>
   <section>
-    <pre>
-          {{songs}}
-    </pre>
+    <input type="text" v-model="songToFind" @input="searchSongs" />
+    <section v-if="!songList" class="songlist-container">
+      <ul>
+        <li v-for="song in songs" :key="song._id">
+          <songListPrev :song="song" />
+        </li>
+      </ul>
+    </section>
+    <youtubeSongs v-else  :songList="songList"/>
   </section>
 </template>
 
 <script>
+import songListPrev from "../components/songlist-prev.vue";
+import youtubeSongs from "../components/youtube-songs.vue";
+
 export default {
-    props:{
-        songs:Array
-    },
-    data(){
-        return{
-            
-        }
+  props: {
+    songs: Array,
+    songList : Object
+  },
+  data() {
+    return {
+      songToFind: ''
+    };
+  },
+  methods: {
+    searchSongs(){
+      // console.log(this.songToFind);
+      if(this.songToFind){
+        this.$emit('searchSongs', this.songToFind)
+      }else{
+        this.$emit('toggleList')
+      }
     }
-}
+  },
+  components: {
+    songListPrev,
+    youtubeSongs
+  }
+};
 </script>
 
 <style>
-
 </style>
