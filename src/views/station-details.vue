@@ -5,11 +5,13 @@
 </template>
 
 <script>
-import stationService from '../services/station-service.js'
+import {stationService} from '../services/station-service.js'
 export default {
 
- created(){
+  created(){
    let id = this.$route.params.id;
+  //  let station = await stationService.getById(id)
+  //  console.log(station);
  }
 
 }

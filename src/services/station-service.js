@@ -20,6 +20,9 @@ function query(filterBy) {
 }
 
 async function getById(id) {
+    // const station = await axios.get(`${_getURL(id)}`)
+    // console.log(station.data);
+    // return station.data
     return axios.get(`${_getURL(id)}`)
         .then(res => res.data)
 }
