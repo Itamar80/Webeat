@@ -1,6 +1,7 @@
 <template>
-  <div class="station-details">
-    <!-- <h1>This is the station details page</h1> -->
+  <div class="station-details flex row">
+    <song-list :songs="station.songs"/>
+    <curr-song/>
     <chat-app/>
     <pre>{{station}}</pre>
   </div>
@@ -9,6 +10,8 @@
 <script>
 import {stationService} from '../services/station-service.js'
 import chatApp from '../components/chat-app.vue'
+import currSong from '../components/curr-song.vue'
+import songList from '../components/song-list.vue'
 export default {
   data(){
     return{
@@ -25,7 +28,9 @@ export default {
       this.station = station
     }
   }, components:{
-chatApp
+      chatApp, 
+      songList, 
+      currSong
   }
 
 }
