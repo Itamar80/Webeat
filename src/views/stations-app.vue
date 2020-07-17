@@ -1,8 +1,10 @@
 <template>
-  <div class="station-app">
+  <div class="station-app ">
+     <div class="create-filter flex justify-center align-center">
     <station-filter class="filter" @filterStations="setFilter"/>
-     <router-link to="/edit">Create station</router-link>
-     <station-list :stations="stations" @toggleLike="toggleLike"></station-list>
+     <router-link class="router-link" to="/edit">Create station</router-link>
+     </div>
+     <station-list class="container" :stations="stations" @toggleLike="toggleLike"></station-list>
   </div>
 </template>
 

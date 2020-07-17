@@ -1,13 +1,22 @@
+.heart-icon {
+    color: $clr7;
+}
+
+.liked {
+    color: $clr4;
+}
+
 .station-preview {
     .station-cover {
         position: relative;
         img {
             position: relative;
             margin: 0 auto;
-            height: 250px;
-            width: 250px;
+            height: 230px;
+            width: 230px;
             object-fit: cover;
             z-index: 0;
+            transition: .5s;
             filter: opacity(100%);
         }
         h4 {
@@ -38,12 +47,12 @@
             .heart-icon {
                 background-color: transparent;
                 border: none;
-                color: $clr7;
                 padding: 0;
-                &:hover {
-                    color: $clr4;
-                    cursor: pointer;
-                }
+                cursor: pointer;
+                // &:hover {
+                //     color: $clr4;
+                //     cursor: pointer;
+                // }
             }
             span {
                 margin: 0 10px 0 2px;

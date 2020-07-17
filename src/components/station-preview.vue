@@ -5,7 +5,7 @@
       <h4>{{station.name}}</h4>
       <img :src="station.imgUrl"/>
       <div class="bottom-details">
-        <font-awesome-icon icon="heart" size="lg"  class="heart-icon" @click.stop="toggleLike(station._id)" /> 
+        <font-awesome-icon icon="heart" size="lg"  class="heart-icon" :class="{liked:isLiked}" @click.stop="toggleLike(station._id)" /> 
         <span>{{station.likedByUsers.length}}</span>
         <font-awesome-icon size="lg" :icon="['far', 'clock']" class="clock-icon"/>
         <span> {{station.songs.length}} tracks</span>
@@ -47,6 +47,7 @@ export default {
     },
     toggleLike(id){
     this.isLiked = !this.isLiked
+    console.log(this.isLiked);
     this.$emit('toggleLike', id, this.isLiked)
     }
   },

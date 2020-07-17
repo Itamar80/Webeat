@@ -1,5 +1,12 @@
 .station-app {
-    .filter {
-        text-align: center;
+    .create-filter {
+        margin: 2rem 0;
+        .filter {
+            //take a library
+        }
+        .router-link {
+            margin-left: 2rem;
+            color: $clr4;
+        }
     }
 }
