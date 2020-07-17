@@ -1,0 +1,14 @@
+.curr-song {
+    background-color: $clr6;
+    .song-controllers {
+        background-color: $clr2;
+        // box-shadow: 0 0 10px #ffffff, 0 0 30px #ffc300;
+        .control-icon {
+            // box-shadow: 0 0 10px #ffffff,0 0 30px #ffc300;
+            margin: 5px;
+        }
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

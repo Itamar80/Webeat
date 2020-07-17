@@ -3,3 +3,4 @@
     <h1>chat</h1>
   </section>
 </template>
+ 

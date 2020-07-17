@@ -2,7 +2,7 @@
   <section>
     <input type="text" v-model="songToFind" @input="searchSongs" />
     <section v-if="!songList" class="songlist-container">
-      <ul>
+      <ul class="clean-list">
         <li v-for="song in songs" :key="song._id">
           <songListPrev :song="song" />
         </li>
@@ -11,7 +11,7 @@
     <youtubeSongs v-else  :songList="songList"/>
   </section>
 </template>
-
+ 
 <script>
 import songListPrev from "../components/songlist-prev.vue";
 import youtubeSongs from "../components/youtube-songs.vue";

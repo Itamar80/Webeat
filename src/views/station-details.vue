@@ -1,10 +1,9 @@
 <template>
-  <div class="station-details flex row">
+  <div class="station-details">
     <song-list v-if="station" @searchSongs="searchSongs" :songList="songList" :songs="station.songs" @setCurrSong="setCurrSong" />
-    
     <curr-song :currSong="currSong"/>
     <chat-app />
-    <pre>{{station}}</pre>
+    <!-- <pre>{{station}}</pre> -->
   </div>
 </template>
 
@@ -26,7 +25,7 @@ export default {
    this.currSong = this.$store.getters.currSong
 
   },
-  computed: {
+  computed: { 
     songList(){
       console.log('indetails',this.$store.getters.songList);
       return this.$store.getters.songList

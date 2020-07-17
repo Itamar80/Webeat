@@ -1,7 +1,13 @@
-.songlist-container {
-    background-color: $clr3;
-}
-
-.youtubeList {
-    background-color: red;
+.station-details {
+    margin: 10px 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1;
+    gap: 20px;
+    .songlist-container {
+        background-color: $clr3;
+    }
+    .youtubeList {
+        background-color: red;
+    }
 }
