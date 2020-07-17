@@ -47,7 +47,6 @@ export default {
     },
     toggleLike(id){
     this.isLiked = !this.isLiked
-    console.log(this.isLiked);
     this.$emit('toggleLike', id, this.isLiked)
     }
   },

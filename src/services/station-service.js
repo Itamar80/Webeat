@@ -42,9 +42,7 @@ async function toggleLike(id, loggedInUser, isLiked) {
         } else {
             console.log('before: ', station.likedByUsers)
             var idx = station.likedByUsers.findIndex((user) => user.username === 'Guest')
-            console.log(' idx ', idx)
             station.likedByUsers.splice(idx, 1)
-            console.log('deleted: ', station.likedByUsers)
             save(station)
         }
 

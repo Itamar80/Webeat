@@ -4,11 +4,15 @@
         padding: 1rem;
         .nav-btn {
             padding: 1.1rem;
-            transition: .3s;
             &:hover {
+                transition: .3s;
                 background-color: $clr3;
                 box-shadow: inset 0px -5px 0px 0px $clr2;
             }
+            // &:active {
+            //     color: white;
+            //     background-color: white;
+            // }
         }
     }
 }

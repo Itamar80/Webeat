@@ -16,7 +16,6 @@ export default {
     },
     methods: {
     toggleLike(id, isLiked){
-      
      this.$emit('toggleLike', id, isLiked)
     },
       

@@ -39,7 +39,6 @@ export const stationStore = {
                 return station._id === savedStation._id
             })
             state.stations.splice(stationIdx, 1, savedStation)
-            console.log(state.stations);
         },
         addStation(state, savedStation) {
             state.stations.unshift(savedStation)

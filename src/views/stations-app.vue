@@ -24,6 +24,7 @@ export default {
   },
   methods: {
     setFilter(filterBy){
+      //tags/ז'אנר 
       this.$store.commit({type: 'setFilter', filterBy: {...filterBy}})
       this.$store.dispatch({type: 'loadStations'})
       this.loadStations()
