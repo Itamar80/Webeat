@@ -3,7 +3,11 @@
     <h1>This is the station edit page</h1>
     <form @submit="addStation">
       <input type="text" placeholder="Enter the station name" v-model="station.name">
-      <label>uploadImg</label>
+      <img width="200" :src="img" />
+      <label>
+        Station Image:
+        <input type="file" @change="onUploadImg" />
+      </label>
       <input type="text" placeholder="Enter the station tags" v-model="tagToAdd"> {{station.tags}}
    <button @click.stop="addTag">Add tag</button>
    <button>Add station</button>
@@ -13,77 +17,39 @@
 
 <script>
 import {stationService} from '../services/station-service.js'
+import { uploadImg } from "@/services/imgUpload.service.js";
+
 export default {
 data(){
   return{
     station:{
       name:null,
       tags:[],
-      songs:[]
+      songs:[],
+      imgUrl:''
     },
     tagToAdd:'',
+    img: ''
   }
 },
 created(){
  this.station = stationService.getEmptyStation();
 },
 methods:{
+  //add songs
   addTag(){
     this.station.tags.push(this.tagToAdd);
     this.tagToAdd='';
   },
   addStation(){
     this.$store.dispatch({type: 'saveStation',station:this.station})
-  }
-},
-components:{
-  stationService
-}
-}
-</script>
-// function getEmptyStation() {
-//     return {
-//         name: '',
-//         imgUrl: '',
-//         tags: [],
-//         createdAt: Date.now(),
-//         createdBy: {},
-//         likedByUsers: [],
-//         songs: []
-
-//     }
-// }    <form @submit="addStation">
-      <input type="text" placeholder="Enter the station name" v-model="station.name">
-      <label>uploadImg</label>
-      <input type="text" placeholder="Enter the station tags" v-model="tagToAdd"> {{station.tags}}
-   <button @click.stop="addTag">Add tag</button>
-   <button>Add station</button>
-    </form>
-
-<script>
-import {stationService} from '../services/station-service.js'
-export default {
-data(){
-  return{
-    station:{
-      name:null,
-      tags:[],
-      songs:[]
-    },
-    tagToAdd:'',
-  }
-},
-created(){
- this.station = stationService.getEmptyStation();
-},
-methods:{
-  addTag(){
-    this.station.tags.push(this.tagToAdd);
-    this.tagToAdd='';
+    this.$router.push('/stations')
   },
-  addStation(){
-    this.$store.dispatch({type: 'saveStation',station:this.station})
-  }
+  async onUploadImg(ev) {
+    const res = await uploadImg(ev)
+    this.img = res.url;
+    this.station.imgUrl = this.img;
+    }
 },
 components:{
   stationService
