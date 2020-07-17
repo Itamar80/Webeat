@@ -1,0 +1,24 @@
+.header {
+    .router-link-exact-active {
+        color: white;
+        transition: .3s;
+        background-color: #ff57338c;
+        // box-shadow: inset 0px -5px 0px 0px #ffc4001a;
+    }
+    background-color: $clr4;
+    .main-header {
+        padding: 1rem;
+        .nav-btn {
+            font-size: rem(14px);
+            color: $clr7;
+            text-shadow: 0 0 10px #fff, 0 0 30px $clr6, ;
+            padding: 1.1rem;
+            &:hover {
+                color: white;
+                transition: .3s;
+                background-color: $clr5;
+                box-shadow: inset 0px -5px 0px 0px #ffc30063;
+            }
+        }
+    }
+}
