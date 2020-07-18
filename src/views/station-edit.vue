@@ -5,7 +5,7 @@
       <input type="text" placeholder="Enter the station name" v-model="station.name">
       <img width="200" :src="img" />
       <label>
-        Station Image:
+        Station Image:d
         <input type="file" @change="onUploadImg" />
       </label>
       <input type="text" placeholder="Enter the station tags" v-model="tagToAdd"> {{station.tags}}
