@@ -23,12 +23,12 @@
             <el-tag
               class="tag"
               :key="tag"
-              v-for="tag in dynamicTags"
+              v-for="tag in station.tags"
               closable
               :disable-transitions="false"
               @close="handleClose(tag)"
             >{{tag}}</el-tag>
-            <el-input
+            <el-input 
               class="input-new-tag"
               v-if="inputVisible"
               v-model="inputValue"
@@ -40,7 +40,7 @@
             <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
           </div>
 
-          <button class="btn edit-sub-btn" @click.prevent="addTag">Add tag</button>
+          <!-- <button class="btn edit-sub-btn" @click.prevent="addTag">Add tag</button> -->
           <h3>Add song:</h3>Search songs:
           <input type="text" v-model="songToFind" />
           <button class="btn edit-sub-btn" @click.prevent="searchSongs">Search songs</button>
@@ -137,7 +137,7 @@ export default {
       this.$refs.name.focus();
     },
     handleClose(tag) {
-      this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
+      this.station.tags.splice(this.station.tags.indexOf(tag), 1);
     },
     showInput() {
       this.inputVisible = true;
@@ -148,7 +148,7 @@ export default {
     handleInputConfirm() {
       let inputValue = this.inputValue;
       if (inputValue) {
-        this.dynamicTags.push(inputValue);
+        this.station.tags.push(inputValue);
       }
       this.inputVisible = false;
       this.inputValue = "";
