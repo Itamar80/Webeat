@@ -1,0 +1,31 @@
+.station-edit {
+    input {
+        padding: 5px;
+        margin: 0.7rem;
+        color: rgb(85, 85, 85);
+        border: none;
+        outline: none;
+        border-radius: 0.2rem;
+    }
+    .submit-btn {
+        padding: 20px;
+    }
+}
+
+.button-new-tag {
+    margin-left: 10px;
+    height: 32px;
+    line-height: 30px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.el-tag+.el-tag {
+    margin-left: 10px;
+}
+
+.input-new-tag {
+    width: 90px;
+    margin-left: 10px;
+    vertical-align: bottom;
+}

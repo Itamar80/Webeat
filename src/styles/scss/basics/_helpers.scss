@@ -121,3 +121,17 @@
     margin: 0 auto;
     padding: 0;
 }
+
+.btn {
+    margin: 0.4rem;
+    padding: 10px;
+    background-color: $clr2;
+    border: none;
+    outline: none;
+    color: $clr7;
+    border-radius: 1.5rem;
+    transition: .3s;
+    &:hover {
+        background-color: $clr3;
+    }
+}
