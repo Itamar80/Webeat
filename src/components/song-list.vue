@@ -8,7 +8,7 @@
         </li>
       </ul>
     </section>
-    <youtubeSongs v-else  :songList="songList"/>
+    <youtubeSongs v-else @addSong="addSong" :songList="songList" />
   </section>
 </template>
  
@@ -19,26 +19,28 @@ import youtubeSongs from "../components/youtube-songs.vue";
 export default {
   props: {
     songs: Array,
-    songList : Object
+    songList: Object
   },
   data() {
     return {
-      songToFind: ''
+      songToFind: ""
     };
   },
   methods: {
-    searchSongs(){
+    searchSongs() {
       // console.log(this.songToFind);
-      if(this.songToFind){
-        this.$emit('searchSongs', this.songToFind)
-      }else{
-        this.$emit('toggleList')
+      if (this.songToFind) {
+        this.$emit("searchSongs", this.songToFind);
+      } else {
+        this.$emit("toggleList");
       }
     },
-     start(){
-        this.$emit('setCurrSong', {song: 'song', title: 'omg'})
-
-        }
+    start() {
+      this.$emit("setCurrSong", { song: "song", title: "omg" });
+    },
+    addSong(song) {
+      this.$emit("addSong", song);
+    }
   },
   components: {
     songListPrev,

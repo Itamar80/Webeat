@@ -1,6 +1,6 @@
 <template>
   <div class="station-details">
-    <song-list v-if="station" @searchSongs="searchSongs" :songList="songList" :songs="station.songs" @setCurrSong="setCurrSong" />
+    <song-list @addSong="addSong" v-if="station" @searchSongs="searchSongs" :songList="songList" :songs="station.songs" @setCurrSong="setCurrSong" />
     <curr-song :currSong="currSong"/>
     <chat-app />
     <!-- <pre>{{station}}</pre> -->
@@ -47,7 +47,14 @@ export default {
       // this.currSong =  this.$store.getters.currSong
       const newCurrSong = await this.$store.dispatch({type: 'setCurrSong', song});
       this.currSong = newCurrSong
-     }
+     },
+     addSong(song) {
+      //  console.log(song)
+     this.station.songs.push(song)
+     console.log(this.station)
+     this.$store.dispatch({type: 'saveStation', station: this.station})
+       console.log(this.station.songs)
+    }
   },
   components: {
     chatApp,

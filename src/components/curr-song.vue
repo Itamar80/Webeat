@@ -1,19 +1,11 @@
 <template>
   <section class="curr-song">
-    {{ currSong}}
-    <!-- <iframe
-        id="youtube-video"
-        width="560"
-        height="315"
-        src="//www.youtube.com/embed/`${songList.items[0].id.videoId}`?enablejsapi=1"
-        frameborder="0"
-        allowfullscreen
-    ></iframe>-->
+    <iframe id="youtube-video" width="450" height="300" :src="videoSrc" frameborder="0" allowfullscreen></iframe>
     <section class="song-controllers flex row justify-center align-center">
-      <font-awesome-icon icon="backward" size="lg" class="control-icon" /> 
-      <font-awesome-icon icon="play" size="lg" class="control-icon" /> 
-      <font-awesome-icon icon="pause" size="lg" class="control-icon" /> 
-      <font-awesome-icon icon="forward" size="lg" class="control-icon" /> 
+      <font-awesome-icon icon="backward" size="lg" class="control-icon" />
+      <font-awesome-icon icon="play" size="lg" class="control-icon" />
+      <font-awesome-icon icon="pause" size="lg" class="control-icon" />
+      <font-awesome-icon icon="forward" size="lg" class="control-icon" />
     </section>
   </section>
 </template>
@@ -44,15 +36,21 @@ export default {
     // var player;
     // function onYouTubeIframeAPIReady() {
     //   player = new YT.Player("player", {
-    //     height: "390",
+    //     height: "500",
     //     width: "640",
-    //     videoId: songList.items[0].id.videoId,
+    //     videoId: currSong.youtubeId,
     //     events: {
     //       onReady: onPlayerReady,
     //       onStateChange: onPlayerStateChange
     //     }
     //   });
     // }
+  },
+  computed: {
+    videoSrc() {
+      // return `//www.youtube.com/embed/${this.currSong.youtubeId}?enablejsapi=1`
+      return `//www.youtube.com/embed/${'tdvOdJ-4tGk'}?enablejsapi=1`
+    }
   },
   components: {
     fontAwsomeIcon

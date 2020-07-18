@@ -2,15 +2,14 @@
   <section class="youtubeList">
     <ul class="clean-list">
       <li v-for="song in songList.items" :key="song.id.videoId">
-        <youtube-song :song="song"/>
+        <youtube-song @addSong="addSong" :song="song" />
       </li>
     </ul>
-   
   </section>
 </template>
 
 <script>
-import youtubeSong from './youtube-song.vue'
+import youtubeSong from "./youtube-song.vue";
 
 export default {
   props: {
@@ -19,7 +18,12 @@ export default {
   data() {
     return {};
   },
-  components:{
+  methods: {
+    addSong(song) {
+      this.$emit("addSong", song);
+    }
+  },
+  components: {
     youtubeSong
   }
 };
