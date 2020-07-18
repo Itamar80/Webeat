@@ -1,6 +1,7 @@
 <template>
   <section>
-    <input type="text" v-model="songToFind" @input="searchSongs" />
+    <input type="text" v-model="songToFind" />
+    <button class="btn edit-sub-btn" @click.prevent="searchSongs">Search songs</button>
     <section v-if="!songList || !songToFind" class="songlist-container">
       <ul class="clean-list">
         <li v-for="song in songs" :key="song._id">
@@ -28,7 +29,7 @@ export default {
   },
   methods: {
     searchSongs() {
-      // console.log(this.songToFind);
+      console.log(this.songToFind);
       if (this.songToFind) {
         this.$emit("searchSongs", this.songToFind);
       } else {

@@ -1,9 +1,24 @@
 <template>
   <section class="curr-song">
-    <iframe id="youtube-video" width="450" height="300" :src="videoSrc" frameborder="0" allowfullscreen></iframe>
+    <div class="iframe-container">
+      <!-- <div id="ytplayer"></div> -->
+
+      <!-- <iframe
+        id="player"
+        width="450"
+        height="300"
+        :src="videoSrc"
+        frameborder="0"
+        allowfullscreen
+         
+      ></iframe>-->
+      <!-- <youtube :video-id="videoId"></youtube> -->
+
+      <youtube :video-id="videoId" ref="youtube"></youtube>
+    </div>
     <section class="song-controllers flex row justify-center align-center">
       <font-awesome-icon icon="backward" size="lg" class="control-icon" />
-      <font-awesome-icon icon="play" size="lg" class="control-icon" />
+      <font-awesome-icon @click="playVideo" icon="play" size="lg" class="control-icon" />
       <font-awesome-icon icon="pause" size="lg" class="control-icon" />
       <font-awesome-icon icon="forward" size="lg" class="control-icon" />
     </section>
@@ -28,28 +43,27 @@ export default {
   props: {
     currSong: Object
   },
-  created() {
-    // var tag = document.createElement("script");
-    // tag.src = "https://www.youtube.com/player_api";
-    // var firstScriptTag = document.getElementsByTagName("script")[0];
-    // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    // var player;
-    // function onYouTubeIframeAPIReady() {
-    //   player = new YT.Player("player", {
-    //     height: "500",
-    //     width: "640",
-    //     videoId: currSong.youtubeId,
-    //     events: {
-    //       onReady: onPlayerReady,
-    //       onStateChange: onPlayerStateChange
-    //     }
-    //   });
-    // }
+  data() {
+    return {
+      // videoId: this.currSong.youtubeId
+    };
   },
+  created() {},
   computed: {
-    videoSrc() {
-      // return `//www.youtube.com/embed/${this.currSong.youtubeId}?enablejsapi=1`
-      return `//www.youtube.com/embed/${this.currSong.youtubeId}?enablejsapi=1`
+    videoId() {
+      return this.currSong.youtubeId;
+    },
+    player() {
+      return this.$refs.youtube.player;
+    }
+    // videoSrc() {
+    //   // return `//www.youtube.com/embed/${this.currSong.youtubeId}?enablejsapi=1`
+    //   return `//www.youtube.com/embed/${this.currSong.youtubeId}?enablejsapi=1;&autoplay=1`;
+    // },
+  },
+  methods: {
+    async playVideo() {
+      await this.player.playVideo();
     }
   },
   components: {
@@ -60,45 +74,3 @@ export default {
 
 <style>
 </style>
-
-    //   // 2. This code loads the IFrame Player API code asynchronously.
-    //   var tag = document.createElement('script');
-
-    //   tag.src = "https://www.youtube.com/iframe_api";
-    //   var firstScriptTag = document.getElementsByTagName('script')[0];
-    //   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    //   // 3. This function creates an <iframe> (and YouTube player)
-    //   //    after the API code downloads.
-    //   var player;
-    //   function onYouTubeIframeAPIReady() {
-    //     player = new YT.Player('player', {
-    //       height: '390',
-    //       width: '640',
-    //       videoId: 'M7lc1UVf-VE',
-    //       events: {
-    //         'onReady': onPlayerReady,
-    //         'onStateChange': onPlayerStateChange
-    //       }
-    //     });
-    //   }
-
-    //   // 4. The API will call this function when the video player is ready.
-    //   function onPlayerReady(event) {
-    //     event.target.playVideo();
-    //   }
-
-    //   // 5. The API calls this function when the player's state changes.
-    //   //    The function indicates that when playing a video (state=1),
-    //   //    the player should play for six seconds and then stop.
-    //   var done = false;
-    //   function onPlayerStateChange(event) {
-    //     if (event.data == YT.PlayerState.PLAYING && !done) {
-    //       setTimeout(stopVideo, 6000);
-    //       done = true;
-    //     }
-    //   }
-    //   function stopVideo() {
-    //     player.stopVideo();
-    //   }
-    // </script>

@@ -10,7 +10,6 @@
     />
     <curr-song :currSong="currSong" />
     <chat-app />
-    <!-- <pre>{{station}}</pre> -->
   </div>
 </template>
 
@@ -23,8 +22,7 @@ export default {
   data() {
     return {
       station: null,
-      currSong:null
-      // currSong: this.station.songs[0]
+      currSong: null
     };
   },
   created() {
@@ -41,6 +39,7 @@ export default {
     async getStation(id) {
       let station = await stationService.getById(id);
       this.station = station;
+      this.currSong = station.songs[0];
     },
     async searchSongs(songStr) {
       //  console.log(songStr);
@@ -49,13 +48,16 @@ export default {
         .then(songList => {});
     },
     async setCurrSong(song) {
-      const newCurrSong = await this.$store.dispatch({type: "setCurrSong", song});
+      const newCurrSong = await this.$store.dispatch({
+        type: "setCurrSong",
+        song
+      });
       this.currSong = newCurrSong;
     },
     addSong(song) {
       this.station.songs.push(song);
       this.$store.dispatch({ type: "saveStation", station: this.station });
-    },
+    }
   },
   components: {
     chatApp,

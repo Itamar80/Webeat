@@ -22,6 +22,8 @@
         "vue": "^2.6.11",
         "vue-router": "^3.3.4",
         "vue-smooth-dnd": "^0.8.1",
+        "vue-youtube": "^1.4.0",
+        "vue-youtube-embed": "^2.2.2",
         "vuex": "^3.5.1"
     },
     "devDependencies": {
