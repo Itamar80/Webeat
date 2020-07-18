@@ -8,7 +8,18 @@
         border-radius: 0.2rem;
     }
     .submit-btn {
+        cursor: pointer;
+        position: absolute;
+        left: 50%;
+        bottom: 20%;
         padding: 20px;
+        background-color: $clr4;
+        &:hover {
+            background-color: $clr5;
+        }
+    }
+    .form-songs-container {
+        margin-top: 2.5rem;
     }
 }
 

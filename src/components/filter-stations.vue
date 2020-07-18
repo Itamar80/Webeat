@@ -1,6 +1,6 @@
 <template>
   <div class="filter-stations">
-    <input @input="filterStations" type="text" placeholder="filter stations" v-model="filterBy.name">
+    <input class="filter-stations" @input="filterStations" type="text" placeholder="filter stations" v-model="filterBy.name">
   </div>
 </template>
 

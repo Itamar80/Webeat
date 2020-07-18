@@ -3,14 +3,15 @@
     <h1>This is the station edit page</h1>
     <div class="form-songs-container space-between flex">
       <section class="station-form">
-        <form @submit="addStation" class="flex col align-center">
-          Station name:
+        <form @submit="addStation" class="flex col flex-start">
+         <label > Station name:
           <input
             type="text"
             placeholder="Enter the station name"
             v-model="station.name"
             ref="name"
           />
+          </label>
           <img width="200" :src="img" />
           <label>
             Station Image:
@@ -20,6 +21,8 @@
           <input type="text" placeholder="Enter the station tags" v-model="tagToAdd" />
           {{station.tags}}-->
           <div>
+            <label for="">
+            Add tags:
             <el-tag
               class="tag"
               :key="tag"
@@ -28,21 +31,23 @@
               :disable-transitions="false"
               @close="handleClose(tag)"
             >{{tag}}</el-tag>
-            <el-input 
+            <el-input
               class="input-new-tag"
               v-if="inputVisible"
               v-model="inputValue"
               ref="saveTagInput"
               size="mini"
+              @keydown.enter.stop
               @keyup.enter.native="handleInputConfirm"
               @blur="handleInputConfirm"
             ></el-input>
             <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
+            </label>
           </div>
 
           <!-- <button class="btn edit-sub-btn" @click.prevent="addTag">Add tag</button> -->
           <h3>Add song:</h3>Search songs:
-          <input type="text" v-model="songToFind" />
+          <input type="text"  v-model="songToFind" />
           <button class="btn edit-sub-btn" @click.prevent="searchSongs">Search songs</button>
           <button class="btn submit-btn">Add station</button>
         </form>
@@ -85,7 +90,7 @@ export default {
       tagToAdd: "",
       img: "",
       songToFind: "",
-      dynamicTags: ["Tag 1", "Tag 2", "Tag 3"],
+      // dynamicTags: ["Tag 1", "Tag 2", "Tag 3"],
       inputVisible: false,
       inputValue: ""
     };
@@ -131,6 +136,7 @@ export default {
       this.station.songs.push(song);
       //  console.log(this.station)
       this.$store.dispatch({ type: "saveStation", station: this.station });
+      this.songToFind='';
       //  console.log(this.station.songs)
     },
     focusInput() {
@@ -156,7 +162,8 @@ export default {
   },
   components: {
     stationService,
-    youtubeSongs
+    youtubeSongs,
+    songListPrev
   }
 };
 </script>
