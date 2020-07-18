@@ -1,26 +1,13 @@
 <template>
   <section class="curr-song">
     <div class="iframe-container">
-      <!-- <div id="ytplayer"></div> -->
-
-      <!-- <iframe
-        id="player"
-        width="450"
-        height="300"
-        :src="videoSrc"
-        frameborder="0"
-        allowfullscreen
-         
-      ></iframe>-->
-      <!-- <youtube :video-id="videoId"></youtube> -->
-
-      <youtube :video-id="videoId" ref="youtube"></youtube>
+      <youtube :video-id="videoId" :player-vars="playerVars"  @ended="ended" ref="youtube"></youtube>
     </div>
     <section class="song-controllers flex row justify-center align-center">
-      <font-awesome-icon icon="backward" size="lg" class="control-icon" />
+      <font-awesome-icon @click="changeSong('prevSong')" icon="backward" size="lg" class="control-icon" />
       <font-awesome-icon @click="playVideo" icon="play" size="lg" class="control-icon" />
-      <font-awesome-icon icon="pause" size="lg" class="control-icon" />
-      <font-awesome-icon icon="forward" size="lg" class="control-icon" />
+      <font-awesome-icon @click="pauseVideo" icon="pause" size="lg" class="control-icon" />
+      <font-awesome-icon @click="changeSong('nextSong')" icon="forward" size="lg" class="control-icon" />
     </section>
   </section>
 </template>
@@ -45,10 +32,16 @@ export default {
   },
   data() {
     return {
-      // videoId: this.currSong.youtubeId
+       playerVars: {
+        autoplay: 1,
+        // controls: 0,
+        modestbranding:1,
+        showinfo: 0
+      }
     };
   },
-  created() {},
+  mounted() {
+  },
   computed: {
     videoId() {
       return this.currSong.youtubeId;
@@ -64,7 +57,17 @@ export default {
   methods: {
     async playVideo() {
       await this.player.playVideo();
+    },
+    async pauseVideo() {
+      await this.player.pauseVideo();
+    },
+    changeSong(type){
+      this.$emit('changeSong', type, this.currSong)
+    },
+    ended(){
+      this.changeSong('nextSong')
     }
+   
   },
   components: {
     fontAwsomeIcon

@@ -8,13 +8,14 @@
       @searchSongs="searchSongs"
       @playSong="setCurrSong"
     />
-    <curr-song :currSong="currSong" />
+    <curr-song :currSong="currSong" @changeSong="changeSong" />
     <chat-app />
   </div>
 </template>
 
 <script>
 import { stationService } from "../services/station-service.js";
+import { songService } from "../services/song-service.js";
 import chatApp from "../components/chat-app.vue";
 import currSong from "../components/curr-song.vue";
 import songList from "../components/song-list.vue";
@@ -55,8 +56,26 @@ export default {
       this.currSong = newCurrSong;
     },
     addSong(song) {
+      song._id = songService.makeId();
       this.station.songs.push(song);
       this.$store.dispatch({ type: "saveStation", station: this.station });
+      console.log(song);
+    },
+    changeSong(type, currSong) {
+      var idx = this.station.songs.findIndex(
+        song => song._id === currSong._id
+      );
+      if (type === "nextSong") {
+        if ((idx + 1) >= this.station.songs.length) {
+          idx=-1
+        }
+        this.setCurrSong(this.station.songs[idx + 1]);
+      } else {
+        if ((idx - 1) < 0) {
+          return;
+        }
+        this.setCurrSong(this.station.songs[idx - 1]);
+      }
     }
   },
   components: {
