@@ -49,7 +49,7 @@ export default {
   computed: {
     videoSrc() {
       // return `//www.youtube.com/embed/${this.currSong.youtubeId}?enablejsapi=1`
-      return `//www.youtube.com/embed/${'tdvOdJ-4tGk'}?enablejsapi=1`
+      return `//www.youtube.com/embed/${this.currSong.youtubeId}?enablejsapi=1`
     }
   },
   components: {

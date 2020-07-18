@@ -1,7 +1,14 @@
 <template>
   <div class="station-details">
-    <song-list @addSong="addSong" v-if="station" @searchSongs="searchSongs" :songList="songList" :songs="station.songs" @setCurrSong="setCurrSong" />
-    <curr-song :currSong="currSong"/>
+    <song-list
+      v-if="station"
+      :songList="songList"
+      :songs="station.songs"
+      @addSong="addSong"
+      @searchSongs="searchSongs"
+      @playSong="setCurrSong"
+    />
+    <curr-song :currSong="currSong" />
     <chat-app />
     <!-- <pre>{{station}}</pre> -->
   </div>
@@ -16,20 +23,19 @@ export default {
   data() {
     return {
       station: null,
-      currSong: null,
+      currSong:null
+      // currSong: this.station.songs[0]
     };
   },
   created() {
     let id = this.$route.params.id;
     this.getStation(id);
-   this.currSong = this.$store.getters.currSong
-
+    this.currSong = this.$store.getters.currSong;
   },
-  computed: { 
-    songList(){
-      console.log('indetails',this.$store.getters.songList);
-      return this.$store.getters.songList
-    } 
+  computed: {
+    songList() {
+      return this.$store.getters.songList;
+    }
   },
   methods: {
     async getStation(id) {
@@ -42,25 +48,19 @@ export default {
         .dispatch({ type: "searchSong", songStr: songStr })
         .then(songList => {});
     },
-     async setCurrSong(song){
-      // this.$store.dispatch({type: 'setCurrSong', song})
-      // this.currSong =  this.$store.getters.currSong
-      const newCurrSong = await this.$store.dispatch({type: 'setCurrSong', song});
-      this.currSong = newCurrSong
-     },
-     addSong(song) {
-      //  console.log(song)
-     this.station.songs.push(song)
-     console.log(this.station)
-     this.$store.dispatch({type: 'saveStation', station: this.station})
-       console.log(this.station.songs)
-    }
+    async setCurrSong(song) {
+      const newCurrSong = await this.$store.dispatch({type: "setCurrSong", song});
+      this.currSong = newCurrSong;
+    },
+    addSong(song) {
+      this.station.songs.push(song);
+      this.$store.dispatch({ type: "saveStation", station: this.station });
+    },
   },
   components: {
     chatApp,
     songList,
-    currSong,
-    
+    currSong
   }
 };
 </script>

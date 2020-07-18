@@ -1,10 +1,10 @@
 <template>
   <section>
     <input type="text" v-model="songToFind" @input="searchSongs" />
-    <section v-if="!songList" class="songlist-container">
+    <section v-if="!songList || !songToFind" class="songlist-container">
       <ul class="clean-list">
         <li v-for="song in songs" :key="song._id">
-          <songListPrev :song="song" />
+          <songListPrev @playSong="playSong" :song="song" />
         </li>
       </ul>
     </section>
@@ -35,11 +35,13 @@ export default {
         this.$emit("toggleList");
       }
     },
-    start() {
-      this.$emit("setCurrSong", { song: "song", title: "omg" });
-    },
     addSong(song) {
       this.$emit("addSong", song);
+      this.songToFind= '';
+    },
+    playSong(song){
+      this.$emit('playSong',song)
+
     }
   },
   components: {
