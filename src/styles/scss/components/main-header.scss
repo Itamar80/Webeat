@@ -1,4 +1,11 @@
 .header {
+    .main-header {
+        .logo-img {
+            cursor: pointer;
+            width: 75px;
+            height: 70px;
+        }
+    }
     .router-link-exact-active {
         color: white;
         transition: .3s;
@@ -7,12 +14,15 @@
     }
     background-color: $clr4;
     .main-header {
-        padding: 1rem;
+        padding: .7rem 0 .2rem 0;
+        .logo-link {
+            text-decoration: none;
+        }
         .nav-btn {
             font-size: rem(14px);
             color: $clr7;
             text-shadow: 0 0 10px #fff, 0 0 30px $clr6, ;
-            padding: 1.1rem;
+            padding: 2.4rem 1rem 1.9rem 1rem;
             &:hover {
                 color: white;
                 transition: .3s;
