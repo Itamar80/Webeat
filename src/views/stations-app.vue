@@ -1,6 +1,6 @@
 <template>
   <div class="station-app">
-    <img class="station-img" src="../assets/station-app.jpg" alt="">
+    <img class="station-img" src="../assets/studio.jpg" alt="">
     <popular-stations :stations="stations"/>
     <h2 class="container">Recommended:</h2>
     <hr/>
