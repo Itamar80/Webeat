@@ -1,6 +1,8 @@
 <template>
   <div class="station-app">
     <div class="back">
+     <div class="create-filter flex justify-center align-center">
+     </div>
       <div class="hero-img">
       <img src="@/assets/hero.jpg" />
       <img src="@/assets/hero1.webp" />
@@ -8,15 +10,20 @@
       <img src="@/assets/hero3.webp" />
     </div>
     </div>
-    <h2 class="h2 container">Most popular:</h2>
+    <section class="genre-stations">
+    <h2 class="h2 container yellow">Most popular:</h2>
     <popular-stations @toggleLike="toggleLike" :stations="stations"/>
-    <h2 class="container">Genre:</h2>
-    <hr/>
-     <div class="create-filter flex justify-center align-center">
-    <station-filter class="filter" @filterStations="setFilter"/>
-     <router-link class="router-link" to="/edit">Create station</router-link>
-     </div>
-     <station-list class="container" :stations="stations" @toggleLike="toggleLike"></station-list>
+    <h2 class="container yellow">Genres:</h2>
+    <hr class="hr"/>
+    <router-link to="stations/hiphop" class="station-cover container">
+      <h4>Hip-Hop</h4>
+      <!-- <img /> -->
+      <div class="bottom-details">
+        <!-- <span>{{station.likedByUsers.length}}</span>
+        <span> {{station.songs.length}} tracks</span> -->
+      </div>  
+    </router-link>
+    </section>
   </div>
 </template>
 
@@ -29,7 +36,8 @@ import {stationService} from '@/services/station-service.js'
 export default {
   data(){
     return {
-      stations: []
+      stations: [],
+      genre:''
     }
   },
   created(){

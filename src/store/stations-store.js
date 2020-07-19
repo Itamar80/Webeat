@@ -61,8 +61,8 @@ export const stationStore = {
         }
     },
     actions: {
-        loadStations({ commit, state }) {
-            return stationService.query(state.filterBy)
+        loadStations({ commit, state }, { genre }) {
+            return stationService.query(state.filterBy, genre)
                 .then(stations => {
                     commit({ type: 'setStations', stations })
                     return stations

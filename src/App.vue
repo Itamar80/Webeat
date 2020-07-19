@@ -12,6 +12,8 @@
       <router-link class="nav-btn router-link router-btn" to="/dashboard">Statistics</router-link> 
       <router-link class="nav-btn router-link router-btn" to="/about">About</router-link> 
       <router-link class="nav-btn router-link router-btn" to="/login">Login</router-link>
+     <router-link class="nav-btn router-link router-btn" to="/edit">Create station</router-link>
+
       </nav>
     </div>
 </header>

@@ -18,10 +18,16 @@
             <input type="file" @change="onUploadImg" />
           </label>
          Genre:
-         <select name="" id="">
+         <select name="genre" value="genre" v-model="station.genre">
            <option value="hiphop">Hip-hop</option>
            <option value="arabic">Arabic</option>
-           <option value="Funk">Funk</option>
+           <option value="easy">Easy listening</option>
+           <option value="electronic">Electronic</option>
+           <option value="country">Country</option>
+           <option value="flamenco">Flamenco</option>
+           <option value="jazz">Jazz</option>
+           <option value="rock">Rock</option>
+           <option value="pop">Pop</option>
          </select>
           <h3>Add song:</h3>Search songs:
           <input type="text"  v-model="songToFind" />
@@ -55,7 +61,7 @@ export default {
     return {
       station: {
         name: null,
-        tags: [],
+        genre: '',
         songs: [
           {
             title: "queen",
@@ -92,6 +98,7 @@ export default {
       this.tagToAdd = "";
     },
     addStation() {
+      console.log(this.station);
       this.$store.dispatch({ type: "saveStation", station: this.station });
       this.$router.push("/stations");
     },

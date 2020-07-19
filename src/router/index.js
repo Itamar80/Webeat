@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router';
-import home from '../views/homepage.vue';
+import stations from '../views/genre-stations.vue';
 import about from '../views/about.vue';
 import dashboard from '../views/dashboard.vue';
-import stations from '../views/stations-app.vue';
+import home from '../views/stations-app.vue';
 import stationDetails from '../views/station-details.vue';
 import login from '../views/login-signup.vue';
 import editStation from '../views/station-edit.vue';
@@ -14,6 +14,11 @@ const routes = [{
         path: '/',
         name: 'home',
         component: home
+    },
+    {
+        path: '/stations/:genre?',
+        name: 'stations',
+        component: stations
     },
     {
         path: '/about',
@@ -34,11 +39,6 @@ const routes = [{
         path: '/edit/:id?',
         name: 'editStation',
         component: editStation
-    },
-    {
-        path: '/stations',
-        name: 'stations',
-        component: stations
     },
     {
         path: '/stations/details/:id',

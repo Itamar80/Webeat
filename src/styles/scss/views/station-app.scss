@@ -1,6 +1,12 @@
 .station-app {
-    h2 {
+    .h2 {
         margin-top: 45rem;
+    }
+    .nav-color {
+        color: $clr4;
+    }
+    .yellow {
+        color: $clr6;
     }
     .hero-img {
         img {
@@ -93,6 +99,13 @@
         .router-link {
             margin-left: 2rem;
             color: $clr4;
+        }
+    }
+    .genre-stations {
+        hr {
+            background-color: $clr4;
+            height: 1px;
+            border: none;
         }
     }
 }

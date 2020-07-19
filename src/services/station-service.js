@@ -16,9 +16,12 @@ function _getURL(id = '') {
     return `${BASE_URL}/${id}`
 }
 
-function query(filterBy) {
+function query(filterBy, genre) {
+    // ${filterStr}&
     const filterStr = `?name_like=${filterBy.name}`;
-    return axios.get(`${_getURL()}${filterStr}`)
+    if (!genre) genre = ''
+    const filterGenre = `?genre_like=${genre}`;
+    return axios.get(`${_getURL()}${filterGenre}`)
         .then(res => {
             console.log(res.data);
             return res.data
