@@ -1,5 +1,8 @@
 <template>
-  <div class="station-details">
+  <div class="station-details flex">
+    <chat-app />
+    <section class="container">
+    <curr-song v-if="station" :station="station" :currSong="currSong" @changeSong="changeSong" />
     <song-list
       v-if="station"
       :songList="songList"
@@ -8,8 +11,7 @@
       @searchSongs="searchSongs"
       @playSong="setCurrSong"
     />
-    <curr-song :currSong="currSong" @changeSong="changeSong" />
-    <chat-app />
+    </section>
   </div>
 </template>
 
@@ -29,7 +31,6 @@ export default {
   created() {
     let id = this.$route.params.id;
     this.getStation(id);
-    this.currSong = this.$store.getters.currSong;
   },
   computed: {
     songList() {
@@ -41,6 +42,7 @@ export default {
       let station = await stationService.getById(id);
       this.station = station;
       this.currSong = station.songs[0];
+    // this.currSong = this.$store.getters.currSong;
     },
     async searchSongs(songStr) {
       //  console.log(songStr);

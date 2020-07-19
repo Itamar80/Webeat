@@ -10,7 +10,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueYoutube from "vue-youtube";
-import VueYouTubeEmbed from 'vue-youtube-embed'
+// import VueYouTubeEmbed from 'vue-youtube-embed'
+
+
+
 
 
 library.add(faUserSecret)
@@ -18,7 +21,7 @@ library.add(faUserSecret)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(ElementUI);
 Vue.use(VueYoutube);
-Vue.use(VueYouTubeEmbed)
+// Vue.use(VueYouTubeEmbed)
 
 Vue.config.productionTip = false
 

@@ -1,13 +1,10 @@
 .station-details {
-    margin: 10px 5%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1;
-    gap: 20px;
-    .songlist-container {
-        background-color: $clr3;
+    .container {
+        margin: 0;
+        width: 70%;
+        height: 100vh;
+        // padding-left: 50px;
+        // padding-right: 50px;
     }
-    .youtubeList {
-        background-color: red;
-    }
+    // margin: 10px 5%;
 }

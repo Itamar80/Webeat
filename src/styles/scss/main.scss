@@ -1,4 +1,5 @@
 //Setup
+@import '~vue-simple-scrollbar/dist/vue-simple-scrollbar.css';
 @import "setup/fonts.scss";
 @import "setup/variables.scss";
 @import "setup/functions.scss";
@@ -18,6 +19,7 @@
 @import "components/station-preview.scss";
 @import "components/main-header.scss";
 @import "components/curr-song.scss";
+@import "components/song-list.scss";
 @import "components/youtube-song.scss";
 @import "components/popular-station-list.scss";
 //Views

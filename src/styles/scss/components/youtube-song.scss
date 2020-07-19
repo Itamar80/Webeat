@@ -1,10 +1,23 @@
 .youtube-song {
     margin: 3px;
     background-color: $clr1;
+    padding: 5px;
+    padding-right: 20px;
+    font-size: rem(14px);
     img {
-        width: 80px;
+        width: 60px;
     }
     p {
         margin: 3px;
+    }
+    &:hover {
+        cursor: pointer;
+        background-color: lighten($clr1, 15%);
+    }
+    .delete {
+        &:hover {
+            cursor: pointer;
+            color: $clr4
+        }
     }
 }
