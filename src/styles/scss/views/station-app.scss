@@ -1,9 +1,15 @@
 .station-app {
+    .back {
+        background-color: $clr4;
+        height: 20rem;
+        margin-bottom: 2rem;
+    }
     .station-img {
         object-fit: cover;
         width: 100%;
-        height: 20rem;
-        margin-bottom: 2rem;
+        height: 100%;
+        // height: 20rem;
+        filter: opacity(75%);
     }
     .create-filter {
         position: absolute;

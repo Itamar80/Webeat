@@ -1,5 +1,6 @@
 <template>
   <div class="station-app">
+    <div class="back">
     <img class="station-img" src="../assets/studio.jpg" alt="">
     <h2 class="container">Most popular:</h2>
     <popular-stations @toggleLike="toggleLike" :stations="stations"/>
