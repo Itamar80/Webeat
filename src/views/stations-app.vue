@@ -1,5 +1,9 @@
 <template>
-  <div class="station-app ">
+  <div class="station-app">
+    <img class="station-img" src="../assets/station-app.jpg" alt="">
+    <popular-stations :stations="stations"/>
+    <h2 class="container">Recommended:</h2>
+    <hr/>
      <div class="create-filter flex justify-center align-center">
     <station-filter class="filter" @filterStations="setFilter"/>
      <router-link class="router-link" to="/edit">Create station</router-link>
@@ -11,6 +15,7 @@
 <script>
 import stationList from '../components/station-list.vue'
 import stationFilter from '../components/filter-stations.vue'
+import popularStations from '../components/popular-stations.vue'
 import {stationService} from '@/services/station-service.js'
 
 export default {
@@ -41,7 +46,8 @@ export default {
     
     components:{
       stationList,
-      stationFilter
+      stationFilter,
+      popularStations
     }
 }
 </script>
