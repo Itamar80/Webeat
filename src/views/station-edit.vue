@@ -37,19 +37,19 @@
               v-model="inputValue"
               ref="saveTagInput"
               size="mini"
-              @keydown.enter.stop
-              @keyup.enter.native="handleInputConfirm"
               @blur="handleInputConfirm"
             ></el-input>
             <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
+            <button @click="handleInputConfirm">Add tag</button>
             </label>
           </div>
+              <!-- @keyup.enter.native.stop="handleInputConfirm" -->
 
           <!-- <button class="btn edit-sub-btn" @click.prevent="addTag">Add tag</button> -->
           <h3>Add song:</h3>Search songs:
           <input type="text"  v-model="songToFind" />
           <button class="btn edit-sub-btn" @click.prevent="searchSongs">Search songs</button>
-          <button class="btn submit-btn">Add station</button>
+          <button type="submit" class="btn submit-btn">Add station</button>
         </form>
         <youtubeSongs v-if="songList" @addSong="addSong" :songList="songList" />
       </section>
@@ -132,12 +132,8 @@ export default {
       // .then(songList => {console.log(songList);});
     },
     addSong(song) {
-      //  console.log(song)
       this.station.songs.push(song);
-      //  console.log(this.station)
-      this.$store.dispatch({ type: "saveStation", station: this.station });
       this.songToFind='';
-      //  console.log(this.station.songs)
     },
     focusInput() {
       this.$refs.name.focus();

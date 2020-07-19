@@ -1,0 +1,39 @@
+    .popular-station-list {
+        margin-bottom: 9rem;
+        .grid {
+            display: grid;
+            //responsivity changes require
+            grid-template-columns: repeat(3, 322px);
+            grid-auto-rows: auto;
+            gap: 16px;
+        }
+        .station-cover {
+            position: relative;
+            img {
+                position: relative;
+                margin: 0 auto;
+                height: 300px;
+                width: 322px;
+                object-fit: cover;
+                z-index: 0;
+                transition: .5s;
+                border-radius: 1.5rem;
+                filter: opacity(100%);
+            }
+            &:hover {
+                cursor: pointer;
+                img {
+                    filter: opacity(50%);
+                }
+                .top-details,
+                .bottom-details {
+                    z-index: 1;
+                }
+            }
+        }
+    }
+    
+    hr {
+        margin-bottom: 3rem;
+        width: 80%;
+    }

@@ -9,9 +9,9 @@
     }
     .submit-btn {
         cursor: pointer;
-        position: absolute;
-        left: 50%;
-        bottom: 20%;
+        // position: absolute;
+        // left: 50%;
+        // bottom: 20%;
         padding: 20px;
         background-color: $clr4;
         &:hover {
@@ -29,6 +29,9 @@
     line-height: 30px;
     padding-top: 0;
     padding-bottom: 0;
+    &:hover {
+        color: $clr4;
+    }
 }
 
 .el-tag+.el-tag {

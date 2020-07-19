@@ -24,6 +24,14 @@ export const stationStore = {
         currSong(state) {
             console.log('getters', state.currSong)
             return state.currSong
+        },
+        popularStations(state) {
+            let copyStations = JSON.parse(JSON.stringify(state.stations))
+            let sortedStationByLikes = copyStations.sort(function(stationA, stationB) {
+                return stationA.likedByUsers.length - stationB.likedByUsers.length
+            })
+            sortedStationByLikes.reverse()
+            return sortedStationByLikes.slice(0, 3)
         }
 
     },
