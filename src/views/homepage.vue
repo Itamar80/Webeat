@@ -1,7 +1,7 @@
 <template>
   <div class="homepage">
     <!-- <img class="hero-img" :src="img" alt=""> -->
-      <h1 class="">Let's hit the beat!</h1>
+    <h1 class="">Let's Hit The Beat!</h1>
     <div class="hero-img">
       <img src="@/assets/hero.jpg" />
       <img src="@/assets/hero1.webp" />

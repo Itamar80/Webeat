@@ -17,35 +17,12 @@
             Station Image:
             <input type="file" @change="onUploadImg" />
           </label>
-          <!-- Add tags:
-          <input type="text" placeholder="Enter the station tags" v-model="tagToAdd" />
-          {{station.tags}}-->
-          <div>
-            <label for="">
-            Add tags:
-            <el-tag
-              class="tag"
-              :key="tag"
-              v-for="tag in station.tags"
-              closable
-              :disable-transitions="false"
-              @close="handleClose(tag)"
-            >{{tag}}</el-tag>
-            <el-input
-              class="input-new-tag"
-              v-if="inputVisible"
-              v-model="inputValue"
-              ref="saveTagInput"
-              size="mini"
-              @blur="handleInputConfirm"
-            ></el-input>
-            <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
-            <button @click="handleInputConfirm">Add tag</button>
-            </label>
-          </div>
-              <!-- @keyup.enter.native.stop="handleInputConfirm" -->
-
-          <!-- <button class="btn edit-sub-btn" @click.prevent="addTag">Add tag</button> -->
+         Genre:
+         <select name="" id="">
+           <option value="hiphop">Hip-hop</option>
+           <option value="arabic">Arabic</option>
+           <option value="Funk">Funk</option>
+         </select>
           <h3>Add song:</h3>Search songs:
           <input type="text"  v-model="songToFind" />
           <button class="btn edit-sub-btn" @click.prevent="searchSongs">Search songs</button>
@@ -175,3 +152,32 @@ export default {
 
 //     }
 // }
+          // <div>
+          //   <label for="">
+          //   Add tags:
+          //   <el-tag
+          //     class="tag"
+          //     :key="tag"
+          //     v-for="tag in station.tags"
+          //     closable
+          //     :disable-transitions="false"
+          //     @close="handleClose(tag)"
+          //   >{{tag}}</el-tag>
+          //   <el-input
+          //     class="input-new-tag"
+          //     v-if="inputVisible"
+          //     v-model="inputValue"
+          //     ref="saveTagInput"
+          //     size="mini"
+          //     @blur="handleInputConfirm"
+          //   ></el-input>
+          //   <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
+          //   <button @click="handleInputConfirm">Add tag</button>
+          //   </label>
+          // </div>
+           <!-- Add tags:
+          <input type="text" placeholder="Enter the station tags" v-model="tagToAdd" />
+          {{station.tags}}-->
+              <!-- @keyup.enter.native.stop="handleInputConfirm" -->
+
+          <!-- <button class="btn edit-sub-btn" @click.prevent="addTag">Add tag</button> -->

@@ -1,9 +1,16 @@
 <template>
   <div class="station-app">
     <div class="back">
-    <img class="station-img" src="../assets/studio.jpg" alt="">
-    <h2 class="container">Most popular:</h2>
+      <div class="hero-img">
+      <img src="@/assets/hero.jpg" />
+      <img src="@/assets/hero1.webp" />
+      <img src="@/assets/hero 2.webp" />
+      <img src="@/assets/hero3.webp" />
+    </div>
+    </div>
+    <h2 class="h2 container">Most popular:</h2>
     <popular-stations @toggleLike="toggleLike" :stations="stations"/>
+    <h2 class="container">Genre:</h2>
     <hr/>
      <div class="create-filter flex justify-center align-center">
     <station-filter class="filter" @filterStations="setFilter"/>

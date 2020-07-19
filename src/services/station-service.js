@@ -10,7 +10,7 @@ export const stationService = {
     toggleLike
 }
 
-const BASE_URL = (process.env.NODE_ENV !== 'development') ? '/station' : '//localhost:3000/station';
+const BASE_URL = (process.env.NODE_ENV !== 'development') ? '/api/station' : '//localhost:3000/api/station';
 
 function _getURL(id = '') {
     return `${BASE_URL}/${id}`
@@ -19,7 +19,10 @@ function _getURL(id = '') {
 function query(filterBy) {
     const filterStr = `?name_like=${filterBy.name}`;
     return axios.get(`${_getURL()}${filterStr}`)
-        .then(res => res.data)
+        .then(res => {
+            console.log(res.data);
+            return res.data
+        })
 }
 
 async function getById(id) {

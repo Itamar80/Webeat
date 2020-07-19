@@ -1,9 +1,80 @@
 .station-app {
-    .back {
-        background-color: $clr4;
-        height: 20rem;
-        margin-bottom: 2rem;
+    h2 {
+        margin-top: 45rem;
     }
+    .hero-img {
+        img {
+            width: 100%;
+            height: 70vh;
+            top: 8%;
+            z-index: -1;
+            object-fit: cover;
+            position: absolute;
+            animation-name: multiple-image-crossfade;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-duration: 20s;
+            &:nth-of-type(1) {
+                animation-delay: 15s;
+            }
+            &:nth-of-type(2) {
+                animation-delay: 10s;
+            }
+            &:nth-of-type(3) {
+                animation-delay: 5s;
+            }
+            &:nth-of-type(4) {
+                animation-delay: 0s;
+            }
+        }
+    }
+    @keyframes multiple-image-crossfade {
+        0% {
+            opacity: 1;
+        }
+        17% {
+            opacity: 1;
+        }
+        25% {
+            opacity: 0;
+        }
+        92% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    h1 {
+        color: $clr1;
+        text-align: center;
+    }
+    .station-link {
+        background-color: $clr4;
+        position: absolute;
+        padding: 0.4rem;
+        padding-top: 1rem;
+        border-radius: 0.8rem;
+        text-align: center;
+        width: 250px;
+        height: 50px;
+        color: $clr7;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        bottom: 60px;
+        font-size: 1.1rem;
+        transition: .3s;
+        &:hover {
+            background-color: $clr5;
+            // color: $clr6;
+        }
+    }
+    // .back {
+    //     background-color: $clr4;
+    //     height: 20rem;
+    //     margin-bottom: 2rem;
+    // }
     .station-img {
         object-fit: cover;
         width: 100%;
