@@ -32,23 +32,6 @@ export const stationStore = {
             })
             sortedStationByLikes.reverse()
             return sortedStationByLikes.slice(0, 3)
-                // console.log(sortedStationByLikes);
-                // var likes = []
-                // var biggestLikes = []
-                // state.stations.filter(station => likes.push(station.likedByUsers.length));
-                // let likesSorted = likes.sort();
-                // biggestLikes = [likesSorted[likesSorted.length - 1], likesSorted[likesSorted.length - 2], likesSorted[likesSorted.length - 3]]
-                // let popStations = []
-                // for (var i = 0; i <= biggestLikes.length - 1; i++) {
-                //     var popSts = state.stations.filter(station => {
-                //         return station.likedByUsers.length === biggestLikes[i]
-                //     })
-                //     popStations.push(popSts);
-                // }
-                // if (popStations[2].length > 1) popStations[2] = popStations[2].pop()
-                // popStations[1] = popStations[1].pop()
-                // popStations[0] = popStations[0].pop()
-                // return popStations
         }
 
     },
