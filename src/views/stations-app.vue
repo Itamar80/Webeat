@@ -1,8 +1,8 @@
 <template>
   <div class="station-app">
     <img class="station-img" src="../assets/studio.jpg" alt="">
-    <popular-stations :stations="stations"/>
-    <h2 class="container">Recommended:</h2>
+    <h2 class="container">Most popular:</h2>
+    <popular-stations @toggleLike="toggleLike" :stations="stations"/>
     <hr/>
      <div class="create-filter flex justify-center align-center">
     <station-filter class="filter" @filterStations="setFilter"/>
