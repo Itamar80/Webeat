@@ -3,7 +3,8 @@
     <div class="flex space-around">
       <div class="flex col ">
         <h1>{{station.name}}</h1>
-        <span class="top-details">Created By: {{station.createdBy.fullName}}</span>
+        <span >Created By: {{station.createdBy.fullName}}</span>
+        <span class="genre" >{{station.genre}}</span>
         <span>
           <font-awesome-icon
           icon="heart"

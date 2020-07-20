@@ -1,6 +1,6 @@
 <template>
   <div class="station-edit container">
-    <h1>This is the station edit page</h1>
+    <h1>Create New Station</h1>
     <div class="form-songs-container space-between flex">
       <section class="station-form">
         <form @submit="addStation" class="flex col flex-start">
