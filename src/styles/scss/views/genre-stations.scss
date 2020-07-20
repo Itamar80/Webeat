@@ -1,26 +1,46 @@
 .genre-stations {
-    .h1 {
-        font-size: 2.5rem;
+    input {
+        padding: 15px;
+        width: 300px;
+        border-radius: 7px;
+    }
+    .search-icon {
+        cursor: pointer;
         color: $clr4;
-        margin-bottom: 5rem;
-        font-weight: 800;
+        font-size: 2.3rem;
+    }
+    .h1 {
+        font-family: bungee, sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        // font-family: vibes, sans-serif;
+        // font-style: normal;
+        // font-weight: 800;
+        // font-size: 10rem;
+        font-size: 4rem;
+        color: $clr4;
+        margin-top: 30px;
     }
     h3 {
-        font-size: 1.8rem;
+        font-family: fantasy;
+        font-weight: 500;
+        font-size: 2.3rem;
         color: #cfcfcf;
     }
-    span {
-        color: grey;
-    }
-    hr {
-        width: 80%;
-        border: none;
-        background-color: grey;
-        height: 1px;
+    .all-stations {
+        .show-all {
+            padding-top: 15px;
+            color: grey;
+            cursor: pointer;
+            transition: .3s;
+            &:hover {
+                color: white;
+            }
+        }
     }
     .station-preview {
         img {
-            width: 270px;
+            width: 285px;
         }
         filter:opacity(80%);
         transition: .5s;
@@ -33,22 +53,32 @@
     .preview-details {
         width: 100%;
         h2 {
-            margin: .2rem 0 .4rem 0;
+            margin: 4px 0 5px 0;
         }
         .heart-icon {
-            margin-right: .6rem;
+            margin-right: 9.6px;
             transition: .5s;
             &:hover {
                 color: #c70039;
             }
         }
         .play-icon {
-            font-size: 2.3rem;
+            margin-right: 10px;
+            font-size: 50px;
             transition: .5s;
             &:hover {
                 color: white;
             }
         }
-        margin-bottom: 2rem;
+        // margin-bottom: 32px;
+    }
+    .background {
+        margin: 35px auto 15px;
+        padding: 15px 0 15px 0;
+        background-color: lighten($color: $clr1, $amount: 2);
+    }
+    .genre-header {
+        border-bottom: 1px grey solid;
+        padding: 15px;
     }
 }

@@ -4,12 +4,14 @@
     <img :src="station.imgUrl"/>
     </section>
     <div class="preview-details flex space-between align-center">
+      <div class="flex align-center">
    <font-awesome-icon  icon="play-circle" size="lg" class="play-icon" />
       <section class="">
-       <h2>{{station.name}}</h2>
-      <font-awesome-icon size="lg" :icon="['far', 'clock']" class="clock-icon"/>
+       <h2>{{name}}</h2>
+      <font-awesome-icon  :icon="['far', 'clock']" class="clock-icon"/>
       <span> {{station.songs.length}} tracks</span>
       </section>
+      </div>
       <section class="like-section">
        <font-awesome-icon icon="heart" size="lg"  class="heart-icon" :class="{liked:isLiked}" @click.stop="toggleLike(station._id)" /> 
        <span>{{station.likedByUsers.length}}</span>
@@ -51,7 +53,10 @@ export default {
   computed:{
     createdAt(){
      return moment(this.station.createdAt).subtract(10, 'days').calendar()
-    }
+    },
+    name(){
+    return ( this.station.name.length>10)?this.station.name.substring(0,10)+'...':this.station.name
+    },
   },
   methods:{
     openDetails(id){
