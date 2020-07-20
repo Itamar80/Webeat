@@ -5,7 +5,7 @@
       <img :src="song.imgUrl" />
       <p>{{song.title}}</p>
      </section>
-      <font-awesome-icon @click="deleteSong" icon="trash" size="lg" class="icon delete" />
+      <font-awesome-icon @click="deleteSong" icon="trash" class="icon delete" />
     </div>
   </section>
 </template>

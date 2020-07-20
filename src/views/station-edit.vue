@@ -1,67 +1,82 @@
 <template>
-  <div class="station-edit container">
-    <h1>Create New Station</h1>
-    <div class="form-songs-container space-between flex">
-      <section class="station-form">
+    <div class="editor flex">
+      <!-- <div class="form-songs-container flex"> -->
+      <section class="station-form flex justify-center align-center">
         <form @submit="addStation" class="flex col flex-start">
-         <label > Station name:
-          <input
-            type="text"
-            placeholder="Enter the station name"
-            v-model="station.name"
-            ref="name"
-          />
+          <label>
+            Station name:
+            <input
+              type="text"
+              placeholder="Enter the station name"
+              v-model="station.name"
+              ref="name"
+            />
           </label>
-          <img width="200" :src="img" />
           <label>
             Station Image:
             <input type="file" @change="onUploadImg" />
           </label>
-         Genre:
-         <select name="genre" value="genre" v-model="station.genre">
-           <option value="hiphop">Hip-hop</option>
-           <option value="arabic">Arabic</option>
-           <option value="easy">Easy listening</option>
-           <option value="electronic">Electronic</option>
-           <option value="country">Country</option>
-           <option value="flamenco">Flamenco</option>
-           <option value="jazz">Jazz</option>
-           <option value="rock">Rock</option>
-           <option value="pop">Pop</option>
-         </select>
-          <h3>Add song:</h3>Search songs:
-          <input type="text"  v-model="songToFind" />
-          <button class="btn edit-sub-btn" @click.prevent="searchSongs">Search songs</button>
+          Genre:
+          <select name="genre" value="genre" v-model="station.genre">
+            <option value="hiphop">Hip-hop</option>
+            <option value="arabic">Arabic</option>
+            <option value="easy">Easy listening</option>
+            <option value="electronic">Electronic</option>
+            <option value="country">Country</option>
+            <option value="flamenco">Flamenco</option>
+            <option value="jazz">Jazz</option>
+            <option value="rock">Rock</option>
+            <option value="pop">Pop</option>
+          </select>
+         
           <button type="submit" class="btn submit-btn">Add station</button>
         </form>
-        <youtubeSongs v-if="songList" @addSong="addSong" :songList="songList" />
       </section>
-      <section class="station-songs">
-        <h2>Station songs</h2>
-        <section class="songlist-container">
-          <ul class="station-songs clean-list">
-            <li v-for="song in station.songs" :key="song._id">
-              <songListPrev :song="song" />
-            </li>
-          </ul>
+      <div class="preview flex col">
+        <div class="station-details flex space-around">
+          <div class="flex col">
+            <h1 v-if="station.name">{{station.name}}</h1>
+            <h1 v-else>Name</h1>
+            <span>Created By: {{station.createdBy.fullName}}</span>
+            <span
+              v-if="station.genre"
+              class="genre"
+            >{{station.genre.charAt(0).toUpperCase()+station.genre.slice(1)}}</span>
+            <span v-else class="genre">Genre</span>
+            <span>
+              <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
+              {{station.songs.length}} tracks
+            </span>
+          </div>
+          <img v-if="station.img" width="200" :src="img" />
+          <img v-else width="200" src="@/assets/defualt-img-cover.jpg" />
+        </div>
+        <section class="station-songs">
+          <song-list-edit
+            class="song-list-edit"
+            v-if="station"
+            :songList="songList"
+            :station="station"
+            @addSong="addSong"
+            @searchSongs="searchSongs"
+          />
         </section>
-      </section>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
+import { songService } from "../services/song-service.js";
 import { stationService } from "../services/station-service.js";
 import { uploadImg } from "@/services/imgUpload.service.js";
-import youtubeSongs from "../components/youtube-songs.vue";
-import songListPrev from "../components/songlist-prev.vue";
+import songListEdit from "../components/song-list-for-edit.vue";
 
 export default {
   data() {
     return {
       station: {
-        name: null,
-        genre: '',
+        name: "",
+        genre: "",
         songs: [
           {
             title: "queen",
@@ -73,7 +88,7 @@ export default {
       tagToAdd: "",
       img: "",
       songToFind: "",
-      // dynamicTags: ["Tag 1", "Tag 2", "Tag 3"],
+      // dynamicTags: ['Tag 1', 'Tag 2', 'Tag 3'],
       inputVisible: false,
       inputValue: ""
     };
@@ -117,7 +132,7 @@ export default {
     },
     addSong(song) {
       this.station.songs.push(song);
-      this.songToFind='';
+      this.songToFind = "";
     },
     focusInput() {
       this.$refs.name.focus();
@@ -142,8 +157,7 @@ export default {
   },
   components: {
     stationService,
-    youtubeSongs,
-    songListPrev
+    songListEdit
   }
 };
 </script>
@@ -160,19 +174,19 @@ export default {
 //     }
 // }
           // <div>
-          //   <label for="">
+          //   <label for=''>
           //   Add tags:
           //   <el-tag
-          //     class="tag"
-          //     :key="tag"
-          //     v-for="tag in station.tags"
+          //     class='tag'
+          //     :key='tag'
+          //     v-for='tag in station.tags'
           //     closable
-          //     :disable-transitions="false"
-          //     @close="handleClose(tag)"
+          //     :disable-transitions='false'
+          //     @close='handleClose(tag)'
           //   >{{tag}}</el-tag>
           //   <el-input
-          //     class="input-new-tag"
-          //     v-if="inputVisible"
+          //     class='input-new-tag'
+          //     v-if='inputVisible'
           //     v-model="inputValue"
           //     ref="saveTagInput"
           //     size="mini"
