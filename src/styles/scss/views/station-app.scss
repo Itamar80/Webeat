@@ -109,13 +109,13 @@
         .grid {
             display: grid;
             grid-template-columns: repeat(4, 230px);
-            grid-auto-rows: auto;
+            grid-template-rows: 2;
             gap: 16px;
         }
         .station-cover {
             text-decoration: none;
             background-color: lightblue;
-            width: 250px;
+            width: 270px;
             height: 130px;
             margin: 5px;
             border-radius: .5rem;

@@ -22,8 +22,9 @@
     <span class="hiphop-channel channel flex align-center">Hip-Hop</span>
     </router-link>
       <!-- </div> -->
-    <router-link to="stations/arabic" class="station-cover container">
-      <span class="rock-channel channel">Rock</span>
+    <router-link to="stations/arabic" class="station-cover container flex">
+    <img src="../assets/hero3.webp" alt="genre image">
+      <span class="rock-channel channel flex align-center">Rock</span>
     </router-link>
     <router-link to="stations/rock" class="station-cover container">
       <span class="arabic-channel channel">Arabic</span>
