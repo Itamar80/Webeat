@@ -4,7 +4,7 @@
       <div class="flex col ">
         <h1>{{station.name}}</h1>
         <span >Created By: {{station.createdBy.fullName}}</span>
-        <span class="genre" >{{station.genre}}</span>
+        <span class="genre" >{{station.genre.charAt(0).toUpperCase()+station.genre.slice(1)}}</span>
         <span>
           <font-awesome-icon
           icon="heart"
