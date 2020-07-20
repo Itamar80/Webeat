@@ -5,15 +5,20 @@
      <section class="genre-stations"> 
     <h1 v-if="genre" class="h1 container yellow">Genre: {{genre.charAt(0).toUpperCase()+ genre.slice(1)}}</h1>
     <h1 v-else class="h1 container yellow"> Stations</h1>
-    <station-filter class="filter flex justify-center" @filterStations="setFilter"/>
+    <div class="flex justify-center align-center">
+    <station-filter class="filter" @filterStations="setFilter"/>
+      <font-awesome-icon @click="setFilter" icon="search" size="lg"  class="search-icon"/>
+    </div>
      <station-list class="container" v-if="genre"  :genre="genre" :stations="stations" @toggleLike="toggleLike"></station-list>
      <section class="all-stations" v-else  v-for="singleGenre in genres" :key="singleGenre">
-    <div class="container flex space-between">
+    <div class="genre-header container flex space-between">
     <h3 class="">{{singleGenre.charAt(0).toUpperCase()+singleGenre.slice(1)}}</h3>
      <span class="show-all" @click="moveTo(singleGenre)">Show All</span>
     </div>
-    <hr/>
+    <div class="background container">
+    <!-- <hr/> -->
    <station-list class="container" :genre="singleGenre" :stations="stations" @toggleLike="toggleLike"></station-list>
+    </div>
      </section> 
     </section>
   </div>
@@ -24,6 +29,10 @@ import stationList from '../components/station-list.vue'
 import popularStations from '../components/popular-stations.vue'
 import stationFilter from '../components/filter-stations.vue'
 import {stationService} from '../services/station-service.js'
+import {fontAwsomeIcon} from '@fortawesome/vue-fontawesome'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+library.add(faSearch)
 
 export default {
   data(){
@@ -63,7 +72,8 @@ export default {
     components:{
       stationList,
       stationFilter,
-      popularStations
+      popularStations,
+      fontAwsomeIcon
     }
 }
 </script>
