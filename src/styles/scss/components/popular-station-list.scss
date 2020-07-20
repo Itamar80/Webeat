@@ -18,8 +18,8 @@
             img {
                 position: relative;
                 margin: 0 auto;
-                height: 300px;
-                width: 322px;
+                height: 280px;
+                width: 375px;
                 object-fit: cover;
                 z-index: 0;
                 transition: .5s;
@@ -31,6 +31,10 @@
             width: 100%;
             .play-icon {
                 font-size: 3rem;
+                transition: .5s;
+                &:hover {
+                    color: white;
+                }
             }
             span,
             .clock-icon {
@@ -40,7 +44,7 @@
                 .heart-icon {
                     font-size: 1.8rem;
                     &:hover {
-                        transition: .3s;
+                        transition: .5s;
                         color: $clr4;
                     }
                 }

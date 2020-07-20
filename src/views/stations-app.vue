@@ -5,12 +5,13 @@
      </div>
       <div class="hero-img">
       <img src="@/assets/hero.jpg" />
-      <img src="@/assets/hero1.webp" />
-      <img src="@/assets/hero 2.webp" />
-      <img src="@/assets/hero3.webp" />
+      <img src="@/assets/hero1.jpg" />
+      <img src="@/assets/hero2.jpg" />
+      <img src="@/assets/hero3.jpg" />
+      <img src="@/assets/hero7.jpg" />
     </div>
     </div>
-    <section class="genre-stations">
+    <section class="homepage">
     <h2 class="h2 container yellow">Most popular:</h2>
     <popular-stations @toggleLike="toggleLike" :stations="stations"/>
     <h2 class="container yellow">Genres:</h2>
@@ -19,27 +20,53 @@
       <!-- <div> -->
     <router-link to="stations/hiphop" class="station-cover container flex">
     <img src="../assets/hero3.webp" alt="genre image">
-    <span class="hiphop-channel channel flex align-center">Hip-Hop</span>
+    <span class="hiphop-channel channel flex space-around align-center col">
+     <h3>Hip-Hop</h3>
+    <p>Show more</p>
+      </span>
     </router-link>
       <!-- </div> -->
+    <router-link to="stations/rock" class="station-cover container flex">
+    <img src="../assets/hero3.webp" alt="genre image">
+      <span class="rock-channel channel flex space-around align-center col">
+       <h3>Rock</h3>
+        <p>Show more</p>
+        </span>
+    </router-link>
     <router-link to="stations/arabic" class="station-cover container flex">
     <img src="../assets/hero3.webp" alt="genre image">
-      <span class="rock-channel channel flex align-center">Rock</span>
+      <span class="arabic-channel channel flex space-around align-center col">
+       <h3>Arabic</h3>
+        <p>Show more</p>
+        </span>
     </router-link>
-    <router-link to="stations/rock" class="station-cover container">
-      <span class="arabic-channel channel">Arabic</span>
+    <router-link to="stations/easy" class="station-cover container flex">
+    <img src="../assets/hero3.webp" alt="genre image">
+      <span class="easy-channel channel flex space-around align-center col">
+       <h3>Easy</h3>
+        <p>Show more</p>
+        </span>
     </router-link>
-    <router-link to="stations/easy" class="station-cover container">
-      <span class="easy-channel channel">Easy listening</span>
+    <router-link to="stations/electronic" class="station-cover container flex">
+    <img src="../assets/hero3.webp" alt="genre image">
+     <span class="electronic-channel channel flex space-around align-center col">
+       <h3>Electronic</h3>
+        <p>Show more</p>
+        </span>
     </router-link>
-    <router-link to="stations/electronic" class="station-cover container">
-      <span class="electronic-channel channel">Electronic</span>
+    <router-link to="stations/country" class="station-cover container flex">
+    <img src="../assets/hero3.webp" alt="genre image">
+     <span class="country-channel channel flex space-around align-center col">
+       <h3>Country</h3>
+        <p>Show more</p>
+        </span>
     </router-link>
-    <router-link to="stations/country" class="station-cover container">
-      <span class="country-channel channel">Country</span>
-    </router-link>
-    <router-link to="stations/rock" class="station-cover container">
-      <span class="arabic-channel channel">Arabic</span>
+    <router-link to="stations/rock" class="station-cover container flex">
+    <img src="../assets/hero3.webp" alt="genre image">
+      <span class="country-channel channel flex space-around align-center col">
+       <h3>Country</h3>
+        <p>Show more</p>
+        </span>
     </router-link>
     </section>
       <!-- <img /> -->
@@ -48,6 +75,7 @@
         <span> {{station.songs.length}} tracks</span> -->
       <!-- </div>   -->
     </section>
+    <p class="cofferights">copyright © Nir, Naomi, Itamar 2020</p>
   </div>
 </template>
 

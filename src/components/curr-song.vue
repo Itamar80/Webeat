@@ -84,7 +84,8 @@ export default {
       },
       time: "00:00",
       duration: "00:00",
-      timeId: null
+      timeId: null,
+      isLiked:false
     };
   },
   mounted() {},

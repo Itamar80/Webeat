@@ -14,8 +14,6 @@
        <font-awesome-icon icon="heart" size="lg"  class="heart-icon" :class="{liked:isLiked}" @click.stop="toggleLike(station._id)" /> 
        <span>{{station.likedByUsers.length}}</span>
       </section>
-       <div>
-    </div>
        </div>
        
        

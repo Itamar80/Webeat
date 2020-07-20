@@ -1,8 +1,10 @@
 <template>
   <div class="station-list">
+    <button class="btn" v-if="genreFromUrl" @click="moveTo">Return to all stations</button>
     <ul class="station-genre-list clean-list flex">
       <li  v-for="station in stations" :key="station._id">
         <station-preview class="station" v-if="station.genre===genre" :station="station" @toggleLike="toggleLike"></station-preview>
+        <!-- <station-preview class="station" v-else :station="station" @toggleLike="toggleLike"></station-preview> -->
       </li>
     </ul>
   </div>
@@ -12,16 +14,25 @@
   import stationPreview from './station-preview.vue'
 export default {
   props:['stations','genre'],
+  data(){
+    return{
+      genreFromUrl:''
+    }
+  },
     computed: {
+    },
+    created(){
+    let genre = this.$route.params.genre
+    this.genreFromUrl = genre
     },
     methods: {
     toggleLike(id, isLiked){
      this.$emit('toggleLike', id, isLiked)
     },
-        // setFilter(filterBy){
-        //     this.$store.commit({type: 'updateFilterBy', filter: filterBy})
-        //     this.$store.dispatch({type: 'loadStations'})
-        // }, 
+    moveTo(genre){
+      this.$router.push(`/stations`)
+      location.reload();
+    }
     },
     components: {
       stationPreview

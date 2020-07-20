@@ -1,0 +1,54 @@
+.genre-stations {
+    .h1 {
+        font-size: 2.5rem;
+        color: $clr4;
+        margin-bottom: 5rem;
+        font-weight: 800;
+    }
+    h3 {
+        font-size: 1.8rem;
+        color: #cfcfcf;
+    }
+    span {
+        color: grey;
+    }
+    hr {
+        width: 80%;
+        border: none;
+        background-color: grey;
+        height: 1px;
+    }
+    .station-preview {
+        img {
+            width: 270px;
+        }
+        filter:opacity(80%);
+        transition: .5s;
+        &:hover {
+            filter: opacity(100%)
+        }
+    }
+    // .station-cover {
+    // }
+    .preview-details {
+        width: 100%;
+        h2 {
+            margin: .2rem 0 .4rem 0;
+        }
+        .heart-icon {
+            margin-right: .6rem;
+            transition: .5s;
+            &:hover {
+                color: #c70039;
+            }
+        }
+        .play-icon {
+            font-size: 2.3rem;
+            transition: .5s;
+            &:hover {
+                color: white;
+            }
+        }
+        margin-bottom: 2rem;
+    }
+}
