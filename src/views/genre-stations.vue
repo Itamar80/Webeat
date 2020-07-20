@@ -44,9 +44,10 @@ export default {
   },
   methods: {
     setFilter(filterBy){
+      let genre = this.$route.params.genre
       this.$store.commit({type: 'setFilter', filterBy: {...filterBy}})
       this.$store.dispatch({type: 'loadStations'})
-      this.loadStations()
+      this.loadStations(genre)
     }, 
     async toggleLike(id, isLiked){
     const loggedInUser = this.$store.getters.loggedInUser

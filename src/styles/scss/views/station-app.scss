@@ -108,4 +108,14 @@
             border: none;
         }
     }
+    .channel-container {
+        .channel {
+            background-color: lightblue;
+            width: 200px;
+            height: 200px;
+            margin: 5px;
+            flex-wrap: wrap;
+            ;
+        }
+    }
 }

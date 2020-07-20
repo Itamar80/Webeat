@@ -20,10 +20,9 @@ function query(filterBy, genre) {
     // ${filterStr}&
     const filterStr = `?name_like=${filterBy.name}`;
     if (!genre) genre = ''
-    const filterGenre = `?genre_like=${genre}`;
-    return axios.get(`${_getURL()}${filterGenre}`)
+    const filterGenre = `genre_like=${genre}`;
+    return axios.get(`${_getURL()}${filterStr}&${filterGenre}`)
         .then(res => {
-            console.log(res.data);
             return res.data
         })
 }

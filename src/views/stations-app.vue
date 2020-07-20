@@ -15,14 +15,34 @@
     <popular-stations @toggleLike="toggleLike" :stations="stations"/>
     <h2 class="container yellow">Genres:</h2>
     <hr class="hr"/>
+    <section class="channel-container container flex">
     <router-link to="stations/hiphop" class="station-cover container">
-      <h4>Hip-Hop</h4>
+      <div class="hiphop-channel channel">Hip-Hop</div>
+    </router-link>
+    <router-link to="stations/arabic" class="station-cover container">
+      <div class="rock-channel channel">Rock</div>
+    </router-link>
+    <router-link to="stations/rock" class="station-cover container">
+      <div class="arabic-channel channel">Arabic</div>
+    </router-link>
+    <router-link to="stations/easy" class="station-cover container">
+      <div class="easy-channel channel">Easy listening</div>
+    </router-link>
+    <router-link to="stations/electronic" class="station-cover container">
+      <div class="electronic-channel channel">Electronic</div>
+    </router-link>
+    <router-link to="stations/country" class="station-cover container">
+      <div class="country-channel channel">Country</div>
+    </router-link>
+    <router-link to="stations/rock" class="station-cover container">
+      <div class="arabic-channel channel">Arabic</div>
+    </router-link>
+    </section>
       <!-- <img /> -->
-      <div class="bottom-details">
+      <!-- <div class="bottom-details"> -->
         <!-- <span>{{station.likedByUsers.length}}</span>
         <span> {{station.songs.length}} tracks</span> -->
-      </div>  
-    </router-link>
+      <!-- </div>   -->
     </section>
   </div>
 </template>
