@@ -37,4 +37,33 @@
             cursor: pointer;
         }
     }
+    h1 {
+        text-align: left;
+        font-weight: 700;
+        font-size: rem(35px);
+        font-family: fantasy;
+    }
+    span {
+        margin: 5px 0;
+    }
+    .icon {
+        margin: 0 5px 0 0;
+    }
+    .heart-icon {
+        background-color: transparent;
+        color: $clr7;
+        border: none;
+        padding: 0;
+        &:hover {
+            cursor: pointer;
+            color: $clr4;
+        }
+        .liked {
+            color: $clr4;
+        }
+        // &:hover {
+        //     color: $clr4;
+        //     cursor: pointer;
+        // }
+    }
 }

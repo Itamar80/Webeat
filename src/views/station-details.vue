@@ -6,7 +6,7 @@
     <song-list
       v-if="station"
       :songList="songList"
-      :songs="station.songs"
+      :station="station"
       @addSong="addSong"
       @searchSongs="searchSongs"
       @playSong="setCurrSong"

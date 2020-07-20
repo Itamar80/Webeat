@@ -4,12 +4,39 @@
     padding-right: 50px;
     .song-search {
         margin-left: 8px;
+        width: 100%;
+        // .icon {
+        .toggle-songs {
+            vertical-align: middle;
+            color: $clr7;
+            // font-size: rem(20px);
+            background-color: $clr4;
+            border-radius: 50%;
+            box-shadow: none;
+            border: none;
+            outline: none;
+            padding: 5px;
+            width: 25px;
+            height: 25px;
+            margin-right: 28px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        // }
+    }
+    input {
+        border-radius: 5px;
+    }
+    .edit-sub-btn {
+        background-color: $clr4;
+        padding: 5px;
     }
     // .songlist-container {}
     .scroll-area {
         position: relative;
         margin: auto;
-        height: 300px;
+        height: 250px;
     }
     .ps {
         overflow: hidden !important;

@@ -4,6 +4,9 @@
     transition: all 0.3s ease-in-out;
     /* Create the hidden pseudo-element */
     /* include the shadow for the end state */
+    p {
+        padding-left: 5px;
+    }
     &::after {
         content: '';
         position: absolute;
@@ -39,7 +42,7 @@
     //     cursor: pointer;
     //     background-color: lighten($clr1, 15%);
     // }
-    .delete {
+    .icon {
         &:hover {
             cursor: pointer;
             color: $clr4

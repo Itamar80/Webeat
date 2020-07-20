@@ -1,7 +1,24 @@
 <template>
   <section class="curr-song">
     <div class="flex space-around">
-      <h1>{{station.name}}</h1>
+      <div class="flex col ">
+        <h1>{{station.name}}</h1>
+        <span class="top-details">Created By: {{station.createdBy.fullName}}</span>
+        <span>
+          <font-awesome-icon
+          icon="heart"
+          size="lg"
+          class="icon heart-icon"
+          :class="{liked:isLiked}"
+          @click.stop="toggleLike(station._id)"
+          />{{station.likedByUsers.length}}
+        </span>
+        <span>
+          <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
+          {{station.songs.length}} tracks
+        </span>
+        <p>Now Playing: {{currSong.title}}</p>
+      </div>
       <div class="iframe-container">
         <youtube
           :video-id="videoId"
@@ -40,7 +57,11 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { faForward } from "@fortawesome/free-solid-svg-icons";
 import { faPause } from "@fortawesome/free-solid-svg-icons";
 import { faBackward } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
 
+library.add(faClock);
+library.add(faHeart);
 library.add(faPlay);
 library.add(faForward);
 library.add(faPause);
@@ -55,7 +76,7 @@ export default {
   data() {
     return {
       playerVars: {
-        // autoplay: 1,
+        autoplay: 1,
         // controls: 0,
         modestbranding: 1,
         showinfo: 0
@@ -88,39 +109,42 @@ export default {
     ended() {
       this.changeSong("nextSong");
     },
-      async showDuration() {
-        return await this.player.getDuration();
-      },
-
-      playing() {
-        this.timeId = setInterval(() => {
-          this.player.getCurrentTime().then(time => {
-            this.time = this.formatTime(time + 1);
-          });
-        }, 100);
-      },
-      formatTime(time) {
-        time = Math.round(time);
-        let minutes = Math.floor(time / 60);
-        let seconds = time - minutes * 60;
-
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-
-        return minutes + ":" + seconds;
-      },
-      ended() {
-        this.time = "00:00";
-        clearInterval(this.timeId);
-      }
+    async showDuration() {
+      return await this.player.getDuration();
     },
-    async mounted() {
-      this.duration = this.formatTime(await this.player.getDuration());
+
+    playing() {
+      this.timeId = setInterval(() => {
+        this.player.getCurrentTime().then(time => {
+          this.time = this.formatTime(time + 1);
+        });
+      }, 100);
     },
-    components: {
-      fontAwsomeIcon
+    formatTime(time) {
+      time = Math.round(time);
+      let minutes = Math.floor(time / 60);
+      let seconds = time - minutes * 60;
+
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+
+      return minutes + ":" + seconds;
+    },
+    ended() {
+      this.time = "00:00";
+      clearInterval(this.timeId);
+    },
+    toggleLike(id){
+    this.isLiked = !this.isLiked
+    this.$emit('toggleLike', id, this.isLiked)
     }
-  
+  },
+  async mounted() {
+    this.duration = this.formatTime(await this.player.getDuration());
+  },
+  components: {
+    fontAwsomeIcon
+  }
 };
 </script>
 

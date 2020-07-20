@@ -1,15 +1,18 @@
 <template>
   <div class="youtube-song flex space-between align-center">
+     <section class="flex row align-center">
+     <img :src="song.snippet.thumbnails.default.url"/>
       <p>{{song.snippet.title}}</p>
-      <img :src="song.snippet.thumbnails.default.url"/>
-      <button @click.stop="addSong(song)">+</button>
-    <!-- <pre>
-        {{song}}
-    </pre> -->
+     </section>
+      <font-awesome-icon @click.stop="addSong(song)" icon="plus" size="lg" class="icon plus" />
   </div>
 </template>
 
 <script>
+import { fontAwsomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+library.add(faPlus);
 export default {
   props: {
     song: Object
