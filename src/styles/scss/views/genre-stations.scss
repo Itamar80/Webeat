@@ -2,15 +2,23 @@
     .h1 {
         font-size: 2.5rem;
         color: $clr4;
-        margin-bottom: 5rem;
+        margin-bottom: 50px;
+        margin-top: 30px;
         font-weight: 800;
     }
     h3 {
         font-size: 1.8rem;
         color: #cfcfcf;
     }
-    span {
-        color: grey;
+    .all-stations {
+        .show-all {
+            color: grey;
+            cursor: pointer;
+            transition: .3s;
+            &:hover {
+                color: white;
+            }
+        }
     }
     hr {
         width: 80%;
@@ -33,22 +41,22 @@
     .preview-details {
         width: 100%;
         h2 {
-            margin: .2rem 0 .4rem 0;
+            margin: 3.2px 0 .6.4px 0;
         }
         .heart-icon {
-            margin-right: .6rem;
+            margin-right: 9.6px;
             transition: .5s;
             &:hover {
                 color: #c70039;
             }
         }
         .play-icon {
-            font-size: 2.3rem;
+            font-size: 36.8px;
             transition: .5s;
             &:hover {
                 color: white;
             }
         }
-        margin-bottom: 2rem;
+        margin-bottom: 32px;
     }
 }

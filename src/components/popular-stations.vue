@@ -1,6 +1,6 @@
 <template>
   <div class="popular-station-list container">
-    <ul class="clean-list flex justify-center">
+    <ul class="clean-list flex space-between">
       <li v-for="station in popularStations" :key="station._id">
         <station-preview :station="station" @toggleLike="toggleLike"></station-preview>
       </li>

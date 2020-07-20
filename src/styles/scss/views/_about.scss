@@ -6,25 +6,25 @@ h1 {
 .creator-list {
     li {
         list-style-type: none;
-        margin: 3rem;
+        margin: 48px;
         border: 1px solid rgb(148, 148, 148);
         border-radius: 1rem;
-        padding: 3rem;
+        padding: 48px;
         transition: .5s;
         &:hover {
             border: 1px solid white;
             box-shadow: 9px 9px 9px -4px rgba(0, 0, 0, 0.75);
         }
         img {
-            width: 10rem;
-            border-radius: 5rem;
-            margin-right: 2rem;
+            width: 160px;
+            border-radius: 80px;
+            margin-right: 32px;
         }
         .icon {
-            margin: .5rem;
+            margin: 8px;
             cursor: pointer;
             font-size: 1.8rem;
-            margin-top: 1rem;
+            margin-top: 16px;
             transition: .3s;
             color: white;
             &:hover {
@@ -34,11 +34,11 @@ h1 {
     }
     .social-about {
         font-size: 1.2rem;
-        margin-top: 1rem;
+        margin-top: 16px;
     }
     .creator-info {
         h3 {
-            margin-bottom: 1.9rem;
+            margin-bottom: 30.4px;
         }
     }
 }
