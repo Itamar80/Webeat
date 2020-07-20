@@ -1,30 +1,44 @@
 <template>
   <div class="station-preview ratio-card flex col align-center justify-center" @click="openDetails(station._id)">
     <section class="station-cover ">
-      <span class="top-details"> Created By: {{station.createdBy.fullName}}</span>
-      <h4>{{station.name}}</h4>
-      <img :src="station.imgUrl"/>
-      <div class="bottom-details">
-        <font-awesome-icon icon="heart" size="lg"  class="heart-icon" :class="{liked:isLiked}" @click.stop="toggleLike(station._id)" /> 
-        <span>{{station.likedByUsers.length}}</span>
-        <font-awesome-icon size="lg" :icon="['far', 'clock']" class="clock-icon"/>
-        <span> {{station.songs.length}} tracks</span>
-      </div>  
+    <img :src="station.imgUrl"/>
     </section>
+    <div class="preview-details flex space-between align-center">
+   <font-awesome-icon  icon="play-circle" size="lg" class="play-icon" />
+      <section class="">
+       <h2>{{station.name}}</h2>
+      <font-awesome-icon size="lg" :icon="['far', 'clock']" class="clock-icon"/>
+      <span> {{station.songs.length}} tracks</span>
+      </section>
+      <section class="like-section">
+       <font-awesome-icon icon="heart" size="lg"  class="heart-icon" :class="{liked:isLiked}" @click.stop="toggleLike(station._id)" /> 
+       <span>{{station.likedByUsers.length}}</span>
+      </section>
+       <div>
+    </div>
+       </div>
        
        
   </div>
 </template>
+      // <span class="top-details"> Created By: {{station.createdBy.fullName}}</span>
+      // <img :src="station.imgUrl"/>
+      // <div class="bottom-details">
+      // </div>  
 
 <script>
 import moment from 'moment';
 import {fontAwsomeIcon} from '@fortawesome/vue-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { faClock } from '@fortawesome/free-regular-svg-icons'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+
+
  
-library.add(faClock)
 library.add(faHeart)
+library.add(faClock)
+library.add(faPlayCircle)
 
 export default {
   props:['station'],

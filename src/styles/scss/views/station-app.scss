@@ -93,9 +93,6 @@
         top: 10%;
         left: 15%;
         // margin: 2rem 0;
-        .filter {
-            //take a library
-        }
         .router-link {
             margin-left: 2rem;
             color: $clr4;
@@ -109,13 +106,30 @@
         }
     }
     .channel-container {
-        .channel {
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 230px);
+            grid-auto-rows: auto;
+            gap: 16px;
+        }
+        .station-cover {
+            text-decoration: none;
             background-color: lightblue;
-            width: 200px;
-            height: 200px;
+            width: 250px;
+            height: 130px;
             margin: 5px;
-            flex-wrap: wrap;
-            ;
+            border-radius: .5rem;
+            span {
+                color: white;
+                transform: rotate(90deg);
+                font-weight: 600;
+            }
+            img {
+                border-top-left-radius: .5rem;
+                border-bottom-left-radius: .5rem;
+                width: 200px;
+                height: 130px;
+            }
         }
     }
 }
