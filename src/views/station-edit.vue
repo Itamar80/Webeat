@@ -1,75 +1,80 @@
 <template>
-    <div class="editor flex">
-      <!-- <div class="form-songs-container flex"> -->
-      <section class="station-form flex justify-center align-center">
-        <form @submit="addStation" class="flex col flex-start">
-          <label>
-            Station name:
-            <input
-              type="text"
-              placeholder="Enter the station name"
-              v-model="station.name"
-              ref="name"
-            />
-          </label>
-          <label>
-            Station Image:
-            <input type="file" @change="onUploadImg" />
-          </label>
-          Genre:
-          <select name="genre" value="genre" v-model="station.genre">
-            <option value="hiphop">Hip-hop</option>
-            <option value="arabic">Arabic</option>
-            <option value="easy">Easy listening</option>
-            <option value="electronic">Electronic</option>
-            <option value="country">Country</option>
-            <option value="flamenco">Flamenco</option>
-            <option value="jazz">Jazz</option>
-            <option value="rock">Rock</option>
-            <option value="pop">Pop</option>
-          </select>
-         
-          <button type="submit" class="btn submit-btn">Add station</button>
-        </form>
-      </section>
-      <div class="preview flex col">
-        <div class="station-details flex space-around">
-          <div class="flex col">
-            <h1 v-if="station.name">{{station.name}}</h1>
-            <h1 v-else>Name</h1>
-            <span>Created By: {{station.createdBy.fullName}}</span>
-            <span
-              v-if="station.genre"
-              class="genre"
-            >{{station.genre.charAt(0).toUpperCase()+station.genre.slice(1)}}</span>
-            <span v-else class="genre">Genre</span>
-            <span>
-              <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
-              {{station.songs.length}} tracks
-            </span>
-          </div>
-          <img v-if="station.img" width="200" :src="img" />
-          <img v-else width="200" src="@/assets/defualt-img-cover.jpg" />
-        </div>
-        <section class="station-songs">
-          <song-list-edit
-            class="song-list-edit"
-            v-if="station"
-            :songList="songList"
-            :station="station"
-            @addSong="addSong"
-            @searchSongs="searchSongs"
+  <div class="editor flex">
+    <!-- <div class="form-songs-container flex"> -->
+    <section class="station-form flex justify-center align-center">
+      <form @submit="addStation" class="flex col flex-start">
+        <label>
+          Station name:
+          <input
+            type="text"
+            placeholder="Enter the station name"
+            v-model="station.name"
+            ref="name"
           />
+        </label>
+        <label>
+          Station Image:
+          <input type="file" @change="onUploadImg" />
+        </label>
+        Genre:
+        <select name="genre" value="genre" v-model="station.genre">
+          <option value="hiphop">Hip-hop</option>
+          <option value="arabic">Arabic</option>
+          <option value="easy">Easy listening</option>
+          <option value="electronic">Electronic</option>
+          <option value="country">Country</option>
+          <option value="flamenco">Flamenco</option>
+          <option value="jazz">Jazz</option>
+          <option value="rock">Rock</option>
+          <option value="pop">Pop</option>
+        </select>
+        <section class="flex col">
+          <div class="flex row align-center">
+            <input type="text" v-model="songToFindYoutube" />
+            <button class="btn edit-sub-btn" @click.prevent="searchSongs">Search song</button>
+          </div>
+          <vue-custom-scrollbar class="scroll-area" :settings="settings" @ps-scroll-y="scrollHanle">
+            <youtubeSongs @addSong="addSong" :songList="songList" />
+          </vue-custom-scrollbar>
         </section>
+
+        <button type="submit" class="btn submit-btn">Add station</button>
+      </form>
+    </section>
+    <div class="preview flex col">
+      <div class="station-details flex space-around">
+        <div class="flex col">
+          <h1 v-if="station.name">{{station.name}}</h1>
+          <h1 v-else>Name</h1>
+          <span>Created By: {{station.createdBy.fullName}}</span>
+          <span
+            v-if="station.genre"
+            class="genre"
+          >{{station.genre.charAt(0).toUpperCase()+station.genre.slice(1)}}</span>
+          <span v-else class="genre">Genre</span>
+          <span>
+            <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
+            {{station.songs.length}} tracks
+          </span>
+        </div>
+        <img v-if="station.imgUrl" width="200" :src="img" />
+        <img v-else width="200" src="@/assets/defualt-img-cover.jpg" />
       </div>
+      <section class="station-songs">
+      <song-list-edit :station="station"/>
+      </section>
     </div>
+  </div>
 </template>
 
 <script>
 import { songService } from "../services/song-service.js";
 import { stationService } from "../services/station-service.js";
 import { uploadImg } from "@/services/imgUpload.service.js";
+import vueCustomScrollbar from "vue-custom-scrollbar";
 import songListEdit from "../components/song-list-for-edit.vue";
+import songList from "../components/song-list.vue";
+import youtubeSongs from "../components/youtube-songs.vue";
 
 export default {
   data() {
@@ -77,20 +82,18 @@ export default {
       station: {
         name: "",
         genre: "",
-        songs: [
-          {
-            title: "queen",
-            imgUrl: "https://i.ytimg.com/vi/R45TbNNQrzg/hqdefault.jpg"
-          }
-        ],
+        songs: [],
         imgUrl: ""
       },
       tagToAdd: "",
       img: "",
-      songToFind: "",
+      songToFindYoutube: "",
       // dynamicTags: ['Tag 1', 'Tag 2', 'Tag 3'],
       inputVisible: false,
-      inputValue: ""
+      inputValue: "",
+      settings: {
+        maxScrollbarLength: 60
+      }
     };
   },
   computed: {
@@ -123,16 +126,14 @@ export default {
       this.station.imgUrl = this.img;
     },
     async searchSongs() {
-      console.log(this.songToFind);
       await this.$store.dispatch({
         type: "searchSong",
         songStr: this.songToFind
       });
-      // .then(songList => {console.log(songList);});
     },
     addSong(song) {
       this.station.songs.push(song);
-      this.songToFind = "";
+      this.songToFindYoutube = "";
     },
     focusInput() {
       this.$refs.name.focus();
@@ -153,11 +154,15 @@ export default {
       }
       this.inputVisible = false;
       this.inputValue = "";
-    }
+    },
+    scrollHanle(evt) {}
   },
   components: {
-    stationService,
-    songListEdit
+    vueCustomScrollbar,
+
+    songListEdit,
+    youtubeSongs,
+    songList
   }
 };
 </script>

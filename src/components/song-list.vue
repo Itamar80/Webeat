@@ -17,7 +17,7 @@
       </div>
       <font-awesome-icon @click="addSong=!addSong" :icon="toggleAdd" size="lg" class="icon toggle-songs" />
       <!-- <button class="add-btn" @click="addSong=!addSong">{{toggleAdd}}</button> -->
-    </section>
+    </section >
     <vue-custom-scrollbar class="scroll-area" :settings="settings" @ps-scroll-y="scrollHanle">
       <section v-if="!addSong" class="songlist-container">
         <ul class="clean-list">

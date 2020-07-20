@@ -1,1 +1,15 @@
-.song-list-edit {}
+.song-list-edit {
+    .songlist-filler {
+        margin: 10px 0 0 0;
+        background-color: rgba(255, 255, 255, 0.123);
+        height: 250px;
+        width: 100%;
+        p {
+            text-align: center;
+            margin-top: 120px;
+        }
+    }
+    input {
+        width: 300px;
+    }
+}
