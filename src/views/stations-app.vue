@@ -15,27 +15,30 @@
     <popular-stations @toggleLike="toggleLike" :stations="stations"/>
     <h2 class="container yellow">Genres:</h2>
     <hr class="hr"/>
-    <section class="channel-container container flex">
-    <router-link to="stations/hiphop" class="station-cover container">
-      <div class="hiphop-channel channel">Hip-Hop</div>
+    <section class="channel-container container grid">
+      <!-- <div> -->
+    <router-link to="stations/hiphop" class="station-cover container flex">
+    <img src="../assets/hero3.webp" alt="genre image">
+    <span class="hiphop-channel channel flex align-center">Hip-Hop</span>
     </router-link>
+      <!-- </div> -->
     <router-link to="stations/arabic" class="station-cover container">
-      <div class="rock-channel channel">Rock</div>
+      <span class="rock-channel channel">Rock</span>
     </router-link>
     <router-link to="stations/rock" class="station-cover container">
-      <div class="arabic-channel channel">Arabic</div>
+      <span class="arabic-channel channel">Arabic</span>
     </router-link>
     <router-link to="stations/easy" class="station-cover container">
-      <div class="easy-channel channel">Easy listening</div>
+      <span class="easy-channel channel">Easy listening</span>
     </router-link>
     <router-link to="stations/electronic" class="station-cover container">
-      <div class="electronic-channel channel">Electronic</div>
+      <span class="electronic-channel channel">Electronic</span>
     </router-link>
     <router-link to="stations/country" class="station-cover container">
-      <div class="country-channel channel">Country</div>
+      <span class="country-channel channel">Country</span>
     </router-link>
     <router-link to="stations/rock" class="station-cover container">
-      <div class="arabic-channel channel">Arabic</div>
+      <span class="arabic-channel channel">Arabic</span>
     </router-link>
     </section>
       <!-- <img /> -->
@@ -52,6 +55,7 @@ import stationList from '../components/station-list.vue'
 import stationFilter from '../components/filter-stations.vue'
 import popularStations from '../components/popular-stations.vue'
 import {stationService} from '@/services/station-service.js'
+// import dasfasd from '../assets/hero3.webp'
 
 export default {
   data(){
