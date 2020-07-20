@@ -1,5 +1,9 @@
 .curr-song {
-    // height: 30%;
+    margin: 0 50px;
+    .top-section {
+        width: 700px;
+        margin: 0 auto;
+    }
     padding-top: 30px;
     background-color: $clr1;
     .iframe-container {
@@ -25,16 +29,30 @@
         border-radius: 10px;
     }
     .song-controllers {
-        background-color: darken($clr1, $amount: 10%);
-        height: 50px;
-        margin: 10px 0;
+        background-color: darken($clr1, $amount: 3%);
+        height: 35px;
+        margin: 13px auto;
+        width: 650px;
+        border-radius: 5px;
+        padding: 5px;
         // box-shadow: 0 0 10px #ffffff, 0 0 30px #ffc300;
         .control-icon {
             // box-shadow: 0 0 10px #ffffff,0 0 30px #ffc300;
             margin: 5px;
+            &:hover {
+                cursor: pointer;
+                transform: scale( 1.1);
+            }
         }
-        &:hover {
-            cursor: pointer;
+        span {
+            font-size: rem(13px);
+        }
+        input[type=range] {
+            height: 3px;
+            background: $clr6;
+            &#progressBar {
+                width: 200px
+            }
         }
     }
     h1 {

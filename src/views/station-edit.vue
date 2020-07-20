@@ -12,6 +12,15 @@
             ref="name"
           />
         </label>
+        <!-- <label>
+          Created By:
+          <input
+            type="text"
+            placeholder="Enter your name"
+            v-model="station.name"
+            ref="name"
+          />
+        </label> -->
         <label>
           Station Image:
           <input type="file" @change="onUploadImg" />

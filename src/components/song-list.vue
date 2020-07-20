@@ -22,7 +22,7 @@
       <section v-if="!addSong" class="songlist-container">
         <ul class="clean-list">
           <li v-for="song in songs" :key="song._id">
-            <songListPrev @playSong="playSong" :song="song" />
+            <songListPrev :currSong="currSong" @playSong="playSong" :song="song" />
           </li>
         </ul>
       </section>
@@ -44,14 +44,15 @@ library.add(faPlus);
 export default {
   props: {
     station: Object,
-    songList: Object
+    currSong: Object,
+    // songList: Object
   },
   data() {
     return {
       songs: this.station.songs,
       songToFindYoutube: "",
       songTofindStation: "",
-      settings: {
+      settings: { 
         maxScrollbarLength: 60
       },
       addSong: false

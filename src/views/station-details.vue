@@ -6,6 +6,7 @@
     <song-list
       v-if="station"
       :songList="songList"
+      :currSong="currSong"
       :station="station"
       @addSong="addSong"
       @searchSongs="searchSongs"
