@@ -90,10 +90,12 @@ export default {
       songToFind: "",
       // dynamicTags: ['Tag 1', 'Tag 2', 'Tag 3'],
       inputVisible: false,
-      inputValue: ""
+      inputValue: "",
+      // genresStationsMap:null,
     };
   },
   computed: {
+    
     songList() {
       // console.log('indetails',this.$store.getters.songList);
       return this.$store.getters.songList;
@@ -102,6 +104,7 @@ export default {
 
   created() {
     this.station = stationService.getEmptyStation();
+    // this.genresStationsMap = this.genresMap
   },
   mounted() {
     this.focusInput();
@@ -113,9 +116,10 @@ export default {
       this.tagToAdd = "";
     },
     addStation() {
-      console.log(this.station);
+      console.log(this.station.genre);
+      this.$store.commit({type: 'updateGenresMap', genre: this.station.genre})
       this.$store.dispatch({ type: "saveStation", station: this.station });
-      this.$router.push("/stations");
+      // this.$router.push("/stations");
     },
     async onUploadImg(ev) {
       const res = await uploadImg(ev);

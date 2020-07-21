@@ -20,6 +20,7 @@ export default {
     }
   },
     computed: {
+      
     },
     created(){
     let genre = this.$route.params.genre

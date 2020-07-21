@@ -11,13 +11,13 @@
     </div>
      <station-list class="container" v-if="genre"  :genre="genre" :stations="stations" @toggleLike="toggleLike"></station-list>
      <section class="all-stations" v-else  v-for="singleGenre in genres" :key="singleGenre">
-    <div class="genre-header container flex space-between">
+    <div v-if="stationsGenresMap[singleGenre]>0" class="genre-header container flex space-between">
     <h3 class="">{{singleGenre.charAt(0).toUpperCase()+singleGenre.slice(1)}}</h3>
      <span class="show-all" @click="moveTo(singleGenre)">Show All</span>
     </div>
-    <div class="background container">
+    <div v-if="stationsGenresMap[singleGenre]>0" class="background container">
     <!-- <hr/> -->
-   <station-list class="container" :genre="singleGenre" :stations="stations" @toggleLike="toggleLike"></station-list>
+   <station-list class="container"   :genre="singleGenre" :stations="stations" @toggleLike="toggleLike"></station-list>
     </div>
      </section> 
     </section>
@@ -40,11 +40,19 @@ export default {
       stations: [],
       genres:['hiphop','arabic','easy','electronic','country','flamenco','jazz','rock','pop'],
       genre:'',
+      stationsGenresMap:null,
+      
     }
+  },
+  computed:{
+    genresMap(){
+     return this.$store.getters.genresMap;
+    },
   },
   created(){
     let genre = this.$route.params.genre
     this.genre = genre
+    this.stationsGenresMap=this.genresMap
     this.loadStations(genre)
    
   },

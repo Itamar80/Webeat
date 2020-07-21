@@ -12,9 +12,23 @@ export const stationStore = {
             name: '',
         },
         songList: null,
-        currSong: {}
+        currSong: {},
+        genresMap: {
+            hiphop: 0,
+            arabic: 0,
+            easy: 0,
+            electronic: 0,
+            country: 0,
+            flamenco: 0,
+            jazz: 0,
+            rock: 0,
+            pop: 0,
+        }
     },
     getters: {
+        genresMap(state) {
+            return JSON.parse(JSON.stringify(state.genresMap))
+        },
         stations(state) {
             return state.stations
         },
@@ -36,6 +50,9 @@ export const stationStore = {
 
     },
     mutations: {
+        updateGenresMap(state, { genre }) {
+            state.genresMap[genre]++
+        },
         setStations(state, { stations }) {
             state.stations = stations;
         },
@@ -50,7 +67,6 @@ export const stationStore = {
         },
         addStation(state, savedStation) {
             state.stations.unshift(savedStation)
-            console.log(state.stations);
         },
         setSongList(state, { songList }) {
             state.songList = songList

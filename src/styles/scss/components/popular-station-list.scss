@@ -29,6 +29,9 @@
         .preview-details {
             margin-top: 8px;
             width: 100%;
+            h2 {
+                margin-left: 10px;
+            }
             .play-icon {
                 font-size: 3rem;
                 transition: .5s;
@@ -39,6 +42,7 @@
             span,
             .clock-icon {
                 color: grey;
+                margin-left: 10px;
             }
             .like-section {
                 .heart-icon {
