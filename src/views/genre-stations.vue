@@ -52,7 +52,7 @@ export default {
   created(){
     let genre = this.$route.params.genre
     this.genre = genre
-    this.stationsGenresMap=this.genresMap
+    this.stationsGenresMap = this.genresMap
     this.loadStations(genre)
    
   },

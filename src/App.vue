@@ -18,6 +18,7 @@
     </div>
 </header>
     <router-view/>
+    <footer class="cofferights flex align-center justify-center">copyright © Nir, Naomi, Itamar 2020</footer>
   </div>
 </template>
 

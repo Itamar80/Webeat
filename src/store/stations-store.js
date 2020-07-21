@@ -55,6 +55,12 @@ export const stationStore = {
         },
         setStations(state, { stations }) {
             state.stations = stations;
+            state.stations.forEach(station => {
+                if (station.genre) {
+                    state.genresMap[station.genre]++
+                }
+            })
+            console.log(state.genresMap);
         },
         setFilter(state, { filterBy }) {
             state.filterBy = filterBy
