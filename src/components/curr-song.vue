@@ -1,6 +1,6 @@
 <template>
-  <section class="curr-song flex col align-center">
-    <div class="top-section flex justify-center align-center  space-between">
+  <section class="curr-song">
+    <div class="top-section flex justify-center align-center space-between">
       <div class="flex col ">
         <h1>{{station.name}}</h1>
         <span >Created By: {{station.createdBy.fullName}}</span>
@@ -20,7 +20,7 @@
         </span>
         <p>Now Playing: {{currSong.title}}</p>
       </div>
-      <div class="iframe-container">
+      <!-- <div class="iframe-container"> -->
         <youtube
           :video-id="videoId"
           :player-vars="playerVars"
@@ -28,7 +28,7 @@
           @ended="ended"
           ref="youtube"
         ></youtube>
-      </div>
+      <!-- </div> -->
     </div>
     <section class="song-controllers flex row justify-center align-center  space-between">
       <span class="flex row justify-center align-center">{{ time }}
@@ -52,7 +52,7 @@
       </div>
       <div class="flex row justify-center align-center">
       <font-awesome-icon  :icon="volumeIcon"  class="control-icon" />
-      <input id="volume" @change="changeVolume" value="100" type="range" />
+      <input id="volume" @input="changeVolume" value="100" type="range" />
       </div>
     </section>
   </section>

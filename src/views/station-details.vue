@@ -1,5 +1,5 @@
 <template>
-  <div class="station-details flex">
+  <div class="station-details flex space-between">
     <chat-app />
     <section class="container">
     <curr-song v-if="station" :station="station" :currSong="currSong" @changeSong="changeSong" />

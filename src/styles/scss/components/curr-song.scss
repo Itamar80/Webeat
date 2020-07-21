@@ -1,8 +1,10 @@
 .curr-song {
-    margin: 0 50px;
+    width: 100%;
+    margin: 0 0 30px 0;
+    // margin: 0 50px;
     .top-section {
-        width: 700px;
-        margin: 0 auto;
+        // width: 700px;
+        // margin: 0 auto;
     }
     padding-top: 30px;
     background-color: $clr1;
@@ -12,13 +14,13 @@
         // width: 100%;
         // padding-bottom: 56.25%;
         // height: 0;
-        position: relative;
-        top: 10px;
+        // position: relative;
+        // top: 10px;
         width: 250px;
         height: 200px;
         margin: 0;
     }
-    .iframe-container iframe {
+    iframe {
         // position: absolute;
         // top: 0;
         // left: 0;
@@ -31,7 +33,7 @@
     .song-controllers {
         background-color: darken($clr1, $amount: 3%);
         height: 35px;
-        margin: 13px auto;
+        margin: 20px auto 0;
         width: 650px;
         border-radius: 5px;
         padding: 5px;
