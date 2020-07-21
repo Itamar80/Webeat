@@ -1,6 +1,102 @@
 .chat-app {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(171deg, rgba(0, 0, 0, 1) 0%, rgba(121, 22, 9, 1) 51%, rgba(141, 51, 8, 1) 100%);
     width: 30%;
-    height: 100vh;
+    h1 {
+        margin-bottom: 50px;
+    }
+    border-right: 2px solid rgb(70, 70, 70);
+    border-bottom: 2px solid rgb(70, 70, 70);
+    // border: 1px solid rgb(70, 70, 70);
+    box-shadow: 0px 7px 6px -1px rgba(0, 0, 0, 0.64);
+    .chat-container {
+        margin: 0 auto;
+        max-width: 80%;
+        // height: 100%;
+        .message {
+            // display: inline-block;
+            border-radius: 20px;
+            padding: 8px 15px;
+            margin-top: 5px;
+            margin-bottom: 8px;
+            border-bottom-left-radius: 0;
+            background: linear-gradient(to bottom, $clr3 0%, $clr5 100%);
+        }
+    }
+    .chat-form {
+        position: absolute;
+        bottom: -70px;
+        left: 15px;
+        input {
+            border: none;
+            outline: none;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        button {
+            background-color: #c70039;
+            padding: 7px;
+            &:hover {
+                background-color: $clr3;
+            }
+        }
+    }
+    .is-typing {
+        margin-top: 90px;
+        width: 85px;
+        justify-content: space-around;
+        display: flex;
+    }
+    .jump1,
+    .jump2,
+    .jump3,
+    .jump4,
+    .jump5 {
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: gray;
+    }
+    .jump1 {
+        animation: typing 1.5s linear infinite;
+        animation-delay: 01.1s;
+    }
+    .jump2 {
+        animation: typing 1.5s linear infinite;
+        animation-delay: 01.2s;
+    }
+    .jump3 {
+        animation: typing 1.5s linear infinite;
+        animation-delay: 01.3s;
+    }
+    .jump4 {
+        animation: typing 1.5s linear infinite;
+        animation-delay: 01.4s;
+    }
+    .jump5 {
+        animation: typing 1.5s linear infinite;
+        animation-delay: 1.5s;
+    }
+    @keyframes typing {
+        0% {
+            transform: translateY(0px);
+        }
+        25% {
+            transform: translateY(0px);
+        }
+        35% {
+            transform: translateY(15px);
+        }
+        45% {
+            transform: translateY(0px);
+        }
+        60% {
+            transform: translateY(-15px);
+        }
+        75% {
+            background-color: white;
+            transform: translateY(0px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
 }

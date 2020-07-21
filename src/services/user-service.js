@@ -24,7 +24,7 @@ function update(user) {
 
 async function login(userCred) {
     try {
-        const user = await HttpService.get('user', userCred)
+        const user = await HttpService.get('auth/login', userCred)
         return _handleLogin(user)
     } catch (err) {
         console.log('login err', err);
@@ -32,14 +32,14 @@ async function login(userCred) {
 }
 async function signup(userCred) {
     try {
-        const user = await HttpService.post('user', userCred)
+        const user = await HttpService.post('auth/signup', userCred)
         return _handleLogin(user)
     } catch (err) {
         console.log('logout error', err);
     }
 }
 async function logout() {
-    await HttpService.post('user');
+    await HttpService.post('auth/logout');
     sessionStorage.clear();
 }
 

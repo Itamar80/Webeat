@@ -11,14 +11,14 @@
     </div>
   <div v-if="!loggedinUser" class="login">
       <form v-if="isUser" @submit="login">
-        Email:  <input type="text" v-model="loginCred.username">
+        Username:  <input type="text" v-model="loginCred.username">
      Password:  <input type="password" v-model="loginCred.password">
 
      <button>Login</button>
       </form>
       <form v-if="!isUser" @submit="signup">
         Email: <input type="text" placeholder="email@example.com" v-model="signupCred.email">
-      User name:  <input type="text" v-model="signupCred.username">
+      Username:  <input type="text" v-model="signupCred.username">
      Password:  <input type="password" v-model="signupCred.password">
      <button>Signup</button>
       </form>

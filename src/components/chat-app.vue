@@ -1,12 +1,22 @@
 <template>
-  <section>
-    <span v-if="isTyping">{{user}} is  typing...</span>
+  <section class="chat-app">
+    <h1>Chat</h1>
+    <section class="chat-container">
+    <span class="is-typing" v-if="isTyping">{{user}} is  typing
+      <div class="jump1"></div>
+      <div class="jump2"></div>
+      <div class="jump3"></div>
+      <div class="jump4"></div>
+      <div class="jump5"></div>
+    </span>
     <ul class="clean-list">
-      <li  v-for="(msg,idx) in msgs" :key="idx">{{msg.from}} : {{msg.txt}}</li>
+      <li class="message"  v-for="(msg,idx) in msgs"  :key="idx">{{msg.from}} : {{msg.txt}}</li>
+      <!-- <li class="message-strange" v-else v-for="(msg,idx) in msgs" :key="idx">{{msg.from}} : {{msg.txt}}</li> -->
     </ul>
-    <form @submit.prevent="sendMsg">
+    </section>
+    <form class="chat-form flex justify-center" @submit.prevent="sendMsg">
       <input type="text" v-model="msg.txt" @input="setIsTyping" />
-      <button>send msg</button>
+      <button class="btn">Send</button>
     </form>
   </section>
 </template>
@@ -21,12 +31,12 @@ export default {
       isTyping:false,
       user:null,
       msg: {stationId:this.station._id, from: null, txt: "", },
-      msgs: []
     };
   },
   created() {
     let id = this.$route.params.id
     this.msg.from = this.loggedinUser;
+    // console.log(this.loggedinUser);
     this.$store.dispatch({type:'setupSocket'})
     this.$store.dispatch({type:'setupSocketName',chatId:id})
     this.$store.dispatch({type:'addMsg',msg:this.addMsg})
@@ -38,13 +48,18 @@ export default {
   },
   computed:{
     loggedinUser(){
-     let user = (this.$store.getters.loggedinUser)? this.$store.getters.loggedinUser: {userName:'Guest'};
+      let user = (this.$store.getters.loggedinUser)? this.$store.getters.loggedinUser: {userName:'Guest'};
+      console.log('chatu',user); 
+      console.log('chatn',user.userName); 
      return user.userName
+    },
+    msgs(){
+      return this.$store.getters.msgs
     },
   },
   methods: {
     addMsg(msg) {
-      this.msgs.push(msg);
+    this.$store.commit({type:'updateMsgs',msg})
       this.isTyping=false
     },
     setIsTyping(){
@@ -58,7 +73,7 @@ export default {
     sendMsg() {
       this.isTyping=false
       this.msg.sentAt = Date.now()
-      socketSerivce.emit("chat newMsg", this.msg);
+      this.$store.dispatch({type:'sendMsg',msg:this.msg})
       this.msg = {stationId:this.station._id,from:this.loggedinUser,txt:''}
     },
   },

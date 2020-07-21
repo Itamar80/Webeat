@@ -1,12 +1,17 @@
 import userService from '../services/user-service.js'
 
 var localLoggedinUser = null;
-if (sessionStorage.user) localLoggedinUser = JSON.parse(sessionStorage.user);
+if (sessionStorage.user) {
+    localLoggedinUser = JSON.parse(sessionStorage.user);
+    console.log(localLoggedinUser);
+    var localUser = localLoggedinUser[0]
+
+}
 
 export const userStore = {
     strict: true,
     state: {
-        loggedinUser: localLoggedinUser,
+        loggedinUser: localUser,
         users: []
     },
     getters: {
@@ -14,6 +19,7 @@ export const userStore = {
             return state.users;
         },
         loggedinUser(state) {
+            console.log('store', state.loggedinUser);
             return state.loggedinUser
         }
     },
@@ -31,6 +37,7 @@ export const userStore = {
     },
     actions: {
         async login(context, { userCred }) {
+            console.log(userCred);
             const user = await userService.login(userCred);
             context.commit({ type: 'setUser', user })
             return user;

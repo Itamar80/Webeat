@@ -14,6 +14,10 @@ export default {
         setMsgs(state, { msgs }) {
             state.msgs = msgs;
         },
+        updateMsgs(state, { msg }) {
+            state.msgs.push(msg)
+
+        }
     },
     actions: {
         sendMsg(context, { msg }) {
@@ -31,6 +35,11 @@ export default {
         showTyping(context, { isTyping }) {
             socket.on("chat showTyping", isTyping)
         },
+        sendMsg(context, { msg }) {
+            socket.emit('chat newMsg', msg)
+        },
+
+
         // getChatHistory(context, { chatId }) {
         //     socket.emit('getHistory', chatId)
         // },
