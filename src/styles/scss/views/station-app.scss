@@ -1,12 +1,28 @@
 .station-app {
     .h2 {
+        font-family: fantasy;
+        font-weight: 500;
+        font-size: 3rem;
+        color: #cfcfcf;
         margin-top: 720px;
+        text-align: center;
+        border-bottom: 1px solid grey;
+        padding: 10px;
+        letter-spacing: 2px;
+    }
+    .h2-genres {
+        padding: 10px;
+        text-align: center;
+        letter-spacing: 2px;
+        border-bottom: 1px solid grey;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: 500;
+        font-size: 3rem;
+        color: #cfcfcf;
+        margin-bottom: 20px;
     }
     .nav-color {
         color: $clr4;
-    }
-    .yellow {
-        color: $clr6;
     }
     .hero-img {
         img {
@@ -99,13 +115,13 @@
             color: $clr4;
         }
     }
-    .homepage {
-        hr {
-            background-color: $clr4;
-            height: 1px;
-            border: none;
-        }
-    }
+    // .homepage {
+    //     hr {
+    //         background-color: $clr4;
+    //         height: 1px;
+    //         border: none;
+    //     }
+    // }
     .channel-container {
         display: grid;
         grid-template-columns: repeat(4, 1fr);

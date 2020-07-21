@@ -10,12 +10,12 @@
       <img src="@/assets/hero3.jpg" />
       <img src="@/assets/hero7.jpg" />
     </div>
+    <!-- <div class="grad"></div> -->
     </div>
     <section class="homepage">
-    <h2 class="h2 container yellow">Most popular:</h2>
+    <h2 class="h2 container ">Most popular:</h2>
     <popular-stations @toggleLike="toggleLike" :stations="stations"/>
-    <h2 class="container yellow">Genres:</h2>
-    <hr class="hr"/>
+    <h2 class="h2-genres container">Genres:</h2>
     <section class="channel-container container grid">
       <!-- <div> -->
     <router-link to="stations/hiphop" class="station-cover container flex">
