@@ -8,13 +8,12 @@
         width: 25px;
         height: 25px;
         border-radius: 50%;
-        background-color: $clr1;
-        -webkit-box-shadow: -1px -1px #262627, inset 1px 1px #1a1a1d;
-        // -webkit-box-shadow: ;
+        background-color: #1b1d1f;
+        -webkit-box-shadow: -1px -1px #2e2e2f, inset 1px 1px #050506;
         -moz-box-shadow: inset 0px 0px 5px #2c2c31;
-        // box-shadow: inset 0px 0px 5px #1d1d1f;
-        border: rgb(26, 26, 29) 1px solid;
+        border: #1a1a1d 1px solid;
         outline: none;
+        transition: 0.3s;
     }
     p {
         padding-left: 5px;

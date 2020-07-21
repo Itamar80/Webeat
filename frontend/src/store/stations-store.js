@@ -13,6 +13,7 @@ export const stationStore = {
         },
         songList: {},
         currSong: {},
+        currStation: {},
         genresMap: {
             hiphop: 0,
             arabic: 0,
@@ -36,8 +37,11 @@ export const stationStore = {
             return state.songList
         },
         currSong(state) {
-            console.log('getters', state.currSong)
+            console.log('getters currSong', state.currSong)
             return state.currSong
+        },
+        currStation(state) {
+            return state.currStation
         },
         popularStations(state) {
             let copyStations = JSON.parse(JSON.stringify(state.stations))
@@ -81,8 +85,11 @@ export const stationStore = {
             state.songList = []
         },
         setCurrSong(state, { currSong }) {
-            console.log('mutations', currSong)
+            console.log('mutations currSong', currSong)
             state.currSong = currSong;
+        },
+        setCurrStation(state, { currStationId }) {
+            state.currStation = state.stations.find(station => station._id === currStationId)
         }
     },
     actions: {
