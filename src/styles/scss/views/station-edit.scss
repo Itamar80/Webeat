@@ -9,6 +9,25 @@
             background-color: rgba(231, 231, 231, 0.116);
             padding: 10px;
             margin: 0 10px;
+            input {
+                display: block;
+                padding: 5px;
+                // margin: 0.7rem;
+                color: rgb(85, 85, 85);
+                border: none;
+                outline: none;
+                border-radius: 0.2rem;
+                margin: 5px 0;
+            }
+            select {
+                margin: 5px 0;
+            }
+        }
+        button {
+            background-color: $clr4;
+            &:hover {
+                background-color: lighten($color: $clr4, $amount: 10%);
+            }
         }
     }
     .preview {
@@ -18,7 +37,7 @@
             justify-content: space-between;
             width: 80%;
             position: relative;
-            left: 0;
+            // left: 0;
             margin: 20px auto 10px;
             img {
                 width: 300px;
@@ -49,15 +68,6 @@
             }
         }
     }
-}
-
-input {
-    padding: 5px;
-    margin: 0.7rem;
-    color: rgb(85, 85, 85);
-    border: none;
-    outline: none;
-    border-radius: 0.2rem;
 }
 
 .submit-btn {
@@ -113,23 +123,21 @@ input {
     text-decoration: none;
 }
 
-.button-new-tag {
-    margin-left: 10px;
-    height: 32px;
-    line-height: 30px;
-    padding-top: 0;
-    padding-bottom: 0;
-    &:hover {
-        color: $clr4;
-    }
-}
-
-.el-tag+.el-tag {
-    margin-left: 10px;
-}
-
-.input-new-tag {
-    width: 90px;
-    margin-left: 10px;
-    vertical-align: bottom;
-}
+// .button-new-tag {
+//     margin-left: 10px;
+//     height: 32px;
+//     line-height: 30px;
+//     padding-top: 0;
+//     padding-bottom: 0;
+//     &:hover {
+//         color: $clr4;
+//     }
+// }
+// .el-tag+.el-tag {
+//     margin-left: 10px;
+// }
+// .input-new-tag {
+//     width: 90px;
+//     margin-left: 10px;
+//     vertical-align: bottom;
+// }

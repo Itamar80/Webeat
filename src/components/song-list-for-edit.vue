@@ -1,6 +1,6 @@
 <template>
-  <section class="song-list flex row">
-    <section class="flex col">
+  <!-- <section class="song-list song-list-edit flex row"> -->
+    <!-- <section class="flex col">
       <div class="flex row align-center">
         <input type="text" v-model="songToFindYoutube" />
         <button class="btn edit-sub-btn" @click.prevent="searchSongs">Search new songs</button>
@@ -8,23 +8,26 @@
       <vue-custom-scrollbar class="scroll-area" :settings="settings" @ps-scroll-y="scrollHanle">
         <youtubeSongs @addSong="addSong" :songList="songList" />
       </vue-custom-scrollbar> 
-    </section>
-    <section class="flex col">
+    </section>-->
+    <section class=" song-list song-list-edit flex col justify-center align-center ">
       <div class="flex row align-center">
         <input type="text" v-model="songTofindStation" />
         <button class="btn edit-sub-btn" @click.prevent="searchInStation">Search in Station</button>
       </div>
-      <vue-custom-scrollbar class="scroll-area" :settings="settings" @ps-scroll-y="scrollHanle">
-        <section class="songlist-container">
+      <div v-if="station.songs.length===0" class="songlist-filler">
+          <p>No Songs Yet</p>
+      </div>
+      <section v-else class="songlist-container">
+        <vue-custom-scrollbar class="scroll-area" :settings="settings" @ps-scroll-y="scrollHanle">
           <ul class="clean-list">
             <li v-for="song in songs" :key="song._id">
               <songListPrev :song="song" />
             </li>
           </ul>
-        </section>
-      </vue-custom-scrollbar>
+        </vue-custom-scrollbar>
+      </section>
     </section>
-  </section>
+  <!-- </section> -->
 </template>
  
 <script>
@@ -40,8 +43,8 @@ library.add(faPlus);
 export default {
   name: "songlis-edit",
   props: {
-    station: Object,
-    songList: Object
+    station: Object
+    // songList: Object
   },
   data() {
     return {
@@ -60,18 +63,10 @@ export default {
     }
   },
   methods: {
-    searchSongs() {
-      console.log(this.songToFindYoutube);
-      this.$emit("searchSongs", this.songToFindYoutube);
-    },
     searchInStation() {
       this.songs = this.station.songs.filter(song =>
         song.title.includes(this.songTofindStation)
       );
-    },
-    addSong(song) {
-      this.$emit("addSong", song);
-      this.songToFindYoutube = "";
     },
     scrollHanle(evt) {}
   },

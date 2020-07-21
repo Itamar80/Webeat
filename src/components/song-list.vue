@@ -17,12 +17,12 @@
       </div>
       <font-awesome-icon @click="addSong=!addSong" :icon="toggleAdd" size="lg" class="icon toggle-songs" />
       <!-- <button class="add-btn" @click="addSong=!addSong">{{toggleAdd}}</button> -->
-    </section>
-    <vue-custom-scrollbar class="scroll-area" :settings="settings" @ps-scroll-y="scrollHanle">
+    </section >
+    <vue-custom-scrollbar suppressScrollX class="scroll-area" :settings="settings" @ps-scroll-y="scrollHanle">
       <section v-if="!addSong" class="songlist-container">
         <ul class="clean-list">
           <li v-for="song in songs" :key="song._id">
-            <songListPrev @playSong="playSong" :song="song" />
+            <songListPrev :currSong="currSong" @playSong="playSong" :song="song" />
           </li>
         </ul>
       </section>
@@ -44,15 +44,17 @@ library.add(faPlus);
 export default {
   props: {
     station: Object,
-    songList: Object
+    currSong: Object,
+    // songList: Object
   },
   data() {
     return {
       songs: this.station.songs,
       songToFindYoutube: "",
       songTofindStation: "",
-      settings: {
-        maxScrollbarLength: 60
+      settings: { 
+        maxScrollbarLength: 60,
+        suppressScrollX: true
       },
       addSong: false
     };

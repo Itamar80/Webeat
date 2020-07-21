@@ -1,6 +1,6 @@
 <template>
   <section class="curr-song">
-    <div class="flex space-around">
+    <div class="top-section flex justify-center align-center space-between">
       <div class="flex col ">
         <h1>{{station.name}}</h1>
         <span >Created By: {{station.createdBy.fullName}}</span>
@@ -20,7 +20,7 @@
         </span>
         <p>Now Playing: {{currSong.title}}</p>
       </div>
-      <div class="iframe-container">
+      <!-- <div class="iframe-container"> -->
         <youtube
           :video-id="videoId"
           :player-vars="playerVars"
@@ -28,25 +28,32 @@
           @ended="ended"
           ref="youtube"
         ></youtube>
-      </div>
+      <!-- </div> -->
     </div>
-    <section class="song-controllers flex row justify-center align-center">
-      <!-- <input id="progressBar" type="range" /> -->
-      <span>{{ time }}/{{ duration }}</span>
+    <section class="song-controllers flex row justify-center align-center  space-between">
+      <span class="flex row justify-center align-center">{{ time }}
+          <input  id="progressBar" type="range" /> {{ duration }}
+          </span>
+      <div class="flex row justify-center align-center">
       <font-awesome-icon
         @click="changeSong('prevSong')"
         icon="backward"
         size="lg"
         class="control-icon"
       />
-      <font-awesome-icon @click="playVideo" icon="play" size="lg" class="control-icon" />
-      <font-awesome-icon @click="pauseVideo" icon="pause" size="lg" class="control-icon" />
+      <font-awesome-icon v-if="isPlaying" @click="pauseVideo" icon="pause" size="lg" class="control-icon" />
+      <font-awesome-icon v-else @click="playVideo" icon="play" size="lg" class="control-icon" />
       <font-awesome-icon
         @click="changeSong('nextSong')"
         icon="forward"
         size="lg"
         class="control-icon"
       />
+      </div>
+      <div class="flex row justify-center align-center">
+      <font-awesome-icon  :icon="volumeIcon"  class="control-icon" />
+      <input id="volume" @input="changeVolume" value="100" type="range" />
+      </div>
     </section>
   </section>
 </template>
@@ -56,8 +63,11 @@ import { fontAwsomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { faForward } from "@fortawesome/free-solid-svg-icons";
-import { faPause } from "@fortawesome/free-solid-svg-icons";
 import { faBackward } from "@fortawesome/free-solid-svg-icons";
+import { faVolumeUp } from "@fortawesome/free-solid-svg-icons";
+import { faVolumeDown } from "@fortawesome/free-solid-svg-icons";
+import { faVolumeOff } from "@fortawesome/free-solid-svg-icons";
+import { faPause } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 
@@ -67,6 +77,9 @@ library.add(faPlay);
 library.add(faForward);
 library.add(faPause);
 library.add(faBackward);
+library.add(faVolumeOff);
+library.add(faVolumeDown);
+library.add(faVolumeUp);
 
 export default {
   name: "curr-song",
@@ -85,10 +98,11 @@ export default {
       time: "00:00",
       duration: "00:00",
       timeId: null,
-      isLiked:false
+      isLiked:false,
+      volumeIcon: 'volume-up',
+      isPlaying: true
     };
   },
-  mounted() {},
   computed: {
     videoId() {
       return this.currSong.youtubeId;
@@ -96,25 +110,34 @@ export default {
     player() {
       console.log(this.$refs.youtube.player);
       return this.$refs.youtube.player;
-    }
+    },
+    
   },
   methods: {
     async playVideo() {
+      this.isPlaying=true
       await this.player.playVideo();
     },
     async pauseVideo() {
+      this.isPlaying=false
       await this.player.pauseVideo();
     },
     changeSong(type) {
       this.$emit("changeSong", type, this.currSong);
     },
-    ended() {
-      this.changeSong("nextSong");
-    },
     async showDuration() {
       return await this.player.getDuration();
     },
-
+    changeVolume(event){
+      this.player.setVolume(event.target.value)
+      this.changeVolumeIcon(event.target.value)
+    },
+    changeVolumeIcon(value){
+      console.log(value)
+      if (value >= 60) this.volumeIcon = 'volume-up'
+      if (value <= 60) this.volumeIcon = 'volume-down'
+      if (value <= 20) this.volumeIcon = 'volume-off'
+    },
     playing() {
       this.timeId = setInterval(() => {
         this.player.getCurrentTime().then(time => {
@@ -133,6 +156,7 @@ export default {
       return minutes + ":" + seconds;
     },
     ended() {
+       this.changeSong("nextSong");
       this.time = "00:00";
       clearInterval(this.timeId);
     },
