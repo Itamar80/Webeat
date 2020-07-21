@@ -53,7 +53,8 @@ export default {
       songToFindYoutube: "",
       songTofindStation: "",
       settings: { 
-        maxScrollbarLength: 60
+        maxScrollbarLength: 60,
+        suppressScrollX: true
       },
       addSong: false
     };

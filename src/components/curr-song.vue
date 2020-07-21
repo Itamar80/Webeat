@@ -125,9 +125,6 @@ export default {
     changeSong(type) {
       this.$emit("changeSong", type, this.currSong);
     },
-    ended() {
-      this.changeSong("nextSong");
-    },
     async showDuration() {
       return await this.player.getDuration();
     },
@@ -159,6 +156,7 @@ export default {
       return minutes + ":" + seconds;
     },
     ended() {
+       this.changeSong("nextSong");
       this.time = "00:00";
       clearInterval(this.timeId);
     },
