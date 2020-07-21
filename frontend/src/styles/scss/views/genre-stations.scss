@@ -76,10 +76,14 @@
     .background {
         margin: 35px auto 15px;
         padding: 15px 0 15px 0;
-        background-color: lighten($color: $clr1, $amount: 2);
+        // background-color: lighten($color: $clr1, $amount: 2);
+        background: rgb(49, 51, 53);
+        background: radial-gradient(circle, rgba(49, 51, 53, 0.7010154403558299) 0%, rgba(34, 36, 39, 1) 37%, rgba(28, 30, 33, 1) 100%);
     }
     .genre-header {
-        border-bottom: 1px grey solid;
+        border-bottom: 2px solid $clr1;
+        box-shadow: 0 2px rgba(0, 0, 0, 0.64), inset 0 -1px #39383a;
+        // border-bottom: 1px grey solid;
         padding: 15px;
     }
 }

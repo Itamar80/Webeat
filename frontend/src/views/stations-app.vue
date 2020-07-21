@@ -4,6 +4,7 @@
      <div class="create-filter flex justify-center align-center">
      </div>
       <div class="hero-img">
+    <div class="gradient">
         <h1>Let's Hit the Beat!</h1>
       <img src="@/assets/hero.jpg" />
       <img src="@/assets/hero1.jpg" />
@@ -11,7 +12,7 @@
       <img src="@/assets/hero3.jpg" />
       <img src="@/assets/hero7.jpg" />
     </div>
-    <!-- <div class="grad"></div> -->
+    </div>
     </div>
     <section class="homepage">
     <h2 class="h2 container ">Most popular:</h2>
