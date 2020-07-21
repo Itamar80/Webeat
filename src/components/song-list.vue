@@ -45,7 +45,7 @@ export default {
   props: {
     station: Object,
     currSong: Object,
-    // songList: Object
+    songList: Object
   },
   data() {
     return {

@@ -51,10 +51,23 @@
         }
         input[type=range] {
             height: 3px;
+            margin: 0 5px;
             background: $clr6;
+            -webkit-appearance: none;
+            -moz-apperance: none;
+            background: rgb(255, 97, 0);
+            background: linear-gradient(119deg, rgba(255, 97, 0, 1) 0%, rgba(213, 1, 1, 1) 48%, rgba(162, 24, 24, 1) 100%);
+            border-radius: 2px;
             &#progressBar {
                 width: 200px
             }
+        }
+        input[type=range]::-webkit-slider-thumb {
+            background: rgb(255, 255, 255);
+            border-radius: 1px;
+            width: 7px;
+            height: 5px;
+            -webkit-appearance: none;
         }
     }
     h1 {

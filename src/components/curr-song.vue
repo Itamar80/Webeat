@@ -1,18 +1,19 @@
 <template>
   <section class="curr-song">
     <div class="top-section flex justify-center align-center space-between">
-      <div class="flex col ">
+      <div class="flex col">
         <h1>{{station.name}}</h1>
-        <span >Created By: {{station.createdBy.fullName}}</span>
-        <span class="genre" >{{station.genre.charAt(0).toUpperCase()+station.genre.slice(1)}}</span>
+        <span>Created By: {{station.createdBy.fullName}}</span>
+        <span class="genre">{{station.genre.charAt(0).toUpperCase()+station.genre.slice(1)}}</span>
         <span>
           <font-awesome-icon
-          icon="heart"
-          size="lg"
-          class="icon heart-icon"
-          :class="{liked:isLiked}"
-          @click.stop="toggleLike(station._id)"
-          />{{station.likedByUsers.length}}
+            icon="heart"
+            size="lg"
+            class="icon heart-icon"
+            :class="{liked:isLiked}"
+            @click.stop="toggleLike(station._id)"
+          />
+          {{station.likedByUsers.length}}
         </span>
         <span>
           <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
@@ -21,38 +22,46 @@
         <p>Now Playing: {{currSong.title}}</p>
       </div>
       <!-- <div class="iframe-container"> -->
-        <youtube
-          :video-id="videoId"
-          :player-vars="playerVars"
-          @playing="playing"
-          @ended="ended"
-          ref="youtube"
-        ></youtube>
+      <youtube
+        :video-id="videoId"
+        :player-vars="playerVars"
+        @playing="playing"
+        @ended="ended"
+        ref="youtube"
+      ></youtube>
       <!-- </div> -->
     </div>
-    <section class="song-controllers flex row justify-center align-center  space-between">
-      <span class="flex row justify-center align-center">{{ time }}
-          <input  id="progressBar" type="range" /> {{ duration }}
-          </span>
+    <section class="song-controllers flex row justify-center align-center space-between">
+      <span class="flex row justify-center align-center">
+        {{ time }}
+        <input @input="changeSongTime" :value="songCurrTime" :max="songEndTime" id="progressBar" type="range" />
+        {{ duration }}
+      </span>
       <div class="flex row justify-center align-center">
-      <font-awesome-icon
-        @click="changeSong('prevSong')"
-        icon="backward"
-        size="lg"
-        class="control-icon"
-      />
-      <font-awesome-icon v-if="isPlaying" @click="pauseVideo" icon="pause" size="lg" class="control-icon" />
-      <font-awesome-icon v-else @click="playVideo" icon="play" size="lg" class="control-icon" />
-      <font-awesome-icon
-        @click="changeSong('nextSong')"
-        icon="forward"
-        size="lg"
-        class="control-icon"
-      />
+        <font-awesome-icon
+          @click="changeSong('prevSong')"
+          icon="backward"
+          size="lg"
+          class="control-icon"
+        />
+        <font-awesome-icon
+          v-if="isPlaying"
+          @click="pauseVideo"
+          icon="pause"
+          size="lg"
+          class="control-icon"
+        />
+        <font-awesome-icon v-else @click="playVideo" icon="play" size="lg" class="control-icon" />
+        <font-awesome-icon
+          @click="changeSong('nextSong')"
+          icon="forward"
+          size="lg"
+          class="control-icon"
+        />
       </div>
       <div class="flex row justify-center align-center">
-      <font-awesome-icon  :icon="volumeIcon"  class="control-icon" />
-      <input id="volume" @input="changeVolume" value="100" type="range" />
+        <font-awesome-icon :icon="volumeIcon" class="control-icon" />
+        <input id="volume" @input="changeVolume" value="100" type="range" />
       </div>
     </section>
   </section>
@@ -91,16 +100,18 @@ export default {
     return {
       playerVars: {
         autoplay: 1,
-        // controls: 0,
+        controls: 0,
         modestbranding: 1,
         showinfo: 0
       },
       time: "00:00",
       duration: "00:00",
       timeId: null,
-      isLiked:false,
-      volumeIcon: 'volume-up',
-      isPlaying: true
+      isLiked: false,
+      volumeIcon: "volume-up",
+      isPlaying: true,
+      songEndTime: 0,
+      songCurrTime: 0
     };
   },
   computed: {
@@ -114,33 +125,39 @@ export default {
     
   },
   methods: {
+    async getSongEndTime(){
+     this.songEndTime =  await this.player.getDuration()
+    },
     async playVideo() {
-      this.isPlaying=true
+      this.isPlaying = true;
       await this.player.playVideo();
     },
     async pauseVideo() {
-      this.isPlaying=false
+      this.isPlaying = false;
       await this.player.pauseVideo();
     },
     changeSong(type) {
+     
       this.$emit("changeSong", type, this.currSong);
     },
-    async showDuration() {
-      return await this.player.getDuration();
+    changeVolume(event) {
+      this.player.setVolume(event.target.value);
+      this.changeVolumeIcon(event.target.value);
     },
-    changeVolume(event){
-      this.player.setVolume(event.target.value)
-      this.changeVolumeIcon(event.target.value)
+    changeVolumeIcon(value) {
+      console.log(value);
+      if (value >= 60) this.volumeIcon = "volume-up";
+      if (value <= 60) this.volumeIcon = "volume-down";
+      if (value <= 20) this.volumeIcon = "volume-off";
     },
-    changeVolumeIcon(value){
-      console.log(value)
-      if (value >= 60) this.volumeIcon = 'volume-up'
-      if (value <= 60) this.volumeIcon = 'volume-down'
-      if (value <= 20) this.volumeIcon = 'volume-off'
+    changeSongTime(event){
+      this.player.seekTo(event.target.value);
     },
     playing() {
+       this.isPlaying =true
       this.timeId = setInterval(() => {
         this.player.getCurrentTime().then(time => {
+          this.songCurrTime = time
           this.time = this.formatTime(time + 1);
         });
       }, 100);
@@ -156,17 +173,18 @@ export default {
       return minutes + ":" + seconds;
     },
     ended() {
-       this.changeSong("nextSong");
+      this.changeSong("nextSong");
       this.time = "00:00";
       clearInterval(this.timeId);
     },
-    toggleLike(id){
-    this.isLiked = !this.isLiked
-    this.$emit('toggleLike', id, this.isLiked)
+    toggleLike(id) {
+      this.isLiked = !this.isLiked;
+      this.$emit("toggleLike", id, this.isLiked);
     }
   },
   async mounted() {
     this.duration = this.formatTime(await this.player.getDuration());
+    this.getSongEndTime()
   },
   components: {
     fontAwsomeIcon
