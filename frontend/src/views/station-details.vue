@@ -8,6 +8,7 @@
         :currSong="currSong"
         @toggleLike="toggleLike"
         @changeSong="changeSong"
+        @toggleGif="getIsSongPlaying"
       />
       <song-list
         v-if="station"
@@ -43,9 +44,14 @@ export default {
   computed: {
     songList() {
       return this.$store.getters.songList;
-    }
+    },
+   
   },
+
   methods: {
+    getIsSongPlaying(val) {
+      this.$store.commit({ type: "setSongStatus", isPlaying: val });
+    },
     async getStation(id) {
       let station = await stationService.getById(id);
       this.station = station;
@@ -68,9 +74,9 @@ export default {
       this.$store.dispatch({ type: "saveStation", station: this.station });
     },
     deleteSong(songId) {
-     var idx = this.station.songs.findIndex(song=> song._id === songId);
-     this.station.songs.splice(idx, 1)
-     this.$store.dispatch({ type: "saveStation", station: this.station });
+      var idx = this.station.songs.findIndex(song => song._id === songId);
+      this.station.songs.splice(idx, 1);
+      this.$store.dispatch({ type: "saveStation", station: this.station });
     },
     changeSong(type, currSong) {
       var idx = this.station.songs.findIndex(song => song._id === currSong._id);

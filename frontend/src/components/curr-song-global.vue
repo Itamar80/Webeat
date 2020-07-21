@@ -11,42 +11,49 @@
     </div>
     <section class="song-controllers">
       <div class="container flex row justify-center align-center space-between">
-      <img src="@/assets/sound-gif2.gif"/>
-      <div class="currPlaying">
-        <h5>Now Playing:</h5>
-        <p>{{currSong.title}}</p>
-      </div>
-      <div class="flex row justify-center align-center">
-        <font-awesome-icon :icon="volumeIcon" class="control-icon volume" />
-        <input id="volume" @input="changeVolume" value="100" type="range" />
-      </div>
-      <div class="flex row justify-center align-center">
-        <font-awesome-icon
-          @click="changeSong('prevSong')"
-          icon="backward"
-          size="lg"
-          class="control-icon"
-        />
-        <font-awesome-icon
-          v-if="isPlaying"
-          @click="pauseVideo"
-          icon="pause"
-          size="lg"
-          class="control-icon"
-        />
-        <font-awesome-icon v-else @click="playVideo" icon="play" size="lg" class="control-icon" />
-        <font-awesome-icon
-          @click="changeSong('nextSong')"
-          icon="forward"
-          size="lg"
-          class="control-icon"
-        />
-      </div>
-      <span class="flex row justify-center align-center">
-        {{ time }}
-        <input @input="changeSongTime" :value="songCurrTime" :max="songEndTime" id="progressBar" type="range" />
-        {{ duration }}
-      </span>
+        <img v-if="isPlaying" src="@/assets/sound-gif2.gif" />
+        <img v-else src="@/assets/preview.png"/>
+        <div class="currPlaying">
+          <h5>Now Playing:</h5>
+          <p>{{currSong.title}}</p>
+        </div>
+        <div class="flex row justify-center align-center">
+          <font-awesome-icon :icon="volumeIcon" class="control-icon volume" />
+          <input id="volume" @input="changeVolume" value="100" type="range" />
+        </div>
+        <div class="flex row justify-center align-center">
+          <font-awesome-icon
+            @click="changeSong('prevSong')"
+            icon="backward"
+            size="lg"
+            class="control-icon"
+          />
+          <font-awesome-icon
+            v-if="isPlaying"
+            @click="pauseVideo"
+            icon="pause"
+            size="lg"
+            class="control-icon"
+          />
+          <font-awesome-icon v-else @click="playVideo" icon="play" size="lg" class="control-icon" />
+          <font-awesome-icon
+            @click="changeSong('nextSong')"
+            icon="forward"
+            size="lg"
+            class="control-icon"
+          />
+        </div>
+        <span class="flex row justify-center align-center">
+          {{ time }}
+          <input
+            @input="changeSongTime"
+            :value="songCurrTime"
+            :max="songEndTime"
+            id="progressBar"
+            type="range"
+          />
+          {{ duration }}
+        </span>
       </div>
     </section>
   </section>
@@ -64,6 +71,7 @@ import { faVolumeOff } from "@fortawesome/free-solid-svg-icons";
 import { faPause } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
+// import libgif from 'libgifjs'
 
 library.add(faClock);
 library.add(faHeart);
@@ -100,8 +108,17 @@ export default {
       songCurrTime: 0
     };
   },
-  created(){
-console.log('currSong',this.currSong)
+  created() {
+    // const img = document.getElementsByTagName("img");
+    // $$('img').each(function (img_tag) {
+    // 		if (/.*\.gif/.test(img_tag.src)) {
+    // 			var rub = new SuperGif({ gif: img_tag } );
+    // 			rub.load(function(){
+    // 				console.log('oh hey, now the gif is loaded');
+    // 			});
+    // 		}
+    // 	});
+    console.log("currSong", this.currSong);
   },
   computed: {
     videoId() {
@@ -110,12 +127,11 @@ console.log('currSong',this.currSong)
     player() {
       console.log(this.$refs.youtube.player);
       return this.$refs.youtube.player;
-    },
-    
+    }
   },
   methods: {
-    async getSongEndTime(){
-     return this.songEndTime =  await this.player.getDuration()
+    async getSongEndTime() {
+      return (this.songEndTime = await this.player.getDuration());
     },
     async playVideo() {
       this.isPlaying = true;
@@ -125,11 +141,10 @@ console.log('currSong',this.currSong)
       this.isPlaying = false;
       await this.player.pauseVideo();
     },
-  async changeSong(type) {
-     await this.$emit("changeSong", type, this.currSong);
-      const songTime =  await this.getSongEndTime()
+    async changeSong(type) {
+      await this.$emit("changeSong", type, this.currSong);
+      const songTime = await this.getSongEndTime();
       this.duration = this.formatTime(songTime);
-     
     },
     changeVolume(event) {
       this.player.setVolume(event.target.value);
@@ -141,15 +156,15 @@ console.log('currSong',this.currSong)
       if (value <= 60) this.volumeIcon = "volume-down";
       if (value <= 20) this.volumeIcon = "volume-off";
     },
-    changeSongTime(event){
+    changeSongTime(event) {
       this.player.seekTo(event.target.value);
     },
-   async playing() {
-      this.isPlaying =true
+    async playing() {
+      this.isPlaying = true;
       this.duration = this.formatTime(await this.player.getDuration());
       this.timeId = setInterval(() => {
         this.player.getCurrentTime().then(time => {
-          this.songCurrTime = time
+          this.songCurrTime = time;
           this.time = this.formatTime(time + 1);
         });
       }, 100);
@@ -176,7 +191,7 @@ console.log('currSong',this.currSong)
   },
   async mounted() {
     this.duration = this.formatTime(await this.player.getDuration());
-    this.getSongEndTime()
+    this.getSongEndTime();
   },
   components: {
     fontAwsomeIcon

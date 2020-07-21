@@ -30,7 +30,8 @@
       ></youtube>
     </div>
     <section class="song-controllers flex row justify-center align-center space-between">
-      <img src="@/assets/sound-gif2.gif"/>
+      <img v-if="isPlaying" src="@/assets/sound-gif2.gif" />
+        <img v-else src="@/assets/preview.png"/>
       <div class="currPlaying">
         <h5>Now Playing:</h5>
         <p>{{currSong.title}}</p>
@@ -135,10 +136,13 @@ export default {
     async playVideo() {
       this.isPlaying = true;
       await this.player.playVideo();
+      this.$emit('toggleGif', true)
+
     },
     async pauseVideo() {
       this.isPlaying = false;
       await this.player.pauseVideo();
+      this.$emit('toggleGif', false)
     },
   async changeSong(type) {
      await this.$emit("changeSong", type, this.currSong);
@@ -160,6 +164,7 @@ export default {
       this.player.seekTo(event.target.value);
     },
    async playing() {
+      // this.$emit('toggleGif', true)
       this.isPlaying =true
       this.duration = this.formatTime(await this.player.getDuration());
       this.timeId = setInterval(() => {

@@ -9,7 +9,10 @@
         <p>{{song.title}}</p>
       </section>
       <div v-if="!edit" class="flex align-center">
-        <img class="sound-gif" v-if="isPlaying" src="@/assets/sound-gif2.gif" />
+        <div class="sound-gif" v-if="isPlaying">
+        <img  class="sound-gif" v-if="!songPlaying" src="@/assets/preview.png"/>
+        <img  class="sound-gif" v-else src="@/assets/sound-gif2.gif" />
+        </div>
         <font-awesome-icon v-else icon="play" class="play" />
         <span class="delele-btn" @click.stop="deleteSong">x</span>
         <!-- <font-awesome-icon @click="deleteSong" icon="trash" class="icon delete" /> -->
@@ -31,7 +34,7 @@ export default {
     index: Number,
     song: Object,
     currSong: Object,
-    edit: Boolean
+    edit: Boolean,
   },
   data() {
     return {
@@ -43,8 +46,15 @@ export default {
       this.checkIfPlaying();
     }
   },
+  computed:{
+     songPlaying() {
+      // console.log(this.$store.getters.isPlaying)
+      return this.$store.getters.isPlaying;
+    }
+  },
   created() {
     this.checkIfPlaying();
+    console.log(this.songPlaying)
   },
   methods: {
     async playSong() {

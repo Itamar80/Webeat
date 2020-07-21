@@ -22,7 +22,7 @@
       <section v-if="!isAddSong" class="songlist-container">
         <ul class="clean-list">
           <li v-for="(song, index) in songs" :key="song._id">
-            <songListPrev :index="index" :currSong="currSong" @deleteSong="deleteSong" @playSong="playSong" :song="song" />
+            <songListPrev :index="index"  :currSong="currSong" @deleteSong="deleteSong" @playSong="playSong" :song="song" />
           </li>
         </ul>
       </section>
@@ -45,7 +45,7 @@ export default {
   props: {
     station: Object,
     currSong: Object,
-    songList: Object
+    songList: Object,
   },
   data() {
     return {

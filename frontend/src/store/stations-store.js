@@ -14,6 +14,7 @@ export const stationStore = {
         songList: {},
         currSong: {},
         currStation: {},
+        isPlaying: true,
         genresMap: {
             hiphop: 0,
             arabic: 0,
@@ -37,7 +38,6 @@ export const stationStore = {
             return state.songList
         },
         currSong(state) {
-            console.log('getters currSong', state.currSong)
             return state.currSong
         },
         currStation(state) {
@@ -50,6 +50,9 @@ export const stationStore = {
             })
             sortedStationByLikes.reverse()
             return sortedStationByLikes.slice(0, 3)
+        },
+        isPlaying(state) {
+            return state.isPlaying
         }
 
     },
@@ -90,6 +93,9 @@ export const stationStore = {
         },
         setCurrStation(state, { currStationId }) {
             state.currStation = state.stations.find(station => station._id === currStationId)
+        },
+        setSongStatus(state, { isPlaying }) {
+            state.isPlaying = isPlaying
         }
     },
     actions: {
