@@ -9,6 +9,7 @@
 </template>
 
 <script>
+  import { songService } from "../services/song-service.js";
 import { fontAwsomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -20,9 +21,9 @@ export default {
   methods:{
       addSong(song){
           var songToAdd = {
+            _id: songService.makeId(),
             youtubeId: song.id.videoId,
             title: song.snippet.title,
-            //make id
             imgUrl: song.snippet.thumbnails.default.url
           }
           this.$emit('addSong', songToAdd)

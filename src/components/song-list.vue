@@ -2,31 +2,31 @@
   <section class="song-list">
     <section class="song-search flex space-between align-center">
       <div class="flex row align-center">
-        <input v-if="addSong" type="text" v-model="songToFindYoutube" />
+        <input v-if="isAddSong" type="text" v-model="songToFindYoutube" />
         <button
-          v-if="addSong"
+          v-if="isAddSong"
           class="btn edit-sub-btn"
           @click.prevent="searchSongs"
         >Search new songs</button>
-        <input v-if="!addSong" type="text" v-model="songTofindStation" />
+        <input v-if="!isAddSong" type="text" v-model="songTofindStation" />
         <button
-          v-if="!addSong"
+          v-if="!isAddSong"
           class="btn edit-sub-btn"
           @click.prevent="searchInStation"
         >Search in Station</button>
       </div>
-      <font-awesome-icon @click="addSong=!addSong" :icon="toggleAdd" size="lg" class="icon toggle-songs" />
+      <font-awesome-icon @click="isAddSong=!isAddSong" :icon="toggleAdd" size="lg" class="icon toggle-songs" />
       <!-- <button class="add-btn" @click="addSong=!addSong">{{toggleAdd}}</button> -->
     </section >
     <vue-custom-scrollbar suppressScrollX class="scroll-area" :settings="settings" @ps-scroll-y="scrollHanle">
-      <section v-if="!addSong" class="songlist-container">
+      <section v-if="!isAddSong" class="songlist-container">
         <ul class="clean-list">
-          <li v-for="song in songs" :key="song._id">
-            <songListPrev :currSong="currSong" @playSong="playSong" :song="song" />
+          <li v-for="(song, index) in songs" :key="song._id">
+            <songListPrev :index="index" :currSong="currSong" @deleteSong="deleteSong" @playSong="playSong" :song="song" />
           </li>
         </ul>
       </section>
-      <youtubeSongs v-if="addSong" @addSong="addSong" :songList="songList" />
+      <youtubeSongs v-if="isAddSong" @addSong="addSong" :songList="songList" />
     </vue-custom-scrollbar>
   </section>
 </template>
@@ -56,18 +56,24 @@ export default {
         maxScrollbarLength: 60,
         suppressScrollX: true
       },
-      addSong: false
+      isAddSong: false,
+      // youtubeSongsToRender: this.songList
     };
   },
   computed: {
     toggleAdd() {
-      return this.addSong ? "times" : "plus";
-    }
+      return this.isAddSong ? "times" : "plus";
+    },
   },
   watch: {
     songTofindStation: function(input) {
       if (input === "") this.songs = this.station.songs;
-    }
+      
+    },
+    songToFindYoutube: function(input) {
+      if (input === "") this.$store.commit('clearSongList')
+    },
+    
   },
   methods: {
     searchSongs() {
@@ -82,6 +88,10 @@ export default {
     addSong(song) {
       this.$emit("addSong", song);
       this.songToFindYoutube = "";
+      this.isAddSong=false
+    },
+    deleteSong(songId) {
+      this.$emit("deleteSong", songId);
     },
     playSong(song) {
       this.$emit("playSong", song);

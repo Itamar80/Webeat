@@ -18,10 +18,10 @@
           <p>No Songs Yet</p>
       </div>
       <section v-else class="songlist-container">
-        <vue-custom-scrollbar class="scroll-area" :settings="settings" @ps-scroll-y="scrollHanle">
+        <vue-custom-scrollbar suppressScrollX class="scroll-area" :settings="settings" @ps-scroll-y="scrollHanle">
           <ul class="clean-list">
             <li v-for="song in songs" :key="song._id">
-              <songListPrev :song="song" />
+              <songListPrev @deleteSong="deleteSong" :song="song" :edit="true" />
             </li>
           </ul>
         </vue-custom-scrollbar>
@@ -51,9 +51,10 @@ export default {
       songs: this.station.songs,
       songToFindYoutube: "",
       songTofindStation: "",
-      settings: {
-        maxScrollbarLength: 60
-      }
+      settings: { 
+        maxScrollbarLength: 60,
+        suppressScrollX: true
+      },
     };
   },
   computed: {},
@@ -63,12 +64,15 @@ export default {
     }
   },
   methods: {
+    deleteSong(songId){
+      this.$emit('deleteSong', songId)
+    },
     searchInStation() {
       this.songs = this.station.songs.filter(song =>
         song.title.includes(this.songTofindStation)
       );
     },
-    scrollHanle(evt) {}
+    scrollHanle(evt) {},
   },
   components: {
     songListPrev,

@@ -1,17 +1,24 @@
 <template>
   <div class="station-details flex space-between">
-    <chat-app v-if="station" :station="station"/>
+    <chat-app v-if="station" :station="station" />
     <section class="container">
-    <curr-song v-if="station" :station="station" :currSong="currSong" @changeSong="changeSong" />
-    <song-list
-      v-if="station"
-      :songList="songList"
-      :currSong="currSong"
-      :station="station"
-      @addSong="addSong"
-      @searchSongs="searchSongs"
-      @playSong="setCurrSong"
-    />
+      <curr-song
+        v-if="station"
+        :station="station"
+        :currSong="currSong"
+        @toggleLike="toggleLike"
+        @changeSong="changeSong"
+      />
+      <song-list
+        v-if="station"
+        :songList="songList"
+        :currSong="currSong"
+        :station="station"
+        @addSong="addSong"
+        @deleteSong="deleteSong"
+        @searchSongs="searchSongs"
+        @playSong="setCurrSong"
+      />
     </section>
   </div>
 </template>
@@ -43,10 +50,8 @@ export default {
       let station = await stationService.getById(id);
       this.station = station;
       this.currSong = station.songs[0];
-    // this.currSong = this.$store.getters.currSong;
     },
     async searchSongs(songStr) {
-      //  console.log(songStr);
       await this.$store
         .dispatch({ type: "searchSong", songStr: songStr })
         .then(songList => {});
@@ -59,26 +64,32 @@ export default {
       this.currSong = newCurrSong;
     },
     addSong(song) {
-      song._id = songService.makeId();
       this.station.songs.push(song);
       this.$store.dispatch({ type: "saveStation", station: this.station });
-      console.log(song);
+    },
+    deleteSong(songId) {
+     var idx = this.station.songs.findIndex(song=> song._id === songId);
+     this.station.songs.splice(idx, 1)
+     this.$store.dispatch({ type: "saveStation", station: this.station });
     },
     changeSong(type, currSong) {
-      var idx = this.station.songs.findIndex(
-        song => song._id === currSong._id
-      );
+      var idx = this.station.songs.findIndex(song => song._id === currSong._id);
       if (type === "nextSong") {
-        if ((idx + 1) >= this.station.songs.length) {
-          idx=-1
+        if (idx + 1 >= this.station.songs.length) {
+          idx = -1;
         }
         this.setCurrSong(this.station.songs[idx + 1]);
       } else {
-        if ((idx - 1) < 0) {
+        if (idx - 1 < 0) {
           return;
         }
         this.setCurrSong(this.station.songs[idx - 1]);
       }
+    },
+    async toggleLike(id, isLiked) {
+      const loggedInUser = this.$store.getters.loggedInUser;
+      await stationService.toggleLike(id, loggedInUser, isLiked);
+      this.getStation(id);
     }
   },
   components: {

@@ -11,7 +11,7 @@ export const stationStore = {
         filterBy: {
             name: '',
         },
-        songList: null,
+        songList: {},
         currSong: {},
         genresMap: {
             hiphop: 0,
@@ -76,6 +76,9 @@ export const stationStore = {
         },
         setSongList(state, { songList }) {
             state.songList = songList
+        },
+        clearSongList(state) {
+            state.songList = []
         },
         setCurrSong(state, { currSong }) {
             console.log('mutations', currSong)

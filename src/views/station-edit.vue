@@ -12,15 +12,15 @@
             ref="name"
           />
         </label>
-        <!-- <label>
+        <label>
           Created By:
           <input
             type="text"
             placeholder="Enter your name"
-            v-model="station.name"
+            v-model="station.createdBy.fullName"
             ref="name"
           />
-        </label> -->
+        </label>
         <label>
           Station Image:
           <input type="file" @change="onUploadImg" />
@@ -42,7 +42,12 @@
             <input type="text" v-model="songToFindYoutube" />
             <button class="btn edit-sub-btn" @click.prevent="searchSongs">Search song</button>
           </div>
-          <vue-custom-scrollbar class="scroll-area" :settings="settings" @ps-scroll-y="scrollHanle">
+          <vue-custom-scrollbar
+            suppressScrollX
+            class="scroll-area"
+            :settings="settings"
+            @ps-scroll-y="scrollHanle"
+          >
             <youtubeSongs @addSong="addSong" :songList="songList" />
           </vue-custom-scrollbar>
         </section>
@@ -70,7 +75,7 @@
         <img v-else width="200" src="@/assets/defualt-img-cover.jpg" />
       </div>
       <section class="station-songs">
-      <song-list-edit :station="station"/>
+        <song-list-edit @deleteSong="deleteSong" :station="station" />
       </section>
     </div>
   </div>
@@ -90,6 +95,9 @@ export default {
     return {
       station: {
         name: "",
+        createdBy: {
+          fullName: ""
+        },
         genre: "",
         songs: [],
         imgUrl: ""
@@ -101,18 +109,18 @@ export default {
       inputVisible: false,
       inputValue: "",
       settings: {
-        maxScrollbarLength: 60
+        maxScrollbarLength: 60,
+        suppressScrollX: true
       }
     };
   },
   computed: {
-    
     songList() {
       // console.log('indetails',this.$store.getters.songList);
       return this.$store.getters.songList;
     }
   },
-
+  // watch:{},
   created() {
     this.station = stationService.getEmptyStation();
     // this.genresStationsMap = this.genresMap
@@ -121,14 +129,16 @@ export default {
     this.focusInput();
   },
   methods: {
-    //add songs
     addTag() {
       this.station.tags.push(this.tagToAdd);
       this.tagToAdd = "";
     },
     addStation() {
       console.log(this.station.genre);
-      this.$store.commit({type: 'updateGenresMap', genre: this.station.genre})
+      this.$store.commit({
+        type: "updateGenresMap",
+        genre: this.station.genre
+      });
       this.$store.dispatch({ type: "saveStation", station: this.station });
       // this.$router.push("/stations");
     },
@@ -140,12 +150,19 @@ export default {
     async searchSongs() {
       await this.$store.dispatch({
         type: "searchSong",
-        songStr: this.songToFind
+        songStr: this.songToFindYoutube
       });
     },
     addSong(song) {
       this.station.songs.push(song);
       this.songToFindYoutube = "";
+      console.log(song);
+    },
+    deleteSong(songId) {
+      console.log(songId)
+      var idx = this.station.songs.findIndex(song => song._id === songId);
+      this.station.songs.splice(idx, 1);
+
     },
     focusInput() {
       this.$refs.name.focus();

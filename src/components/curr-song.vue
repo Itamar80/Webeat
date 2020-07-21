@@ -21,7 +21,6 @@
         </span>
         <p>Now Playing: {{currSong.title}}</p>
       </div>
-      <!-- <div class="iframe-container"> -->
       <youtube
         :video-id="videoId"
         :player-vars="playerVars"
@@ -29,14 +28,17 @@
         @ended="ended"
         ref="youtube"
       ></youtube>
-      <!-- </div> -->
     </div>
     <section class="song-controllers flex row justify-center align-center space-between">
-      <span class="flex row justify-center align-center">
-        {{ time }}
-        <input @input="changeSongTime" :value="songCurrTime" :max="songEndTime" id="progressBar" type="range" />
-        {{ duration }}
-      </span>
+      <img src="@/assets/sound-gif2.gif"/>
+      <div class="currPlaying">
+        <h5>Now Playing:</h5>
+        <p>{{currSong.title}}</p>
+      </div>
+      <div class="flex row justify-center align-center">
+        <font-awesome-icon :icon="volumeIcon" class="control-icon" />
+        <input id="volume" @input="changeVolume" value="100" type="range" />
+      </div>
       <div class="flex row justify-center align-center">
         <font-awesome-icon
           @click="changeSong('prevSong')"
@@ -59,10 +61,11 @@
           class="control-icon"
         />
       </div>
-      <div class="flex row justify-center align-center">
-        <font-awesome-icon :icon="volumeIcon" class="control-icon" />
-        <input id="volume" @input="changeVolume" value="100" type="range" />
-      </div>
+      <span class="flex row justify-center align-center">
+        {{ time }}
+        <input @input="changeSongTime" :value="songCurrTime" :max="songEndTime" id="progressBar" type="range" />
+        {{ duration }}
+      </span>
     </section>
   </section>
 </template>
@@ -126,7 +129,7 @@ export default {
   },
   methods: {
     async getSongEndTime(){
-     this.songEndTime =  await this.player.getDuration()
+     return this.songEndTime =  await this.player.getDuration()
     },
     async playVideo() {
       this.isPlaying = true;
@@ -136,9 +139,11 @@ export default {
       this.isPlaying = false;
       await this.player.pauseVideo();
     },
-    changeSong(type) {
+  async changeSong(type) {
+     await this.$emit("changeSong", type, this.currSong);
+      const songTime =  await this.getSongEndTime()
+      this.duration = this.formatTime(songTime);
      
-      this.$emit("changeSong", type, this.currSong);
     },
     changeVolume(event) {
       this.player.setVolume(event.target.value);
@@ -153,8 +158,9 @@ export default {
     changeSongTime(event){
       this.player.seekTo(event.target.value);
     },
-    playing() {
-       this.isPlaying =true
+   async playing() {
+      this.isPlaying =true
+      this.duration = this.formatTime(await this.player.getDuration());
       this.timeId = setInterval(() => {
         this.player.getCurrentTime().then(time => {
           this.songCurrTime = time
