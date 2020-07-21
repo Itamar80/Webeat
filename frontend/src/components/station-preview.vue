@@ -60,7 +60,9 @@ export default {
   },
   methods:{
     openDetails(id){
-      this.$router.push(`stations/details/${id}`)
+      let genre = this.$route.params.genre
+      if(genre) this.$router.push(`details/${id}`)
+     else this.$router.push(`stations/details/${id}`)
     },
     toggleLike(id){
     this.isLiked = !this.isLiked

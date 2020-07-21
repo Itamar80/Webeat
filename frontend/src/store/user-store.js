@@ -1,17 +1,14 @@
 import userService from '../services/user-service.js'
 
 var localLoggedinUser = null;
-if (sessionStorage.user) {
-    localLoggedinUser = JSON.parse(sessionStorage.user);
-    console.log(localLoggedinUser);
-    var localUser = localLoggedinUser[0]
+if (sessionStorage.user) localLoggedinUser = JSON.parse(JSON.stringify(sessionStorage.user));
+// console.log(localLoggedinUser);
 
-}
 
 export const userStore = {
     strict: true,
     state: {
-        loggedinUser: localUser,
+        loggedinUser: localLoggedinUser,
         users: []
     },
     getters: {
@@ -43,6 +40,7 @@ export const userStore = {
             return user;
         },
         async signup(context, { userCred }) {
+            // console.log('user-store', userCred);
             const user = await userService.signup(userCred)
             context.commit({ type: 'setUser', user })
             return user;

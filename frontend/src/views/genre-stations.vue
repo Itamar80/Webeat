@@ -17,7 +17,7 @@
     </div>
     <div v-if="genresMap[singleGenre]>0" class="background container">
     <!-- <hr/> -->
-   <station-list class="container"   :genre="singleGenre" :stations="stations" @toggleLike="toggleLike"></station-list>
+   <station-list class="container" :genre="singleGenre" :stations="stations" @toggleLike="toggleLike"></station-list>
     </div>
      </section> 
     </section>
@@ -61,7 +61,7 @@ export default {
       this.loadStations(genre)
     }, 
     async toggleLike(id, isLiked){
-    const loggedInUser = this.$store.getters.loggedInUser
+    const loggedInUser = JSON.parse(this.$store.getters.loggedinUser)
     await stationService.toggleLike(id, loggedInUser, isLiked)
     this.loadStations()
     },

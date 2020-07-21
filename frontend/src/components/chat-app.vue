@@ -36,7 +36,6 @@ export default {
   created() {
     let id = this.$route.params.id
     this.msg.from = this.loggedinUser;
-    // console.log(this.loggedinUser);
     this.$store.dispatch({type:'setupSocket'})
     this.$store.dispatch({type:'setupSocketName',chatId:id})
     this.$store.dispatch({type:'addMsg',msg:this.addMsg})
@@ -49,9 +48,9 @@ export default {
   computed:{
     loggedinUser(){
       let user = (this.$store.getters.loggedinUser)? this.$store.getters.loggedinUser: {userName:'Guest'};
-      console.log('chatu',user); 
-      console.log('chatn',user.userName); 
-     return user.userName
+      // console.log('chatu',user); 
+      // console.log('chatn',user.username); 
+     return user.username
     },
     msgs(){
       return this.$store.getters.msgs

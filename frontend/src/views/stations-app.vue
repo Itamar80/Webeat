@@ -4,6 +4,7 @@
      <div class="create-filter flex justify-center align-center">
      </div>
       <div class="hero-img">
+        <h1>Let's Hit the Beat!</h1>
       <img src="@/assets/hero.jpg" />
       <img src="@/assets/hero1.jpg" />
       <img src="@/assets/hero2.jpg" />
