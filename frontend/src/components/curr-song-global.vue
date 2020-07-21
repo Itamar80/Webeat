@@ -1,26 +1,6 @@
 <template>
-  <section class="curr-song">
-    <div class="top-section flex justify-center align-center space-between">
-      <div class="flex col">
-        <h1>{{station.name}}</h1>
-        <span>Created By: {{station.createdBy.fullName}}</span>
-        <span class="genre">{{station.genre.charAt(0).toUpperCase()+station.genre.slice(1)}}</span>
-        <span>
-          <font-awesome-icon
-            icon="heart"
-            size="lg"
-            class="icon heart-icon"
-            :class="{liked:isLiked}"
-            @click.stop="toggleLike(station._id)"
-          />
-          {{station.likedByUsers.length}}
-        </span>
-        <span>
-          <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
-          {{station.songs.length}} tracks
-        </span>
-        <p>Now Playing: {{currSong.title}}</p>
-      </div>
+  <section class="curr-song global">
+    <div class="hide">
       <youtube
         :video-id="videoId"
         :player-vars="playerVars"
@@ -29,14 +9,15 @@
         ref="youtube"
       ></youtube>
     </div>
-    <section class="song-controllers flex row justify-center align-center space-between">
+    <section class="song-controllers">
+      <div class="container flex row justify-center align-center space-between">
       <img src="@/assets/sound-gif2.gif"/>
       <div class="currPlaying">
         <h5>Now Playing:</h5>
         <p>{{currSong.title}}</p>
       </div>
       <div class="flex row justify-center align-center">
-        <font-awesome-icon :icon="volumeIcon" class="control-icon" />
+        <font-awesome-icon :icon="volumeIcon" class="control-icon volume" />
         <input id="volume" @input="changeVolume" value="100" type="range" />
       </div>
       <div class="flex row justify-center align-center">
@@ -66,6 +47,7 @@
         <input @input="changeSongTime" :value="songCurrTime" :max="songEndTime" id="progressBar" type="range" />
         {{ duration }}
       </span>
+      </div>
     </section>
   </section>
 </template>
@@ -117,6 +99,9 @@ export default {
       songEndTime: 0,
       songCurrTime: 0
     };
+  },
+  created(){
+console.log('currSong',this.currSong)
   },
   computed: {
     videoId() {

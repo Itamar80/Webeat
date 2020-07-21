@@ -60,6 +60,7 @@ export default {
   },
   methods:{
     openDetails(id){
+      this.$store.commit({type: 'setCurrStation', currStationId: id })
       this.$router.push(`stations/details/${id}`)
     },
     toggleLike(id){
