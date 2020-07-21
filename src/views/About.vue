@@ -64,7 +64,6 @@
         </div>
       </li>
     </ul>
-    <p class="cofferights">copyright © Nir, Naomi, Itamar 2020</p>
     <!-- <font-awesome-icon size="lg" :icon="['far', 'clock']" class="clock-icon"/> -->
   </div>
 </template>

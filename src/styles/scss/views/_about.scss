@@ -44,5 +44,9 @@ h1 {
 }
 
 .cofferights {
-    text-align: center;
+    position: relative;
+    bottom: 0;
+    margin-top: 80px;
+    background-color: $clr4;
+    height: 50px;
 }

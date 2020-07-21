@@ -75,7 +75,6 @@
         <span> {{station.songs.length}} tracks</span> -->
       <!-- </div>   -->
     </section>
-    <p class="cofferights">copyright © Nir, Naomi, Itamar 2020</p>
   </div>
 </template>
 
