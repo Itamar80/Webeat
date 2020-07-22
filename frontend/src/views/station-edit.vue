@@ -4,7 +4,7 @@
     <section class="station-form flex justify-center align-center">
       <form @submit="addStation" class="flex col flex-start">
         <label>
-          Station name:
+        <h3>Station name:</h3> 
           <input
             type="text"
             placeholder="Enter the station name"
@@ -12,35 +12,32 @@
             ref="name"
           />
         </label>
-        <label>
-          Created By:
+        <!-- <label>
+          <h3>Created By:</h3>
           <input
             type="text"
             placeholder="Enter your name"
             v-model="station.createdBy.fullName"
-            ref="name"
           />
-        </label>
+        </label> -->
         <label>
-          Station Image:
+          <h3> Station Image:</h3>
           <input type="file" @change="onUploadImg" />
         </label>
-        Genre:
-        <select name="genre" value="genre" v-model="station.genre">
-          <option value="hiphop">Hip-hop</option>
-          <option value="arabic">Arabic</option>
-          <option value="easy">Easy listening</option>
-          <option value="electronic">Electronic</option>
-          <option value="country">Country</option>
-          <option value="flamenco">Flamenco</option>
-          <option value="jazz">Jazz</option>
-          <option value="rock">Rock</option>
-          <option value="pop">Pop</option>
-        </select>
+        <h3>Genre:</h3>
+        <el-select v-model="station.genre" placeholder="Select a genre">
+         <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value"
+      >
+           </el-option>
+        </el-select>
         <section class="flex col">
           <div class="flex row align-center">
             <input type="text" v-model="songToFindYoutube" />
-            <button class="btn edit-sub-btn" @click.prevent="searchSongs">Search song</button>
+            <button class="btn edit-sub-btn" @click.prevent="searchSongs">Add song</button>
           </div>
           <vue-custom-scrollbar
             suppressScrollX
@@ -60,7 +57,10 @@
         <div class="flex col">
           <h1 v-if="station.name">{{station.name}}</h1>
           <h1 v-else>Name</h1>
-          <span>Created By: {{station.createdBy.fullName}}</span>
+          <span>Created By: 
+            {{loggedInUser.fullName}}
+           <img :src="loggedInUser.imgUrl" alt=""> 
+            </span>
           <span
             v-if="station.genre"
             class="genre"
@@ -96,16 +96,49 @@ export default {
       station: {
         name: "",
         createdBy: {
-          fullName: ""
+          user:this.loggedInUser
         },
         genre: "",
         songs: [],
         imgUrl: ""
       },
+        options: [{
+          value: 'hiphop',
+          label: 'Hip-Hop'
+        }, {
+          value: 'arabic',
+          label: 'Arabic',
+        }, {
+          value: 'easy',
+          label: 'Easy listening'
+        }, {
+          value: 'electronic',
+          label: 'Electronic'
+        },
+         {
+          value: 'country',
+          label: 'Country'
+        },
+         {
+          value: 'flamenco',
+          label: 'Flamenco'
+        },
+         {
+          value: 'jazz',
+          label: 'Jazz'
+        },
+         {
+          value: 'rock',
+          label: 'Rock'
+        },
+         {
+          value: 'pop',
+          label: 'Pop'
+        },
+        ],
       tagToAdd: "",
       img: "",
       songToFindYoutube: "",
-      // dynamicTags: ['Tag 1', 'Tag 2', 'Tag 3'],
       inputVisible: false,
       inputValue: "",
       settings: {
@@ -118,6 +151,9 @@ export default {
     songList() {
       // console.log('indetails',this.$store.getters.songList);
       return this.$store.getters.songList;
+    },
+    loggedInUser(){
+      return this.$store.getters.loggedinUser;
     }
   },
   // watch:{},
