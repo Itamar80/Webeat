@@ -1,4 +1,4 @@
-        <!-- <h1>Let's get SCHWIFTY!</h1> -->
+         <!-- <h1>Let's get SCHWIFTY!</h1> -->
 <template>
   <div class="station-app">
     <div class="back">
@@ -6,7 +6,9 @@
      </div>
       <div class="hero-img">
     <div class="gradient">
-        <h1>Let's Hit the Beat!</h1>
+        <h1>Party without borders</h1>
+        <h3>Listen to music with friends.
+          No matter where they're at.</h3>
       <img src="@/assets/hero.jpg" />
       <img src="@/assets/hero2.jpg" />
       <img src="@/assets/hero3.jpg" />

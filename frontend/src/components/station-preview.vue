@@ -13,8 +13,8 @@
       </section>
       </div>
       <section class="like-section">
-       <font-awesome-icon icon="heart" size="lg"  class="heart-icon" :class="{liked:isLiked}" @click.stop="toggleLike(station._id)" /> 
        <span>{{station.likedByUsers.length}}</span>
+       <font-awesome-icon icon="heart" size="lg"  class="heart-icon" :class="{liked:isLiked}" @click.stop="toggleLike(station._id)" /> 
       </section>
        </div>
        
