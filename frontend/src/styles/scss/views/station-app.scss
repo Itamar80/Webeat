@@ -150,10 +150,10 @@
     // }
     .channel-container {
         margin-bottom: 80px;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        // display: grid;
+        // grid-template-columns: repeat(4, 1fr);
         // grid-template-rows: 2;
-        gap: 16px;
+        gap: 12px;
         .station-cover {
             transition: .5s;
             filter: opacity(75%);
@@ -178,7 +178,7 @@
                 h3 {
                     margin-top: 35px;
                     margin-bottom: 10px;
-                    font-size: 1.5rem;
+                    font-size: 1.2rem;
                 }
                 p {
                     color: gray;
@@ -187,7 +187,7 @@
                 }
             }
             img {
-                margin-right: 20px;
+                margin-right: 12px;
                 border-top-left-radius: .5rem;
                 border-bottom-left-radius: .5rem;
                 width: 100px;

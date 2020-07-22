@@ -1,7 +1,7 @@
 <template>
   <div class="station-list">
     <button class="btn" v-if="genreFromUrl" @click="moveTo">Return to all stations</button>
-    <ul class="station-genre-list clean-list flex">
+    <ul class=" clean-list popular-grid">
       <li  v-for="station in stations" :key="station._id">
         <station-preview class="station" v-if="station.genre===genre" :station="station" @toggleLike="toggleLike"></station-preview>
         <!-- <station-preview class="station" v-else :station="station" @toggleLike="toggleLike"></station-preview> -->

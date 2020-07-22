@@ -1,11 +1,11 @@
         <!-- <h1>Let's get SCHWIFTY!</h1> -->
 <template>
-  <div class="station-app">
+  <div class="station-app main-layout">
     <div class="back">
      <div class="create-filter flex justify-center align-center">
      </div>
-      <div class="hero-img">
-    <div class="gradient">
+      <div class="hero-img full">
+    <div class="gradient ">
         <h1>Let's Hit the Beat!</h1>
       <img src="@/assets/hero.jpg" />
       <img src="@/assets/hero2.jpg" />
@@ -15,12 +15,12 @@
     </div>
     </div>
     <section class="homepage">
-    <h2 class="h2 container ">Most popular:</h2>
+    <h2 class="h2  ">Most popular:</h2>
     <popular-stations @toggleLike="toggleLike" :stations="stations"/>
-    <h2 class="h2-genres container">Genres:</h2>
-    <section class="channel-container container grid">
+    <h2 class="h2-genres ">Genres:</h2>
+    <section class="channel-container card-grid">
       <!-- <div> -->
-    <router-link to="stations/hiphop" class="station-cover container flex">
+    <router-link to="stations/hiphop" class="station-cover  flex">
     <img src="../assets/genres-pics/hiphop1.jpg" alt="genre image">
     <span class="hiphop-channel channel flex flex-start align-center col">
      <h3>Hip-Hop</h3>
@@ -28,35 +28,35 @@
       </span>
     </router-link>
       <!-- </div> -->
-    <router-link to="stations/rock" class="station-cover container flex">
+    <router-link to="stations/rock" class="station-cover  flex">
     <img src="../assets/genres-pics/rock2.jpg" alt="genre image">
       <span class="rock-channel channel flex flex-start align-center col">
        <h3>Rock</h3>
         <p>Show more</p>
         </span>
     </router-link>
-    <router-link to="stations/arabic" class="station-cover container flex">
+    <router-link to="stations/arabic" class="station-cover  flex">
     <img src="../assets/genres-pics/arabic.jpg" alt="genre image">
       <span class="arabic-channel channel flex flex-start align-center col">
        <h3>Arabic</h3>
         <p>Show more</p>
         </span>
     </router-link>
-    <router-link to="stations/easy" class="station-cover container flex">
+    <router-link to="stations/easy" class="station-cover  flex">
     <img src="../assets/genres-pics/easy.webp" alt="genre image">
       <span class="easy-channel channel flex flex-start align-center col">
        <h3>Easy</h3>
         <p>Show more</p>
         </span>
     </router-link>
-    <router-link to="stations/electronic" class="station-cover container flex">
+    <router-link to="stations/electronic" class="station-cover  flex">
     <img src="../assets/genres-pics/electronic.jpg" alt="genre image">
      <span class="electronic-channel channel flex flex-start align-center col">
        <h3>Electronic</h3>
         <p>Show more</p>
         </span>
     </router-link>
-    <router-link to="stations/country" class="station-cover container flex">
+    <router-link to="stations/country" class="station-cover  flex">
     <img src="../assets/genres-pics/country1.jpg" alt="genre image">
      <span class="country-channel channel flex flex-start align-center col">
        <h3>Country</h3>
