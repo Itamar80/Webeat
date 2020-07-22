@@ -3,27 +3,27 @@
     <chat-app v-if="station" :station="station" />
     <section v-if="station" class="container">
       <div class="top-section flex justify-center align-center space-between">
-      <div class="flex col">
-        <h1>{{station.name}}</h1>
-        <span>Created By: {{station.createdBy.fullName}}</span>
-        <span class="genre">{{station.genre.charAt(0).toUpperCase()+station.genre.slice(1)}}</span>
-        <span>
-          <font-awesome-icon
-            icon="heart"
-            size="lg"
-            class="icon heart-icon"
-            :class="{liked:isLiked}"
-            @click.stop="toggleLike(station._id)"
-          />
-          {{station.likedByUsers.length}}
-        </span>
-        <span>
-          <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
-          {{station.songs.length}} tracks
-        </span>
-        <p>Now Playing: {{currSong.title}}</p>
-      </div>
-     <img class="cover-img" :src="station.imgUrl"/>
+        <div class="flex col">
+          <h1>{{station.name}}</h1>
+          <span>Created By: {{station.createdBy.fullName}}</span>
+          <span class="genre">{{station.genre.charAt(0).toUpperCase()+station.genre.slice(1)}}</span>
+          <span>
+            <font-awesome-icon
+              icon="heart"
+              size="lg"
+              class="icon heart-icon"
+              :class="{liked:isLiked}"
+              @click.stop="toggleLike(station._id)"
+            />
+            {{station.likedByUsers.length}}
+          </span>
+          <span>
+            <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
+            {{station.songs.length}} tracks
+          </span>
+          <p>Now Playing: {{currSong.title}}</p>
+        </div>
+        <img class="cover-img" :src="station.imgUrl" />
       </div>
       <!-- <curr-song
         v-if="station"
@@ -32,7 +32,7 @@
         @toggleLike="toggleLike"
         @changeSong="changeSong"
         @toggleGif="setIsSongPlaying"
-      /> -->
+      />-->
       <song-list
         v-if="station"
         :songList="songList"
@@ -50,29 +50,36 @@
 <script>
 import { stationService } from "../services/station-service.js";
 import { songService } from "../services/song-service.js";
-import  socketService from "../services/socket-service.js";
+import socketService from "../services/socket-service.js";
 import chatApp from "../components/chat-app.vue";
 import currSong from "../components/curr-song.vue";
 import songList from "../components/song-list.vue";
 export default {
   data() {
     return {
-      station: null,
-      currSong: null,
-            isLiked: false,
+      isLiked: false
     };
   },
   created() {
     let id = this.$route.params.id;
-    this.getStation(id);
-    // this.$store.commit({type:'setCurrStation', stationId: id})
-    socketService.emit('join station', id)
+    this.setStation(id);
+    socketService.emit("join station", id);
   },
   computed: {
     songList() {
       return this.$store.getters.songList;
     },
-   
+    station() {
+      return this.$store.getters.currStation;
+    },
+    currSong() {
+      return this.$store.getters.currSong;
+    },
+    stations(){
+      console.log(this.$store.getters.stations)
+
+      return this.$store.getters.stations
+    }
   },
 
   methods: {
@@ -80,14 +87,12 @@ export default {
       this.isLiked = !this.isLiked;
       this.$emit("toggleLike", id, this.isLiked);
     },
-   setIsSongPlaying(val) {
+    setIsSongPlaying(val) {
       this.$store.commit({ type: "setSongStatus", isPlaying: val });
     },
-    async getStation(id) {
-      let station = await stationService.getById(id);
-      this.station = station;
-      this.currSong = station.songs[0];
-  
+   async setStation(id) {
+      await this.$store.dispatch({type: 'getCurrStation', id})
+      this.setCurrSong(this.station.songs[0]) 
     },
     async searchSongs(songStr) {
       await this.$store
@@ -100,7 +105,6 @@ export default {
         song
       });
       this.currSong = newCurrSong;
-      
     },
     addSong(song) {
       this.station.songs.push(song);
@@ -128,7 +132,7 @@ export default {
     async toggleLike(id, isLiked) {
       const loggedInUser = this.$store.getters.loggedInUser;
       await stationService.toggleLike(id, loggedInUser, isLiked);
-      this.getStation(id);
+      this.setStation(id);
     }
   },
   components: {

@@ -18,16 +18,19 @@ function connectSockets(io) {
             socket.broadcast.to(socket.myTopic).emit('chat showTyping', userName)
         })
         socket.on('join station', stationId => {
-            if (socket.myStation) {
-                socket.leave(socket.myStation)
-            }
-            socket.join(stationId)
-            socket.myStation = stationId;
-            io.to(socket.myStation).emit('joined new station', stationId)
-        })
-        socket.on('set currSong', (currSong) => {
-            console.log('currSong: ', currSong)
-            io.to(socket.myStation).emit('song changed', currSong)
-        })
+                if (socket.myStation) {
+                    socket.leave(socket.myStation)
+                }
+                socket.join(stationId)
+                socket.myStation = stationId;
+                io.to(socket.myStation).emit('joined new station', stationId)
+            })
+            // socket.on('set currSong', ({ currSong }, { currStation }) => {
+            //     console.log('currSong: ', currSong)
+            //     console.log('currStation: ', currStation)
+            //     if (socket.myStation === currStation) {
+            //         io.to(socket.myStation).emit('song changed', currSong)
+            //     }
+            // })
     })
 }

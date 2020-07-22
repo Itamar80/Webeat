@@ -32,6 +32,7 @@ export const stationStore = {
             return JSON.parse(JSON.stringify(state.genresMap))
         },
         stations(state) {
+            console.log('getter', state.stations)
             return state.stations
         },
         songList(state) {
@@ -41,6 +42,7 @@ export const stationStore = {
             return state.currSong
         },
         currStation(state) {
+            console.log(state.currStation)
             return state.currStation
         },
         popularStations(state) {
@@ -67,7 +69,6 @@ export const stationStore = {
                     state.genresMap[station.genre]++
                 }
             })
-            console.log(state.genresMap);
         },
         setFilter(state, { filterBy }) {
             state.filterBy = filterBy
@@ -91,8 +92,10 @@ export const stationStore = {
             console.log('mutations currSong', currSong)
             return state.currSong = currSong;
         },
-        setCurrStation(state, { currStationId }) {
-            state.currStation = state.stations.find(station => station._id === currStationId)
+        setCurrStation(state, { station }) {
+            // console.log('id', id)
+            // console.log('state station', state.stations);
+            state.currStation = station
         },
         setSongStatus(state, { isPlaying }) {
             state.isPlaying = isPlaying
@@ -102,6 +105,7 @@ export const stationStore = {
         loadStations({ commit, state }, { genre }) {
             return stationService.query(state.filterBy, genre)
                 .then(stations => {
+                    // console.log(stations)
                     commit({ type: 'setStations', stations })
                     return stations
                 })
@@ -121,6 +125,10 @@ export const stationStore = {
                 })
 
 
+        },
+        async getCurrStation({ commit }, { id }) {
+            var station = await stationService.getById(id)
+            commit({ type: 'setCurrStation', station })
         },
 
         async setCurrSong({ commit }, { song }) {

@@ -87,8 +87,8 @@ export default {
   name: "curr-song",
   data() {
     return {
-      currStation: null,
-      currSong: null,
+      // currStation: null,
+      // currSong: null,
       playerVars: {
         autoplay: 1,
         controls: 0,
@@ -111,19 +111,25 @@ export default {
     player() {
       console.log(this.$refs.youtube.player);
       return this.$refs.youtube.player;
+    },
+    currStation() {
+      return this.$store.getters.currStation;
+    },
+    currSong() {
+      return this.$store.getters.currSong;
     }
   },
   async created() {
-    socket.on("joined new station", async stationId => {
-      this.currStation = await this.getStation(stationId);
-      this.currSong = this.station.songs[0];
-    });
+    // socket.on("joined new station", async stationId => {
+    //   this.$store.commit(set);
+    //   this.currSong = this.station.songs[0];
+    // });
   },
   methods: {
-    async getStation(id) {
-      let station = await stationService.getById(id);
-      return (this.station = station);
-    },
+    // async getStation(id) {
+    //   let station = await stationService.getById(id);
+    //   return (this.station = station);
+    // },
     async getSongEndTime() {
       return (this.songEndTime = await this.player.getDuration());
     },
@@ -160,8 +166,6 @@ export default {
         type: "setCurrSong",
         song
       });
-      this.currSong = newCurrSong;
-      socket.emit('set currSong', this.currSong, this.currStation)
     },
     changeVolume(event) {
       this.player.setVolume(event.target.value);
@@ -177,7 +181,6 @@ export default {
       this.player.seekTo(event.target.value);
     },
     async playing() {
-      // this.$emit('toggleGif', true)
       this.isPlaying = true;
       this.duration = this.formatTime(await this.player.getDuration());
       this.timeId = setInterval(() => {
@@ -191,10 +194,8 @@ export default {
       time = Math.round(time);
       let minutes = Math.floor(time / 60);
       let seconds = time - minutes * 60;
-
       seconds = seconds < 10 ? "0" + seconds : seconds;
       minutes = minutes < 10 ? "0" + minutes : minutes;
-
       return minutes + ":" + seconds;
     },
     ended() {
