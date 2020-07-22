@@ -1,9 +1,7 @@
 <template>
   <div class="popular-station-list ">
     <ul class="clean-list popular-grid">
-      <li v-for="station in popularStations" :key="station._id">
-        <station-preview :station="station" @toggleLike="toggleLike"></station-preview>
-      </li>
+        <station-preview :isPopular="isPopular" :station="station" @toggleLike="toggleLike" v-for="station in popularStations" :key="station._id"></station-preview>
     </ul>
   </div>
 </template>
@@ -15,6 +13,9 @@ export default {
     computed: {
         popularStations(){
             return this.$store.getters.popularStations
+        },
+        isPopular(){
+          return true
         }
     },
     methods: {

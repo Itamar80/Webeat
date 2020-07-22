@@ -1,11 +1,11 @@
 <template>
-  <div class="station-list">
+  <div v-if="stations" class="station-list">
     <button class="btn" v-if="genreFromUrl" @click="moveTo">Return to all stations</button>
-    <ul class=" clean-list popular-grid">
-      <li  v-for="station in stations" :key="station._id">
-        <station-preview class="station" v-if="station.genre===genre" :station="station" @toggleLike="toggleLike"></station-preview>
+    <ul class=" clean-list card-grid" >
+
+        <station-preview class="station" :genre="genre" :station="station" @toggleLike="toggleLike" v-for="station in stations" :key="station._id"></station-preview>
         <!-- <station-preview class="station" v-else :station="station" @toggleLike="toggleLike"></station-preview> -->
-      </li>
+   
     </ul>
   </div>
 </template>
@@ -20,11 +20,13 @@ export default {
     }
   },
     computed: {
-      
+    
     },
     created(){
     let genre = this.$route.params.genre
     this.genreFromUrl = genre
+    
+    
     },
     methods: {
     toggleLike(id, isLiked){
@@ -33,7 +35,8 @@ export default {
     moveTo(genre){
       this.$router.push(`/stations`)
       location.reload();
-    }
+    },
+  
     },
     components: {
       stationPreview

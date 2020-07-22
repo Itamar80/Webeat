@@ -1,4 +1,5 @@
 <template>
+<li v-if="station.genre===genre || isPopular">
   <div class="station-preview ratio-card flex col align-center justify-center" @click="openDetails(station._id)">
     <section class="station-cover ">
     <img :src="station.imgUrl"/>
@@ -17,9 +18,8 @@
        <font-awesome-icon icon="heart" size="lg"  class="heart-icon" :class="{liked:isLiked}" @click.stop="toggleLike(station._id)" /> 
       </section>
        </div>
-       
-       
   </div>
+</li>
 </template>
       // <span class="top-details"> Created By: {{station.createdBy.fullName}}</span>
       // <img :src="station.imgUrl"/>
@@ -41,14 +41,14 @@ library.add(faClock)
 library.add(faPlayCircle)
 
 export default {
-  props:['station'],
+  props:['station','genre','isPopular'],
   data(){
     return {
       isLiked: false
     }
   },
   // created(){
-  //   console.log(this.station.imgUrl)
+  //   console.log('in preview, station: ',this.station)
   // },
   computed:{
     createdAt(){

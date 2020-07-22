@@ -38,7 +38,7 @@ library.add(faSearch)
 export default {
   data(){
     return {
-      stations: [],
+     
       genres:['hiphop','arabic','easy','electronic','country','flamenco','jazz','rock','pop'],
       genre:'',
       
@@ -48,11 +48,16 @@ export default {
     genresMap(){
      return this.$store.getters.genresMap;
     },
+    stations(){
+       console.log('stations : ',this.$store.getters.stations);
+      return this.$store.getters.stations
+    }
   },
   created(){
     let genre = this.$route.params.genre
     this.genre = genre
     this.loadStations(genre)
+    
   },
   methods: {
     setFilter(filterBy){
@@ -66,8 +71,8 @@ export default {
     await stationService.toggleLike(id, loggedInUser, isLiked)
     this.loadStations()
     },
-    async loadStations(genre){
-    this.stations = await this.$store.dispatch({type: 'loadStations',genre})
+    loadStations(genre){
+     this.$store.dispatch({type: 'loadStations',genre})
     },
     moveTo(genre){
       this.$router.push(`/stations/${genre}`)

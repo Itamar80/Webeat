@@ -40,10 +40,7 @@
         }
     }
     .station-preview {
-        img {
-            width: 285px;
-        }
-        filter:opacity(80%);
+        filter: opacity(80%);
         transition: .5s;
         &:hover {
             filter: opacity(100%)
