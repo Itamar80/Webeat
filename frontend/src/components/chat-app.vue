@@ -37,14 +37,14 @@ export default {
   created() {
     let id = this.$route.params.id
     this.msg.from = this.loggedinUser;
-    this.$store.dispatch({type:'setupSocket'})
+    // this.$store.dispatch({type:'setupSocket'})
     this.$store.dispatch({type:'setupSocketName',chatId:id})
     this.$store.dispatch({type:'addMsg',msg:this.addMsg})
     this.$store.dispatch({type:'showTyping',msg:this.addMsg})
   },
   destroyed() {
     socketSerivce.off("chat addMsg", this.addMsg);
-    socketSerivce.terminate();
+    
   },
   computed:{
     loggedinUser(){

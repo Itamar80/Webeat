@@ -1,26 +1,6 @@
 <template>
-  <section class="curr-song">
-    <div class="top-section flex justify-center align-center space-between">
-      <div class="flex col">
-        <h1>{{station.name}}</h1>
-        <span>Created By: {{station.createdBy.fullName}}</span>
-        <span class="genre">{{station.genre.charAt(0).toUpperCase()+station.genre.slice(1)}}</span>
-        <span>
-          <font-awesome-icon
-            icon="heart"
-            size="lg"
-            class="icon heart-icon"
-            :class="{liked:isLiked}"
-            @click.stop="toggleLike(station._id)"
-          />
-          {{station.likedByUsers.length}}
-        </span>
-        <span>
-          <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
-          {{station.songs.length}} tracks
-        </span>
-        <p>Now Playing: {{currSong.title}}</p>
-      </div>
+  <section v-if="currStation" class="curr-song flex justify-center align-center">
+    <section class="song-controllers flex row justify-center align-center space-between">
       <youtube
         :video-id="videoId"
         :player-vars="playerVars"
@@ -28,10 +8,8 @@
         @ended="ended"
         ref="youtube"
       ></youtube>
-    </div>
-    <section class="song-controllers flex row justify-center align-center space-between">
       <img v-if="isPlaying" src="@/assets/sound-gif2.gif" />
-        <img v-else src="@/assets/preview.png"/>
+      <img v-else src="@/assets/preview.png" />
       <div class="currPlaying">
         <h5>Now Playing:</h5>
         <p>{{currSong.title}}</p>
@@ -64,7 +42,13 @@
       </div>
       <span class="flex row justify-center align-center">
         {{ time }}
-        <input @input="changeSongTime" :value="songCurrTime" :max="songEndTime" id="progressBar" type="range" />
+        <input
+          @change="changeSongTime"
+          :value="songCurrTime"
+          :max="songEndTime"
+          id="progressBar"
+          type="range"
+        />
         {{ duration }}
       </span>
     </section>
@@ -72,6 +56,7 @@
 </template>
 
 <script>
+//FONTAWOSME
 import { fontAwsomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
@@ -94,15 +79,16 @@ library.add(faVolumeOff);
 library.add(faVolumeDown);
 library.add(faVolumeUp);
 
+//IMPORTS
+import socket from "@/services/socket-service.js";
+import { stationService } from "@/services/station-service.js";
+
 export default {
   name: "curr-song",
-  props: {
-    station: Object,
-    currSong: Object,
-    global: Boolean
-  },
   data() {
     return {
+      currStation: null,
+      currSong: null,
       playerVars: {
         autoplay: 1,
         controls: 0,
@@ -112,7 +98,6 @@ export default {
       time: "00:00",
       duration: "00:00",
       timeId: null,
-      isLiked: false,
       volumeIcon: "volume-up",
       isPlaying: true,
       songEndTime: 0,
@@ -126,29 +111,57 @@ export default {
     player() {
       console.log(this.$refs.youtube.player);
       return this.$refs.youtube.player;
-    },
-    
+    }
+  },
+  async created() {
+    socket.on("joined new station", async stationId => {
+      this.currStation = await this.getStation(stationId);
+      this.currSong = this.station.songs[0];
+    });
   },
   methods: {
-    async getSongEndTime(){
-     return this.songEndTime =  await this.player.getDuration()
+    async getStation(id) {
+      let station = await stationService.getById(id);
+      return (this.station = station);
+    },
+    async getSongEndTime() {
+      return (this.songEndTime = await this.player.getDuration());
     },
     async playVideo() {
       this.isPlaying = true;
       await this.player.playVideo();
-      this.$emit('toggleGif', true)
-
+      this.$store.commit({ type: "setSongStatus", isPlaying: true });
     },
     async pauseVideo() {
       this.isPlaying = false;
       await this.player.pauseVideo();
-      this.$emit('toggleGif', false)
+      this.$store.commit({ type: "setSongStatus", isPlaying: false });
     },
-  async changeSong(type) {
-     await this.$emit("changeSong", type, this.currSong);
-      const songTime =  await this.getSongEndTime()
+    async changeSong(type) {
+      var idx = this.currStation.songs.findIndex(
+        song => song._id === this.currSong._id
+      );
+      if (type === "nextSong") {
+        if (idx + 1 >= this.currStation.songs.length) {
+          idx = -1;
+        }
+        this.setCurrSong(this.currStation.songs[idx + 1]);
+      } else {
+        if (idx - 1 < 0) {
+          return;
+        }
+        this.setCurrSong(this.currStation.songs[idx - 1]);
+      }
+      const songTime = await this.getSongEndTime();
       this.duration = this.formatTime(songTime);
-     
+    },
+    async setCurrSong(song) {
+      const newCurrSong = await this.$store.dispatch({
+        type: "setCurrSong",
+        song
+      });
+      this.currSong = newCurrSong;
+      socket.emit('set currSong', this.currSong, this.currStation)
     },
     changeVolume(event) {
       this.player.setVolume(event.target.value);
@@ -160,16 +173,16 @@ export default {
       if (value <= 60) this.volumeIcon = "volume-down";
       if (value <= 20) this.volumeIcon = "volume-off";
     },
-    changeSongTime(event){
+    changeSongTime(event) {
       this.player.seekTo(event.target.value);
     },
-   async playing() {
+    async playing() {
       // this.$emit('toggleGif', true)
-      this.isPlaying =true
+      this.isPlaying = true;
       this.duration = this.formatTime(await this.player.getDuration());
       this.timeId = setInterval(() => {
         this.player.getCurrentTime().then(time => {
-          this.songCurrTime = time
+          this.songCurrTime = time;
           this.time = this.formatTime(time + 1);
         });
       }, 100);
@@ -188,15 +201,11 @@ export default {
       this.changeSong("nextSong");
       this.time = "00:00";
       clearInterval(this.timeId);
-    },
-    toggleLike(id) {
-      this.isLiked = !this.isLiked;
-      this.$emit("toggleLike", id, this.isLiked);
     }
   },
   async mounted() {
     this.duration = this.formatTime(await this.player.getDuration());
-    this.getSongEndTime()
+    this.getSongEndTime();
   },
   components: {
     fontAwsomeIcon

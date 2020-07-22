@@ -1,15 +1,38 @@
 <template>
   <div class="station-details flex space-between">
     <chat-app v-if="station" :station="station" />
-    <section class="container">
-      <curr-song
+    <section v-if="station" class="container">
+      <div class="top-section flex justify-center align-center space-between">
+      <div class="flex col">
+        <h1>{{station.name}}</h1>
+        <span>Created By: {{station.createdBy.fullName}}</span>
+        <span class="genre">{{station.genre.charAt(0).toUpperCase()+station.genre.slice(1)}}</span>
+        <span>
+          <font-awesome-icon
+            icon="heart"
+            size="lg"
+            class="icon heart-icon"
+            :class="{liked:isLiked}"
+            @click.stop="toggleLike(station._id)"
+          />
+          {{station.likedByUsers.length}}
+        </span>
+        <span>
+          <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
+          {{station.songs.length}} tracks
+        </span>
+        <p>Now Playing: {{currSong.title}}</p>
+      </div>
+     <img class="cover-img" :src="station.imgUrl"/>
+      </div>
+      <!-- <curr-song
         v-if="station"
         :station="station"
         :currSong="currSong"
         @toggleLike="toggleLike"
         @changeSong="changeSong"
         @toggleGif="setIsSongPlaying"
-      />
+      /> -->
       <song-list
         v-if="station"
         :songList="songList"
@@ -35,13 +58,14 @@ export default {
   data() {
     return {
       station: null,
-      currSong: null
+      currSong: null,
+            isLiked: false,
     };
   },
   created() {
     let id = this.$route.params.id;
     this.getStation(id);
-    this.$store.commit({type:'setCurrStation', stationId: id})
+    // this.$store.commit({type:'setCurrStation', stationId: id})
     socketService.emit('join station', id)
   },
   computed: {
@@ -52,7 +76,11 @@ export default {
   },
 
   methods: {
-    setIsSongPlaying(val) {
+    toggleLike(id) {
+      this.isLiked = !this.isLiked;
+      this.$emit("toggleLike", id, this.isLiked);
+    },
+   setIsSongPlaying(val) {
       this.$store.commit({ type: "setSongStatus", isPlaying: val });
     },
     async getStation(id) {
@@ -72,6 +100,7 @@ export default {
         song
       });
       this.currSong = newCurrSong;
+      
     },
     addSong(song) {
       this.station.songs.push(song);
