@@ -1,7 +1,8 @@
 <template>
-  <div class="filter-stations">
+<div class="input-container">
     <input class="filter-stations" @input="filterStations" type="text" placeholder="filter stations" v-model="filterBy.name">
-  </div>
+  <div class="search"></div>
+</div>
 </template>
 
 <script>
