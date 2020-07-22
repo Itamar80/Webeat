@@ -31,6 +31,7 @@ export default {
       isTyping:false,
       user:null,
       msg: {stationId:this.station._id, from: null, txt: "", },
+      msgs:[]
     };
   },
   created() {
@@ -47,18 +48,18 @@ export default {
   },
   computed:{
     loggedinUser(){
-      let user = (this.$store.getters.loggedinUser)? this.$store.getters.loggedinUser: {userName:'Guest'};
-      // console.log('chatu',user); 
-      // console.log('chatn',user.username); 
-     return user.username
+      let user = (this.$store.getters.loggedinUser)?this.$store.getters.loggedinUser: {fullName:'Guest'};
+      console.log('chatu',user); 
+     return user.fullName
     },
-    msgs(){
-      return this.$store.getters.msgs
-    },
+    // msgs(){
+    //   return this.$store.getters.msgs
+    // },
   },
   methods: {
     addMsg(msg) {
-    this.$store.commit({type:'updateMsgs',msg})
+      this.msgs.push(msg)
+    // this.$store.commit({type:'updateMsgs',msg})
       this.isTyping=false
     },
     setIsTyping(){
@@ -67,6 +68,7 @@ export default {
     },
     showTyping(userName){
       this.isTyping=true;
+      console.log('userName is typing',userName);
       this.user = userName
     },
     sendMsg() {
