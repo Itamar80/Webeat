@@ -4,7 +4,7 @@
         font-weight: 500;
         font-size: 3rem;
         color: #cfcfcf;
-        margin-top: 720px;
+        margin-top: 815px;
         text-align: center;
         // border-bottom: 2px solid grey;
         border-bottom: 4px solid lighten($color: $clr1, $amount: 2);
@@ -176,7 +176,9 @@
                 color: white;
                 font-weight: 800;
                 h3 {
-                    font-size: 1.3rem;
+                    margin-top: 35px;
+                    margin-bottom: 10px;
+                    font-size: 1.5rem;
                 }
                 p {
                     color: gray;
@@ -185,6 +187,7 @@
                 }
             }
             img {
+                margin-right: 20px;
                 border-top-left-radius: .5rem;
                 border-bottom-left-radius: .5rem;
                 width: 100px;

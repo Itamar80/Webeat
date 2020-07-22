@@ -8,8 +8,8 @@
    <font-awesome-icon  icon="play-circle" size="lg" class="play-icon" />
       <section class="">
        <h2>{{name}}</h2>
-      <font-awesome-icon  :icon="['far', 'clock']" class="clock-icon"/>
       <span> {{station.songs.length}} tracks</span>
+      <font-awesome-icon  :icon="['far', 'clock']" class="clock-icon"/>
       </section>
       </div>
       <section class="like-section">
