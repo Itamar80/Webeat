@@ -20,9 +20,9 @@ export default {
         }
     },
     actions: {
-        sendMsg(context, { msg }) {
-            socket.emit('sendMsg', msg)
-        },
+        // sendMsg(context, { msg }) {
+        //     socket.emit('sendMsg', msg)
+        // },
         setupSocket(context) {
             socket.setup()
         },

@@ -104,7 +104,7 @@ export default {
         type: "setCurrSong",
         song
       });
-      this.currSong = newCurrSong;
+      // this.currSong = newCurrSong;
     },
     addSong(song) {
       this.station.songs.push(song);
