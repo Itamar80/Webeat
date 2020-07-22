@@ -13,7 +13,7 @@ import youtubeSong from "./youtube-song.vue";
 
 export default {
   props: {
-    songList: Object
+    songList: Object,
   },
   data() {
     return {};

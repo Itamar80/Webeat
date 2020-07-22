@@ -133,7 +133,6 @@ export const stationStore = {
         },
 
         async setCurrSong({ commit }, { song }) {
-            console.log('song is', song);
             commit({ type: 'setCurrSong', song })
             return song
 

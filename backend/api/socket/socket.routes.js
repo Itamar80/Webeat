@@ -26,8 +26,11 @@ function connectSockets(io) {
             io.to(socket.myStation).emit('joined new station', stationId)
         })
         socket.on('set currSong', currSong => {
-            console.log('currSong: ', currSong)
             io.to(socket.myStation).emit('song changed', currSong)
+        })
+        socket.on('set songStatus', isPlaying => {
+            console.log(isPlaying)
+            io.to(socket.myStation).emit('songStatus changed', isPlaying)
         })
     })
 }

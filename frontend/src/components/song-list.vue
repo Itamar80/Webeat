@@ -46,6 +46,7 @@ export default {
     station: Object,
     currSong: Object,
     songList: Object,
+    isPlaying: Boolean
   },
   data() {
     return {
@@ -75,7 +76,7 @@ export default {
     },
     
   },
-  methods: {
+  methods: { 
     searchSongs() {
       console.log(this.songToFindYoutube);
       this.$emit("searchSongs", this.songToFindYoutube);

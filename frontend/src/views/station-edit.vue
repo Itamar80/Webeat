@@ -4,13 +4,8 @@
     <section class="station-form flex justify-center align-center">
       <form @submit="addStation" class="flex col flex-start">
         <label>
-        <h3>Station name:</h3> 
-          <input
-            type="text"
-            placeholder="Enter the station name"
-            v-model="station.name"
-            ref="name"
-          />
+          <h3>Station name:</h3>
+          <input type="text" placeholder="Enter the station name" v-model="station.name" ref="name" />
         </label>
         <!-- <label>
           <h3>Created By:</h3>
@@ -19,20 +14,17 @@
             placeholder="Enter your name"
             v-model="station.createdBy.fullName"
           />
-        </label> -->
-        <label>
-          <h3> Station Image:</h3>
-          <input type="file" @change="onUploadImg" />
-        </label>
+        </label>-->
+        <input @change="onUploadImg" type="file" name="file" id="file" class="inputfile" />
+        <label for="file">Upload Station Image</label>
         <h3>Genre:</h3>
         <el-select v-model="station.genre" placeholder="Select a genre">
-         <el-option
-      v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value"
-      >
-           </el-option>
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          ></el-option>
         </el-select>
         <section class="flex col">
           <div class="flex row align-center">
@@ -48,7 +40,6 @@
             <youtubeSongs @addSong="addSong" :songList="songList" />
           </vue-custom-scrollbar>
         </section>
-
         <button type="submit" class="btn submit-btn">Add station</button>
       </form>
     </section>
@@ -57,13 +48,15 @@
         <div class="flex col">
           <h1 v-if="station.name">{{station.name}}</h1>
           <h1 v-else>Name</h1>
-          <span v-if="loggedInUser">Created By: 
+          <span v-if="loggedInUser">
+            Created By:
             {{loggedInUser.fullName}}
-           <img :src="loggedInUser.imgUrl" alt=""> 
-            </span>
-          <span v-else>Created By: 
-           Guest
-            </span>
+            <img :src="loggedInUser.imgUrl" alt />
+          </span>
+          <span v-else>
+            Created By:
+            Guest
+          </span>
           <span
             v-if="station.genre"
             class="genre"
@@ -99,46 +92,50 @@ export default {
       station: {
         name: "",
         createdBy: {
-          user:this.loggedInUser
+          user: this.loggedInUser,
         },
         genre: "",
         songs: [],
-        imgUrl: ""
+        imgUrl: "",
       },
-        options: [{
-          value: 'hiphop',
-          label: 'Hip-Hop'
-        }, {
-          value: 'arabic',
-          label: 'Arabic',
-        }, {
-          value: 'easy',
-          label: 'Easy listening'
-        }, {
-          value: 'electronic',
-          label: 'Electronic'
+      options: [
+        {
+          value: "hiphop",
+          label: "Hip-Hop",
         },
-         {
-          value: 'country',
-          label: 'Country'
+        {
+          value: "arabic",
+          label: "Arabic",
         },
-         {
-          value: 'flamenco',
-          label: 'Flamenco'
+        {
+          value: "easy",
+          label: "Easy listening",
         },
-         {
-          value: 'jazz',
-          label: 'Jazz'
+        {
+          value: "electronic",
+          label: "Electronic",
         },
-         {
-          value: 'rock',
-          label: 'Rock'
+        {
+          value: "country",
+          label: "Country",
         },
-         {
-          value: 'pop',
-          label: 'Pop'
+        {
+          value: "flamenco",
+          label: "Flamenco",
         },
-        ],
+        {
+          value: "jazz",
+          label: "Jazz",
+        },
+        {
+          value: "rock",
+          label: "Rock",
+        },
+        {
+          value: "pop",
+          label: "Pop",
+        },
+      ],
       tagToAdd: "",
       img: "",
       songToFindYoutube: "",
@@ -146,8 +143,8 @@ export default {
       inputValue: "",
       settings: {
         maxScrollbarLength: 60,
-        suppressScrollX: true
-      }
+        suppressScrollX: true,
+      },
     };
   },
   computed: {
@@ -155,9 +152,9 @@ export default {
       // console.log('indetails',this.$store.getters.songList);
       return this.$store.getters.songList;
     },
-    loggedInUser(){
+    loggedInUser() {
       return this.$store.getters.loggedinUser;
-    }
+    },
   },
   // watch:{},
   created() {
@@ -176,7 +173,7 @@ export default {
       console.log(this.station.genre);
       this.$store.commit({
         type: "updateGenresMap",
-        genre: this.station.genre
+        genre: this.station.genre,
       });
       this.$store.dispatch({ type: "saveStation", station: this.station });
       // this.$router.push("/stations");
@@ -189,7 +186,7 @@ export default {
     async searchSongs() {
       await this.$store.dispatch({
         type: "searchSong",
-        songStr: this.songToFindYoutube
+        songStr: this.songToFindYoutube,
       });
     },
     addSong(song) {
@@ -198,10 +195,9 @@ export default {
       console.log(song);
     },
     deleteSong(songId) {
-      console.log(songId)
-      var idx = this.station.songs.findIndex(song => song._id === songId);
+      console.log(songId);
+      var idx = this.station.songs.findIndex((song) => song._id === songId);
       this.station.songs.splice(idx, 1);
-
     },
     focusInput() {
       this.$refs.name.focus();
@@ -211,7 +207,7 @@ export default {
     },
     showInput() {
       this.inputVisible = true;
-      this.$nextTick(_ => {
+      this.$nextTick((_) => {
         this.$refs.saveTagInput.$refs.input.focus();
       });
     },
@@ -223,15 +219,15 @@ export default {
       this.inputVisible = false;
       this.inputValue = "";
     },
-    scrollHanle(evt) {}
+    scrollHanle(evt) {},
   },
   components: {
     vueCustomScrollbar,
 
     songListEdit,
     youtubeSongs,
-    songList
-  }
+    songList,
+  },
 };
 </script>
 // function getEmptyStation() {

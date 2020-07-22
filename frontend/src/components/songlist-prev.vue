@@ -35,6 +35,7 @@ export default {
     song: Object,
     currSong: Object,
     edit: Boolean,
+
   },
   data() {
     return {
@@ -54,7 +55,7 @@ export default {
   },
   created() {
     this.checkIfPlaying();
-    console.log(this.songPlaying)
+    // console.log(this.songPlaying)
   },
   methods: {
     async playSong() {
@@ -65,7 +66,7 @@ export default {
       this.$emit('deleteSong',this.song._id);
     },
     checkIfPlaying() {
-      this.isPlaying = this.song === this.currSong ? true : false;
+      this.isPlaying = this.song._id === this.currSong._id ? true : false;
     }
   },
   components: {

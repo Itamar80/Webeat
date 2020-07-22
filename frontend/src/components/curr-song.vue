@@ -27,12 +27,12 @@
         />
         <font-awesome-icon
           v-if="isPlaying"
-          @click="pauseVideo"
+          @click="pauseVideo(false)"
           icon="pause"
           size="lg"
           class="control-icon"
         />
-        <font-awesome-icon v-else @click="playVideo" icon="play" size="lg" class="control-icon" />
+        <font-awesome-icon v-else @click="playVideo(false)" icon="play" size="lg" class="control-icon" />
         <font-awesome-icon
           @click="changeSong('nextSong')"
           icon="forward"
@@ -93,7 +93,7 @@ export default {
         autoplay: 1,
         controls: 0,
         modestbranding: 1,
-        showinfo: 0
+        showinfo: 0,
       },
       time: "00:00",
       duration: "00:00",
@@ -101,7 +101,7 @@ export default {
       volumeIcon: "volume-up",
       isPlaying: true,
       songEndTime: 0,
-      songCurrTime: 0
+      songCurrTime: 0,
     };
   },
   computed: {
@@ -117,39 +117,43 @@ export default {
     },
     currSong() {
       return this.$store.getters.currSong;
-    }
+    },
+    // isPlaying(){
+    //   return this.$store.getters.isPlaying;
+    // }
   },
   async created() {
-    // socket.on("joined new station", async stationId => {
-    //   this.$store.commit(set);
-    //   this.currSong = this.station.songs[0];
-    // });
-    socket.on('song changed', song => {
-    this.$store.dispatch({type:'setCurrSong',song})
-    })
+    socket.on('song changed', (song) => {
+      this.$store.dispatch({ type: 'setCurrSong', song });
+    });
+    socket.on('songStatus changed', (isPlaying) => {
+      console.log(isPlaying)
+      this.$store.commit({ type: 'setSongStatus', isPlaying });
+      (isPlaying)? this.playVideo(true): this.pauseVideo(true);
 
-  },
+    });
+  }, 
   methods: {
-    // async getStation(id) {
-    //   let station = await stationService.getById(id);
-    //   return (this.station = station);
-    // },
     async getSongEndTime() {
       return (this.songEndTime = await this.player.getDuration());
     },
-    async playVideo() {
-      this.isPlaying = true;
+    async playVideo(isFromSocket) {
+      this.isPlaying = true
       await this.player.playVideo();
+      if (isFromSocket) return 
+      socket.emit("set songStatus", true);
       this.$store.commit({ type: "setSongStatus", isPlaying: true });
     },
-    async pauseVideo() {
-      this.isPlaying = false;
+    async pauseVideo(isFromSocket) {
+      this.isPlaying = false
       await this.player.pauseVideo();
+       if (isFromSocket) return 
+      socket.emit("set songStatus", false);
       this.$store.commit({ type: "setSongStatus", isPlaying: false });
     },
     async changeSong(type) {
       var idx = this.currStation.songs.findIndex(
-        song => song._id === this.currSong._id
+        (song) => song._id === this.currSong._id
       );
       if (type === "nextSong") {
         if (idx + 1 >= this.currStation.songs.length) {
@@ -166,12 +170,11 @@ export default {
       this.duration = this.formatTime(songTime);
     },
     async setCurrSong(song) {
-            socket.emit('set currSong', song)
+      socket.emit("set currSong", song);
       const newCurrSong = await this.$store.dispatch({
         type: "setCurrSong",
-        song
+        song,
       });
-
     },
     changeVolume(event) {
       this.player.setVolume(event.target.value);
@@ -193,7 +196,7 @@ export default {
       this.isPlaying = true;
       this.duration = this.formatTime(await this.player.getDuration());
       this.timeId = setInterval(() => {
-        this.player.getCurrentTime().then(time => {
+        this.player.getCurrentTime().then((time) => {
           this.songCurrTime = time;
           this.time = this.formatTime(time + 1);
         });
@@ -211,15 +214,15 @@ export default {
       this.changeSong("nextSong");
       this.time = "00:00";
       clearInterval(this.timeId);
-    }
+    },
   },
   async mounted() {
     this.duration = this.formatTime(await this.player.getDuration());
     this.getSongEndTime();
   },
   components: {
-    fontAwsomeIcon
-  }
+    fontAwsomeIcon,
+  },
 };
 </script>
 

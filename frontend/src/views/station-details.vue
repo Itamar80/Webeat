@@ -38,6 +38,7 @@
         :songList="songList"
         :currSong="currSong"
         :station="station"
+
         @addSong="addSong"
         @deleteSong="deleteSong"
         @searchSongs="searchSongs"
@@ -50,7 +51,7 @@
 <script>
 import { stationService } from "../services/station-service.js";
 import { songService } from "../services/song-service.js";
-import socketService from "../services/socket-service.js";
+import socket from "../services/socket-service.js";
 import chatApp from "../components/chat-app.vue";
 import currSong from "../components/curr-song.vue";
 import songList from "../components/song-list.vue";
@@ -63,8 +64,10 @@ export default {
   created() {
     let id = this.$route.params.id;
     this.setStation(id);
-    
-    socketService.emit("join station", id);
+    socket.emit("join station", id);
+    socket.on("song changed", (song) => {
+      this.$store.dispatch({ type: "setCurrSong", song });
+    });
   },
   computed: {
     songList() {
@@ -81,17 +84,19 @@ export default {
       console.log(this.$store.getters.stations)
 
       return this.$store.getters.stations
-    }
+    },
+    // isPlaying(){
+    //   return this.$store.getters.isPlaying;
+    // }
   },
-
   methods: {
     toggleLike(id) {
       this.isLiked = !this.isLiked;
       this.$emit("toggleLike", id, this.isLiked);
     },
-    setIsSongPlaying(val) {
-      this.$store.commit({ type: "setSongStatus", isPlaying: val });
-    },
+    // setIsSongPlaying(val) {
+    //   this.$store.commit({ type: "setSongStatus", isPlaying: val });
+    // },
    async setStation(id) {
       await this.$store.dispatch({type: 'getCurrStation', id})
       this.setCurrSong(this.station.songs[0]) 
@@ -102,11 +107,11 @@ export default {
         .then(songList => {});
     },
     async setCurrSong(song) {
+      socket.emit("set currSong", song);
       const newCurrSong = await this.$store.dispatch({
         type: "setCurrSong",
         song
       });
-      // this.currSong = newCurrSong;
     },
     addSong(song) {
       this.station.songs.push(song);
@@ -114,8 +119,9 @@ export default {
     },
     deleteSong(songId) {
       var idx = this.station.songs.findIndex(song => song._id === songId);
-      this.station.songs.splice(idx, 1);
-      this.$store.dispatch({ type: "saveStation", station: this.station });
+     var station = JSON.parse(JSON.stringify( this.station))
+      station.songs.splice(idx, 1);
+      this.$store.dispatch({ type: "saveStation", station });
     },
     changeSong(type, currSong) {
       var idx = this.station.songs.findIndex(song => song._id === currSong._id);
