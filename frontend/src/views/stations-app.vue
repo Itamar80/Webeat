@@ -21,7 +21,7 @@
     <section class="channel-container container grid">
       <!-- <div> -->
     <router-link to="stations/hiphop" class="station-cover container flex">
-    <img src="../assets/hero3.webp" alt="genre image">
+    <img src="../assets/genres-pics/hiphop1.jpg" alt="genre image">
     <span class="hiphop-channel channel flex space-around align-center col">
      <h3>Hip-Hop</h3>
     <p>Show more</p>
@@ -29,35 +29,35 @@
     </router-link>
       <!-- </div> -->
     <router-link to="stations/rock" class="station-cover container flex">
-    <img src="../assets/hero3.webp" alt="genre image">
+    <img src="../assets/genres-pics/rock2.jpg" alt="genre image">
       <span class="rock-channel channel flex space-around align-center col">
        <h3>Rock</h3>
         <p>Show more</p>
         </span>
     </router-link>
     <router-link to="stations/arabic" class="station-cover container flex">
-    <img src="../assets/hero3.webp" alt="genre image">
+    <img src="../assets/genres-pics/arabic.jpg" alt="genre image">
       <span class="arabic-channel channel flex space-around align-center col">
        <h3>Arabic</h3>
         <p>Show more</p>
         </span>
     </router-link>
     <router-link to="stations/easy" class="station-cover container flex">
-    <img src="../assets/hero3.webp" alt="genre image">
+    <img src="../assets/genres-pics/easy.webp" alt="genre image">
       <span class="easy-channel channel flex space-around align-center col">
        <h3>Easy</h3>
         <p>Show more</p>
         </span>
     </router-link>
     <router-link to="stations/electronic" class="station-cover container flex">
-    <img src="../assets/hero3.webp" alt="genre image">
+    <img src="../assets/genres-pics/electronic.jpg" alt="genre image">
      <span class="electronic-channel channel flex space-around align-center col">
        <h3>Electronic</h3>
         <p>Show more</p>
         </span>
     </router-link>
     <router-link to="stations/country" class="station-cover container flex">
-    <img src="../assets/hero3.webp" alt="genre image">
+    <img src="../assets/genres-pics/country1.jpg" alt="genre image">
      <span class="country-channel channel flex space-around align-center col">
        <h3>Country</h3>
         <p>Show more</p>
