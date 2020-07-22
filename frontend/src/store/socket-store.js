@@ -28,6 +28,7 @@ export default {
         },
         addMsg(context, { msg }) {
             socket.on("chat addMsg", msg)
+
         },
         setupSocketName(context, { chatId }) {
             socket.emit('chat name', chatId)

@@ -8,7 +8,7 @@ if (sessionStorage.user) localLoggedinUser = JSON.parse(JSON.stringify(sessionSt
 export const userStore = {
     strict: true,
     state: {
-        loggedinUser: localLoggedinUser,
+        loggedinUser: JSON.parse(localLoggedinUser),
         users: []
     },
     getters: {
