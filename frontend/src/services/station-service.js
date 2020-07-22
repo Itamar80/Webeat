@@ -6,7 +6,7 @@ export const stationService = {
     remove,
     save,
     getEmptyStation,
-    setCurrSong,
+    // setCurrSong,
     toggleLike
 }
 
@@ -86,6 +86,6 @@ function _add(station) {
         .then(res => res.data)
 }
 
-function setCurrSong(song) {
-    return song
-}
+// function setCurrSong(song) {
+//     return song
+// }

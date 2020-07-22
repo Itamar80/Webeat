@@ -89,9 +89,9 @@ export const stationStore = {
         clearSongList(state) {
             state.songList = []
         },
-        setCurrSong(state, { currSong }) {
+        setCurrSong(state, { song }) {
             // console.log('mutations currSong', currSong)
-            return state.currSong = currSong;
+            state.currSong = song;
         },
         setCurrStation(state, { station }) {
             // console.log('id', id)
@@ -133,10 +133,9 @@ export const stationStore = {
         },
 
         async setCurrSong({ commit }, { song }) {
-            socket.emit('set currSong', currSong)
-            const currSong = stationService.setCurrSong(song);
-            commit({ type: 'setCurrSong', currSong })
-            return currSong
+            console.log('song is', song);
+            commit({ type: 'setCurrSong', song })
+            return song
 
 
         },

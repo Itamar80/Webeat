@@ -124,8 +124,9 @@ export default {
     //   this.$store.commit(set);
     //   this.currSong = this.station.songs[0];
     // });
-    // this.$store.dispatch('listenToSongChange')
-    socket.on('song changed', song => console.log(song))
+    socket.on('song changed', song => {
+    this.$store.dispatch({type:'setCurrSong',song})
+    })
 
   },
   methods: {
@@ -165,6 +166,7 @@ export default {
       this.duration = this.formatTime(songTime);
     },
     async setCurrSong(song) {
+            socket.emit('set currSong', song)
       const newCurrSong = await this.$store.dispatch({
         type: "setCurrSong",
         song

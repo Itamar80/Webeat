@@ -63,6 +63,7 @@ export default {
   created() {
     let id = this.$route.params.id;
     this.setStation(id);
+    
     socketService.emit("join station", id);
   },
   computed: {
@@ -70,6 +71,7 @@ export default {
       return this.$store.getters.songList;
     },
     station() {
+      console.log('station is',this.$store.getters.currStation);
       return this.$store.getters.currStation;
     },
     currSong() {
