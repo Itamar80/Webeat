@@ -89,7 +89,7 @@ export const stationStore = {
         },
         setCurrSong(state, { currSong }) {
             console.log('mutations currSong', currSong)
-            state.currSong = currSong;
+            return state.currSong = currSong;
         },
         setCurrStation(state, { currStationId }) {
             state.currStation = state.stations.find(station => station._id === currStationId)
