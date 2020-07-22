@@ -25,12 +25,9 @@ function connectSockets(io) {
             socket.myStation = stationId;
             io.to(socket.myStation).emit('joined new station', stationId)
         })
-        socket.on('set currSong', (currSong, currStation) => {
+        socket.on('set currSong', (currSong) => {
             console.log('currSong: ', currSong)
-            console.log('currStation: ', currStation)
-            if (socket.myStation === currStation) {
-                io.to(socket.myStation).emit('song changed', currSong)
-            }
+            io.to(socket.myStation).emit('song changed', currSong)
         })
     })
 }
