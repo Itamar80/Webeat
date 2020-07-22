@@ -1,5 +1,6 @@
 module.exports = connectSockets
 console.log('shh');
+console.log('hi!!')
 
 function connectSockets(io) {
     io.on('connection', socket => {
