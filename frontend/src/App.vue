@@ -30,10 +30,14 @@
 <script>
 import currSongGlobal from "@/components/curr-song-global.vue";
 import stationService from "@/services/station-service.js";
+import socketService from "@/services/socket-service.js";
 
 export default {
   data() {
     return {};
+  },
+  created() {
+    socketService.setup();
   },
   computed: {
     currStation() {

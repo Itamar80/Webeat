@@ -15,5 +15,13 @@ function connectSockets(io) {
         socket.on('chat typing', userName => {
             socket.broadcast.to(socket.myTopic).emit('chat showTyping', userName)
         })
+        socket.on('join station', stationId => {
+            console.log(stationId)
+            if (socket.myStation) {
+                socket.leave(socket.myStation)
+            }
+            socket.join(stationId)
+            socket.myStation = stationId;
+        })
     })
 }

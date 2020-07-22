@@ -8,7 +8,7 @@
         :currSong="currSong"
         @toggleLike="toggleLike"
         @changeSong="changeSong"
-        @toggleGif="getIsSongPlaying"
+        @toggleGif="setIsSongPlaying"
       />
       <song-list
         v-if="station"
@@ -27,6 +27,7 @@
 <script>
 import { stationService } from "../services/station-service.js";
 import { songService } from "../services/song-service.js";
+import  socketService from "../services/socket-service.js";
 import chatApp from "../components/chat-app.vue";
 import currSong from "../components/curr-song.vue";
 import songList from "../components/song-list.vue";
@@ -40,6 +41,8 @@ export default {
   created() {
     let id = this.$route.params.id;
     this.getStation(id);
+    this.$store.commit({type:'setCurrStation', stationId: id})
+    socketService.emit('join station', id)
   },
   computed: {
     songList() {
@@ -49,13 +52,14 @@ export default {
   },
 
   methods: {
-    getIsSongPlaying(val) {
+    setIsSongPlaying(val) {
       this.$store.commit({ type: "setSongStatus", isPlaying: val });
     },
     async getStation(id) {
       let station = await stationService.getById(id);
       this.station = station;
       this.currSong = station.songs[0];
+  
     },
     async searchSongs(songStr) {
       await this.$store
