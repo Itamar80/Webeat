@@ -12,6 +12,7 @@
      <station-list class="container" v-if="genre"  :genre="genre" :stations="stations" @toggleLike="toggleLike"></station-list>
      <section class="all-stations" v-else  v-for="singleGenre in genres" :key="singleGenre">
     <div v-if="genresMap[singleGenre]>0" class="genre-header container flex space-between">
+   <!-- titlecase css span -->
     <h3 class="">{{singleGenre.charAt(0).toUpperCase()+singleGenre.slice(1)}}</h3>
      <span class="show-all" @click="moveTo(singleGenre)">Show All</span>
     </div>

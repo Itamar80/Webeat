@@ -55,7 +55,7 @@ export default {
      return moment(this.station.createdAt).subtract(10, 'days').calendar()
     },
     name(){
-    return ( this.station.name.length>10)?this.station.name.substring(0,10)+'...':this.station.name
+    return ( this.station.name.length>10)?this.station.name.substring(0,15)+'...':this.station.name
     },
   },
   methods:{
