@@ -1,9 +1,9 @@
 <template>
-  <div class="stations-page">
-    <div class="container">
+  <div class="stations-page main-layout">
+    <div class="">
     </div>
      <section class="genre-stations"> 
-    <h1 v-if="genre" class="h1 container yellow">Genre: {{genre.charAt(0).toUpperCase()+ genre.slice(1)}}</h1>
+    <h1 v-if="genre" class="h1  yellow">Genre: {{genre.charAt(0).toUpperCase()+ genre.slice(1)}}</h1>
     <h1 v-else class="h1 container yellow"> Stations</h1>
     <div class="flex justify-center align-center">
     <station-filter class="filter" @filterStations="setFilter"/>
