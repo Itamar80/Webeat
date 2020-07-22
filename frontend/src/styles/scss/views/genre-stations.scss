@@ -11,7 +11,7 @@
         font-size: 2.3rem;
     }
     .h1 {
-        font-family: bungee, sans-serif;
+        font-family: $font1;
         font-style: normal;
         font-weight: 500;
         // font-family: vibes, sans-serif;
@@ -23,7 +23,7 @@
         margin-top: 30px;
     }
     h3 {
-        font-family: fantasy;
+        font-family: $font1;
         font-weight: 500;
         font-size: 2.3rem;
         color: #cfcfcf;
@@ -54,18 +54,29 @@
     .preview-details {
         width: 100%;
         h2 {
+            font-size: 1.3rem;
             margin: 4px 0 5px 0;
         }
-        .heart-icon {
-            margin-right: 9.6px;
-            transition: .5s;
-            &:hover {
-                color: #c70039;
+        .like-section {
+            display: flex;
+            align-self: flex-start;
+            margin-top: 5px;
+            margin-right: 5px;
+            .heart-icon {
+                font-size: 25px;
+                margin-left: 8px;
+                transition: .5s;
+                &:hover {
+                    color: #c70039;
+                }
             }
+        }
+        .clock-icon {
+            margin-left: 7px
         }
         .play-icon {
             margin-right: 10px;
-            font-size: 50px;
+            font-size: 40px;
             transition: .5s;
             &:hover {
                 color: white;

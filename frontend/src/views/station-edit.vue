@@ -57,9 +57,12 @@
         <div class="flex col">
           <h1 v-if="station.name">{{station.name}}</h1>
           <h1 v-else>Name</h1>
-          <span>Created By: 
+          <span v-if="loggedInUser">Created By: 
             {{loggedInUser.fullName}}
            <img :src="loggedInUser.imgUrl" alt=""> 
+            </span>
+          <span v-else>Created By: 
+           Guest
             </span>
           <span
             v-if="station.genre"

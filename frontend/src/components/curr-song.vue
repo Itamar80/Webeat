@@ -124,6 +124,10 @@ export default {
     //   this.$store.commit(set);
     //   this.currSong = this.station.songs[0];
     // });
+    socket.on('song changed', song => {
+    this.$store.dispatch({type:'setCurrSong',song})
+    })
+
   },
   methods: {
     // async getStation(id) {
@@ -162,10 +166,12 @@ export default {
       this.duration = this.formatTime(songTime);
     },
     async setCurrSong(song) {
+            socket.emit('set currSong', song)
       const newCurrSong = await this.$store.dispatch({
         type: "setCurrSong",
         song
       });
+
     },
     changeVolume(event) {
       this.player.setVolume(event.target.value);
@@ -178,6 +184,9 @@ export default {
       if (value <= 20) this.volumeIcon = "volume-off";
     },
     changeSongTime(event) {
+      // if (this.player.playing){
+
+      // }
       this.player.seekTo(event.target.value);
     },
     async playing() {

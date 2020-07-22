@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { stationService } from '../services/station-service.js'
 import { songService } from '../services/song-service.js'
+import socket from '../services/socket-service.js'
 
 Vue.use(Vuex)
 export const stationStore = {
@@ -88,9 +89,9 @@ export const stationStore = {
         clearSongList(state) {
             state.songList = []
         },
-        setCurrSong(state, { currSong }) {
-            console.log('mutations currSong', currSong)
-            return state.currSong = currSong;
+        setCurrSong(state, { song }) {
+            // console.log('mutations currSong', currSong)
+            state.currSong = song;
         },
         setCurrStation(state, { station }) {
             // console.log('id', id)
@@ -132,12 +133,15 @@ export const stationStore = {
         },
 
         async setCurrSong({ commit }, { song }) {
-            const currSong = stationService.setCurrSong(song);
-            commit({ type: 'setCurrSong', currSong })
-            return currSong
+            console.log('song is', song);
+            commit({ type: 'setCurrSong', song })
+            return song
 
 
-        }
+        },
+        // listenToSongChange() {
+        //     socket.on('song changed', song)
+        // }
         // removeStation({commit}, {id}){
         //     return stationService.remove(id)
         //         .then(()=>{

@@ -7,11 +7,12 @@
     <h1 v-else class="h1 container yellow"> Stations</h1>
     <div class="flex justify-center align-center">
     <station-filter class="filter" @filterStations="setFilter"/>
-      <font-awesome-icon @click="setFilter" icon="search" size="lg"  class="search-icon"/>
+      <!-- <font-awesome-icon @click="setFilter" icon="search" size="lg"  class="search-icon"/> -->
     </div>
      <station-list class="container" v-if="genre"  :genre="genre" :stations="stations" @toggleLike="toggleLike"></station-list>
      <section class="all-stations" v-else  v-for="singleGenre in genres" :key="singleGenre">
     <div v-if="genresMap[singleGenre]>0" class="genre-header container flex space-between">
+   <!-- titlecase css span -->
     <h3 class="">{{singleGenre.charAt(0).toUpperCase()+singleGenre.slice(1)}}</h3>
      <span class="show-all" @click="moveTo(singleGenre)">Show All</span>
     </div>

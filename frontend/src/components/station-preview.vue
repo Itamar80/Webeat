@@ -13,8 +13,8 @@
       </section>
       </div>
       <section class="like-section">
-       <font-awesome-icon icon="heart" size="lg"  class="heart-icon" :class="{liked:isLiked}" @click.stop="toggleLike(station._id)" /> 
        <span>{{station.likedByUsers.length}}</span>
+       <font-awesome-icon icon="heart" size="lg"  class="heart-icon" :class="{liked:isLiked}" @click.stop="toggleLike(station._id)" /> 
       </section>
        </div>
        
@@ -55,7 +55,7 @@ export default {
      return moment(this.station.createdAt).subtract(10, 'days').calendar()
     },
     name(){
-    return ( this.station.name.length>10)?this.station.name.substring(0,10)+'...':this.station.name
+    return ( this.station.name.length>10)?this.station.name.substring(0,15)+'...':this.station.name
     },
   },
   methods:{

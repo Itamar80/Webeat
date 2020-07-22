@@ -3,10 +3,11 @@
 }
 
 body {
-    font-family: "monst";
-    // font-family: "rale";
+    font-family: $font2;
     background-color: $clr1;
     color: $clr7;
+    box-sizing: border-box;
+    margin: 0;
 }
 
 h1,

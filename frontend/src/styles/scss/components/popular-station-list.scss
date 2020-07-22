@@ -50,6 +50,10 @@
                 margin-left: 10px;
             }
             .like-section {
+                display: flex;
+                align-self: flex-start;
+                margin-right: 10px;
+                margin-top: 2px;
                 .heart-icon {
                     font-size: 1.5rem;
                     &:hover {
@@ -58,7 +62,8 @@
                     }
                 }
                 span {
-                    margin-left: 15px;
+                    font-size: 1rem;
+                    margin-right: 8px;
                 }
             }
         }
