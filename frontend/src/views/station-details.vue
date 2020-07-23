@@ -34,6 +34,7 @@
         @deleteSong="deleteSong"
         @searchSongs="searchSongs"
         @playSong="setCurrSong"
+        @updateSongList="updateSongList"
       />
     </section>
   </div>
@@ -108,6 +109,13 @@ export default {
         type: "setCurrSong",
         song,
       });
+    },
+    updateSongList(newSongOrder){
+      var station = JSON.parse(JSON.stringify(this.station));
+      station.songs = newSongOrder
+      socket.emit("station songs changed", station);
+      this.$store.dispatch({ type: "saveStation", station });
+    
     },
     addSong(song) {
       var station = JSON.parse(JSON.stringify(this.station));

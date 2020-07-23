@@ -107,7 +107,6 @@ export const stationStore = {
         setSongStatus(state, { isPlaying }) {
             state.isPlaying = isPlaying
         },
-
     },
     actions: {
         loadStations({ commit, state }, { genre }) {
@@ -146,6 +145,7 @@ export const stationStore = {
 
 
         },
+
         // listenToSongChange() {
         //     socket.on('song changed', song)
         // }
