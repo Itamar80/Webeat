@@ -5,7 +5,7 @@
       <div class="top-section flex justify-center align-center space-between">
         <div class="flex col">
           <h1>{{station.name}}</h1>
-          <span>Created By: {{station.createdBy.fullName}}</span>
+          <span v-if="station.createdBy.fullName">Created By: {{station.createdBy.fullName}}</span>
           <span class="genre capitalize">{{station.genre}}</span>
           <span>
             <font-awesome-icon
@@ -85,6 +85,10 @@ export default {
 
       return this.$store.getters.stations
     },
+    loggedInUser(){
+      console.log('kiki',this.$store.getters.loggedinUser);
+      return this.$store.getters.loggedinUser
+    }
     // isPlaying(){
     //   return this.$store.getters.isPlaying;
     // }

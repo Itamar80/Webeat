@@ -1,8 +1,10 @@
 .station-details {
+    // align-items: flex-start;
+    flex: 1;
     .container {
         margin: 0 auto;
         width: 60%;
-        height: 100vh;
+        // height: 100vh;
         // padding-left: 50px;
         // padding-right: 50px;
         .cover-img {

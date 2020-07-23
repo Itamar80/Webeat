@@ -63,7 +63,7 @@
             class="genre capitalize"
           >{{station.genre}}</span>
           <span v-else class="genre">Genre</span>
-          <span>
+          <span v-if="station.songs.length">
             <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
             {{station.songs.length}} tracks
           </span>
@@ -92,9 +92,7 @@ export default {
     return {
       station: {
         name: "",
-        createdBy: {
-          user: this.loggedInUser,
-        },
+        createdBy: null,
         genre: "",
         songs: [],
         imgUrl: "",
@@ -154,6 +152,7 @@ export default {
       return this.$store.getters.songList;
     },
     loggedInUser() {
+      console.log('logged in is',this.$store.getters.loggedinUser);
       return this.$store.getters.loggedinUser;
     },
   },
@@ -171,13 +170,15 @@ export default {
       this.tagToAdd = "";
     },
     addStation() {
-      console.log(this.station.genre);
       this.$store.commit({
         type: "updateGenresMap",
         genre: this.station.genre,
       });
+     if(this.loggedInUser){
+       this.station.createdBy=this.loggedInUser;
+       }else this.station.createdBy={fullName:'Guest'}
       this.$store.dispatch({ type: "saveStation", station: this.station });
-      // this.$router.push("/stations");
+       this.$router.push(`/`);
     },
     async onUploadImg(ev) {
       const res = await uploadImg(ev);
