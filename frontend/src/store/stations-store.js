@@ -84,6 +84,7 @@ export const stationStore = {
             state.stations.unshift(savedStation)
         },
         setSongList(state, { songList }) {
+            console.log("SET SONGLIST", songList)
             state.songList = songList
         },
         clearSongList(state) {
@@ -122,7 +123,8 @@ export const stationStore = {
             // console.log('in store', songStr);
             return songService.searchSong(songStr)
                 .then(songList => {
-                    commit({ type: 'setSongList', songList: songList })
+                    commit({ type: 'setSongList', songList })
+                    console.log("store commit: ", songList)
                 })
 
 

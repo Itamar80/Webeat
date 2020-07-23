@@ -1,6 +1,4 @@
 module.exports = connectSockets
-console.log('shh');
-console.log('hi!!')
 
 function connectSockets(io) {
     io.on('connection', socket => {
@@ -29,8 +27,11 @@ function connectSockets(io) {
             io.to(socket.myStation).emit('song changed', currSong)
         })
         socket.on('set songStatus', isPlaying => {
-            console.log(isPlaying)
             io.to(socket.myStation).emit('songStatus changed', isPlaying)
+        })
+        socket.on('station songs changed', station => {
+            console.log(station)
+            io.to(socket.myStation).emit('station changed', station)
         })
     })
 }

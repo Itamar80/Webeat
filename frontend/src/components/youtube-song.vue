@@ -18,6 +18,9 @@ export default {
   props: {
     song: Object
   }, 
+  created(){
+    console.log(song)
+  },
   methods:{
       addSong(song){
           var songToAdd = {

@@ -18,6 +18,9 @@ export default {
   data() {
     return {};
   },
+  created(){
+console.log(this.songLit)
+  },
   methods: {
     addSong(song) {
       this.$emit("addSong", song);
