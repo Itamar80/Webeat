@@ -26,7 +26,7 @@ export const stationStore = {
             jazz: 0,
             rock: 0,
             pop: 0,
-        }
+        },
     },
     getters: {
         genresMap(state) {
@@ -106,7 +106,8 @@ export const stationStore = {
         },
         setSongStatus(state, { isPlaying }) {
             state.isPlaying = isPlaying
-        }
+        },
+
     },
     actions: {
         loadStations({ commit, state }, { genre }) {
