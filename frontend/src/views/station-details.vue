@@ -5,7 +5,7 @@
       <div class="top-section flex justify-center align-center space-between">
         <div class="flex col">
           <h1>{{station.name}}</h1>
-          <span>Created By: {{station.createdBy.fullName}}</span>
+          <span v-if="station.createdBy.fullName">Created By: {{station.createdBy.fullName}}</span>
           <span class="genre capitalize">{{station.genre}}</span>
           <span>
             <font-awesome-icon
@@ -25,20 +25,11 @@
         </div>
         <img class="cover-img" :src="station.imgUrl" />
       </div>
-      <!-- <curr-song
-        v-if="station"
-        :station="station"
-        :currSong="currSong"
-        @toggleLike="toggleLike"
-        @changeSong="changeSong"
-        @toggleGif="setIsSongPlaying"
-      />-->
       <song-list
         v-if="station"
-        :songList="songList"
+        :songList="youtubeSongList"
         :currSong="currSong"
         :station="station"
-
         @addSong="addSong"
         @deleteSong="deleteSong"
         @searchSongs="searchSongs"
@@ -58,33 +49,42 @@ import songList from "../components/song-list.vue";
 export default {
   data() {
     return {
-      isLiked: false
+      isLiked: false,
     };
   },
   created() {
+
+    console.log('stations from created: ',this.stations)
     let id = this.$route.params.id;
     this.setStation(id);
     socket.emit("join station", id);
     socket.on("song changed", (song) => {
       this.$store.dispatch({ type: "setCurrSong", song });
     });
+    socket.on('station changed', station =>{
+      console.log(station)
+      this.$store.commit({ type: 'setCurrStation', station })
+    })
   },
   computed: {
-    songList() {
+    youtubeSongList() {
       return this.$store.getters.songList;
     },
     station() {
-      console.log('station is',this.$store.getters.currStation);
+      // console.log("station is", this.$store.getters.currStation);
       return this.$store.getters.currStation;
     },
     currSong() {
       return this.$store.getters.currSong;
     },
-    stations(){
-      console.log(this.$store.getters.stations)
-
-      return this.$store.getters.stations
+    stations() {
+      console.log('stations', this.$store.getters.stations);
+      return this.$store.getters.stations;
     },
+    loggedInUser(){
+      console.log('kiki',this.$store.getters.loggedinUser);
+      return this.$store.getters.loggedinUser
+    }
     // isPlaying(){
     //   return this.$store.getters.isPlaying;
     // }
@@ -94,37 +94,38 @@ export default {
       this.isLiked = !this.isLiked;
       this.$emit("toggleLike", id, this.isLiked);
     },
-    // setIsSongPlaying(val) {
-    //   this.$store.commit({ type: "setSongStatus", isPlaying: val });
-    // },
-   async setStation(id) {
-      await this.$store.dispatch({type: 'getCurrStation', id})
-      this.setCurrSong(this.station.songs[0]) 
+    async setStation(id) {
+      await this.$store.dispatch({ type: "getCurrStation", id });
+      this.setCurrSong(this.station.songs[0]);
     },
     async searchSongs(songStr) {
       await this.$store
         .dispatch({ type: "searchSong", songStr: songStr })
-        .then(songList => {});
     },
     async setCurrSong(song) {
       socket.emit("set currSong", song);
       const newCurrSong = await this.$store.dispatch({
         type: "setCurrSong",
-        song
+        song,
       });
     },
     addSong(song) {
-      this.station.songs.push(song);
-      this.$store.dispatch({ type: "saveStation", station: this.station });
+      var station = JSON.parse(JSON.stringify(this.station));
+      station.songs.push(song);
+      socket.emit("station songs changed", station);
+      this.$store.dispatch({ type: "saveStation", station });
     },
     deleteSong(songId) {
-      var idx = this.station.songs.findIndex(song => song._id === songId);
-     var station = JSON.parse(JSON.stringify( this.station))
+      var idx = this.station.songs.findIndex((song) => song._id === songId);
+      var station = JSON.parse(JSON.stringify(this.station));
       station.songs.splice(idx, 1);
+      socket.emit("station songs changed", station);
       this.$store.dispatch({ type: "saveStation", station });
     },
     changeSong(type, currSong) {
-      var idx = this.station.songs.findIndex(song => song._id === currSong._id);
+      var idx = this.station.songs.findIndex(
+        (song) => song._id === currSong._id
+      );
       if (type === "nextSong") {
         if (idx + 1 >= this.station.songs.length) {
           idx = -1;
@@ -141,12 +142,12 @@ export default {
       const loggedInUser = this.$store.getters.loggedInUser;
       await stationService.toggleLike(id, loggedInUser, isLiked);
       this.setStation(id);
-    }
+    },
   },
   components: {
     chatApp,
     songList,
-    currSong
-  }
+    currSong,
+  },
 };
 </script>

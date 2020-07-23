@@ -5,7 +5,7 @@
         <span @click="$router.push('/')" class="logo">
           <img class="logo-img" src="./assets/logo.png" alt />
         </span>
-        <nav>
+        <nav class="main-nav">
           <!-- <router-link class="nav-btn router-link router-btn" to="/">Home</router-link> -->
           <router-link class="nav-btn router-link router-btn" to="/stations">Stations</router-link>
           <router-link class="nav-btn router-link router-btn" to="/dashboard">Statistics</router-link>
@@ -16,8 +16,8 @@
       </div>
     </header>
     <router-view />
-    <curr-song />
-    <!-- <footer class="coffeerights flex align-center justify-center">copyright © Nir, Naomi, Itamar 2020</footer> -->
+    <curr-song    />
+    <footer class="coffeerights flex align-center justify-center">copyright © Nir, Naomi, Itamar 2020</footer>
   </div>
 </template>
 
