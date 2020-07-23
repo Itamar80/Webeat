@@ -52,15 +52,12 @@ async function remove(stationId) {
 
 async function update(station) {
     const collection = await dbService.getCollection('station')
-    const strId = station._id
-    const _id = ObjectId(strId)
-    delete station._id
-        // station._id = ObjectId(station._id);
+    station._id = ObjectId(station._id);
     try {
-        await collection.replaceOne({ _id }, { $set: station })
+        await collection.replaceOne({ "_id": station._id }, { $set: station })
         return station
     } catch (err) {
-        console.log(`ERROR: cannot update station ${ _id}`)
+        console.log(`ERROR: cannot update station ${ station._id}`)
         throw err;
     }
 }

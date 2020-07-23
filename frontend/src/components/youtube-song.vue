@@ -19,7 +19,6 @@ export default {
     song: Object
   }, 
   created(){
-    console.log(song)
   },
   methods:{
       addSong(song){
@@ -29,6 +28,7 @@ export default {
             title: song.snippet.title,
             imgUrl: song.snippet.thumbnails.default.url
           }
+          // console.log('youtubeSong ',songToAdd)
           this.$emit('addSong', songToAdd)
       }
   }

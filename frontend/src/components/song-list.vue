@@ -21,12 +21,12 @@
     <vue-custom-scrollbar suppressScrollX class="scroll-area" :settings="settings" @ps-scroll-y="scrollHanle">
       <section v-if="!isAddSong" class="songlist-container">
         <ul class="clean-list">
-          <li v-for="(song, index) in songs" :key="song._id">
-            <songListPrev :index="index"  :currSong="currSong" @deleteSong="deleteSong" @playSong="playSong" :song="song" />
+          <li v-for="(song, index) in station.songs" :key="song._id">
+            <songListPrev :index="index" :currSong="currSong" @deleteSong="deleteSong" @playSong="playSong" :song="song" />
           </li>
         </ul>
       </section>
-      <youtubeSongs v-if="isAddSong" @addSong="addSong" :songList="songList" />
+      <youtubeSongs v-else @addSong="addSong" :songList="songList" />
     </vue-custom-scrollbar>
   </section>
 </template>
@@ -50,7 +50,7 @@ export default {
   },
   data() {
     return {
-      songs: this.station.songs,
+      // songs: this.station.songs,
       songToFindYoutube: "",
       songTofindStation: "",
       settings: { 
@@ -87,6 +87,7 @@ export default {
       );
     },
     addSong(song) {
+      // console.log('songList: ', song)
       this.$emit("addSong", song);
       this.songToFindYoutube = "";
       this.isAddSong=false
