@@ -3,7 +3,7 @@
     <div class="">
     </div>
      <section class="genre-stations"> 
-    <h1 v-if="genre" class="h1  yellow">Genre: {{genre.charAt(0).toUpperCase()+ genre.slice(1)}}</h1>
+    <h1 v-if="genre" class="h1  yellow capitalize">Genre: {{genre}}</h1>
     <h1 v-else class="h1 container yellow"> Stations</h1>
     <div class="flex justify-center align-center">
     <station-filter class="filter" @filterStations="setFilter"/>
@@ -13,7 +13,7 @@
      <section class="all-stations" v-else  v-for="singleGenre in genres" :key="singleGenre">
     <div v-if="genresMap[singleGenre]>0" class="genre-header container flex space-between">
    <!-- titlecase css span -->
-    <h3 class="">{{singleGenre.charAt(0).toUpperCase()+singleGenre.slice(1)}}</h3>
+    <h3 class="capitalize">{{singleGenre}}</h3>
      <span class="show-all" @click="moveTo(singleGenre)">Show All</span>
     </div>
     <div v-if="genresMap[singleGenre]>0" class="background container">

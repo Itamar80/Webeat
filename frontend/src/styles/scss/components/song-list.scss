@@ -36,7 +36,32 @@
         filter: grayscale(100%);
     }
     input {
-        border-radius: 5px;
+        border: black solid 1px;
+        font-size: rem(18px);
+        display: block;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.466);
+        box-shadow: inset -3px -3px 5px black, inset 3px 3px 5px black;
+        color: $clr7;
+        // border: none;
+        outline: none;
+        border-radius: 0.2rem;
+        margin: 10px 0;
+        transition: 0.3s;
+        &:hover {
+            border: white 0.7px solid;
+            transition: 0.5s;
+        }
+        &::placeholder {
+            color: rgb(71, 71, 71);
+        }
+        &:focus {
+            background-color: rgb(44, 44, 44);
+            box-shadow: inset -3px -3px 5px rgb(36, 36, 36), inset 3px 3px 5px rgb(36, 36, 36);
+            &::placeholder {
+                color: rgb(117, 117, 117);
+            }
+        }
     }
     .edit-sub-btn {
         background-color: $clr4;

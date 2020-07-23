@@ -8,7 +8,7 @@
           class="btn edit-sub-btn"
           @click.prevent="searchSongs"
         >Search new songs</button>
-        <input v-if="!isAddSong" type="text" v-model="songTofindStation" />
+        <input v-if="!isAddSong" type="text" v-model="songTofindStation" class="input" />
         <button
           v-if="!isAddSong"
           class="btn edit-sub-btn"

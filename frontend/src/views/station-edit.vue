@@ -1,7 +1,8 @@
 <template>
   <div class="editor flex">
     <!-- <div class="form-songs-container flex"> -->
-    <section class="station-form flex justify-center align-center">
+    <section class="station-form flex justify-center col align-center">
+      <h1>Create your station</h1>
       <form @submit="addStation" class="flex col flex-start">
         <label>
           <h3>Station name:</h3>
@@ -18,8 +19,8 @@
         <input @change="onUploadImg" type="file" name="file" id="file" class="inputfile" />
         <label for="file">Upload Station Image</label>
         <h3>Genre:</h3>
-        <el-select v-model="station.genre" placeholder="Select a genre">
-          <el-option
+        <el-select v-model="station.genre" placeholder="Select a genre" >
+          <el-option 
             v-for="item in options"
             :key="item.value"
             :label="item.label"
@@ -59,8 +60,8 @@
           </span>
           <span
             v-if="station.genre"
-            class="genre"
-          >{{station.genre.charAt(0).toUpperCase()+station.genre.slice(1)}}</span>
+            class="genre capitalize"
+          >{{station.genre}}</span>
           <span v-else class="genre">Genre</span>
           <span>
             <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />

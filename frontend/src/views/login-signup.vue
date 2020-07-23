@@ -7,29 +7,26 @@
         </h3>
         <button @click="doLogout">Logout</button>
       </div>
-  <div v-if="!loggedinUser" class="login">
-      <form v-if="isUser" @submit="login">
+  <div v-if="!loggedinUser" class="login container flex justify-center align-center col">
+      <form  class="flex justify-center align-center col" v-if="isLogin" @submit="login">
         Username:  <input type="text" v-model="loginCred.username">
      Password:  <input type="password" v-model="loginCred.password">
 
-     <button>Login</button>
+     <button class="signupfree">Login</button>
       </form>
-      <div class="signup container">
-      <form class="flex justify-center aign-center col" v-if="!isUser" @submit="signup">
+      <div class="signup container  flex justify-center align-center col">
+      <form class="flex justify-center align-center col" v-if="!isLogin" @submit="signup">
         Email: <input type="text" placeholder="email@example.com" v-model="signupCred.email">
       Username:  <input type="text" v-model="signupCred.username">
      Password:  <input type="password" v-model="signupCred.password">
      Full Name:  <input type="text" v-model="signupCred.fullName">
-      <label>
-          Upload Image:
-          <input type="file" @change="onUploadImg" />
-        </label>(optional)
-     <button>Signup</button>
+          <input class="inputfile" type="file" @change="onUploadImg" />
+     <label for="file">Upload Profile Image</label>
+     <button class="signupfree">Signup</button>
       </form>
       </div>
     <span class="change-sign-log">
-       New around? <button @click="isUser=!isUser">Signup for free</button>
-       
+       New around? <button class="signupfree" @click="changeForm">{{button.txt}}</button>
       </span>
   </div>
 </section>
@@ -52,9 +49,12 @@ export default {
         fullName:null,
         imgUrl: ""
       },
-      isUser:false,
       msg:'',
       img:'',
+      button:{
+        txt:'Signup for free'
+      },
+      isLogin:false,
     }
   },
     computed: {
@@ -85,6 +85,12 @@ export default {
       this.img = res.url;
       this.signupCred.imgUrl = this.img;
     },
+    changeForm(){
+      this.isLogin=!this.isLogin
+      if(this.isLogin) this.button.txt='Signup for free'
+      else this.button.txt='Login now'
+      
+    }
     },
         created(){
     },

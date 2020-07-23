@@ -8,6 +8,12 @@
         box-shadow: 1.5px 7px 6px -1px rgba(0, 0, 0, 0.64), inset -0.5px -1px #3f3e41;
         width: 35%;
         // height: 100vh;
+        h1 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: rem(35px);
+            font-family: $font1;
+        }
         form {
             // background-color: rgba(231, 231, 231, 0.116);
             padding: 10px;
@@ -49,6 +55,7 @@
                 z-index: -1;
             }
             .inputfile+label {
+                transition: .3s;
                 // font-size: 1.25em;
                 // font-weight: 700;
                 // color: white;
@@ -89,6 +96,9 @@
                 margin: 5px 0;
                 outline: none;
             }
+            .el-scrollbar {
+                background-color: black;
+            }
         }
         button {
             background-color: $clr4;
@@ -99,6 +109,19 @@
         label {
             margin-bottom: 15px;
         }
+        // .el-select-dropdown__item {
+        //     border: black solid 1px;
+        //     font-size: 1.125rem;
+        //     display: block;
+        //     padding: 10px;
+        //     background-color: rgba(0, 0, 0, 0.466);
+        //     box-shadow: inset -3px -3px 5px black, inset 3px 3px 5px black;
+        //     color: #cfcfcf;
+        //     outline: none;
+        //     border-radius: 0.2rem;
+        //     margin: 10px 0;
+        //     transition: 0.3s;
+        // }
     }
     .preview {
         margin: 0 20px 0 50px;
