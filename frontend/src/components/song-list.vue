@@ -15,16 +15,44 @@
           @click.prevent="searchInStation"
         >Search in Station</button>
       </div>
-      <font-awesome-icon @click="isAddSong=!isAddSong" :icon="toggleAdd" size="lg" class="icon toggle-songs" />
+      <font-awesome-icon
+        @click="isAddSong=!isAddSong"
+        :icon="toggleAdd"
+        size="lg"
+        class="icon toggle-songs"
+      />
       <!-- <button class="add-btn" @click="addSong=!addSong">{{toggleAdd}}</button> -->
-    </section >
-    <vue-custom-scrollbar suppressScrollX class="scroll-area" :settings="settings" @ps-scroll-y="scrollHanle">
+    </section>
+    <vue-custom-scrollbar
+      suppressScrollX
+      class="scroll-area"
+      :settings="settings"
+      @ps-scroll-y="scrollHanle"
+    >
       <section v-if="!isAddSong" class="songlist-container">
-        <ul class="clean-list">
+        <div>
+          <div class="simple-page">
+            <Container @drop="onDrop">
+              <Draggable v-for="(song, index) in songs" :key="song._id">
+                <div class="draggable-item">
+                  <songListPrev
+                    :index="index"
+                    :currSong="currSong"
+                    @deleteSong="deleteSong"
+                    @playSong="playSong"
+                    :song="song"
+                  />
+                </div>
+              </Draggable>
+            </Container>
+          </div>
+        </div>
+
+        <!-- <ul class="clean-list">
           <li v-for="(song, index) in songs" :key="song._id">
             <songListPrev :index="index"  :currSong="currSong" @deleteSong="deleteSong" @playSong="playSong" :song="song" />
           </li>
-        </ul>
+        </ul>-->
       </section>
       <youtubeSongs v-if="isAddSong" @addSong="addSong" :songList="songList" />
     </vue-custom-scrollbar>
@@ -32,6 +60,8 @@
 </template>
  
 <script>
+import { Container, Draggable } from "vue-smooth-dnd";
+import { applyDrag, generateItems } from "../utils";
 import songListPrev from "../components/songlist-prev.vue";
 import youtubeSongs from "../components/youtube-songs.vue";
 import vueCustomScrollbar from "vue-custom-scrollbar";
@@ -46,16 +76,16 @@ export default {
     station: Object,
     currSong: Object,
     songList: Object,
-    isPlaying: Boolean
+    isPlaying: Boolean,
   },
   data() {
     return {
       songs: this.station.songs,
       songToFindYoutube: "",
       songTofindStation: "",
-      settings: { 
+      settings: {
         maxScrollbarLength: 60,
-        suppressScrollX: true
+        suppressScrollX: true,
       },
       isAddSong: false,
       // youtubeSongsToRender: this.songList
@@ -67,29 +97,27 @@ export default {
     },
   },
   watch: {
-    songTofindStation: function(input) {
+    songTofindStation: function (input) {
       if (input === "") this.songs = this.station.songs;
-      
     },
-    songToFindYoutube: function(input) {
-      if (input === "") this.$store.commit('clearSongList')
+    songToFindYoutube: function (input) {
+      if (input === "") this.$store.commit("clearSongList");
     },
-    
   },
-  methods: { 
+  methods: {
     searchSongs() {
       console.log(this.songToFindYoutube);
       this.$emit("searchSongs", this.songToFindYoutube);
     },
     searchInStation() {
-      this.songs = this.station.songs.filter(song =>
+      this.songs = this.station.songs.filter((song) =>
         song.title.includes(this.songTofindStation)
       );
     },
     addSong(song) {
       this.$emit("addSong", song);
       this.songToFindYoutube = "";
-      this.isAddSong=false
+      this.isAddSong = false;
     },
     deleteSong(songId) {
       this.$emit("deleteSong", songId);
@@ -97,13 +125,18 @@ export default {
     playSong(song) {
       this.$emit("playSong", song);
     },
-    scrollHanle(evt) {}
+    scrollHanle(evt) {},
+    onDrop(dropResult) {
+      this.songs = applyDrag(this.songs, dropResult);
+    },
   },
   components: {
     songListPrev,
     youtubeSongs,
-    vueCustomScrollbar
-  }
+    vueCustomScrollbar,
+    Container,
+    Draggable,
+  },
 };
 </script>
 
