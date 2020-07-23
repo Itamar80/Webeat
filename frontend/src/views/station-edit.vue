@@ -1,7 +1,7 @@
 <template>
-  <div class="editor flex">
+  <div class="editor flex container">
     <!-- <div class="form-songs-container flex"> -->
-    <section class="station-form flex justify-center col align-center">
+    <section class="station-form flex justify-center col">
       <h1>Create your station</h1>
       <form @submit="addStation" class="flex col flex-start">
         <label>
@@ -28,10 +28,10 @@
           ></el-option>
         </el-select>
         <section class="flex col">
-          <div class="flex row align-center">
+          <!-- <div class="flex row align-center"> -->
             <input type="text" v-model="songToFindYoutube" />
             <button class="btn edit-sub-btn" @click.prevent="searchSongs">Add song</button>
-          </div>
+          <!-- </div> -->
           <vue-custom-scrollbar
             suppressScrollX
             class="scroll-area"
