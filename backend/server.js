@@ -5,7 +5,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 
-const app = express()
+const app = express(express.static('public'))
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 

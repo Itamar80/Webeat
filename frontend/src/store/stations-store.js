@@ -106,6 +106,11 @@ export const stationStore = {
         },
         setSongStatus(state, { isPlaying }) {
             state.isPlaying = isPlaying
+        },
+        changeSongsOrder(state, { stationIdx, songList }) {
+            state.stations[stationIdx].songs = songList
+            console.log('in store :', state.stations);
+
         }
     },
     actions: {
@@ -145,6 +150,7 @@ export const stationStore = {
 
 
         },
+
         // listenToSongChange() {
         //     socket.on('song changed', song)
         // }

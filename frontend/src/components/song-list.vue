@@ -30,11 +30,15 @@
       @ps-scroll-y="scrollHanle"
     >
       <section v-if="!isAddSong" class="songlist-container">
-<<<<<<< HEAD
         <div>
           <div class="simple-page">
-            <Container @drop="onDrop">
-              <Draggable v-for="(song, index) in songs" :key="song._id">
+            <Container
+              @drop="onDrop"
+              :get-ghost-parent="getGhostParent"
+              :remove-on-drop-out="true"
+              @drop-ready="onDropReady"
+            >
+              <Draggable v-for="(song, index) in station.songs" :key="song._id">
                 <div class="draggable-item">
                   <songListPrev
                     :index="index"
@@ -52,11 +56,6 @@
         <!-- <ul class="clean-list">
           <li v-for="(song, index) in songs" :key="song._id">
             <songListPrev :index="index"  :currSong="currSong" @deleteSong="deleteSong" @playSong="playSong" :song="song" />
-=======
-        <ul class="clean-list">
-          <li v-for="(song, index) in station.songs" :key="song._id">
-            <songListPrev :index="index" :currSong="currSong" @deleteSong="deleteSong" @playSong="playSong" :song="song" />
->>>>>>> ea346493bbada813e3dd0436bf2058e557eaaec4
           </li>
         </ul>-->
       </section>
@@ -67,7 +66,7 @@
  
 <script>
 import { Container, Draggable } from "vue-smooth-dnd";
-import { applyDrag, generateItems } from "../utils";
+import { applyDrag } from "../utils/helpers";
 import songListPrev from "../components/songlist-prev.vue";
 import youtubeSongs from "../components/youtube-songs.vue";
 import vueCustomScrollbar from "vue-custom-scrollbar";
@@ -133,9 +132,17 @@ export default {
       this.$emit("playSong", song);
     },
     scrollHanle(evt) {},
-    onDrop(dropResult) {
-      this.songs = applyDrag(this.songs, dropResult);
+    onDrop (dropResult) {
+      let songsToDrag =  JSON.parse(JSON.stringify(this.station.songs))
+    songsToDrag = applyDrag(songsToDrag, dropResult)
+     this.$emit('updateSongList', songsToDrag)
     },
+    getGhostParent(){
+      return document.body;
+    },
+    onDropReady(dropResult){
+      console.log('drop ready', dropResult);
+    }
   },
   components: {
     songListPrev,
