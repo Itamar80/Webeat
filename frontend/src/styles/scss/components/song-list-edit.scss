@@ -15,4 +15,11 @@
     .songlist-container {
         width: 100%;
     }
+    div {
+        width: 100%;
+        input {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+    }
 }

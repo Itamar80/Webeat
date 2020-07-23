@@ -16,7 +16,7 @@
       </div>
     </header>
     <router-view />
-    <curr-song    />
+    <curr-song />
     <!-- <footer class="coffeerights flex align-center justify-center">copyright © Nir, Naomi, Itamar 2020</footer> -->
   </div>
 </template>
