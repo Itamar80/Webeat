@@ -1,7 +1,16 @@
 <template>
   <div class="popular-station-list ">
-    <ul class="clean-list popular-grid">
-        <station-preview :isPopular="isPopular" :station="station" @toggleLike="toggleLike" v-for="station in popularStations" :key="station._id"></station-preview>
+    <ul class="clean-list ">
+   
+
+   <div class="block">
+    <!-- <span class="demonstration">Switch when indicator is clicked</span> -->
+    <el-carousel trigger="click" >
+    <el-carousel-item v-for="station in popularStations" :key="station._id">
+        <station-preview :isPopular="isPopular" :station="station" @toggleLike="toggleLike"></station-preview>
+      </el-carousel-item>
+    </el-carousel>
+  </div>
     </ul>
   </div>
 </template>
@@ -27,4 +36,4 @@ export default {
       stationPreview
     },
 }
-</script>
+</script> 

@@ -3,10 +3,18 @@
     <button class="btn" v-if="genreFromUrl" @click="moveTo">Return to all stations</button>
     <ul class=" clean-list card-grid" >
 
-        <station-preview class="station" :genre="genre" :station="station" @toggleLike="toggleLike" v-for="station in stations" :key="station._id"></station-preview>
         <!-- <station-preview class="station" v-else :station="station" @toggleLike="toggleLike"></station-preview> -->
    
+        <station-preview class="station" :genre="genre" :station="station" @toggleLike="toggleLike" v-for="station in stations" :key="station._id"></station-preview>
     </ul>
+
+  <div class="block">
+    
+  
+       
+      
+  </div>
+
   </div>
 </template>
 
