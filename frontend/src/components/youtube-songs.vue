@@ -18,8 +18,12 @@ export default {
   data() {
     return {};
   },
+  created(){
+console.log(this.songLit)
+  },
   methods: {
     addSong(song) {
+      // console.log('youtubeSongs', song)
       this.$emit("addSong", song);
     }
   },

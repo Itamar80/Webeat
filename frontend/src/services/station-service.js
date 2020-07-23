@@ -77,11 +77,16 @@ function getEmptyStation() {
 }
 
 function _update(station) {
+    console.log('update')
     return axios.put(`${_getURL(station._id)}`, station)
-        .then(res => res.data)
+        .then(res => {
+            console.log(res.data)
+            return res.data
+        })
 }
 
 function _add(station) {
+    console.log('add')
     return axios.post(`${_getURL()}`, station)
         .then(res => res.data)
 }

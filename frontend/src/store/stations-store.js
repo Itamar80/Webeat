@@ -75,19 +75,25 @@ export const stationStore = {
             state.filterBy = filterBy
         },
         updateStation(state, { savedStation }) {
+            console.log('store ststion:', savedStation)
+            console.log('saved station: ', savedStation._id)
             let stationIdx = state.stations.findIndex(station => {
+                console.log('station: ', station._id)
                 return station._id === savedStation._id
             })
+            console.log(stationIdx)
+            console.log(state.stations)
             state.stations.splice(stationIdx, 1, savedStation)
         },
         addStation(state, savedStation) {
             state.stations.unshift(savedStation)
         },
         setSongList(state, { songList }) {
+            console.log("SET SONGLIST", songList)
             state.songList = songList
         },
         clearSongList(state) {
-            state.songList = []
+            state.songList = {}
         },
         setCurrSong(state, { song }) {
             // console.log('mutations currSong', currSong)
@@ -115,14 +121,15 @@ export const stationStore = {
             const type = (station._id) ? 'updateStation' : 'addStation'
             return stationService.save(station)
                 .then((savedStation) => {
-                    commit({ type, station: savedStation })
+                    commit({ type, savedStation })
                 })
         },
         searchSong({ commit }, { songStr }) {
             // console.log('in store', songStr);
             return songService.searchSong(songStr)
                 .then(songList => {
-                    commit({ type: 'setSongList', songList: songList })
+                    commit({ type: 'setSongList', songList })
+                    console.log("store commit: ", songList)
                 })
 
 

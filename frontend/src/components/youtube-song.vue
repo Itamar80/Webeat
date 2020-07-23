@@ -18,6 +18,8 @@ export default {
   props: {
     song: Object
   }, 
+  created(){
+  },
   methods:{
       addSong(song){
           var songToAdd = {
@@ -26,6 +28,7 @@ export default {
             title: song.snippet.title,
             imgUrl: song.snippet.thumbnails.default.url
           }
+          // console.log('youtubeSong ',songToAdd)
           this.$emit('addSong', songToAdd)
       }
   }

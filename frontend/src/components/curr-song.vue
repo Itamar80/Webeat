@@ -27,12 +27,18 @@
         />
         <font-awesome-icon
           v-if="isPlaying"
-          @click="pauseVideo(false)"
+          @click="playOrPauseVideo(false,false)"
           icon="pause"
           size="lg"
           class="control-icon"
         />
-        <font-awesome-icon v-else @click="playVideo(false)" icon="play" size="lg" class="control-icon" />
+        <font-awesome-icon
+          v-else
+          @click="playOrPauseVideo(true, false)"
+          icon="play"
+          size="lg"
+          class="control-icon"
+        />
         <font-awesome-icon
           @click="changeSong('nextSong')"
           icon="forward"
@@ -43,7 +49,11 @@
       <span class="flex row justify-center align-center">
         {{ time }}
         <input
-          @change="changeSongTime"
+          @input="changeSongTime()"
+          @mousedown="playOrPauseVideo(false)"
+          @mouseup="playOrPauseVideo(true)"
+          @touchstart="playOrPauseVideo(false)"
+          @touchend="playOrPauseVideo(true)"
           :value="songCurrTime"
           :max="songEndTime"
           id="progressBar"
@@ -109,7 +119,6 @@ export default {
       return this.currSong.youtubeId;
     },
     player() {
-      console.log(this.$refs.youtube.player);
       return this.$refs.youtube.player;
     },
     currStation() {
@@ -123,33 +132,36 @@ export default {
     // }
   },
   async created() {
-    socket.on('song changed', (song) => {
-      this.$store.dispatch({ type: 'setCurrSong', song });
+    socket.on("song changed", (song) => {
+      console.log(song)
+      this.$store.dispatch({ type: "setCurrSong", song });
     });
-    socket.on('songStatus changed', (isPlaying) => {
-      console.log(isPlaying)
-      this.$store.commit({ type: 'setSongStatus', isPlaying });
-      (isPlaying)? this.playVideo(true): this.pauseVideo(true);
-
+    socket.on("songStatus changed", (isPlaying) => {
+      this.$store.commit({ type: "setSongStatus", isPlaying });
+      this.playOrPauseVideo(isPlaying, true);
     });
-  }, 
+    socket.on("update song time", (timestamp) => {
+      this.updateSongTime(timestamp);
+    });
+  },
   methods: {
+    async playOrPauseVideo(play, isFromSocket) {
+      this.isPlaying = play;
+      if (play) await this.player.playVideo();
+      else await this.player.pauseVideo();
+      if (isFromSocket) return;
+      socket.emit("set songStatus", play);
+      this.$store.commit({ type: "setSongStatus", isPlaying: play });
+    },
+    async setCurrSong(song) {
+      socket.emit("set currSong", song);
+      const newCurrSong = await this.$store.dispatch({
+        type: "setCurrSong",
+        song,
+      });
+    },
     async getSongEndTime() {
       return (this.songEndTime = await this.player.getDuration());
-    },
-    async playVideo(isFromSocket) {
-      this.isPlaying = true
-      await this.player.playVideo();
-      if (isFromSocket) return 
-      socket.emit("set songStatus", true);
-      this.$store.commit({ type: "setSongStatus", isPlaying: true });
-    },
-    async pauseVideo(isFromSocket) {
-      this.isPlaying = false
-      await this.player.pauseVideo();
-       if (isFromSocket) return 
-      socket.emit("set songStatus", false);
-      this.$store.commit({ type: "setSongStatus", isPlaying: false });
     },
     async changeSong(type) {
       var idx = this.currStation.songs.findIndex(
@@ -169,13 +181,6 @@ export default {
       const songTime = await this.getSongEndTime();
       this.duration = this.formatTime(songTime);
     },
-    async setCurrSong(song) {
-      socket.emit("set currSong", song);
-      const newCurrSong = await this.$store.dispatch({
-        type: "setCurrSong",
-        song,
-      });
-    },
     changeVolume(event) {
       this.player.setVolume(event.target.value);
       this.changeVolumeIcon(event.target.value);
@@ -186,11 +191,14 @@ export default {
       if (value <= 60) this.volumeIcon = "volume-down";
       if (value <= 20) this.volumeIcon = "volume-off";
     },
-    changeSongTime(event) {
-      // if (this.player.playing){
-
-      // }
+    changeSongTime() {
+      console.log(event.target.value)
       this.player.seekTo(event.target.value);
+      socket.emit("song time changed", event.target.value);
+    },
+    updateSongTime(timestamp){
+      console.log(timestamp)
+      this.player.seekTo(timestamp);
     },
     async playing() {
       this.isPlaying = true;
