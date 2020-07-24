@@ -31,7 +31,7 @@ async function getById(id) {
     const station = await axios.get(`${_getURL(id)}`)
     return station.data
 }
-
+//make sessionStorage for guest and update the like in the station per user.
 async function toggleLike(id, loggedInUser, isLiked) {
     const station = await getById(id);
     console.log('start ', station.likedByUsers)

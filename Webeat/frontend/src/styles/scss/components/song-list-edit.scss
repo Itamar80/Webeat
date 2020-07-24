@@ -4,10 +4,9 @@
         background-color: rgba(255, 255, 255, 0.123);
         height: 250px;
         width: 100%;
-        p {
-            text-align: center;
-            margin-top: 120px;
-        }
+        // p {
+        //     text-align: center;
+        // }
     }
     input {
         width: 300px;
@@ -21,5 +20,10 @@
             flex-grow: 1;
             margin-right: 10px;
         }
+    }
+    .scroll-area {
+        position: relative;
+        margin: auto;
+        height: 400px;
     }
 }

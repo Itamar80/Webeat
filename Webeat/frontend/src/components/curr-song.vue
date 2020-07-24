@@ -15,7 +15,7 @@
         <p>{{currSong.title}}</p>
       </div>
       <div class="flex row justify-center align-center">
-        <font-awesome-icon :icon="volumeIcon" class="control-icon" />
+        <font-awesome-icon @click="toggleMute" :icon="volumeIcon" class="control-icon" />
         <input id="volume" @input="changeVolume" value="100" type="range" />
       </div>
       <div class="flex row justify-center align-center">
@@ -75,6 +75,7 @@ import { faBackward } from "@fortawesome/free-solid-svg-icons";
 import { faVolumeUp } from "@fortawesome/free-solid-svg-icons";
 import { faVolumeDown } from "@fortawesome/free-solid-svg-icons";
 import { faVolumeOff } from "@fortawesome/free-solid-svg-icons";
+import { faVolumeMute } from "@fortawesome/free-solid-svg-icons";
 import { faPause } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
@@ -88,6 +89,7 @@ library.add(faBackward);
 library.add(faVolumeOff);
 library.add(faVolumeDown);
 library.add(faVolumeUp);
+library.add(faVolumeMute);
 
 //IMPORTS
 import socket from "@/services/socket-service.js";
@@ -112,6 +114,8 @@ export default {
       isPlaying: true,
       songEndTime: 0,
       songCurrTime: 0,
+      isMuted: false,
+      currSongCueTime: null
     };
   },
   computed: {
@@ -132,6 +136,9 @@ export default {
     // }
   },
   async created() {
+    socket.on('joined new station', time =>{
+      this.songCurrTime = time
+    })
     socket.on("song changed", (song) => {
       console.log(song)
       this.$store.dispatch({ type: "setCurrSong", song });
@@ -186,29 +193,42 @@ export default {
       this.changeVolumeIcon(event.target.value);
     },
     changeVolumeIcon(value) {
-      console.log(value);
       if (value >= 60) this.volumeIcon = "volume-up";
       if (value <= 60) this.volumeIcon = "volume-down";
       if (value <= 20) this.volumeIcon = "volume-off";
+      if (value <0) this.volumeIcon = "volume-mute";
+    },
+    toggleMute(){
+      this.isMuted = !this.isMuted
+      if(this.isMuted){
+        this.player.mute()
+      this.changeVolumeIcon(-1)
+      } else{
+        player.unMute()
+      const elVolumeInput =  document.getElementById('volume')
+      this.changeVolumeIcon(elVolumeInput.value)
+      }
     },
     changeSongTime() {
-      console.log(event.target.value)
       this.player.seekTo(event.target.value);
       socket.emit("song time changed", event.target.value);
     },
     updateSongTime(timestamp){
       console.log(timestamp)
+      this.songCurrTime = timestamp
       this.player.seekTo(timestamp);
     },
     async playing() {
       this.isPlaying = true;
       this.duration = this.formatTime(await this.player.getDuration());
       this.timeId = setInterval(() => {
-        this.player.getCurrentTime().then((time) => {
+        this.player.getCurrentTime()
+        .then((time) => {
+          // socket.emit('songCurrTime', time)
           this.songCurrTime = time;
           this.time = this.formatTime(time + 1);
         });
-      }, 100);
+      }, 1000);
     },
     formatTime(time) {
       time = Math.round(time);
@@ -222,7 +242,7 @@ export default {
       this.changeSong("nextSong");
       this.time = "00:00";
       clearInterval(this.timeId);
-    },
+    }
   },
   async mounted() {
     this.duration = this.formatTime(await this.player.getDuration());

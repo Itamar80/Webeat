@@ -26,7 +26,7 @@ export const stationStore = {
             jazz: 0,
             rock: 0,
             pop: 0,
-        }
+        },
     },
     getters: {
         genresMap(state) {
@@ -107,11 +107,6 @@ export const stationStore = {
         setSongStatus(state, { isPlaying }) {
             state.isPlaying = isPlaying
         },
-        changeSongsOrder(state, { stationIdx, songList }) {
-            state.stations[stationIdx].songs = songList
-            console.log('in store :', state.stations);
-
-        }
     },
     actions: {
         loadStations({ commit, state }, { genre }) {
