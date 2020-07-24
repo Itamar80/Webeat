@@ -16,7 +16,7 @@
     </section>
     <form class="chat-form flex justify-center" @submit.prevent="sendMsg">
       <input type="text" v-model="msg.txt" @input="setIsTyping" />
-      <button class="btn">Send</button>
+      <button class="chat-btn btn">Send</button>
     </form>
   </section>
 </template>
