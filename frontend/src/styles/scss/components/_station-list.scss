@@ -1,0 +1,12 @@
+.station-list {
+    .grid {
+        display: grid;
+        //responsivity changes require
+        grid-template-columns: repeat(4, 230px);
+        grid-auto-rows: auto;
+        gap: 16px;
+    }
+    .station {
+        margin: 16px;
+    }
+}

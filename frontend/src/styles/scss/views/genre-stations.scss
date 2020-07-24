@@ -1,0 +1,103 @@
+.genre-stations {
+    .stations-by-gener {
+        margin: 50px 0;
+    }
+    margin-bottom: 80px;
+    input {
+        padding: 15px;
+        width: 300px;
+        border-radius: 7px;
+    }
+    .search-icon {
+        cursor: pointer;
+        color: $clr4;
+        font-size: 2.3rem;
+    }
+    .h1 {
+        font-family: $font1;
+        font-style: normal;
+        font-weight: 500;
+        // font-family: vibes, sans-serif;
+        // font-style: normal;
+        // font-weight: 800;
+        // font-size: 10rem;
+        font-size: 4rem;
+        color: $clr4;
+        margin-top: 30px;
+    }
+    h3 {
+        font-family: $font1;
+        font-weight: 500;
+        font-size: 2.3rem;
+        color: #cfcfcf;
+    }
+    .all-stations {
+        .show-all {
+            padding-top: 15px;
+            color: grey;
+            cursor: pointer;
+            transition: .3s;
+            &:hover {
+                color: white;
+            }
+        }
+    }
+    .station-preview {
+        filter: opacity(80%);
+        transition: .5s;
+        &:hover {
+            filter: opacity(100%)
+        }
+    }
+    // .station-cover {
+    // }
+    .preview-details {
+        width: 100%;
+        h2 {
+            font-size: 1.3rem;
+            margin: 4px 0 5px 0;
+        }
+        .like-section {
+            display: flex;
+            align-self: flex-start;
+            margin-top: 5px;
+            margin-right: 5px;
+            .heart-icon {
+                font-size: 25px;
+                margin-left: 8px;
+                transition: .5s;
+                &:hover {
+                    color: #c70039;
+                }
+            }
+        }
+        .clock-icon {
+            margin-left: 7px
+        }
+        .play-icon {
+            margin-right: 10px;
+            font-size: 40px;
+            transition: .5s;
+            &:hover {
+                color: white;
+            }
+        }
+        // margin-bottom: 32px;
+    }
+    .btn {
+        font-size: 13px;
+    }
+    .background {
+        margin: 35px auto 15px;
+        padding: 15px 0 15px 0;
+        // background-color: lighten($color: $clr1, $amount: 2);
+        background: rgb(49, 51, 53);
+        background: radial-gradient(circle, rgba(49, 51, 53, 0.7010154403558299) 0%, rgba(34, 36, 39, 1) 37%, rgba(28, 30, 33, 1) 100%);
+    }
+    .genre-header {
+        border-bottom: 2px solid $clr1;
+        box-shadow: 0 2px rgba(0, 0, 0, 0.64), inset 0 -1px #39383a;
+        // border-bottom: 1px grey solid;
+        padding: 15px;
+    }
+}

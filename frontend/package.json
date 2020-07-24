@@ -1,0 +1,53 @@
+{
+    "name": "webeat",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build --dest ../backend/public"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.30",
+        "@fortawesome/free-brands-svg-icons": "^5.14.0",
+        "@fortawesome/free-regular-svg-icons": "^5.14.0",
+        "@fortawesome/free-solid-svg-icons": "^5.14.0",
+        "@fortawesome/vue-fontawesome": "^0.1.10",
+        "axios": "^0.19.2",
+        "chart.js": "^2.9.3",
+        "core-js": "^3.6.5",
+        "element-ui": "^2.13.2",
+        "font-awesome": "^4.7.0",
+        "moment": "^2.27.0",
+        "register-service-worker": "^1.7.1",
+        "simple-scrollbar": "^0.4.0",
+        "socket.io": "^2.3.0",
+        "vue": "^2.6.11",
+        "vue-carousel-3d": "^0.2.0",
+        "vue-custom-scrollbar": "^1.2.0",
+        "vue-drag-n-drop": "^1.2.1",
+        "vue-router": "^3.3.4",
+        "vue-simple-scrollbar": "^0.1.8",
+        "vue-smooth-dnd": "^0.2.8",
+        "vue-youtube": "^1.4.0",
+        "vue-youtube-embed": "^2.2.2",
+        "vueperslides": "^2.10.2",
+        "vuescroll": "^4.16.1",
+        "vuex": "^3.5.1"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "~4.4.6",
+        "@vue/cli-plugin-pwa": "~4.4.6",
+        "@vue/cli-plugin-router": "~4.4.6",
+        "@vue/cli-plugin-vuex": "~4.4.6",
+        "@vue/cli-service": "~4.4.6",
+        "file-loader": "^6.0.0",
+        "node-sass": "^4.14.1",
+        "sass-loader": "^9.0.2",
+        "vue-template-compiler": "^2.6.11"
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+    ]
+}

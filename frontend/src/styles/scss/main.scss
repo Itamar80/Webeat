@@ -1,0 +1,49 @@
+//Setup
+@import '~vue-simple-scrollbar/dist/vue-simple-scrollbar.css';
+@import "setup/fonts.scss";
+@import "setup/variables.scss";
+@import "setup/functions.scss";
+@import "setup/mixins.scss";
+@import "setup/typography.scss";
+//Basics
+@import "basics/helpers.scss";
+@import "basics/layout.scss";
+@import "basics/base.scss";
+@import "basics/links.scss";
+@import "basics/buttons.scss";
+//Components
+@import "components/chat-app.scss";
+@import "components/filter-stations.scss";
+// @import "components/song-search.scss";
+@import "components/station-list.scss";
+@import "components/station-preview.scss";
+@import "components/main-header.scss";
+@import "components/curr-song.scss";
+@import "components/song-list.scss";
+@import "components/youtube-song.scss";
+@import "components/popular-station-list.scss";
+@import "components/song-list-edit.scss";
+//Views
+@import "views/genre-stations.scss";
+@import "views/about.scss";
+@import "views/dashboard.scss";
+@import "views/login-signup.scss";
+@import "views/station-app.scss";
+@import "views/station-details.scss";
+@import "views/station-edit.scss";
+@import "views/user-details.scss";
+.coffeerights {
+    // position: relative;
+    // bottom: 80px;
+    // z-index: ;
+    width: 100%;
+    height: 70px;
+    background-color: $clr4;
+    margin-bottom: 80px;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh+80px);
+}

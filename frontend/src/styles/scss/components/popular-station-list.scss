@@ -1,0 +1,93 @@
+.heart-icon {
+    color: $clr7;
+}
+
+.liked {
+    color: $clr4;
+}
+
+.popular-station-list {
+    margin-bottom: 144px;
+    margin-top: 32px;
+    .station-preview {
+        // margin-right: 16px;
+        // filter: opacity(80%);
+        transition: .3s;
+        .station-cover {
+            position: relative;
+            width: 100%;
+            img {
+                position: relative;
+                margin: 0 auto;
+                height: 550px;
+                width: 100%;
+                object-fit: cover;
+                z-index: 0;
+                transition: .5s;
+                border-radius: 0.5rem;
+            }
+        }
+        .preview-details {
+            margin-top: 8px;
+            width: 93%;
+            h2 {
+                font-size: 1.3rem;
+                color: white;
+                margin-bottom: 5px;
+            }
+            .play-icon {
+                margin-right: 15px;
+                font-size: 2.5rem;
+                transition: .5s;
+                &:hover {
+                    color: white;
+                }
+            }
+            span {
+                color: grey;
+            }
+            .clock-icon {
+                color: grey;
+                margin-left: 10px;
+            }
+            .like-section {
+                display: flex;
+                align-self: flex-start;
+                margin-right: 10px;
+                margin-top: 2px;
+                .heart-icon {
+                    font-size: 1.5rem;
+                    &:hover {
+                        transition: .5s;
+                        color: $clr4;
+                    }
+                }
+                span {
+                    font-size: 1rem;
+                    margin-right: 8px;
+                }
+            }
+        }
+        &:hover {
+            cursor: pointer;
+            filter: opacity(100%);
+        }
+    }
+    .el-carousel__item h3 {
+        color: #475669;
+        font-size: 14px;
+        opacity: 50%;
+        line-height: 200px;
+        margin: 0;
+    }
+    div .el-carousel__mask {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    // .el-carousel__item:nth-child(2n+1) {
+    //     background-color: #d3dce6;
+    // }
+}
+
+div .el-carousel__container {
+    height: 640px;
+}

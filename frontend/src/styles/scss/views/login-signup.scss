@@ -1,0 +1,121 @@
+.logged-in {
+    margin-top: 40px;
+}
+
+.login {
+    text-align: center;
+    margin-top: 80px;
+    input {
+        border: black solid 1px;
+        font-size: rem(18px);
+        display: block;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.466);
+        box-shadow: inset -3px -3px 5px black, inset 3px 3px 5px black;
+        color: $clr7;
+        // border: none;
+        outline: none;
+        border-radius: 0.2rem;
+        margin: 10px 0;
+        transition: 0.3s;
+        &:hover {
+            border: white 0.7px solid;
+            transition: 0.5s;
+        }
+        &::placeholder {
+            color: rgb(71, 71, 71);
+        }
+        &:focus {
+            background-color: rgb(44, 44, 44);
+            box-shadow: inset -3px -3px 5px rgb(36, 36, 36), inset 3px 3px 5px rgb(36, 36, 36);
+            &::placeholder {
+                color: rgb(117, 117, 117);
+            }
+        }
+    }
+    .inputfile {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
+    .inputfile+label {
+        transition: .3s;
+        // font-size: 1.25em;
+        // font-weight: 700;
+        // color: white;
+        // padding: 10px;
+        // background-color: rgb(48, 48, 48);
+        // display: inline-block;
+        // box-shadow: inset -3px -3px 5px rgb(63, 63, 63), inset 3px 3px 5px rgb(63, 63, 63);
+        display: inline-block;
+        padding: 0.7em 0.7em;
+        margin: 0 0 15px 0;
+        border-radius: 0.2em;
+        box-sizing: border-box;
+        text-decoration: none;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        color: #FFFFFF;
+        background-color: $clr1;
+        box-shadow: inset 0 -0.6em 1em -0.35em rgba(0, 0, 0, 0.17), inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15), inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
+        text-align: center;
+        position: relative;
+    }
+    .signupfree {
+        transition: .3s;
+        outline: none;
+        // font-size: 1.25em;
+        // font-weight: 700;
+        // color: white;
+        // padding: 10px;
+        // background-color: rgb(48, 48, 48);
+        // display: inline-block;
+        // box-shadow: inset -3px -3px 5px rgb(63, 63, 63), inset 3px 3px 5px rgb(63, 63, 63);
+        display: inline-block;
+        padding: 0.7em 0.7em;
+        margin: 0 0 15px 0;
+        border-radius: 0.2em;
+        box-sizing: border-box;
+        text-decoration: none;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        color: #FFFFFF;
+        background-color: $clr1;
+        box-shadow: inset 0 -0.6em 1em -0.35em rgba(0, 0, 0, 0.17), inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15), inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
+        text-align: center;
+        position: relative;
+        &:hover {
+            box-shadow: inset 0 0.6em 2em -0.3em rgba(0, 0, 0, 0.15), inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
+            cursor: pointer;
+        }
+    }
+    .inputfile:focus+label,
+    .inputfile+label:hover {
+        box-shadow: inset 0 0.6em 2em -0.3em rgba(0, 0, 0, 0.15), inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
+        // background-color: rgb(61, 61, 61);
+    }
+    .inputfile+label {
+        cursor: pointer;
+    }
+    .inputfile:focus+label {
+        outline: 1px dotted #000;
+        outline: -webkit-focus-ring-color auto 5px;
+    }
+    .inputfile+label * {
+        pointer-events: none;
+    }
+    form {
+        width: 70%;
+    }
+}
+
+.signup {
+    width: 50%;
+}
+
+.change-sign-log {
+    margin-top: 40px;
+}
