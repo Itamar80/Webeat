@@ -1,9 +1,9 @@
 <template>
-  <div class="editor flex container">
+  <div class="editor flex">
     <!-- <div class="form-songs-container flex"> -->
-    <section class="station-form flex justify-center col">
+    <section class="station-form flex align-center justify-center col">
       <h1>Create your station</h1>
-      <form @submit="addStation" class="flex col flex-start">
+      <form @submit="addStation" class="flex col">
         <label>
           <h3>Station name:</h3>
           <input type="text" placeholder="Enter the station name" v-model="station.name" ref="name" />
@@ -19,8 +19,8 @@
         <input @change="onUploadImg" type="file" name="file" id="file" class="inputfile" />
         <label for="file">Upload Station Image</label>
         <h3>Genre:</h3>
-        <el-select v-model="station.genre" placeholder="Select a genre" >
-          <el-option 
+        <el-select v-model="station.genre" placeholder="Select a genre">
+          <el-option
             v-for="item in options"
             :key="item.value"
             :label="item.label"
@@ -29,8 +29,8 @@
         </el-select>
         <section class="flex col">
           <!-- <div class="flex row align-center"> -->
-            <input type="text" v-model="songToFindYoutube" />
-            <button class="btn edit-sub-btn" @click.prevent="searchSongs">Add song</button>
+          <input type="text" placeholder="Add song to the station" v-model="songToFindYoutube" />
+          <button class="btn edit-sub-btn" @click.prevent="searchSongs">Search song</button>
           <!-- </div> -->
           <vue-custom-scrollbar
             suppressScrollX
@@ -44,24 +44,22 @@
         <button type="submit" class="btn submit-btn">Add station</button>
       </form>
     </section>
-    <div class="preview flex col">
+    <div class="details-section flex col">
       <div class="station-details flex space-around">
         <div class="flex col">
           <h1 v-if="station.name">{{station.name}}</h1>
-          <h1 v-else>Name</h1>
-          <span v-if="loggedInUser">
+          <h1 v-else>Station name</h1>
+          <span class="creator-info  align-center" v-if="loggedInUser">
             Created By:
+            <img class="creator-img" :src="loggedInUser.imgUrl" alt />
             {{loggedInUser.fullName}}
-            <img :src="loggedInUser.imgUrl" alt />
           </span>
-          <span v-else>
+          <span class="creator-info  align-center" v-else>
             Created By:
+            <img class="creator-img" src="@/assets/default-guest.jpg" alt />
             Guest
           </span>
-          <span
-            v-if="station.genre"
-            class="genre capitalize"
-          >{{station.genre}}</span>
+          <span v-if="station.genre" class="genre capitalize">{{station.genre}}</span>
           <span v-else class="genre">Genre</span>
           <span v-if="station.songs.length">
             <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
@@ -152,7 +150,7 @@ export default {
       return this.$store.getters.songList;
     },
     loggedInUser() {
-      console.log('logged in is',this.$store.getters.loggedinUser);
+      console.log("logged in is", this.$store.getters.loggedinUser);
       return this.$store.getters.loggedinUser;
     },
   },
@@ -174,11 +172,11 @@ export default {
         type: "updateGenresMap",
         genre: this.station.genre,
       });
-     if(this.loggedInUser){
-       this.station.createdBy=this.loggedInUser;
-       }else this.station.createdBy={fullName:'Guest'}
+      if (this.loggedInUser) {
+        this.station.createdBy = this.loggedInUser;
+      } else this.station.createdBy = { fullName: "Guest" };
       this.$store.dispatch({ type: "saveStation", station: this.station });
-       this.$router.push(`/`);
+      this.$router.push(`/`);
     },
     async onUploadImg(ev) {
       const res = await uploadImg(ev);
