@@ -46,7 +46,7 @@
     </section>
     <div class="details-section flex col">
       <div class="station-details flex space-around">
-        <div class="flex col">
+        <div class="info flex col">
           <h1 v-if="station.name">{{station.name}}</h1>
           <h1 v-else>Station name</h1>
           <span class="creator-info  align-center" v-if="loggedInUser">
