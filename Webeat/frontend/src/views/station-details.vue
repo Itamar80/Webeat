@@ -2,10 +2,18 @@
   <div class="station-details flex space-between">
     <chat-app v-if="station" :station="station" />
     <section v-if="station" class="container">
-      <div class="top-section flex justify-center align-center space-between">
+      <div class="top-section flex justify-center space-between">
         <div class="flex col">
-          <h1>{{station.name}}</h1>
-          <span v-if="station.createdBy.fullName">Created By: {{station.createdBy.fullName}}</span>
+          <h1>
+            <!-- <font-awesome-icon class="play-station-btn" icon="play-circle" size="lg" /> -->
+            {{station.name}}
+          </h1>
+          <!-- <div></div> -->
+          <span class="creator-info flex align-center" v-if="station.createdBy.fullName">
+            Created By:
+            <img class="creator-img" :src="station.createdBy.imgUrl" alt />
+            {{station.createdBy.fullName}}
+          </span>
           <span class="genre capitalize">{{station.genre}}</span>
           <span>
             <font-awesome-icon
@@ -47,6 +55,12 @@ import socket from "../services/socket-service.js";
 import chatApp from "../components/chat-app.vue";
 import currSong from "../components/curr-song.vue";
 import songList from "../components/song-list.vue";
+import { fontAwsomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faPlayCircle);
+
 export default {
   data() {
     return {
@@ -54,38 +68,39 @@ export default {
     };
   },
   created() {
-
-    console.log('stations from created: ',this.stations)
+    console.log("stations from created: ", this.stations);
     let id = this.$route.params.id;
     this.setStation(id);
     socket.emit("join station", id);
     socket.on("song changed", (song) => {
       this.$store.dispatch({ type: "setCurrSong", song });
     });
-    socket.on('station changed', station =>{
-      console.log(station)
-      this.$store.commit({ type: 'setCurrStation', station })
-    })
+    socket.on("station changed", (station) => {
+      console.log(station);
+      this.$store.commit({ type: "setCurrStation", station });
+    });
   },
   computed: {
     youtubeSongList() {
       return this.$store.getters.songList;
     },
     station() {
-      // console.log("station is", this.$store.getters.currStation);
       return this.$store.getters.currStation;
     },
+    // playThisStation() {
+    //   play-station-btn
+    //   if (this.station === this.$store.getters.currStation)
+    // },
     currSong() {
       return this.$store.getters.currSong;
     },
     stations() {
-      console.log('stations', this.$store.getters.stations);
       return this.$store.getters.stations;
     },
-    loggedInUser(){
-      console.log('kiki',this.$store.getters.loggedinUser);
-      return this.$store.getters.loggedinUser
-    }
+    loggedInUser() {
+      console.log("kiki", this.$store.getters.loggedinUser);
+      return this.$store.getters.loggedinUser;
+    },
     // isPlaying(){
     //   return this.$store.getters.isPlaying;
     // }
@@ -100,8 +115,7 @@ export default {
       this.setCurrSong(this.station.songs[0]);
     },
     async searchSongs(songStr) {
-      await this.$store
-        .dispatch({ type: "searchSong", songStr: songStr })
+      await this.$store.dispatch({ type: "searchSong", songStr: songStr });
     },
     async setCurrSong(song) {
       socket.emit("set currSong", song);
@@ -110,12 +124,11 @@ export default {
         song,
       });
     },
-    updateSongList(newSongOrder){
+    updateSongList(newSongOrder) {
       var station = JSON.parse(JSON.stringify(this.station));
-      station.songs = newSongOrder
+      station.songs = newSongOrder;
       socket.emit("station songs changed", station);
       this.$store.dispatch({ type: "saveStation", station });
-    
     },
     addSong(song) {
       var station = JSON.parse(JSON.stringify(this.station));

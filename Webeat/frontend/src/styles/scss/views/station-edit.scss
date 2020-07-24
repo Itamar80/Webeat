@@ -153,6 +153,7 @@
             .creator-info {
                 display: flex;
                 .creator-img {
+                    object-fit: cover;
                     margin: 7px;
                     border-radius: 50%;
                     width: 30px;

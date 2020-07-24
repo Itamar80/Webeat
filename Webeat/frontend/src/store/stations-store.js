@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { stationService } from '../services/station-service.js'
 import { songService } from '../services/song-service.js'
+import { storageService } from '../services/storage.service.js'
 import socket from '../services/socket-service.js'
 
 Vue.use(Vuex)
@@ -13,8 +14,8 @@ export const stationStore = {
             name: '',
         },
         songList: {},
-        currSong: {},
-        currStation: {},
+        currSong: null,
+        currStation: null,
         isPlaying: true,
         genresMap: {
             hiphop: 0,
@@ -40,11 +41,16 @@ export const stationStore = {
             return state.songList
         },
         currSong(state) {
-            return state.currSong
+            let currSong = state.currSong
+            if (currSong) return currSong;
+            else if (storageService.loadFromSession("currSong"))
+                return storageService.loadFromSession("currSong");
+            else return {}
+
         },
         currStation(state) {
-            console.log(state.currStation)
-            return state.currStation
+            if (state.currStation) return state.currStation
+            return storageService.loadFromSession('currStation')
         },
         popularStations(state) {
             let copyStations = JSON.parse(JSON.stringify(state.stations))
@@ -96,13 +102,12 @@ export const stationStore = {
             state.songList = {}
         },
         setCurrSong(state, { song }) {
-            // console.log('mutations currSong', currSong)
             state.currSong = song;
+            storageService.storeToSession('currSong', song)
         },
         setCurrStation(state, { station }) {
-            // console.log('id', id)
-            // console.log('state station', state.stations);
             state.currStation = station
+            storageService.storeToSession('currStation', station)
         },
         setSongStatus(state, { isPlaying }) {
             state.isPlaying = isPlaying
