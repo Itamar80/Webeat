@@ -30,15 +30,15 @@
 import moment from 'moment';
 import {fontAwsomeIcon} from '@fortawesome/vue-fontawesome'
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
 
 
  
+library.add(faPlayCircle)
 library.add(faHeart)
 library.add(faClock)
-library.add(faPlayCircle)
 
 export default {
   props:['station','genre','isPopular'],
@@ -55,7 +55,7 @@ export default {
      return moment(this.station.createdAt).subtract(10, 'days').calendar()
     },
     name(){
-    return ( this.station.name.length>10)?this.station.name.substring(0,15)+'...':this.station.name
+    return ( this.station.name.length>15)?this.station.name.substring(0,15)+'...':this.station.name
     },
   },
   methods:{

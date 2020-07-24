@@ -37,9 +37,10 @@
               :get-ghost-parent="getGhostParent"
               :remove-on-drop-out="true"
               @drop-ready="onDropReady"
+              drag-class="onDrag"
             >
-              <Draggable v-for="(song, index) in station.songs" :key="song._id">
-                <div class="draggable-item">
+              <Draggable  v-for="(song, index) in station.songs" :key="song._id">
+                <div class="draggable-item" >
                   <songListPrev
                     :index="index"
                     :currSong="currSong"

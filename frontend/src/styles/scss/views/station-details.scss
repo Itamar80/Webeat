@@ -7,44 +7,66 @@
         // height: 100vh;
         // padding-left: 50px;
         // padding-right: 50px;
-        .cover-img {
-            margin: 20px 0;
-            width: 300px;
-            height: 180px;
-            border-radius: 10px;
-        }
-        h1 {
-            text-align: left;
-            font-weight: 700;
-            font-size: rem(35px);
-            font-family: $font1;
-            margin-top: 10px;
-        }
-        span {
-            margin: 3px 0;
-        }
-        .genre {
-            color: $clr1;
-            background-color: #c1c1c1e3;
-            border-radius: 5px;
-            max-width: 90px;
-            text-align: center;
-        }
-        .icon {
-            margin: 0 5px 0 0;
-        }
-        .heart-icon {
-            background-color: transparent;
-            color: $clr7;
-            border: none;
-            padding: 0;
-            &:hover {
-                cursor: pointer;
+        .top-section {
+            margin: 20px 0 10px;
+            .cover-img {
+                // margin: 20px 0;
+                // width: 300px;
+                // height: 180px;
+                // border-radius: 10px;
+                width: 340px;
+                height: 220px;
+                border-radius: 10px;
+                object-fit: cover;
+            }
+            .creator-info {
+                display: flex;
+                .creator-img {
+                    object-fit: cover;
+                    margin: 7px;
+                    border-radius: 50%;
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+            h1 {
+                text-align: left;
+                font-weight: 700;
+                font-size: rem(43px);
+                font-family: $font1;
+                margin: 0;
+                .play-station-btn {
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+            span {
+                margin: 3px 0;
+            }
+            .genre {
+                color: $clr1;
+                background-color: #c1c1c1e3;
+                border-radius: 5px;
+                max-width: 90px;
+                text-align: center;
+            }
+            .icon {
+                margin: 0 5px 0 0;
+            }
+            .heart-icon {
+                background-color: transparent;
+                color: $clr7;
+                border: none;
+                padding: 0;
+                &:hover {
+                    cursor: pointer;
+                    color: $clr4;
+                }
+            }
+            .liked {
                 color: $clr4;
             }
-        }
-        .liked {
-            color: $clr4;
         }
     }
     // margin: 10px 5%;

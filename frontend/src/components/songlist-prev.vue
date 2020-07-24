@@ -9,6 +9,7 @@
         <p>{{song.title}}</p>
       </section>
       <div v-if="!edit" class="flex align-center">
+        <font-awesome-icon  icon="sort" class="sort" />
         <div class="sound-gif" v-if="isPlaying">
         <img  class="sound-gif" v-if="!songPlaying" src="@/assets/preview.png"/>
         <img  class="sound-gif" v-else src="@/assets/sound-gif2.gif" />
@@ -27,6 +28,8 @@ import { fontAwsomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faSort } from "@fortawesome/free-solid-svg-icons";
+library.add(faSort);
 library.add(faPlay);
 library.add(faTrash);
 export default {
