@@ -1,0 +1,36 @@
+.coffeerights {
+    width: 100%;
+    height: 70px;
+    background-color: $clr4;
+    margin-bottom: 80px;
+    div {
+        font-size: rem(18px);
+    }
+    span {
+        font-size: 2.3rem;
+        margin: 0 8px;
+        font-weight: 100;
+    }
+    img {
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+        margin: 0 5px;
+    }
+    p {
+        margin: 5px;
+    }
+    .social-about {
+        .icon {
+            margin: 4px;
+            cursor: pointer;
+            font-size: rem(20px);
+            // margin-top: 16px;
+            transition: .3s;
+            color: white;
+            &:hover {
+                color: $clr1;
+            }
+        }
+    }
+}

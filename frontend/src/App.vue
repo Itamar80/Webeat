@@ -16,13 +16,14 @@
       </div>
     </header>
     <router-view />
-    <curr-song    />
-    <footer class="coffeerights flex align-center justify-center">copyright © Nir, Naomi, Itamar 2020</footer>
+    <curr-song/>
+    <app-footer/>
   </div>
 </template>
 
 <script>
 import currSong from "@/components/curr-song.vue";
+import appFooter from "@/components/footer.vue";
 import stationService from "@/services/station-service.js";
 import socketService from "@/services/socket-service.js";
 
@@ -37,7 +38,8 @@ export default {
     socketService.setup();
   },
   components: {
-    currSong
+    currSong,
+    appFooter
   }
 };
 </script>
