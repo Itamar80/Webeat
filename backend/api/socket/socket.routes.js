@@ -16,7 +16,6 @@ function connectSockets(io) {
             socket.broadcast.to(socket.myTopic).emit('chat showTyping', userName)
         })
         socket.on('join station', stationId => {
-            console.log(stationId)
             if (socket.myStation) {
                 socket.leave(socket.myStation)
             }
@@ -31,14 +30,11 @@ function connectSockets(io) {
             io.to(socket.myStation).emit('songStatus changed', isPlaying)
         })
         socket.on('station songs changed', station => {
+            console.log(station)
             io.to(socket.myStation).emit('station changed', station)
         })
         socket.on('song time changed', timestamp => {
             io.to(socket.myStation).emit('update song time', timestamp)
-        })
-        socket.on('songCurrTime', time => {
-            console.log(time)
-            io.to(socket.myStation).emit('getSongCurrTime', time)
         })
     })
 }

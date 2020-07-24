@@ -94,6 +94,7 @@ export default {
         genre: "",
         songs: [],
         imgUrl: "",
+        likedByUsers:[]
       },
       options: [
         {
@@ -174,7 +175,7 @@ export default {
       });
       if (this.loggedInUser) {
         this.station.createdBy = this.loggedInUser;
-      } else this.station.createdBy = { fullName: "Guest" };
+      } else this.station.createdBy = { fullName: "Guest", imgUrl: '@/assets/default-guest.jpg'};
       this.$store.dispatch({ type: "saveStation", station: this.station });
       this.$router.push(`/`);
     },

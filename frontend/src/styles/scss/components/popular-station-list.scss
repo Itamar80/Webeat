@@ -11,19 +11,20 @@
     margin-top: 32px;
     .station-preview {
         // margin-right: 16px;
-        filter: opacity(80%);
+        // filter: opacity(80%);
         transition: .3s;
         .station-cover {
             position: relative;
+            width: 100%;
             img {
                 position: relative;
                 margin: 0 auto;
                 height: 550px;
-                width: 1210px;
+                width: 100%;
                 object-fit: cover;
                 z-index: 0;
                 transition: .5s;
-                border-radius: 1rem;
+                border-radius: 0.5rem;
             }
         }
         .preview-details {
@@ -72,6 +73,19 @@
             filter: opacity(100%);
         }
     }
+    .el-carousel__item h3 {
+        color: #475669;
+        font-size: 14px;
+        opacity: 50%;
+        line-height: 200px;
+        margin: 0;
+    }
+    div .el-carousel__mask {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    // .el-carousel__item:nth-child(2n+1) {
+    //     background-color: #d3dce6;
+    // }
 }
 
 div .el-carousel__container {

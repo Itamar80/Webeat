@@ -1,19 +1,26 @@
 <template>
-  <section v-if="currStation" class="curr-song flex justify-center align-center">
+  <section class="curr-song flex justify-center align-center">
     <section class="song-controllers flex row justify-center align-center space-between">
       <youtube
+      v-if="currStation"
         :video-id="videoId"
         :player-vars="playerVars"
         @playing="playing"
         @ended="ended"
         ref="youtube"
       ></youtube>
-      <img v-if="isPlaying" src="@/assets/sound-gif2.gif" />
-      <img v-else src="@/assets/preview.png" />
-      <div class="currPlaying">
-        <h5>Now Playing:</h5>
-        <p>{{currSong.title}}</p>
+      <img v-if="currStation" @click="goToStation" :src="currStation.imgUrl" />
+      <div v-if="currStation">
+      <img class="gif" v-if="isPlaying" src="@/assets/sound-gif2.gif" />
+      <img class="gif" v-else src="@/assets/preview.png" />
       </div>
+      <div v-if="currStation" class="currPlaying">
+        <h5>Now Playing:</h5>
+        <p>{{currSongTitle}}</p>
+      </div>
+      <p v-else>
+        No station chosen
+      </p>
       <div class="flex row justify-center align-center">
         <font-awesome-icon @click="toggleMute" :icon="volumeIcon" class="control-icon" />
         <input id="volume" @input="changeVolume" value="100" type="range" />
@@ -131,6 +138,9 @@ export default {
     currSong() {
       return this.$store.getters.currSong;
     },
+    currSongTitle(){
+    return ( this.currSong.title.length>30)?this.currSong.title.substring(0,30)+'...':this.currSong.title
+    },
     // isPlaying(){
     //   return this.$store.getters.isPlaying;
     // }
@@ -242,6 +252,9 @@ export default {
       this.changeSong("nextSong");
       this.time = "00:00";
       clearInterval(this.timeId);
+    },
+    goToStation(){
+      this.$router.push(`stations/details/${this.currStation._id}`)
     }
   },
   async mounted() {

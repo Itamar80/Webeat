@@ -1,4 +1,15 @@
 .station-app {
+    .scroll-btn {
+        position: absolute;
+        bottom: 20%;
+        left: 40%;
+        outline: none;
+        box-shadow: none;
+        border: none;
+        &:hover {
+            cursor: pointer;
+        }
+    }
     .h2 {
         font-family: $font1;
         font-weight: 500;

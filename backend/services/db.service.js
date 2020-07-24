@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-
+// const url = `mongodb+srv:Nir:154472sdkio@cluster0.bzo1u.mongodb.net/test?retryWrites=true&w=majority`
 const config = require('../config')
 
 module.exports = {

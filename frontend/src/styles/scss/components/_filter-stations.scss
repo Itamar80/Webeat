@@ -9,7 +9,7 @@
 // @import url('https://fonts.googleapis.com/css?family=Inconsolata:700');
 .input-container {
     position: absolute;
-    top: 250px;
+    top: 200px;
     width: 300px;
     height: 100px;
     .search {
@@ -78,7 +78,7 @@
         text-shadow: 0 0 10px crimson;
         padding: 0 80px 0 20px;
         border-radius: 30px;
-        box-shadow: 0 0 10px 0 crimson, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 20px 0 rgb(202, 84, 55), 0 20px 25px 0 rgba(0, 0, 0, 0.2);
         // box-shadow: inset 0 0 25px 0 rgba(0, 0, 0, 0.5);
         transition: all 1s;
         opacity: 0;
@@ -95,7 +95,9 @@
         }
         &:focus~.search {
             right: -250px;
-            background: #151515;
+            // background: darken($color: $clr4, $amount: 13);
+            background: rgb(19, 19, 19);
+            border: 1px rgb(117, 0, 0) solid;
             z-index: 6;
             &::before {
                 top: 0;

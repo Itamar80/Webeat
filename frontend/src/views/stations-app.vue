@@ -10,6 +10,7 @@
             Listen to music with friends.
             No matter where they're at.
           </h3>
+          <button class="scroll-btn" @click="smoothScroll('.h2', 1000)">lets go</button>
           <img src="@/assets/hero.jpg" />
           <img src="@/assets/hero2.jpg" />
           <img src="@/assets/hero3.jpg" />
@@ -17,8 +18,8 @@
         </div>
       </div>
     </div>
-    <section class="homepage">
-      <h2 class="h2">Most popular:</h2>
+    <section name="popular" class="homepage">
+      <h2  class="h2">Most popular:</h2>
       <popular-stations @toggleLike="toggleLike" :stations="stations" />
       <h2 class="h2-genres">Genres:</h2>
       <section class="channel-container card-grid">
@@ -110,8 +111,29 @@ export default {
     window.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
+    smoothScroll(target, duration) {
+      var target = document.querySelector(target);
+      var targetPosition = target.getBoundingClientRect().top;
+      var startingPosition = window.pageYOffset;
+      var distance = targetPosition - startingPosition;
+      var startTime = null;
+      function animationScroll(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        var timeElapsed = currentTime - startTime;
+        var run = ease(timeElapsed, startingPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animationScroll);
+      }
+      function ease(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return (c / 2) * t * t + b;
+        t--;
+        return (-c / 2) * (t * (t - 2) - 1) + b;
+      }
+      requestAnimationFrame(animationScroll);
+    },
     handleScroll(event) {
-      // if (window.scrollY=== 0) 
+      // if (window.scrollY=== 0)
       // document.querySelector('.main-nav')
       // console.log(event)
     },
@@ -129,6 +151,9 @@ export default {
     async loadStations() {
       this.stations = await this.$store.dispatch({ type: "loadStations" });
     },
+    scrollDown(){
+
+    }
   },
 
   components: {
