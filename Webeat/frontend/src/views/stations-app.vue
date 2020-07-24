@@ -10,6 +10,7 @@
             Listen to music with friends.
             No matter where they're at.
           </h3>
+          <!-- <button class="btn scroller-btn" @click="scrollDown">Get started</button> -->
           <img src="@/assets/hero.jpg" />
           <img src="@/assets/hero2.jpg" />
           <img src="@/assets/hero3.jpg" />
@@ -17,8 +18,8 @@
         </div>
       </div>
     </div>
-    <section class="homepage">
-      <h2 class="h2">Most popular:</h2>
+    <section name="popular" class="homepage">
+      <h2  class="h2">Most popular:</h2>
       <popular-stations @toggleLike="toggleLike" :stations="stations" />
       <h2 class="h2-genres">Genres:</h2>
       <section class="channel-container card-grid">
@@ -117,6 +118,9 @@ export default {
     async loadStations() {
       this.stations = await this.$store.dispatch({ type: "loadStations" });
     },
+    scrollDown(){
+
+    }
   },
 
   components: {
