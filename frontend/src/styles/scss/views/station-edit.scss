@@ -141,6 +141,9 @@
             flex: .5;
             justify-content: space-between;
             margin: 20px 0 10px;
+            .info {
+                justify-content: space-around;
+            }
             img {
                 width: 340px;
                 height: 220px;

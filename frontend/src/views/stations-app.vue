@@ -23,17 +23,28 @@
       <popular-stations @toggleLike="toggleLike" :stations="stations" />
       <h2 class="h2-genres">Genres:</h2>
       <section class="channel-container card-grid">
-        <!-- <div> -->
-        <router-link to="stations/hiphop" class="station-cover flex">
-          <img src="../assets/genres-pics/hiphop1.jpg" alt="genre image" />
+       <div> 
+          <!-- <ul>
+            <li class="clean-list" v-for="genre in genres" :key="genre">
+        <router-link :to="'stations/'+genre" class="station-cover flex">
+          <img :src="'../assets/genres-pics/'+genre+'.jpg'" alt="genre image" />
+          <span :class="genre+'-channel channel flex flex-start align-center col'">
+            <h3 class="capitalize">{{genre}}</h3>
+            <p>Show more</p>
+          </span>
+        </router-link>
+            </li>
+          </ul>  -->
+         <router-link to="stations/hiphop" class="station-cover flex">
+          <img src="../assets/genres-pics/hiphop.jpg" alt="genre image" />
           <span class="hiphop-channel channel flex flex-start align-center col">
             <h3>Hip-Hop</h3>
             <p>Show more</p>
           </span>
         </router-link>
-        <!-- </div> -->
-        <router-link to="stations/rock" class="station-cover flex">
-          <img src="../assets/genres-pics/rock2.jpg" alt="genre image" />
+         </div> 
+         <router-link to="stations/rock" class="station-cover flex">
+          <img src="../assets/genres-pics/rock.jpg" alt="genre image" />
           <span class="rock-channel channel flex flex-start align-center col">
             <h3>Rock</h3>
             <p>Show more</p>
@@ -61,18 +72,18 @@
           </span>
         </router-link>
         <router-link to="stations/country" class="station-cover flex">
-          <img src="../assets/genres-pics/country1.jpg" alt="genre image" />
+          <img src="../assets/genres-pics/country.jpg" alt="genre image" />
           <span class="country-channel channel flex flex-start align-center col">
             <h3>Country</h3>
             <p>Show more</p>
           </span>
         </router-link>
-      </section>
-      <!-- <img /> -->
+       <!-- <img /> -->
       <!-- <div class="bottom-details"> -->
       <!-- <span>{{station.likedByUsers.length}}</span>
       <span> {{station.songs.length}} tracks</span>-->
       <!-- </div>   -->
+      </section> 
     </section>
   </div>
 </template>
@@ -82,11 +93,12 @@ import stationList from "../components/station-list.vue";
 import stationFilter from "../components/filter-stations.vue";
 import popularStations from "../components/popular-stations.vue";
 import { stationService } from "@/services/station-service.js";
-// import dasfasd from '../assets/hero3.webp'
+// import dasfasd from '../assets/genres-pics/'
 
 export default {
   data() {
     return {
+       genres:['hiphop','arabic','easy','electronic','country','flamenco','jazz','rock','pop'],
       stations: [],
       genre: "",
     };
