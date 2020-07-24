@@ -10,11 +10,12 @@
             Listen to music with friends.
             No matter where they're at.
           </h3>
-          <button class="scroll-btn" @click="smoothScroll('.h2', 1000)">lets go</button>
-          <img src="@/assets/hero.jpg" />
-          <img src="@/assets/hero2.jpg" />
+          <button class="scroll-btn" @click="smoothScroll('.h2', 1000)">Start Listening Now</button>
+          <img src="@/assets/hero1.webp" />
+          <img src="@/assets/dribble-red.png" />
           <img src="@/assets/hero3.jpg" />
-          <img src="@/assets/hero2.jpg" />
+          <img src="@/assets/hero10b.jpg" />
+          <!-- <img src="@/assets/hero12.jpg" /> -->
         </div>
       </div>
     </div>
