@@ -1,4 +1,5 @@
 .chat-app {
+    height: 85vh;
     width: 30%;
     display: flex;
     flex-direction: column;
@@ -12,9 +13,9 @@
     inset -0.5px -1px #3f3e41;
     .chat-container {
         flex: 1;
-        margin: 0 auto;
-        max-width: 80%;
-        // height: 100%;
+        max-width: 67%;
+        margin: 0 16px;
+        width: max-content;
         .message {
             // display: inline-block;
             border-radius: 20px;
@@ -28,15 +29,16 @@
         }
     }
     .chat-form {
-        bottom: -70px;
-        left: 15px;
+        margin: 14px 15px;
         input {
+            flex: 1;
             border: none;
             outline: none;
             padding: 15px;
             border-radius: 10px;
         }
-        button {
+        .chat-btn {
+            // border-radius: 0;
             background-color: #c70039;
             padding: 7px;
             &:hover {
