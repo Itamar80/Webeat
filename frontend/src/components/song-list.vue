@@ -1,7 +1,7 @@
 <template>
   <section class="song-list">
     <section class="song-search flex space-between align-center">
-      <div class="flex row align-center">
+      <div class="flex row align-center search-input">
         <input v-if="isAddSong" type="text" v-model="songToFindYoutube" />
         <button
           v-if="isAddSong"
@@ -132,6 +132,7 @@ export default {
     playSong(song) {
       this.$emit("playSong", song);
     },
+    
     scrollHanle(evt) {},
     onDrop (dropResult) {
       let songsToDrag =  JSON.parse(JSON.stringify(this.station.songs))

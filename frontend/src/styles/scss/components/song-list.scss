@@ -1,21 +1,18 @@
     .song-list {
-        // margin-top: 50px;
-        // padding-left: 50px;
-        // padding-right: 50px;
         .song-search {
-            margin-left: 8px;
             width: 100%;
-            // .icon {
+            button {
+                font-size: rem(14px);
+            }
             .toggle-songs {
                 vertical-align: middle;
                 color: $clr7;
-                // font-size: rem(20px);
                 background-color: $clr4;
                 border-radius: 50%;
                 box-shadow: none;
                 border: none;
                 outline: none;
-                padding: 5px;
+                padding: 0 5px;
                 width: 25px;
                 height: 25px;
                 margin-right: 25px;
@@ -23,10 +20,8 @@
                     cursor: pointer;
                 }
             }
-            // }
         }
         .play {
-            // margin: 0 0 0 10px;
             margin: 0 30px 0 0;
         }
         .sort {
@@ -52,7 +47,6 @@
             background-color: rgba(0, 0, 0, 0.466);
             box-shadow: inset -3px -3px 5px black, inset 3px 3px 5px black;
             color: $clr7;
-            // border: none;
             outline: none;
             border-radius: 0.2rem;
             margin: 10px 0;
@@ -76,12 +70,10 @@
             background-color: $clr4;
             padding: 10px;
         }
-        // .songlist-container {}
     }
     
     .onDrag {
         .play {
-            // margin: 0 0 0 10px;
             margin: 0 30px 0 0;
         }
         .sort {
@@ -115,17 +107,6 @@
         -ms-touch-action: auto;
     }
     
-    // .ps__rail-x {
-    //     // display: none;
-    //     opacity: 0;
-    //     transition: background-color .2s linear, opacity .2s linear;
-    //     -webkit-transition: background-color .2s linear, opacity .2s linear;
-    //     height: 5px;
-    //     /* there must be 'bottom' or 'top' for ps__rail-x */
-    //     bottom: 0px;
-    //     /* please don't change 'position' */
-    //     position: absolute;
-    // }
     .ps__rail-y {
         display: block;
         opacity: 50%;
@@ -161,18 +142,6 @@
     .ps .ps__rail-y.ps--clicking {
         background-color: lighten($clr1, 40%);
         opacity: 0.9;
-    }
-    
-    .ps__thumb-x {
-        background-color: $clr7;
-        border-radius: 6px;
-        transition: background-color .2s linear, height .2s ease-in-out;
-        -webkit-transition: background-color .2s linear, height .2s ease-in-out;
-        height: 6px;
-        /* there must be 'bottom' for ps__thumb-x */
-        bottom: 2px;
-        /* please don't change 'position' */
-        position: absolute;
     }
     
     .ps__thumb-y {
@@ -213,5 +182,24 @@
     (-ms-high-contrast: none) {
         .ps {
             overflow: auto !important;
+        }
+    }
+    
+    @media screen and (max-width: $narrow-breakpoint) {
+        .song-list {
+            .song-search {
+                width: 100%;
+                button {
+                    font-size: rem(12px);
+                }
+            }
+            .sound-gif {
+                height: 35px;
+                width: 25px;
+            }
+            input {
+                font-size: rem(14px);
+                padding: 8px;
+            }
         }
     }
