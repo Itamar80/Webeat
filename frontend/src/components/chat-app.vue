@@ -10,8 +10,9 @@
       <div class="jump5"></div>
     </span> -->
     <ul class="clean-list flex col">
-      <li :class="classMessage(msg)"   v-for="(msg,idx) in msgs"  :key="idx">{{msg.from.fullName}} : {{msg.txt}}</li>
-      <!-- <li class="message-strange"  v-for="(msg,idx) in otherMsgs" :key="idx">{{msg.from.fullName}} : {{msg.txt}}</li> -->
+      <li :class="classMessage(msg)"   v-for="(msg,idx) in msgs"  :key="idx">
+        <!-- <img class="user-chat-img" src="@/assets/default-guest.jpg" alt="User image"> -->
+        {{msg.from.fullName}} : {{msg.txt}} <span class="msg-time">{{new Date().getHours()}}:{{new Date().getMinutes()}}</span></li>
     </ul>
     </section>
     <form class="chat-form flex justify-center" @submit.prevent="sendMsg">
@@ -34,8 +35,6 @@ export default {
       msgs:[],
       myMsgs:[],
       otherMsgs:[],
-      // sortMsgs:[]
-      //TODO msgs from me and from others 
     };
   }, 
   created() {
@@ -56,7 +55,6 @@ export default {
      return user
     },
     lastMsg(){
-      // console.log( this.$store.getters.lastMsg )
       return this.$store.getters.lastMsg 
     },
     
@@ -66,12 +64,7 @@ export default {
   },
   methods: {
     classMessage(msg){
-      // let myMsgs= this.msgs.filter(msg=>{
-      //   console.log('msg is :',msg);
-      // return msg.from._id===this.loggedinUser._id
-      // })
       if(msg.from._id===this.loggedinUser._id){
-        console.log('classmsg adom');
         return 'message'
       }else  return 'message-strange'
     },
@@ -82,11 +75,12 @@ export default {
     // },
 
     addMsg(msg) {
-      if(msg.from._id===this.loggedinUser._id){
-      this.myMsgs.push(msg)
-      } else {
-        this.otherMsgs.push(msg)
-        }
+      // if(msg.from._id===this.loggedinUser._id){
+      // this.myMsgs.push(msg)
+      // } else {
+      //   this.otherMsgs.push(msg)
+      //   }
+      console.log('msg is',msg);
         this.msgs.push(msg)
       this.$store.commit({type:'setLastMsg',msg})
     // this.$store.commit({type:'updateMsgs',msg})

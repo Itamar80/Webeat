@@ -8,14 +8,6 @@
           <h3>Station name:</h3>
           <input type="text" placeholder="Enter the station name" v-model="station.name" ref="name" />
         </label>
-        <!-- <label>
-          <h3>Created By:</h3>
-          <input
-            type="text"
-            placeholder="Enter your name"
-            v-model="station.createdBy.fullName"
-          />
-        </label>-->
         <input @change="onUploadImg" type="file" name="file" id="file" class="inputfile" />
         <label for="file">Upload Station Image</label>
         <h3>Genre:</h3>
@@ -28,10 +20,8 @@
           ></el-option>
         </el-select>
         <section class="flex col">
-          <!-- <div class="flex row align-center"> -->
           <input type="text" placeholder="Add song to the station" v-model="songToFindYoutube" />
           <button class="btn edit-sub-btn" @click.prevent="searchSongs">Search song</button>
-          <!-- </div> -->
           <vue-custom-scrollbar
             suppressScrollX
             class="scroll-area"
@@ -49,12 +39,12 @@
         <div class="info flex col">
           <h1 v-if="station.name">{{station.name}}</h1>
           <h1 v-else>Station name</h1>
-          <span class="creator-info  align-center" v-if="loggedInUser">
+          <span class="creator-info align-center" v-if="loggedInUser.fullName !== 'Guest'">
             Created By:
             <img class="creator-img" :src="loggedInUser.imgUrl" alt="creator img" />
             {{loggedInUser.fullName}}
           </span>
-          <span class="creator-info  align-center" v-else>
+          <span class="creator-info align-center" v-else>
             Created By:
             <img class="creator-img" src="@/assets/default-guest.jpg" alt />
             Guest
@@ -94,7 +84,7 @@ export default {
         genre: "",
         songs: [],
         imgUrl: "",
-        likedByUsers:[]
+        likedByUsers: [],
       },
       options: [
         {
@@ -167,15 +157,22 @@ export default {
       this.station.tags.push(this.tagToAdd);
       this.tagToAdd = "";
     },
-  async addStation() {
+    async addStation() {
       this.$store.commit({
         type: "updateGenresMap",
         genre: this.station.genre,
       });
       if (this.loggedInUser) {
         this.station.createdBy = this.loggedInUser;
-      } else this.station.createdBy = { fullName: "Guest", imgUrl: '@/assets/default-guest.jpg'};
-     const newStation = await this.$store.dispatch({ type: "saveStation", station: this.station });
+      } else
+        this.station.createdBy = {
+          fullName: "Guest",
+          imgUrl: "@/assets/default-guest.jpg",
+        };
+      const newStation = await this.$store.dispatch({
+        type: "saveStation",
+        station: this.station,
+      });
       this.$router.push(`/stations/details/${newStation._id}`);
     },
     async onUploadImg(ev) {

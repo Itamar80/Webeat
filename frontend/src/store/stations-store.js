@@ -127,6 +127,7 @@ export const stationStore = {
             return stationService.save(station)
                 .then((savedStation) => {
                     commit({ type, savedStation })
+                    return savedStation
                 })
         },
         searchSong({ commit }, { songStr }) {

@@ -16,7 +16,6 @@
         max-width: 100%;
         margin: 0 16px;
         .message {
-            // display: inline-block;
             width: max-content;
             border-radius: 20px;
             padding: 8px 15px;
@@ -24,18 +23,30 @@
             margin-bottom: 8px;
             border-bottom-left-radius: 0;
             background-color: $clr4;
-            // background: linear-gradient(to bottom, $clr3 0%, $clr5 100%);
-            // background: linear-gradient(to bottom, $clr3 0%, $clr5 100%);
+            font-weight: 800;
         }
         .message-strange {
+            font-weight: 800;
             align-self: flex-end;
             width: max-content;
-            background-color: $clr5;
+            background-color: gray;
             border-radius: 20px;
             padding: 8px 15px;
             margin-top: 5px;
             margin-bottom: 8px;
             border-bottom-right-radius: 0;
+        }
+        .user-chat-img {
+            object-fit: cover;
+            margin: 7px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+        }
+        .msg-time {
+            margin: 4px;
+            font-weight: 400;
+            font-size: .8rem;
         }
     }
     .chat-form {
