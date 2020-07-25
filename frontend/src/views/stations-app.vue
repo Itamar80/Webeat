@@ -94,6 +94,7 @@ import stationList from "../components/station-list.vue";
 import stationFilter from "../components/filter-stations.vue";
 import popularStations from "../components/popular-stations.vue";
 import { stationService } from "@/services/station-service.js";
+import  userService  from "@/services/user-service.js";
 // import dasfasd from '../assets/genres-pics/'
 
 export default {
@@ -107,6 +108,7 @@ export default {
   created() {
     this.loadStations();
     window.addEventListener("scroll", this.handleScroll);
+    userService.setUser()
   },
   destroyed() {
     window.removeEventListener("scroll", this.handleScroll);

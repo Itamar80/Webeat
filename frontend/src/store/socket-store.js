@@ -4,11 +4,16 @@ import { msgService } from '../services/msg-service.js'
 export default {
     state: {
         msgs: [],
+        lastMsg: { from: '' },
     },
     getters: {
         msgs(state) {
             return state.msgs;
         },
+        lastMsg(state) {
+            console.log('qqqqqqqqqqqq', state.lastMsg);
+            return state.lastMsg
+        }
     },
     mutations: {
         setMsgs(state, { msgs }) {
@@ -17,6 +22,9 @@ export default {
         updateMsgs(state, { msg }) {
             state.msgs.push(msg)
 
+        },
+        setLastMsg(state, { msg }) {
+            state.lastMsg = msg
         }
     },
     actions: {
@@ -26,7 +34,7 @@ export default {
         setupSocket(context) {
             socket.setup()
         },
-        addMsg(context, { msg }) {
+        addMsg({ commit }, { msg }) {
             socket.on("chat addMsg", msg)
 
         },
@@ -36,8 +44,10 @@ export default {
         showTyping(context, { isTyping }) {
             socket.on("chat showTyping", isTyping)
         },
-        sendMsg(context, { msg }) {
+        sendMsg({ commit }, { msg }) {
             socket.emit('chat newMsg', msg)
+            commit({ type: 'setLastMsg', msg })
+
         },
 
 

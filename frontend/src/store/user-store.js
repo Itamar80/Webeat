@@ -1,14 +1,14 @@
 import userService from '../services/user-service.js'
 
 var localLoggedinUser = null;
-if (sessionStorage.user) localLoggedinUser = JSON.parse(JSON.stringify(sessionStorage.user));
-// console.log(localLoggedinUser);
+(sessionStorage.user) ? localLoggedinUser = JSON.stringify(sessionStorage.user): localLoggedinUser = JSON.stringify(sessionStorage.guest)
+    // console.log(localLoggedinUser);
 
 
 export const userStore = {
     strict: true,
     state: {
-        loggedinUser: JSON.parse(localLoggedinUser),
+        loggedinUser: localLoggedinUser,
         users: []
     },
     getters: {
@@ -17,7 +17,7 @@ export const userStore = {
         },
         loggedinUser(state) {
             console.log('store', state.loggedinUser);
-            return state.loggedinUser
+            return JSON.parse(state.loggedinUser)
         }
     },
     mutations: {

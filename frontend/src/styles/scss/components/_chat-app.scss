@@ -27,6 +27,14 @@
             // background: linear-gradient(to bottom, $clr3 0%, $clr5 100%);
             // background: linear-gradient(to bottom, $clr3 0%, $clr5 100%);
         }
+        .message-strange {
+            border-radius: 20px;
+            padding: 8px 15px;
+            margin-top: 5px;
+            margin-bottom: 8px;
+            border-bottom-left-radius: 0;
+            background-color: $clr5;
+        }
     }
     .chat-form {
         margin: 14px 15px;
