@@ -10,24 +10,16 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueYoutube from "vue-youtube";
-
-
-// import VueYouTubeEmbed from 'vue-youtube-embed'
-
-
-
-
+import VueChatScroll from 'vue-chat-scroll'
 
 library.add(faUserSecret)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.use(VueChatScroll)
 Vue.use(ElementUI);
 Vue.use(VueYoutube);
-// Vue.use(VueYouTubeEmbed)
 
 Vue.config.productionTip = false
-
-
 
 new Vue({
     router,

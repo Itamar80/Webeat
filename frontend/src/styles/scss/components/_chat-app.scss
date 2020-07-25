@@ -49,6 +49,10 @@
             font-size: .8rem;
         }
     }
+    ul {
+        // overflow-y: scroll;
+        height: 60vh;
+    }
     .chat-form {
         margin: 14px 15px;
         input {
@@ -126,5 +130,132 @@
         100% {
             transform: translateY(0px);
         }
+    }
+    .scroll-area {
+        position: relative;
+        margin: auto;
+        height: 60vh;
+    }
+    .ps {
+        overflow: hidden !important;
+        overflow-anchor: none;
+        -ms-overflow-style: none;
+        touch-action: auto;
+        -ms-touch-action: auto;
+    }
+    .ps__rail-y {
+        display: block;
+        opacity: 50%;
+        transition: background-color .2s linear, opacity .2s linear;
+        -webkit-transition: background-color .2s linear, opacity .2s linear;
+        width: 5px;
+        /* there must be 'right' or 'left' for ps__rail-y */
+        right: 0;
+        /* please don't change 'position' */
+        position: absolute;
+    }
+    .ps--active-x>.ps__rail-x,
+    .ps--active-y>.ps__rail-y {
+        display: block;
+        background-color: transparent;
+    }
+    .ps:hover>.ps__rail-x,
+    .ps:hover>.ps__rail-y,
+    .ps--focus>.ps__rail-x,
+    .ps--focus>.ps__rail-y,
+    .ps--scrolling-x>.ps__rail-x,
+    .ps--scrolling-y>.ps__rail-y {
+        opacity: 0.6;
+    }
+    .ps .ps__rail-x:hover,
+    .ps .ps__rail-y:hover,
+    .ps .ps__rail-x:focus,
+    .ps .ps__rail-y:focus,
+    .ps .ps__rail-x.ps--clicking,
+    .ps .ps__rail-y.ps--clicking {
+        background-color: lighten($clr1, 40%);
+        opacity: 0.9;
+    }
+    .ps__thumb-y {
+        background-color: $clr7;
+        border-radius: 6px;
+        transition: background-color .2s linear, width .2s ease-in-out;
+        -webkit-transition: background-color .2s linear, width .2s ease-in-out;
+        width: 5px;
+        height: 10px;
+        /* there must be 'right' for ps__thumb-y */
+        right: 0px;
+        /* please don't change 'position' */
+        position: absolute;
+    }
+    .ps__rail-x:hover>.ps__thumb-x,
+    .ps__rail-x:focus>.ps__thumb-x,
+    .ps__rail-x.ps--clicking .ps__thumb-x {
+        background-color: $clr7;
+        height: 5px;
+    }
+    .ps__rail-y:hover>.ps__thumb-y,
+    .ps__rail-y:focus>.ps__thumb-y,
+    .ps__rail-y.ps--clicking .ps__thumb-y {
+        background-color: $clr7;
+        width: 5px;
+    }
+}
+
+@media screen and (max-width: $narrow-breakpoint) {
+    .chat-app {
+        h1 {
+            font-size: rem(18px);
+            margin-bottom: 25px;
+        }
+        .chat-container {
+            .message {
+                padding: 5px 10px;
+                font-size: rem(14px);
+            }
+            .message-strange {
+                padding: 5px 10px;
+                font-size: rem(14px);
+            }
+            .user-chat-img {
+                width: 20px;
+                height: 20px;
+            }
+            .msg-time {
+                font-size: .55rem;
+            }
+        }
+        .chat-form {
+            input {
+                width: 90%;
+                padding: 5px;
+            }
+            .chat-btn {
+                padding: 5px;
+                font-size: rem(14px);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $mobile-breakpoint) {
+    .chat-app {
+        // position: absolute;
+        // top: 0;
+        // left: 0;
+        // width: 100%;
+        // opacity: 0;
+        // z-index: -1;
+        // transform: translateY(-100px);
+        // transition: transform 0.5s;
+        // .menuopen {
+        //     transform: translateY(86px);
+        //     visibility: visible;
+        //     opacity: 1;
+        //     z-index: 6;
+        // }
+        width: 100%;
+        border-top: 2px solid $clr1;
+        box-shadow: -1.5px 7px 6px 6px rgba(0, 0, 0, 0.64), inset 0px 3px 7px #3f3e41;
     }
 }
