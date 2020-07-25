@@ -111,6 +111,11 @@ export default {
   destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
   },
+  computed:{
+   currStation(){
+     return this.$store.getters.currStation;
+   }
+  },
   methods: {
     smoothScroll(target, duration) {
       var target = document.querySelector(target);
@@ -147,6 +152,7 @@ export default {
     async toggleLike(id, isLiked) {
       const loggedInUser = this.$store.getters.loggedInUser;
       await stationService.toggleLike(id, loggedInUser, isLiked);
+      // this.currStation;
       this.loadStations();
     },
     async loadStations() {

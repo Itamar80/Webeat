@@ -106,10 +106,6 @@ export default {
     // }
   },
   methods: {
-    toggleLike(id) {
-      this.isLiked = !this.isLiked;
-      this.$emit("toggleLike", id, this.isLiked);
-    },
     async setStation(id) {
       await this.$store.dispatch({ type: "getCurrStation", id });
       this.setCurrSong(this.station.songs[0]);
@@ -160,8 +156,10 @@ export default {
       }
     },
     async toggleLike(id, isLiked) {
+      this.isLiked=!this.isLiked
+      console.log('isLiked',isLiked);
       const loggedInUser = this.$store.getters.loggedInUser;
-      await stationService.toggleLike(id, loggedInUser, isLiked);
+      await stationService.toggleLike(id, loggedInUser,  this.isLiked);
       this.setStation(id);
     },
   },
