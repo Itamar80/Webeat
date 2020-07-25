@@ -1,9 +1,9 @@
 import userService from '../services/user-service.js'
+import { storageService } from '@/services/storage.service.js'
+
 
 var localLoggedinUser = null;
-(sessionStorage.user) ? localLoggedinUser = JSON.stringify(sessionStorage.user): localLoggedinUser = JSON.stringify(sessionStorage.guest)
-    // console.log(localLoggedinUser);
-
+(storageService.loadFromSession('user')) ? localLoggedinUser = storageService.loadFromSession('user'): localLoggedinUser = storageService.loadFromSession('guest')
 
 export const userStore = {
     strict: true,
@@ -16,8 +16,7 @@ export const userStore = {
             return state.users;
         },
         loggedinUser(state) {
-            console.log('store', state.loggedinUser);
-            return JSON.parse(state.loggedinUser)
+            return state.loggedinUser
         }
     },
     mutations: {
