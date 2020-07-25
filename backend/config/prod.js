@@ -1,3 +1,3 @@
 module.exports = {
-    "dbURL": "mongodb+srv://itamar:e5f8224f84@cluster0.oli10.mongodb.net/webeat_db?retryWrites=true&w=majority",
+    "dbURL": "mongodb://Naomi:1531999n@cluster0-shard-00-00.bzo1u.mongodb.net:27017,cluster0-shard-00-01.bzo1u.mongodb.net:27017,cluster0-shard-00-02.bzo1u.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-5zh25e-shard-0&authSource=admin&retryWrites=true&w=majority",
 }
