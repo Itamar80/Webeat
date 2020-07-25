@@ -14,7 +14,7 @@
           <img src="@/assets/hero1.webp" />
           <img src="@/assets/dribble-red.png" />
           <img src="@/assets/hero3.jpg" />
-          <img src="@/assets/hero10b.jpg" />
+          <img src="@/assets/hero10c.jpg" />
           <!-- <img src="@/assets/hero12.jpg" /> -->
         </div>
       </div>
