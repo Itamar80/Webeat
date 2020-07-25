@@ -23,9 +23,9 @@
       <h2  class="h2">Most popular:</h2>
       <popular-stations @toggleLike="toggleLike" :stations="stations" />
       <h2 class="h2-genres">Genres:</h2>
-      <section class="channel-container card-grid">
-       <div> 
-          <!-- <ul>
+      <!-- <section class="channel-container card-grid"> -->
+       <!-- <div>  -->
+          <ul class="channel-container card-grid">
             <li class="clean-list" v-for="genre in genres" :key="genre">
         <router-link :to="'stations/'+genre" class="station-cover flex">
           <img :src="'../assets/genres-pics/'+genre+'.jpg'" alt="genre image" />
@@ -35,8 +35,8 @@
           </span>
         </router-link>
             </li>
-          </ul>  -->
-         <router-link to="stations/hiphop" class="station-cover flex">
+          </ul> 
+         <!-- <router-link to="stations/hiphop" class="station-cover flex">
           <img src="../assets/genres-pics/hiphop.jpg" alt="genre image" />
           <span class="hiphop-channel channel flex flex-start align-center col">
             <h3>Hip-Hop</h3>
@@ -78,14 +78,14 @@
             <h3>Country</h3>
             <p>Show more</p>
           </span>
-        </router-link>
+        </router-link> -->
        <!-- <img /> -->
       <!-- <div class="bottom-details"> -->
       <!-- <span>{{station.likedByUsers.length}}</span>
       <span> {{station.songs.length}} tracks</span>-->
       <!-- </div>   -->
       </section> 
-    </section>
+    <!-- </section> -->
   </div>
 </template>
 
@@ -110,6 +110,11 @@ export default {
   },
   destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
+  },
+  computed:{
+   currStation(){
+     return this.$store.getters.currStation;
+   }
   },
   methods: {
     smoothScroll(target, duration) {
@@ -147,6 +152,7 @@ export default {
     async toggleLike(id, isLiked) {
       const loggedInUser = this.$store.getters.loggedInUser;
       await stationService.toggleLike(id, loggedInUser, isLiked);
+      // this.currStation;
       this.loadStations();
     },
     async loadStations() {

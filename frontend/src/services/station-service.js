@@ -34,9 +34,9 @@ async function getById(id) {
 //make sessionStorage for guest and update the like in the station per user.
 async function toggleLike(id, loggedInUser, isLiked) {
     const station = await getById(id);
-    console.log('start ', station.likedByUsers)
+    console.log('start ', station.likedByUsers, isLiked)
     if (isLiked) {
-        (loggedInUser) ? station.likedByUsers.push(loggedInUser): station.likedByUsers.push({ username: 'Guest' })
+        (loggedInUser) ? station.likedByUsers.push(loggedInUser): station.likedByUsers.push({ _id: _makeId(), username: 'Guest' })
         save(station)
         console.log('added: ', station.likedByUsers)
     } else {
@@ -53,6 +53,15 @@ async function toggleLike(id, loggedInUser, isLiked) {
 
     }
 
+}
+
+function _makeId(length = 5) {
+    var txt = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return txt;
 }
 
 function remove(id) {
