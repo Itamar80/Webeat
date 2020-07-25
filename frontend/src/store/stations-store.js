@@ -81,15 +81,11 @@ export const stationStore = {
             state.filterBy = filterBy
         },
         updateStation(state, { savedStation }) {
-            console.log('store ststion:', savedStation)
-            console.log('saved station: ', savedStation._id)
             let stationIdx = state.stations.findIndex(station => {
-                console.log('station: ', station._id)
                 return station._id === savedStation._id
             })
-            console.log(stationIdx)
-            console.log(state.stations)
             state.stations.splice(stationIdx, 1, savedStation)
+                // console.log('the station to save is : ', savedStation, 'the station list is: ', state.stations);
         },
         addStation(state, savedStation) {
             state.stations.unshift(savedStation)
@@ -151,6 +147,29 @@ export const stationStore = {
 
 
         },
+        async toggleLike({ commit }, { id, isLiked, loggedInUser }) {
+            const station = await stationService.getById(id);
+            console.log('in store , start ', station.likedByUsers, isLiked)
+            console.log(isLiked);
+            if (isLiked) {
+                (loggedInUser) ? station.likedByUsers.push(loggedInUser): station.likedByUsers.push({ _id: _makeId(), username: 'Guest' })
+                commit({ type: 'updateStation', savedStation: station })
+                    // console.log('in store , added: ', station.likedByUsers)
+            } else {
+                if (loggedInUser) {
+                    var idx = station.likedByUsers.findIndex((user) => user._id === loggedInUser._id)
+                    station.likedByUsers.splice(idx, 1)
+                    commit({ type: 'updateStation', savedStation: station })
+                } else {
+                    console.log('in store , before: ', station.likedByUsers)
+                    var idx = station.likedByUsers.findIndex((user) => user.username === 'Guest')
+                    station.likedByUsers.splice(idx, 1)
+                    commit({ type: 'updateStation', savedStation: station })
+                }
+
+            }
+            stationService.save(station)
+        }
 
         // listenToSongChange() {
         //     socket.on('song changed', song)

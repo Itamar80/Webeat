@@ -81,5 +81,8 @@ export default {
   components: {
     fontAwsomeIcon,
   },
+  created(){
+    console.log(this.station.name,this.station.likedByUsers.length);
+  }
 };
 </script>

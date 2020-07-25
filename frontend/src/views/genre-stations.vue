@@ -49,7 +49,7 @@ export default {
      return this.$store.getters.genresMap;
     },
     stations(){
-       console.log('stations : ',this.$store.getters.stations);
+       console.log('stations  after adding like  name bbb: ',this.$store.getters.stations[8].likedByUsers.length);
       return this.$store.getters.stations
     }
   },
@@ -66,9 +66,10 @@ export default {
       this.$store.dispatch({type: 'loadStations'})
       this.loadStations(genre)
     }, 
-    async toggleLike(id, isLiked){
+     toggleLike(id, isLiked){
     const loggedInUser = this.$store.getters.loggedinUser
-    await stationService.toggleLike(id, loggedInUser, isLiked)
+    this.$store.dispatch({type:'toggleLike',id,isLiked,loggedInUser})
+    // await stationService.toggleLike(id, loggedInUser, isLiked)
     // this.loadStations()
     },
     loadStations(genre){
