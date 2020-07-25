@@ -144,22 +144,27 @@
                     flex-direction: row-reverse;
                 }
                 h2 {
-                    font-size: 1rem;
+                    font-size: 1.5rem;
                 }
                 span {
-                    font-size: 0.9rem;
+                    font-size: 1.3rem;
                 }
                 .play-icon {
-                    margin-right: 10px;
-                    font-size: 38px;
+                    display: none;
+                    margin-left: 10px;
+                    font-size: 40px;
+                }
+                .clock-icon {
+                    margin-right: 5px;
                 }
                 .like-section {
+                    flex-direction: row-reverse;
                     .heart-icon {
                         font-size: 18px;
                     }
                     span {
-                        font-size: 0.8rem;
-                        margin-right: 5px;
+                        font-size: 1rem;
+                        margin-left: 5px;
                     }
                 }
             }
