@@ -1,24 +1,26 @@
 <template>
   <div v-if="stations" class="station-list">
     <button class="btn" v-if="genreFromUrl" @click="moveTo">Return to all stations</button>
-    <ul class="clean-list">
-      <!-- <station-preview class="station" v-else :station="station" @toggleLike="toggleLike"></station-preview> -->
-      <!-- <div class="block">
-        <el-carousel trigger="click" height="150px">
-          <el-carousel-item v-for="station in filteredGenres" :key="station._id">
-        
+    <ul class="clean-list grid">
             <station-preview
+            v-for="station in filteredGenres" :key="station._id"
               class="station"
               :genre="genre"
               :station="station"
               @toggleLike="toggleLike"
             ></station-preview>
-          </el-carousel-item>
+    </ul>
+      <!-- <station-preview class="station" :station="station" @toggleLike="toggleLike"></station-preview> -->
+      <!-- <div class="block">
+        <el-carousel trigger="click" height="150px">
+         <el-carousel-item v-for="station in filteredGenres" :key="station._id"> -->
+        
+          <!-- </el-carousel-item>
         </el-carousel>
-      </div> -->
+      </div> --> 
 
 
-      <vueper-slides
+      <!-- <vueper-slides
   class="no-shadow"
   :visible-slides="3"
   slide-multiple
@@ -27,16 +29,15 @@
   :dragging-distance="200"
   :breakpoints="{ 800: { visibleSlides: 2, slideMultiple: 2 } }">
   <vueper-slide v-for="i in filteredGenres" :key="i" :title="i.toString()" />
-</vueper-slides>
-    </ul>
+</vueper-slides> -->
 
     <div class="block"></div>
   </div>
 </template>
 
 <script>
-import { VueperSlides, VueperSlide } from 'vueperslides'
-import 'vueperslides/dist/vueperslides.css'
+// import { VueperSlides, VueperSlide } from 'vueperslides'
+// import 'vueperslides/dist/vueperslides.css'
 import stationPreview from "./station-preview.vue";
 export default {
   props: ["stations", "genre"],
@@ -86,7 +87,7 @@ export default {
   },
   components: {
     stationPreview,
-    VueperSlides, VueperSlide
+    // VueperSlides, VueperSlide
   },
 };
 </script>
