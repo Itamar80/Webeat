@@ -7,7 +7,7 @@
         </h3>
         <button @click="doLogout">Logout</button>
       </div>
-  <div v-if="!loggedinUser" class="login container flex justify-center align-center col">
+  <div v-if="!loggedinUser ||loggedinUser.fullName==='Guest' " class="login container flex justify-center align-center col">
       <form  class="flex justify-center align-center col" v-if="isLogin" @submit="login">
         Username:  <input type="text" v-model="loginCred.username">
      Password:  <input type="password" v-model="loginCred.password">
@@ -59,8 +59,8 @@ export default {
   },
     computed: {
        loggedinUser() {
-         console.log(this.$store.getters.loggedinUser);
-      return this.$store.getters.loggedinUser
+         console.log('login signup lo',this.$store.getters.loggedinUser);
+      return JSON.parse(this.$store.getters.loggedinUser)
     }
     },
     methods: {

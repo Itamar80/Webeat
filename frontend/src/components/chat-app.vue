@@ -1,17 +1,19 @@
 <template>
   <section class="chat-app">
-    <h1>Chat</h1>
+    <h1>Share your thoughts</h1>
     <section class="chat-container">
-    <span class="is-typing" v-if="isTyping">{{user}} is  typing
+    <!-- <span class="is-typing" v-if="isTyping">{{user}} is  typing
       <div class="jump1"></div>
       <div class="jump2"></div>
       <div class="jump3"></div>
       <div class="jump4"></div>
       <div class="jump5"></div>
-    </span>
+    </span> -->
     <ul class="clean-list">
-      <li class="message"  v-for="(msg,idx) in msgs"  :key="idx">{{msg.from}} : {{msg.txt}}</li>
-      <!-- <li class="message-strange" v-else v-for="(msg,idx) in msgs" :key="idx">{{msg.from}} : {{msg.txt}}</li> -->
+      <div v-if="msg.from._id===lastMsg.from._id">
+      <li class="message"   v-for="(msg,idx) in msgs"  :key="idx">{{msg.from.fullName}} : {{msg.txt}}</li>
+      </div>
+      <li class="message-strange" v-else v-for="(msg,idx) in msgs" :key="idx">{{msg.from.fullName}} : {{msg.txt}}</li>
     </ul>
     </section>
     <form class="chat-form flex justify-center" @submit.prevent="sendMsg">
@@ -37,6 +39,8 @@ export default {
   created() {
     let id = this.$route.params.id
     this.msg.from = this.loggedinUser;
+    // console.log('halulu',this.msg.from._id);
+    // console.log('halululoggedin',this.loggedinUser._id);
     // this.$store.dispatch({type:'setupSocket'})
     this.$store.dispatch({type:'setupSocketName',chatId:id})
     this.$store.dispatch({type:'addMsg',msg:this.addMsg})
@@ -48,17 +52,27 @@ export default {
   },
   computed:{
     loggedinUser(){
-      let user = (this.$store.getters.loggedinUser)?this.$store.getters.loggedinUser: {fullName:'Guest'};
-      console.log('chatu',user); 
-     return user.fullName
+      let user = JSON.parse(this.$store.getters.loggedinUser);
+      console.log('user lala yser',user);
+     return user
     },
+    lastMsg(){
+      return this.$store.getters.lastMsg 
+    }
     // msgs(){
     //   return this.$store.getters.msgs
     // },
   },
   methods: {
+    // getUserId(){
+      // let loggedin= sessionStorage.getItem('guest');
+    // console.log('loggedinss',JSON.parse(loggedin));
+    // return loggedin._id
+    // },
+
     addMsg(msg) {
       this.msgs.push(msg)
+      this.$store.commit({type:'setLastMsg',msg})
     // this.$store.commit({type:'updateMsgs',msg})
       this.isTyping=false
     },

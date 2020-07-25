@@ -7,7 +7,8 @@ export default {
     getUsers,
     getById,
     remove,
-    update
+    update,
+    setUser
 }
 
 function getById(userId) {
@@ -40,6 +41,11 @@ async function signup(userCred) {
         console.log('logout error', err);
     }
 }
+
+function setUser() {
+    return _handleLogin()
+}
+
 async function logout() {
     await HttpService.post('auth/logout');
     sessionStorage.clear();
@@ -51,6 +57,20 @@ function getUsers() {
 
 function _handleLogin(user) {
     console.log('_handleLogin', user);
-    sessionStorage.setItem('user', JSON.stringify(user))
+    let guest = { _id: _makeId(), fullName: 'Guest' }
+    if (!user) sessionStorage.setItem('guest', JSON.stringify(guest))
+    else {
+        sessionStorage.removeItem('guest')
+        sessionStorage.setItem('user', JSON.stringify(user))
+    }
     return user;
+}
+
+function _makeId(length = 5) {
+    var txt = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return txt;
 }
