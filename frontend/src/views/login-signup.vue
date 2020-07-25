@@ -2,7 +2,7 @@
 <section>
     <h1>This is the login/signup page</h1>
 <h2>{{msg}}</h2>
-<div class="logged-in flex justify-center align-center col" v-if="loggedinUser">
+<div class="logged-in flex justify-center align-center col" v-if="loggedinUser && loggedinUser.fullName !=='Guest'">
        <h3> Welcome : {{loggedinUser.fullName}}
         </h3>
         <button @click="doLogout">Logout</button>
@@ -59,8 +59,7 @@ export default {
   },
     computed: {
        loggedinUser() {
-         console.log('login signup lo',this.$store.getters.loggedinUser);
-      return JSON.parse(this.$store.getters.loggedinUser)
+      return this.$store.getters.loggedinUser
     }
     },
     methods: {

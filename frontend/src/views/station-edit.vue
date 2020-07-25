@@ -158,7 +158,6 @@ export default {
   // watch:{},
   created() {
     this.station = stationService.getEmptyStation();
-    // this.genresStationsMap = this.genresMap
   },
   mounted() {
     this.focusInput();
@@ -168,7 +167,7 @@ export default {
       this.station.tags.push(this.tagToAdd);
       this.tagToAdd = "";
     },
-    addStation() {
+  async addStation() {
       this.$store.commit({
         type: "updateGenresMap",
         genre: this.station.genre,
@@ -176,8 +175,8 @@ export default {
       if (this.loggedInUser) {
         this.station.createdBy = this.loggedInUser;
       } else this.station.createdBy = { fullName: "Guest", imgUrl: '@/assets/default-guest.jpg'};
-      this.$store.dispatch({ type: "saveStation", station: this.station });
-      this.$router.push(`/`);
+     const newStation = await this.$store.dispatch({ type: "saveStation", station: this.station });
+      this.$router.push(`/stations/details/${newStation._id}`);
     },
     async onUploadImg(ev) {
       const res = await uploadImg(ev);
@@ -231,44 +230,3 @@ export default {
   },
 };
 </script>
-// function getEmptyStation() {
-//     return {
-//         name: '',
-//         imgUrl: '',
-//         tags: [],
-//         createdAt: Date.now(),
-//         createdBy: {},
-//         likedByUsers: [],
-//         songs: []
-
-//     }
-// }
-          // <div>
-          //   <label for=''>
-          //   Add tags:
-          //   <el-tag
-          //     class='tag'
-          //     :key='tag'
-          //     v-for='tag in station.tags'
-          //     closable
-          //     :disable-transitions='false'
-          //     @close='handleClose(tag)'
-          //   >{{tag}}</el-tag>
-          //   <el-input
-          //     class='input-new-tag'
-          //     v-if='inputVisible'
-          //     v-model="inputValue"
-          //     ref="saveTagInput"
-          //     size="mini"
-          //     @blur="handleInputConfirm"
-          //   ></el-input>
-          //   <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
-          //   <button @click="handleInputConfirm">Add tag</button>
-          //   </label>
-          // </div>
-           <!-- Add tags:
-          <input type="text" placeholder="Enter the station tags" v-model="tagToAdd" />
-          {{station.tags}}-->
-              <!-- @keyup.enter.native.stop="handleInputConfirm" -->
-
-          <!-- <button class="btn edit-sub-btn" @click.prevent="addTag">Add tag</button> -->

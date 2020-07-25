@@ -26,6 +26,8 @@ import currSong from "@/components/curr-song.vue";
 import appFooter from "@/components/footer.vue";
 import stationService from "@/services/station-service.js";
 import socketService from "@/services/socket-service.js";
+import  userService  from "@/services/user-service.js";
+
 
 export default {
   data() {
@@ -33,12 +35,19 @@ export default {
   },
   created() {
     socketService.setup();
+     userService.setUser();
+     this.loadStations();
   },
   computed: {
     navClass() {
       if (this.$route.name === 'home') return 'header transparent flex space-between align-center justify-center'
     else return 'header flex space-between align-center justify-center'
     },
+    methods:{
+      async loadStations() {
+      await this.$store.dispatch({ type: "loadStations" });
+    },
+    }
   },
   components: {
     currSong,

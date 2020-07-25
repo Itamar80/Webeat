@@ -57,13 +57,12 @@ function getUsers() {
 }
 
 function _handleLogin(user) {
-    let guest = { _id: _makeId(), fullName: 'Guest' }
-    if (!user) storageService.storeToSession('guest', guest)
-        // if (!user) sessionStorage.setItem('guest', JSON.stringify(guest))
-    else {
+    let guest = { _id: _makeId(), fullName: 'Guest', imgUrl: '@/assets/default-guest.jpg' }
+    if (!user) {
+        storageService.storeToSession('guest', guest)
+    } else {
         sessionStorage.removeItem('guest')
         storageService.storeToSession('user', user)
-            // sessionStorage.setItem('user', JSON.stringify(user))
     }
     return user;
 }
