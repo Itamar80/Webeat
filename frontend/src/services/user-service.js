@@ -1,4 +1,5 @@
 import HttpService from './HttpService'
+import { storageService } from './storage.service.js'
 
 export default {
     login,
@@ -57,15 +58,17 @@ function getUsers() {
 
 function _handleLogin(user) {
     let guest = { _id: _makeId(), fullName: 'Guest' }
-    if (!user) sessionStorage.setItem('guest', JSON.stringify(guest))
+    if (!user) storageService.storeToSession('guest', guest)
+        // if (!user) sessionStorage.setItem('guest', JSON.stringify(guest))
     else {
         sessionStorage.removeItem('guest')
-        sessionStorage.setItem('user', JSON.stringify(user))
+        storageService.storeToSession('user', user)
+            // sessionStorage.setItem('user', JSON.stringify(user))
     }
     return user;
 }
 
-function _makeId(length = 5) {
+function _makeId(length = 8) {
     var txt = '';
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for (var i = 0; i < length; i++) {

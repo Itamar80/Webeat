@@ -37,13 +37,10 @@ export default {
       // sortMsgs:[]
       //TODO msgs from me and from others 
     };
-  },
+  }, 
   created() {
     let id = this.$route.params.id
     this.msg.from = this.loggedinUser;
-    // console.log('halulu',this.msg.from._id);
-    // console.log('halululoggedin',this.loggedinUser._id);
-    // this.$store.dispatch({type:'setupSocket'})
     this.$store.dispatch({type:'setupSocketName',chatId:id})
     this.$store.dispatch({type:'addMsg',msg:this.addMsg})
     this.$store.dispatch({type:'showTyping',msg:this.addMsg})
@@ -54,11 +51,12 @@ export default {
   },
   computed:{
     loggedinUser(){
-      let user = JSON.parse(this.$store.getters.loggedinUser);
+      let user = this.$store.getters.loggedinUser;
       console.log('user lala yser',user);
      return user
     },
     lastMsg(){
+      // console.log( this.$store.getters.lastMsg )
       return this.$store.getters.lastMsg 
     },
     

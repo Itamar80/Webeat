@@ -4,7 +4,7 @@ import { msgService } from '../services/msg-service.js'
 export default {
     state: {
         msgs: [],
-        lastMsg: { from: '' },
+        lastMsg: { from: { _id: '' } },
     },
     getters: {
         msgs(state) {
