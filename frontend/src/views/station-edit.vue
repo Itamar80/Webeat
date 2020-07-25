@@ -21,7 +21,8 @@
         </el-select>
         <section class="flex col">
           <input type="text" placeholder="Add song to the station" v-model="songToFindYoutube" />
-          <button class="btn edit-sub-btn" @click.prevent="searchSongs">Search song</button>
+          <button v-if="station.songs.length===0 || !station.songs.length" class="btn edit-sub-btn" @click.prevent="searchSongs">Search song </button>
+          <button v-else class="btn edit-sub-btn" @click.prevent="searchSongs">{{station.songs.length}} Songs added</button>
           <vue-custom-scrollbar
             suppressScrollX
             class="scroll-area"

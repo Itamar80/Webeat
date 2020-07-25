@@ -2,7 +2,7 @@
     .grid {
         display: grid;
         //responsivity changes require
-        grid-template-columns: repeat(4, 230px);
+        grid-template-columns: repeat(4, 250px);
         grid-auto-rows: auto;
         gap: 16px;
     }

@@ -72,7 +72,7 @@ export default {
     async toggleLike(id, isLiked){
     const loggedInUser = this.$store.getters.loggedinUser
     await stationService.toggleLike(id, loggedInUser, isLiked)
-    this.loadStations()
+    // this.loadStations()
     },
     loadStations(genre){
      this.$store.dispatch({type: 'loadStations',genre})

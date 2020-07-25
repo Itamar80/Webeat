@@ -1,42 +1,43 @@
 <template>
   <div v-if="stations" class="station-list">
-    <div>
-
     <button class="btn" v-if="genreFromUrl" @click="moveTo">Return to all stations</button>
-    <ul v-else class="clean-list">
-      <li v-for="station in filteredStations" :key="station._id" >
-      <station-preview class="station" :station="station" @toggleLike="toggleLike"></station-preview>
-      </li>
-    </div>
-    <ul v-else class="clean-list">
-      <li v-for="station in filteredStations"  :key="station._id" >
-      <station-preview class="station" :station="station" @toggleLike="toggleLike"></station-preview>
-      </li>
-      <!-- <vueper-slides
-        class="no-shadow"
-        :visible-slides="3"
-        slide-multiple
-        :gap="3"
-        :slide-ratio="1 / 4"
-        :arrows="true"
-        :dragging-distance="200"
-        :breakpoints="{ 800: { visibleSlides: 2, slideMultiple: 2 } }"
-      >
-        <vueper-slide v-for="station in filteredStations" :key="station._id" :title="station.name.toString()">
-         
-              <station-preview class="station" :station="station" @toggleLike="toggleLike"></station-preview>
-           
-        </vueper-slide>
-      </vueper-slides> -->
+    <ul class="clean-list grid">
+            <station-preview
+            v-for="station in filteredGenres" :key="station._id"
+              class="station"
+              :genre="genre"
+              :station="station"
+              @toggleLike="toggleLike"
+            ></station-preview>
     </ul>
+      <!-- <station-preview class="station" :station="station" @toggleLike="toggleLike"></station-preview> -->
+      <!-- <div class="block">
+        <el-carousel trigger="click" height="150px">
+         <el-carousel-item v-for="station in filteredGenres" :key="station._id"> -->
+        
+          <!-- </el-carousel-item>
+        </el-carousel>
+      </div> --> 
+
+
+      <!-- <vueper-slides
+  class="no-shadow"
+  :visible-slides="3"
+  slide-multiple
+  :gap="3"
+  :slide-ratio="1 / 4"
+  :dragging-distance="200"
+  :breakpoints="{ 800: { visibleSlides: 2, slideMultiple: 2 } }">
+  <vueper-slide v-for="i in filteredGenres" :key="i" :title="i.toString()" />
+</vueper-slides> -->
 
     <!-- <div class="block"></div> -->
   </div>
 </template>
 
 <script>
-import { VueperSlides, VueperSlide } from "vueperslides";
-import "vueperslides/dist/vueperslides.css";
+// import { VueperSlides, VueperSlide } from 'vueperslides'
+// import 'vueperslides/dist/vueperslides.css'
 import stationPreview from "./station-preview.vue";
 export default {
   props: ["stations", "genre"],
@@ -86,8 +87,7 @@ export default {
   },
   components: {
     stationPreview,
-    VueperSlides,
-    VueperSlide,
+    // VueperSlides, VueperSlide
   },
 };
 </script>

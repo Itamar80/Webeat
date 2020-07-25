@@ -2,11 +2,11 @@
   <div class="popular-station-list">
     <ul class="clean-list">
       <!-- <div class="block"> -->
-        <carousel-3d>
-          <slide v-for="(station,i) in popularStations" :key="station._id" :index="i">
+        <!-- <carousel-3d> -->
+          <li v-for="(station,i) in popularStations" :key="station._id" :index="i">
              <station-preview :isPopular="isPopular" :station="station" @toggleLike="toggleLike"></station-preview>
-          </slide>
-        </carousel-3d>
+          </li>
+        <!-- </carousel-3d> -->
     
         <!-- <span class="demonstration">Switch when indicator is clicked</span> -->
         <!-- <el-carousel :interval="8000" type="card" trigger="click">
