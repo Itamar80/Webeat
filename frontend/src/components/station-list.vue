@@ -3,7 +3,7 @@
     <button class="btn" v-if="genreFromUrl" @click="moveTo">Return to all stations</button>
     <ul class="clean-list grid">
             <station-preview
-            v-for="station in filteredStations" :key="station._id"
+            v-for="station in stations" :key="station._id"
               class="station"
               :genre="genre"
               :station="station"
@@ -61,29 +61,11 @@ export default {
       this.$router.push(`/stations`);
       location.reload();
     },
-    filterGenre() {
-      // console.log('the length', this.filteredStations.length);
-      var idx = 4;
-      var genreGroups = [];
-      var group = [];
-      this.filteredStations = this.stations.filter(
-        (station) => station.genre === this.genre
-      );
-      // for (let i = 0; i < this.filteredStations.length; i++) {
-      //   if (i !== idx) {
-      //     // console.log('the idx in the if', idx, 'and the i is ', i);
-      //     group.push(this.filteredStations[i]);
-      //     // console.log("should work 4 times", group);
-      //   } else {
-      //     idx += 4;
-      //     // console.log("should work once , the idx is:", idx);
-      //     genreGroups.push(group);
-      //     group = [];
-      //     console.log('what is the genre group',genreGroups);
-      //   }
-      // }
-      // console.log('please god let this work:',genreGroups);
-    },
+    // filterGenre() {     
+    //   this.filteredStations = this.stations.filter(
+    //     (station) => station.genre === this.genre
+    //   );
+    // },
   },
   components: {
     stationPreview,
