@@ -3,7 +3,8 @@
     <chat-app v-if="station" :station="station" />
     <section v-if="station" class="container">
       <div class="top-section flex justify-center space-between">
-        <div class="flex col">
+        <div class="flex col text-details">
+          <div class="flex col title-creator">
           <h1>
             <!-- <font-awesome-icon class="play-station-btn" icon="play-circle" size="lg" /> -->
             {{station.name}}
@@ -14,7 +15,9 @@
             <img class="creator-img" :src="station.createdBy.imgUrl" alt />
             {{station.createdBy.fullName}}
           </span>
+          </div>
           <span class="genre capitalize">{{station.genre}}</span>
+          <div class="flex col tracks-likes">
           <span>
             <font-awesome-icon
               icon="heart"
@@ -29,6 +32,7 @@
             <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
             {{station.songs.length}} tracks
           </span>
+          </div>
           <p>Now Playing: {{currSong.title}}</p>
         </div>
         <img class="cover-img" :src="station.imgUrl" />
