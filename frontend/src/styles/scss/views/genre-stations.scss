@@ -1,4 +1,7 @@
 .genre-stations {
+    ul {
+        width: fit-content;
+    }
     .stations-by-gener {
         margin: 50px 0;
     }
@@ -99,5 +102,15 @@
         box-shadow: 0 2px rgba(0, 0, 0, 0.64), inset 0 -1px #39383a;
         // border-bottom: 1px grey solid;
         padding: 15px;
+    }
+    @media screen and (max-width: $narrow-breakpoint) {
+        .grid {
+            grid-template-columns: repeat(3, 250px);
+        }
+    }
+    @media screen and (max-width: $mobile-breakpoint) {
+        .grid {
+            grid-template-columns: repeat(2, 250px);
+        }
     }
 }
