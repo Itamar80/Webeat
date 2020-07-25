@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <!-- <img src="../assets/genres-pics/hiphop.jpg" :alt="`${genre} image`" /> -->
+  <div class="genre">
     <router-link :to="'stations/'+genre" class="station-cover flex">
     <img :src="genreImg"  />
       <span :class="genre+'-channel channel flex flex-start align-center col'">

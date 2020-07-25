@@ -3,7 +3,7 @@
     <button class="btn" v-if="genreFromUrl" @click="moveTo">Return to all stations</button>
     <ul class="clean-list grid">
             <station-preview
-            v-for="station in filteredGenres" :key="station._id"
+            v-for="station in filteredStations" :key="station._id"
               class="station"
               :genre="genre"
               :station="station"

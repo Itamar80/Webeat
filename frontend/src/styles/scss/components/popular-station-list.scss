@@ -7,29 +7,31 @@
 }
 
 .popular-station-list {
-    margin-bottom: 144px;
-    margin-top: 32px;
+    margin-bottom: 30px;
+    margin-top: 30px;
     .station-preview {
-        // margin-right: 16px;
+        height: 350px;
+        width: 350px;
+        margin-right: 16px;
         // filter: opacity(80%);
-        transition: .3s;
+        // transition: .3s;
         .station-cover {
             position: relative;
             width: 100%;
             img {
                 position: relative;
                 margin: 0 auto;
-                height: 550px;
+                height: 280px;
                 width: 100%;
                 object-fit: cover;
                 z-index: 0;
                 transition: .5s;
-                border-radius: 0.5rem;
+                border-radius: 10px;
             }
         }
         .preview-details {
             margin-top: 8px;
-            width: 93%;
+            width: 100%;
             h2 {
                 font-size: 1.3rem;
                 color: white;
@@ -37,7 +39,7 @@
             }
             .play-icon {
                 margin-right: 15px;
-                font-size: 2.5rem;
+                font-size: 48px;
                 transition: .5s;
                 &:hover {
                     color: white;
@@ -48,7 +50,6 @@
             }
             .clock-icon {
                 color: grey;
-                margin-left: 10px;
             }
             .like-section {
                 display: flex;
@@ -56,7 +57,7 @@
                 margin-right: 10px;
                 margin-top: 2px;
                 .heart-icon {
-                    font-size: 1.5rem;
+                    font-size: 24px;
                     &:hover {
                         transition: .5s;
                         color: $clr4;
@@ -73,21 +74,95 @@
             filter: opacity(100%);
         }
     }
-    .el-carousel__item h3 {
-        color: #475669;
-        font-size: 14px;
-        opacity: 50%;
-        line-height: 200px;
-        margin: 0;
-    }
-    div .el-carousel__mask {
-        background-color: rgba(0, 0, 0, 0);
-    }
-    // .el-carousel__item:nth-child(2n+1) {
-    //     background-color: #d3dce6;
-    // }
 }
 
-div .el-carousel__container {
-    height: 640px;
+@media screen and (max-width: $narrow-breakpoint) {
+    .popular-station-list {
+        margin-bottom: 15px;
+        margin-top: 20px;
+        .station-preview {
+            height: 230px;
+            width: 230px;
+            margin-right: 15px;
+            .station-cover {
+                img {
+                    height: 180px;
+                    width: 100%;
+                }
+            }
+            .preview-details {
+                h2 {
+                    font-size: 1rem;
+                }
+                span {
+                    font-size: 0.9rem;
+                }
+                .play-icon {
+                    margin-right: 10px;
+                    font-size: 38px;
+                }
+                .like-section {
+                    .heart-icon {
+                        font-size: 18px;
+                    }
+                    span {
+                        font-size: 0.8rem;
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $mobile-breakpoint) {
+    .popular-station-list {
+        margin-bottom: 15px;
+        margin-top: 20px;
+        ul {
+            flex-direction: column;
+        }
+        .station-preview {
+            flex-direction: row;
+            margin: 0 auto;
+            height: 200px;
+            width: 90%;
+            .station-cover {
+                img {
+                    height: 180px;
+                    width: 100%;
+                }
+            }
+            .preview-details {
+                height: 100%;
+                width: 70%;
+                margin: 30px 0 0 15px;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start !important;
+                .top-details {
+                    flex-direction: row-reverse;
+                }
+                h2 {
+                    font-size: 1rem;
+                }
+                span {
+                    font-size: 0.9rem;
+                }
+                .play-icon {
+                    margin-right: 10px;
+                    font-size: 38px;
+                }
+                .like-section {
+                    .heart-icon {
+                        font-size: 18px;
+                    }
+                    span {
+                        font-size: 0.8rem;
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+    }
 }

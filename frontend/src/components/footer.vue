@@ -1,6 +1,7 @@
 <template>
   <footer class="coffeerights flex col align-center justify-center">
     <div class="flex align-center justify-center">
+       <span class="flex align-center justify-center">
       <img src="@/assets/creator pictures/nirs-pic.jpg" alt />
       <p>Nir Druckman</p>
       <section class="social-about">
@@ -14,7 +15,9 @@
         </a>
         <font-awesome-icon size="lg" :icon="['fab','github']" class="icon github-icon" />
       </section>
-      <span>|</span>
+      </span>
+      <span class="divider">|</span>
+       <span class="flex align-center justify-center">
       <img src="@/assets/creator pictures/naomis-pic.jpg" alt />
       <p>Naomi Elkayam</p>
       <section class="social-about">
@@ -32,7 +35,9 @@
           <font-awesome-icon size="lg" :icon="['fab','github']" class="icon github-icon" />
         </a>
       </section>
-      <span>|</span>
+      </span>
+      <span class="divider">|</span>
+      <span class="flex align-center justify-center">
       <img src="@/assets/creator pictures/itamar.jpg" alt />
        <p> Itamar Joseph</p>
       <section class="social-about">
@@ -50,6 +55,7 @@
           <font-awesome-icon size="lg" :icon="['fab','github']" class="icon github-icon" />
         </a>
       </section>
+      </span>
     </div>© copyright 2020
   </footer>
 </template>

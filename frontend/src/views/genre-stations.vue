@@ -2,9 +2,6 @@
   <div class="stations-page main-layout">
     <div class="">
     </div>
-    <pre>
-      {{stations}}
-    </pre>
      <section class="genre-stations"> 
     <h1 v-if="genre" class="h1  yellow capitalize">Genre: {{genre}}</h1>
     <h1 v-else class="h1 container yellow"> Stations</h1>

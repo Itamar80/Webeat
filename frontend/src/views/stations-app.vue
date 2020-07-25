@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <section name="popular" class="homepage">
+    <section name="popular" class="homepage container">
       <h2 class="h2">Most popular:</h2>
       <popular-stations @toggleLike="toggleLike" :stations="stations" />
       <h2 class="h2-genres">Genres:</h2>

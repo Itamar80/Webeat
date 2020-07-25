@@ -1,20 +1,14 @@
 <template>
-  <div class="popular-station-list">
-    <ul class="clean-list">
-      <!-- <div class="block"> -->
-        <!-- <carousel-3d> -->
-          <li v-for="(station,i) in popularStations" :key="station._id" :index="i">
-             <station-preview :isPopular="isPopular" :station="station" @toggleLike="toggleLike"></station-preview>
-          </li>
-        <!-- </carousel-3d> -->
-    
-        <!-- <span class="demonstration">Switch when indicator is clicked</span> -->
-        <!-- <el-carousel :interval="8000" type="card" trigger="click">
-          <el-carousel-item v-for="station in popularStations" :key="station._id">
-            <station-preview :isPopular="isPopular" :station="station" @toggleLike="toggleLike"></station-preview>
-          </el-carousel-item>
-        </el-carousel> -->
-      <!-- </div> -->
+  <div class="popular-station-list flex row space-between">
+    <ul class="clean-list flex">
+      <station-preview
+        v-for="(station,i) in popularStations"
+        :key="station._id"
+        :index="i"
+        :isPopular="isPopular"
+        :station="station"
+        @toggleLike="toggleLike"
+      ></station-preview>
     </ul>
   </div>
 </template>
