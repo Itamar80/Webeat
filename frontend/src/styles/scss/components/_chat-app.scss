@@ -13,11 +13,11 @@
     inset -0.5px -1px #3f3e41;
     .chat-container {
         flex: 1;
-        max-width: 67%;
+        max-width: 100%;
         margin: 0 16px;
-        width: max-content;
         .message {
             // display: inline-block;
+            width: max-content;
             border-radius: 20px;
             padding: 8px 15px;
             margin-top: 5px;
@@ -28,12 +28,14 @@
             // background: linear-gradient(to bottom, $clr3 0%, $clr5 100%);
         }
         .message-strange {
+            align-self: flex-end;
+            width: max-content;
+            background-color: $clr5;
             border-radius: 20px;
             padding: 8px 15px;
             margin-top: 5px;
             margin-bottom: 8px;
-            border-bottom-left-radius: 0;
-            background-color: $clr5;
+            border-bottom-right-radius: 0;
         }
     }
     .chat-form {

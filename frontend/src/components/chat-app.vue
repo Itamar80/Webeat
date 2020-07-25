@@ -9,11 +9,9 @@
       <div class="jump4"></div>
       <div class="jump5"></div>
     </span> -->
-    <ul class="clean-list">
-      <div v-if="msg.from._id===lastMsg.from._id">
-      <li class="message"   v-for="(msg,idx) in msgs"  :key="idx">{{msg.from.fullName}} : {{msg.txt}}</li>
-      </div>
-      <li class="message-strange" v-else v-for="(msg,idx) in msgs" :key="idx">{{msg.from.fullName}} : {{msg.txt}}</li>
+    <ul class="clean-list flex col">
+      <li :class="classMessage(msg)"   v-for="(msg,idx) in msgs"  :key="idx">{{msg.from.fullName}} : {{msg.txt}}</li>
+      <!-- <li class="message-strange"  v-for="(msg,idx) in otherMsgs" :key="idx">{{msg.from.fullName}} : {{msg.txt}}</li> -->
     </ul>
     </section>
     <form class="chat-form flex justify-center" @submit.prevent="sendMsg">
@@ -33,7 +31,11 @@ export default {
       isTyping:false,
       user:null,
       msg: {stationId:this.station._id, from: null, txt: "", },
-      msgs:[]
+      msgs:[],
+      myMsgs:[],
+      otherMsgs:[],
+      // sortMsgs:[]
+      //TODO msgs from me and from others 
     };
   },
   created() {
@@ -58,12 +60,23 @@ export default {
     },
     lastMsg(){
       return this.$store.getters.lastMsg 
-    }
+    },
+    
     // msgs(){
     //   return this.$store.getters.msgs
     // },
   },
   methods: {
+    classMessage(msg){
+      // let myMsgs= this.msgs.filter(msg=>{
+      //   console.log('msg is :',msg);
+      // return msg.from._id===this.loggedinUser._id
+      // })
+      if(msg.from._id===this.loggedinUser._id){
+        console.log('classmsg adom');
+        return 'message'
+      }else  return 'message-strange'
+    },
     // getUserId(){
       // let loggedin= sessionStorage.getItem('guest');
     // console.log('loggedinss',JSON.parse(loggedin));
@@ -71,10 +84,16 @@ export default {
     // },
 
     addMsg(msg) {
-      this.msgs.push(msg)
+      if(msg.from._id===this.loggedinUser._id){
+      this.myMsgs.push(msg)
+      } else {
+        this.otherMsgs.push(msg)
+        }
+        this.msgs.push(msg)
       this.$store.commit({type:'setLastMsg',msg})
     // this.$store.commit({type:'updateMsgs',msg})
-      this.isTyping=false
+      // this.isTyping=false
+      
     },
     setIsTyping(){
       if(this.msg.txt !== '')  socketSerivce.emit('chat typing',this.msg.from);

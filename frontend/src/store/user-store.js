@@ -2,7 +2,6 @@ import userService from '../services/user-service.js'
 
 var localLoggedinUser = null;
 (sessionStorage.user) ? localLoggedinUser = JSON.stringify(sessionStorage.user): localLoggedinUser = JSON.stringify(sessionStorage.guest)
-    // console.log(localLoggedinUser);
 
 
 export const userStore = {

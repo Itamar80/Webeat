@@ -3,7 +3,7 @@
     <header :class="navClass">
       <!-- <div class="main-header flex space-between align-center justify-center"> -->
       <span @click="$router.push('/')" class="logo flex align-center justify-center">
-        <img class="logo-img" src="./assets/logo2.png" alt />
+        <img class="logo-img" src="./assets/welogo.png" alt />
       </span>
       <nav class="main-nav">
         <!-- <router-link class="nav-btn router-link router-btn" to="/">Home</router-link> -->

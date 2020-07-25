@@ -56,7 +56,6 @@ function getUsers() {
 }
 
 function _handleLogin(user) {
-    console.log('_handleLogin', user);
     let guest = { _id: _makeId(), fullName: 'Guest' }
     if (!user) sessionStorage.setItem('guest', JSON.stringify(guest))
     else {

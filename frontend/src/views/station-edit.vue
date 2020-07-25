@@ -51,7 +51,7 @@
           <h1 v-else>Station name</h1>
           <span class="creator-info  align-center" v-if="loggedInUser">
             Created By:
-            <img class="creator-img" :src="loggedInUser.imgUrl" alt />
+            <img class="creator-img" :src="loggedInUser.imgUrl" alt="creator img" />
             {{loggedInUser.fullName}}
           </span>
           <span class="creator-info  align-center" v-else>
