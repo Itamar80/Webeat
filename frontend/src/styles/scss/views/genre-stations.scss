@@ -107,13 +107,75 @@
     @media screen and (max-width: $narrow-breakpoint) {
         .grid {
             grid-template-columns: repeat(3, 250px);
-            grid-template-rows: 1;
+            grid-row: 1;
         }
     }
     @media screen and (max-width: $mobile-breakpoint) {
         .grid {
-            grid-template-columns: repeat(2, 250px);
-            grid-template-rows: 1;
+            grid-template-columns: repeat(3, 200px);
+            grid-row: 1;
+        }
+        .preview-details {
+            width: 100%;
+            h2 {
+                font-size: 1rem;
+                margin: 4px 0 5px 0;
+            }
+            .like-section {
+                .heart-icon {
+                    font-size: 14px;
+                }
+            }
+            span {
+                font-size: rem(12px);
+            }
+            .clock-icon {
+                margin: 0 3px 0 0;
+            }
+            .play-icon {
+                font-size: 35px;
+            }
+            // margin-bottom: 32px;
+        }
+    }
+    @media screen and (max-width: 650px) {
+        .grid {
+            grid-template-columns: repeat(3, 120px);
+            gap: 30px;
+            // grid-row: 1;
+        }
+        .station-cover {
+            img {
+                height: 120px;
+                width: 120px;
+            }
+        }
+        .station {
+            margin: 0 0 0 1px;
+        }
+        .preview-details {
+            width: 100%;
+            h2 {
+                font-size: 1rem;
+                margin: 4px 0 5px 0;
+            }
+            .like-section {
+                .heart-icon {
+                    margin-left: 3px;
+                    font-size: 12px;
+                }
+            }
+            span {
+                font-size: rem(12px);
+            }
+            .clock-icon {
+                margin: 0 3px 0 0;
+            }
+            .play-icon {
+                display: none;
+                font-size: 20px;
+            }
+            // margin-bottom: 32px;
         }
     }
 }
