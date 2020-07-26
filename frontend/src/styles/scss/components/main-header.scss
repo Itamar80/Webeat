@@ -1,7 +1,7 @@
 .header {
     outline: none;
     background-color: $clr4;
-    height: 10vh;
+    height: 60px;
     .logo-img {
         cursor: pointer;
         width: 130px;
@@ -117,13 +117,15 @@
         // text-shadow: none;
         // background-color: rgba(255, 255, 255, 0.596);
         .nav-btn {
-            text-shadow: 0 0 10px #fff, 0 0 30px white, ;
-            // background-color: rgba(214, 38, 15, 0.534);
+            font-size: rem(19px);
+            color: $clr7;
+            text-shadow: 0 0 10px #fff, 0 0 30px $clr6, ;
+            padding: 3.1vh 15px;
             &:hover {
-                color: rgb(0, 0, 0);
+                color: white;
                 transition: .3s;
-                background-color: rgba(255, 255, 255, 0.192);
-                box-shadow: inset 0px -5px 0px 0px #ffffff63;
+                background-color: $clr5;
+                box-shadow: none;
             }
         }
     }
