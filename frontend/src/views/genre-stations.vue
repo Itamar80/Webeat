@@ -38,10 +38,8 @@ library.add(faSearch)
 export default {
   data(){
     return {
-     
       genres:['hiphop','arabic','easy','electronic','country','flamenco','jazz','rock','pop'],
       genre:'',
-      
     }
   },
   computed:{
