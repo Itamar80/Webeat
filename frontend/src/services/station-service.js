@@ -34,18 +34,15 @@ async function getById(id) {
 //make sessionStorage for guest and update the like in the station per user.
 async function toggleLike(id, loggedInUser, isLiked) {
     const station = await getById(id);
-    console.log('start ', station.likedByUsers, isLiked)
     if (isLiked) {
         (loggedInUser) ? station.likedByUsers.push(loggedInUser): station.likedByUsers.push({ _id: _makeId(), username: 'Guest' })
         save(station)
-        console.log('added: ', station.likedByUsers)
     } else {
         if (loggedInUser) {
             var idx = station.likedByUsers.findIndex((user) => user._id === loggedInUser._id)
             station.likedByUsers.splice(idx, 1)
             save(station)
         } else {
-            console.log('before: ', station.likedByUsers)
             var idx = station.likedByUsers.findIndex((user) => user.username === 'Guest')
             station.likedByUsers.splice(idx, 1)
             save(station)
@@ -86,16 +83,13 @@ function getEmptyStation() {
 }
 
 function _update(station) {
-    console.log('update')
     return axios.put(`${_getURL(station._id)}`, station)
         .then(res => {
-            console.log(res.data)
             return res.data
         })
 }
 
 function _add(station) {
-    console.log('add')
     return axios.post(`${_getURL()}`, station)
         .then(res => res.data)
 }

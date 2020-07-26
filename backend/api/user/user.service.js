@@ -26,17 +26,6 @@ async function query(filterBy = {}) {
     }
 }
 
-// async function signup(user) {
-//     const collection = await dbService.getCollection('user')
-//     try {
-//         console.log(user);
-//         await collection.insertOne(user);
-//         return user;
-//     } catch (err) {
-//         console.log(`ERROR: cannot insert user`)
-//         throw err;
-//     }
-// }
 
 async function getById(userId) {
     const collection = await dbService.getCollection('user')
@@ -61,7 +50,6 @@ async function getByUsername(username) {
     const collection = await dbService.getCollection('user')
     try {
         const user = await collection.findOne({ username })
-        console.log('user-service user is', user);
         return user
     } catch (err) {
         console.log(`ERROR: while finding user ${username}`)
@@ -93,7 +81,6 @@ async function update(user) {
 }
 
 async function add(user) {
-    console.log('user-service blabla', user);
     const collection = await dbService.getCollection('user')
     try {
         await collection.insertOne(user);

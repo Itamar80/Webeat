@@ -51,7 +51,7 @@ export default {
   created() {
     let genre = this.$route.params.genre;
     this.genreFromUrl = genre;
-    this.filterGenre();
+    // this.filterGenre();
   },
   methods: {
     toggleLike(id, isLiked) {

@@ -54,9 +54,6 @@ export default {
       isLiked: false,
     };
   },
-  // created(){
-  //   console.log('in preview, station: ',this.station)
-  // },
   computed: {
     createdAt() {
       return moment(this.station.createdAt).subtract(10, "days").calendar();
@@ -82,7 +79,7 @@ export default {
     fontAwsomeIcon,
   },
   created(){
-    console.log(this.station.name,this.station.likedByUsers.length);
+    // console.log(this.station.name,this.station.likedByUsers.length);
   }
 };
 </script>

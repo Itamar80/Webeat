@@ -72,7 +72,6 @@ export default {
     };
   },
   created() {
-    console.log("stations from created: ", this.stations);
     let id = this.$route.params.id;
     this.setStation(id);
     socket.emit("join station", id);
@@ -80,7 +79,6 @@ export default {
       this.$store.dispatch({ type: "setCurrSong", song });
     });
     socket.on("station changed", (station) => {
-      console.log(station);
       this.$store.commit({ type: "setCurrStation", station });
     });
   },
@@ -102,7 +100,6 @@ export default {
       return this.$store.getters.stations;
     },
     loggedInUser() {
-      console.log("kiki", this.$store.getters.loggedinUser);
       return this.$store.getters.loggedinUser;
     },
     // isPlaying(){
@@ -161,7 +158,6 @@ export default {
     },
     async toggleLike(id, isLiked) {
       this.isLiked=!this.isLiked
-      console.log('isLiked',isLiked);
       const loggedInUser = this.$store.getters.loggedInUser;
       await stationService.toggleLike(id, loggedInUser,  this.isLiked);
       this.setStation(id);

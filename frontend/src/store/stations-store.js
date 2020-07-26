@@ -34,7 +34,6 @@ export const stationStore = {
             return JSON.parse(JSON.stringify(state.genresMap))
         },
         stations(state) {
-            console.log('getter', state.stations)
             return state.stations
         },
         songList(state) {
@@ -85,13 +84,11 @@ export const stationStore = {
                 return station._id === savedStation._id
             })
             state.stations.splice(stationIdx, 1, savedStation)
-                // console.log('the station to save is : ', savedStation, 'the station list is: ', state.stations);
         },
         addStation(state, savedStation) {
             state.stations.unshift(savedStation)
         },
         setSongList(state, { songList }) {
-            console.log("SET SONGLIST", songList)
             state.songList = songList
         },
         clearSongList(state) {
@@ -113,7 +110,6 @@ export const stationStore = {
         loadStations({ commit, state }, { genre }) {
             return stationService.query(state.filterBy, genre)
                 .then(stations => {
-                    // console.log(stations)
                     commit({ type: 'setStations', stations })
                     return stations
                 })
@@ -127,11 +123,9 @@ export const stationStore = {
                 })
         },
         searchSong({ commit }, { songStr }) {
-            // console.log('in store', songStr);
             return songService.searchSong(songStr)
                 .then(songList => {
                     commit({ type: 'setSongList', songList })
-                    console.log("store commit: ", songList)
                 })
 
 
@@ -149,19 +143,15 @@ export const stationStore = {
         },
         async toggleLike({ commit }, { id, isLiked, loggedInUser }) {
             const station = await stationService.getById(id);
-            console.log('in store , start ', station.likedByUsers, isLiked)
-            console.log(isLiked);
             if (isLiked) {
-                (loggedInUser) ? station.likedByUsers.push(loggedInUser): station.likedByUsers.push({ _id: _makeId(), username: 'Guest' })
+                (loggedInUser) ? station.likedByUsers.push(loggedInUser): station.likedByUsers.push({ _id: stationService._makeId(), username: 'Guest' })
                 commit({ type: 'updateStation', savedStation: station })
-                    // console.log('in store , added: ', station.likedByUsers)
             } else {
                 if (loggedInUser) {
                     var idx = station.likedByUsers.findIndex((user) => user._id === loggedInUser._id)
                     station.likedByUsers.splice(idx, 1)
                     commit({ type: 'updateStation', savedStation: station })
                 } else {
-                    console.log('in store , before: ', station.likedByUsers)
                     var idx = station.likedByUsers.findIndex((user) => user.username === 'Guest')
                     station.likedByUsers.splice(idx, 1)
                     commit({ type: 'updateStation', savedStation: station })

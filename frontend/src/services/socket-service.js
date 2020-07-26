@@ -29,6 +29,5 @@ function off(eventName, cb) {
 }
 
 function emit(eventName, data) {
-    // console.log(eventName, data)
     socket.emit(eventName, data)
 }

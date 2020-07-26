@@ -49,7 +49,6 @@ export default {
      return this.$store.getters.genresMap;
     },
     stations(){
-       console.log('stations  after adding like  name bbb: ',this.$store.getters.stations[8].likedByUsers.length);
       return this.$store.getters.stations
     }
   },

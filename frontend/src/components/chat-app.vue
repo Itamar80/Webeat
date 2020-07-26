@@ -105,7 +105,6 @@ export default {
     },
     showTyping(userName) {
       this.isTyping = true;
-      console.log("userName is typing", userName);
       this.user = userName;
     },
     sendMsg() {

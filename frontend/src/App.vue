@@ -40,7 +40,6 @@ export default {
   created() {
     socketService.setup();
     userService.setUser();
-    this.loadStations();
   },
   computed: {
     navClass() {
@@ -50,20 +49,7 @@ export default {
     },
   },
   methods: {
-    async loadStations() {
-      await this.$store.dispatch({ type: "loadStations" });
-    },
   },
-      methods:{
-        // toggleMenu() {
-        //         // this.isMenuOpen = !this.isMenuOpen
-        //         console.log(this.isMenuOpen ,'menu open?');
-        //         // document.body.classList.toggle('menuopen')
-        //     }
-      //   async loadStations() {
-      //   await this.$store.dispatch({ type: "loadStations" });
-      // },
-      },
   components: {
     currSong,
     appFooter,
