@@ -1,4 +1,5 @@
 .genre-stations {
+    margin: 0 auto;
     ul {
         width: fit-content;
     }
@@ -106,11 +107,13 @@
     @media screen and (max-width: $narrow-breakpoint) {
         .grid {
             grid-template-columns: repeat(3, 250px);
+            grid-template-rows: 1;
         }
     }
     @media screen and (max-width: $mobile-breakpoint) {
         .grid {
             grid-template-columns: repeat(2, 250px);
+            grid-template-rows: 1;
         }
     }
 }
