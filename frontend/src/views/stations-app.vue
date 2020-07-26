@@ -10,7 +10,9 @@
             Listen to music with friends.
             No matter where they're at.
           </h3>
+          <div class="button-container">
           <button class="scroll-btn" @click="smoothScroll('.h2', 1000)">Start Listening Now</button>
+          </div>
           <img src="@/assets/hero1.webp" />
           <img src="@/assets/dribble-red.png" />
           <img src="@/assets/hero3.jpg" />

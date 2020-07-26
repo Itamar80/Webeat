@@ -2,7 +2,7 @@
   <section class="curr-song flex justify-center align-center">
     <section class="song-controllers flex row justify-center align-center space-between">
       <youtube
-      v-if="currStation"
+        v-if="currStation"
         :video-id="videoId"
         :player-vars="playerVars"
         @playing="playing"
@@ -10,67 +10,69 @@
         ref="youtube"
       ></youtube>
       <div class="song-details flex row justify-center align-center space-between">
-      <img v-if="currStation" @click="goToStation" :src="currStation.imgUrl" />
-      <div v-if="currStation">
-      <img class="gif" v-if="isPlaying" src="@/assets/sound-gif2.gif" />
-      <img class="gif" v-else src="@/assets/preview.png" />
-      </div>
-      <div v-if="currStation" class="currPlaying">
-        <h5>Now Playing:</h5>
-        <p>{{currSongTitle}}</p>
-      </div>
-      <p v-else>
-        No station chosen
-      </p>
+        <img v-if="currStation" @click="goToStation" :src="currStation.imgUrl" />
+        <div v-if="currStation">
+          <img class="gif" v-if="isPlaying" src="@/assets/sound-gif2.gif" />
+          <img class="gif" v-else src="@/assets/preview.png" />
+        </div>
+        <div v-if="currStation" class="currPlaying">
+          <h5>Now Playing:</h5>
+          <p>{{currSongTitle}}</p>
+        </div>
+        <p v-else>No station chosen</p>
       </div>
       <div class="controllers flex row justify-center align-center space-between">
-      <div class="flex row justify-center align-center">
-        <font-awesome-icon @click="toggleMute" :icon="volumeIcon" class="volume-icon control-icon" />
-        <input id="volume" @input="changeVolume" value="100" type="range" />
-      </div>
-      <div class="flex row justify-center align-center">
-        <font-awesome-icon
-          @click="changeSong('prevSong')"
-          icon="backward"
-          size="lg"
-          class="control-icon"
-        />
-        <font-awesome-icon
-          v-if="isPlaying"
-          @click="playOrPauseVideo(false,false)"
-          icon="pause"
-          size="lg"
-          class="control-icon"
-        />
-        <font-awesome-icon
-          v-else
-          @click="playOrPauseVideo(true, false)"
-          icon="play"
-          size="lg"
-          class="control-icon"
-        />
-        <font-awesome-icon
-          @click="changeSong('nextSong')"
-          icon="forward"
-          size="lg"
-          class="control-icon"
-        />
-      </div>
-      <span class="flex row justify-center align-center">
-        {{ time }}
-        <input
-          @input="changeSongTime()"
-          @mousedown="playOrPauseVideo(false)"
-          @mouseup="playOrPauseVideo(true)"
-          @touchstart="playOrPauseVideo(false)"
-          @touchend="playOrPauseVideo(true)"
-          :value="songCurrTime"
-          :max="songEndTime"
-          id="progressBar"
-          type="range"
-        />
-        {{ duration }}
-      </span>
+        <div class="flex row justify-center align-center">
+          <font-awesome-icon
+            @click="toggleMute"
+            :icon="volumeIcon"
+            class="volume-icon control-icon"
+          />
+          <input id="volume" @input="changeVolume" value="100" type="range" />
+        </div>
+        <div class="flex row justify-center align-center">
+          <font-awesome-icon
+            @click="changeSong('prevSong')"
+            icon="backward"
+            size="lg"
+            class="control-icon"
+          />
+          <font-awesome-icon
+            v-if="isPlaying"
+            @click="playOrPauseVideo(false,false)"
+            icon="pause"
+            size="lg"
+            class="control-icon"
+          />
+          <font-awesome-icon
+            v-else
+            @click="playOrPauseVideo(true, false)"
+            icon="play"
+            size="lg"
+            class="control-icon"
+          />
+          <font-awesome-icon
+            @click="changeSong('nextSong')"
+            icon="forward"
+            size="lg"
+            class="control-icon"
+          />
+        </div>
+        <span class="flex row justify-center align-center">
+          {{ time }}
+          <input
+            @input="changeSongTime()"
+            @mousedown="playOrPauseVideo(false)"
+            @mouseup="playOrPauseVideo(true)"
+            @touchstart="playOrPauseVideo(false)"
+            @touchend="playOrPauseVideo(true)"
+            :value="songCurrTime"
+            :max="songEndTime"
+            id="progressBar"
+            type="range"
+          />
+          {{ duration }}
+        </span>
       </div>
     </section>
   </section>
@@ -126,7 +128,7 @@ export default {
       songEndTime: 0,
       songCurrTime: 0,
       isMuted: false,
-      currSongCueTime: null
+      currSongCueTime: null,
     };
   },
   computed: {
@@ -134,7 +136,7 @@ export default {
       return this.currSong.youtubeId;
     },
     player() {
-      return this.$refs.youtube.player;
+      if (this.currStation) return this.$refs.youtube.player;
     },
     currStation() {
       return this.$store.getters.currStation;
@@ -142,17 +144,19 @@ export default {
     currSong() {
       return this.$store.getters.currSong;
     },
-    currSongTitle(){
-    return ( this.currSong.title.length>30)?this.currSong.title.substring(0,30)+'...':this.currSong.title
+    currSongTitle() {
+      return this.currSong.title.length > 30
+        ? this.currSong.title.substring(0, 30) + "..."
+        : this.currSong.title;
     },
     // isPlaying(){
     //   return this.$store.getters.isPlaying;
     // }
   },
   async created() {
-    socket.on('joined new station', time =>{
-      this.songCurrTime = time
-    })
+    socket.on("joined new station", (time) => {
+      this.songCurrTime = time;
+    });
     socket.on("song changed", (song) => {
       this.$store.dispatch({ type: "setCurrSong", song });
     });
@@ -209,33 +213,32 @@ export default {
       if (value >= 60) this.volumeIcon = "volume-up";
       if (value <= 60) this.volumeIcon = "volume-down";
       if (value <= 20) this.volumeIcon = "volume-off";
-      if (value <0) this.volumeIcon = "volume-mute";
+      if (value < 0) this.volumeIcon = "volume-mute";
     },
-    toggleMute(){
-      this.isMuted = !this.isMuted
-      if(this.isMuted){
-        this.player.mute()
-      this.changeVolumeIcon(-1)
-      } else{
-        player.unMute()
-      const elVolumeInput =  document.getElementById('volume')
-      this.changeVolumeIcon(elVolumeInput.value)
+    toggleMute() {
+      this.isMuted = !this.isMuted;
+      if (this.isMuted) {
+        this.player.mute();
+        this.changeVolumeIcon(-1);
+      } else {
+        player.unMute();
+        const elVolumeInput = document.getElementById("volume");
+        this.changeVolumeIcon(elVolumeInput.value);
       }
     },
     changeSongTime() {
       this.player.seekTo(event.target.value);
       socket.emit("song time changed", event.target.value);
     },
-    updateSongTime(timestamp){
-      this.songCurrTime = timestamp
+    updateSongTime(timestamp) {
+      this.songCurrTime = timestamp;
       this.player.seekTo(timestamp);
     },
     async playing() {
       this.isPlaying = true;
       this.duration = this.formatTime(await this.player.getDuration());
       this.timeId = setInterval(() => {
-        this.player.getCurrentTime()
-        .then((time) => {
+        this.player.getCurrentTime().then((time) => {
           // socket.emit('songCurrTime', time)
           this.songCurrTime = time;
           this.time = this.formatTime(time + 1);
@@ -255,13 +258,17 @@ export default {
       this.time = "00:00";
       clearInterval(this.timeId);
     },
-    goToStation(){
-      this.$router.push(`stations/details/${this.currStation._id}`)
-    }
+    goToStation() {
+      this.$router.push(`stations/details/${this.currStation._id}`);
+    },
   },
   async mounted() {
+    if(this.currStation) {
     this.duration = this.formatTime(await this.player.getDuration());
     this.getSongEndTime();
+    }else{
+      this.duration = '00:00'
+    }
   },
   components: {
     fontAwsomeIcon,

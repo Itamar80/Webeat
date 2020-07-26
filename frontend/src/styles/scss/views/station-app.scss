@@ -1,9 +1,17 @@
 .station-app {
+    .button-container {
+        width: 100%;
+        display: block;
+        position: relative;
+        margin-top: 70vh;
+        text-align: center;
+        height: auto;
+    }
     .scroll-btn {
         position: absolute;
-        bottom: 30%;
-        left: 39%;
-        margin: 0 auto;
+        bottom: 40%;
+        left: 50%;
+        transform: translateX(-50%);
         outline: none;
         box-shadow: none;
         border: none;
@@ -196,7 +204,7 @@
     .station-app {
         .scroll-btn {
             font-size: 0.7rem;
-            left: 37%;
+            // left: 37%;
             // margin: 0 auto;
         }
         .h2 {
@@ -265,7 +273,7 @@
 @media screen and (max-width: $mobile-breakpoint) {
     .station-app {
         .scroll-btn {
-            left: 25%;
+            // left: 25%;
         }
         .h2 {
             font-size: 2rem;
