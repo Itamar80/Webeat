@@ -16,7 +16,7 @@
                 display: flex;
                 .creator-img {
                     object-fit: cover;
-                    margin: 7px;
+                    margin: 0 7px;
                     border-radius: 50%;
                     width: 30px;
                     height: 30px;
@@ -38,10 +38,11 @@
                 margin: 3px 0;
             }
             .genre {
+                padding: 4px;
                 color: $clr1;
                 background-color: #c1c1c1e3;
                 border-radius: 5px;
-                max-width: 90px;
+                max-width: max-content;
                 text-align: center;
             }
             .icon {

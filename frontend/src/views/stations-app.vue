@@ -5,11 +5,13 @@
       <div class="create-filter flex justify-center align-center"></div>
       <div class="hero-img">
         <div class="gradient">
+          <div class="marketing">
           <h1>Party without borders</h1>
           <h3>
             Listen to music with friends.
             No matter where they're at.
           </h3>
+          </div>
           <div class="button-container">
           <button class="scroll-btn" @click="smoothScroll('.h2', 1000)">Start Listening Now</button>
           </div>

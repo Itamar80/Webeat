@@ -81,23 +81,28 @@
                 animation-delay: 0s;
             }
         }
+        .marketing {
+            position: absolute;
+            left: 50%;
+            top: 25%;
+            max-width: max-content;
+            // width: 100%;
+            // transform: translateX(-50%);
+        }
         h1,
         h3 {
             z-index: 3;
+            margin: 0;
             color: rgb(255, 249, 249);
             text-shadow: 0 0 10px #fff;
             font-family: $font1;
-            font-size: 4.5rem;
+            font-size: 4.8rem;
             font-weight: 800;
-            position: absolute;
-            top: 20%;
-            left: 49%;
             transform: translate(-50%, -50%);
             text-align: center;
         }
         h3 {
             font-size: 2rem;
-            top: 40%;
         }
     }
     @keyframes multiple-image-crossfade {
@@ -156,10 +161,10 @@
         margin-bottom: 50px;
         display: grid;
         margin: 0 auto 50px;
-        grid-template-columns: repeat(4, 250px);
-        gap: 12px;
+        grid-template-columns: repeat(4, 260px);
+        gap: 20px;
         .station-cover {
-            width: 240px;
+            width: 260px;
             transition: .5s;
             filter: opacity(75%);
             &:hover {
@@ -174,7 +179,7 @@
             border-radius: .5rem;
             span {
                 width: 100%;
-                padding-left: .2rem;
+                padding-left: .5rem;
                 color: white;
                 font-weight: 800;
                 h3 {

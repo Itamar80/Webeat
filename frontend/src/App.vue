@@ -5,17 +5,6 @@
       <!-- </div> -->
 <template>
   <div id="app">
-    <!-- <header :class="navClass">
-      <span @click="$router.push('/')" class="logo flex align-center justify-center">
-        <img class="logo-img" src="./assets/welogo.png" alt />
-      </span>
-        <span @click="toggleMenu" class="hamburger">☰</span>
-      <nav class="main-nav">
-        <router-link @click.native="toggleMenu()" class="nav-btn router-link router-btn" to="/stations">Stations</router-link>
-        <router-link @click.native="toggleMenu()" class="nav-btn router-link router-btn" to="/edit">Create station</router-link>
-        <router-link @click.native="toggleMenu()" class="nav-btn router-link router-btn" to="/login">Login</router-link>
-      </nav>
-    </header> -->
     <app-header/>
     <router-view />
     <curr-song />
