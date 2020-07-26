@@ -13,7 +13,6 @@ async function getUsers(req, res) {
 }
 async function signup(req, res) {
     let user = req.body
-    console.log('user-controller:', user);
     await userService.signup(user)
     res.json(user)
 }

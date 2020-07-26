@@ -11,7 +11,6 @@ export default {
             return state.msgs;
         },
         lastMsg(state) {
-            console.log('qqqqqqqqqqqq', state.lastMsg);
             return state.lastMsg
         }
     },

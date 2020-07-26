@@ -138,11 +138,9 @@ export default {
   },
   computed: {
     songList() {
-      // console.log('indetails',this.$store.getters.songList);
       return this.$store.getters.songList;
     },
     loggedInUser() {
-      console.log("logged in is", this.$store.getters.loggedinUser);
       return this.$store.getters.loggedinUser;
     },
   },
@@ -190,10 +188,8 @@ export default {
     addSong(song) {
       this.station.songs.push(song);
       this.songToFindYoutube = "";
-      console.log(song);
     },
     deleteSong(songId) {
-      console.log(songId);
       var idx = this.station.songs.findIndex((song) => song._id === songId);
       this.station.songs.splice(idx, 1);
     },

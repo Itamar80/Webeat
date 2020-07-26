@@ -6,9 +6,9 @@
     </span>
     <span @click="toggleMenu" class="hamburger">☰</span>
     <nav class="main-nav">
-      <router-link class="nav-btn router-link router-btn" to="/edit">Create station</router-link>
-      <router-link class="nav-btn router-link router-btn" to="/stations">Stations</router-link>
-      <router-link class="nav-btn router-link router-btn" to="/login">Login</router-link>
+      <router-link @click.native="toggleMenu" class="nav-btn router-link router-btn" to="/edit">Create station</router-link>
+      <router-link @click.native="toggleMenu" class="nav-btn router-link router-btn" to="/stations">Stations</router-link>
+      <router-link @click.native="toggleMenu" class="nav-btn router-link router-btn" to="/login">Login</router-link>
     </nav>
     <!-- <router-link class="nav-btn router-link router-btn" to="/">Home</router-link> -->
     <!-- <router-link class="nav-btn router-link router-btn" to="/dashboard">Statistics</router-link>

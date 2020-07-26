@@ -40,7 +40,6 @@ export default {
   created() {
     socketService.setup();
     userService.setUser();
-    // this.loadStations();
   },
   computed: {
     navClass() {
@@ -49,19 +48,8 @@ export default {
       else return "header flex space-between align-center justify-center";
     },
   },
-  // methods: {
-  //   async loadStations() {
-  //     await this.$store.dispatch({ type: "loadStations" });
-  //   },
-  // },
-        // toggleMenu() {
-        //         // this.isMenuOpen = !this.isMenuOpen
-        //         console.log(this.isMenuOpen ,'menu open?');
-        //         // document.body.classList.toggle('menuopen')
-        //     }
-      //   async loadStations() {
-      //   await this.$store.dispatch({ type: "loadStations" });
-      // },
+  methods: {
+  },
   components: {
     currSong,
     appFooter,

@@ -112,7 +112,6 @@ export default {
   },
   methods: {
     searchSongs() {
-      console.log(this.songToFindYoutube);
       this.$emit("searchSongs", this.songToFindYoutube);
     },
     searchInStation() {
@@ -121,7 +120,6 @@ export default {
       );
     },
     addSong(song) {
-      // console.log('songList: ', song)
       this.$emit("addSong", song);
       this.songToFindYoutube = "";
       this.isAddSong = false;

@@ -154,7 +154,6 @@ export default {
       this.songCurrTime = time
     })
     socket.on("song changed", (song) => {
-      console.log(song)
       this.$store.dispatch({ type: "setCurrSong", song });
     });
     socket.on("songStatus changed", (isPlaying) => {
@@ -228,7 +227,6 @@ export default {
       socket.emit("song time changed", event.target.value);
     },
     updateSongTime(timestamp){
-      console.log(timestamp)
       this.songCurrTime = timestamp
       this.player.seekTo(timestamp);
     },

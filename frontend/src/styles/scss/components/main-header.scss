@@ -67,9 +67,9 @@
     .main-nav .nav-btn {
         cursor: pointer;
         transition: color 0.8s ease-in;
-        // opacity: unset;
+        opacity: unset;
         color: transparent;
-        // visibility: hidden;
+        visibility: hidden;
     }
     .menuopen .main-nav {
         transform: translateY(86px);

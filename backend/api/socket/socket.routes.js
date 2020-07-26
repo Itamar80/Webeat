@@ -30,7 +30,6 @@ function connectSockets(io) {
             io.to(socket.myStation).emit('songStatus changed', isPlaying)
         })
         socket.on('station songs changed', station => {
-            console.log(station)
             io.to(socket.myStation).emit('station changed', station)
         })
         socket.on('song time changed', timestamp => {

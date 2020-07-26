@@ -52,13 +52,11 @@ export default {
   },
   computed:{
      songPlaying() {
-      // console.log(this.$store.getters.isPlaying)
       return this.$store.getters.isPlaying;
     }
   },
   created() {
     this.checkIfPlaying();
-    // console.log(this.songPlaying)
   },
   methods: {
     async playSong() {

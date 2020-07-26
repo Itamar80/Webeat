@@ -2,24 +2,19 @@ const dbService = require('../../services/db.service')
 const ObjectId = require('mongodb').ObjectId
 
 module.exports = {
-        query,
-        getById,
-        remove,
-        update,
-        add
-    }
-    // filterBy = {},
-    //add filterBy
+    query,
+    getById,
+    remove,
+    update,
+    add
+}
 async function query(filterBy = {}) {
-    // console.log('query service... ', filterBy);
     const criteria = _buildCriteria(filterBy.name_like, filterBy.genre_like)
     const collection = await dbService.getCollection('station')
-        // console.log('criteriaaaa', criteria);
     try {
         const stations = await collection.find(criteria).toArray();
         return stations
     } catch (err) {
-        console.log('ERROR: cannot find stations')
         throw err;
     }
 }
@@ -82,6 +77,5 @@ function _buildCriteria(filterByName, genre) {
         criteria.name = { $regex: new RegExp(filterByName, 'i') }
             // criteria.name = filterByName
     }
-    console.log('station.service criteria:', criteria)
     return criteria;
 }

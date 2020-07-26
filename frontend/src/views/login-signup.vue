@@ -75,7 +75,6 @@ export default {
     },
     signup() {
       const cred = this.signupCred
-      // console.log('signup-vue',cred);
       if(!cred.email || !cred.password ||!cred.username) return this.msg = 'Please fill up the form'
       this.$store.dispatch({type: 'signup', userCred: cred})
     },
