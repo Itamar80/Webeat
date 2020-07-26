@@ -40,7 +40,6 @@ export default {
     return {
       genres:['hiphop','arabic','easy','electronic','country','flamenco','jazz','rock','pop'],
       genre:'',
-      
     }
   },
   computed:{
