@@ -17,7 +17,8 @@ export default {
 methods:{
   filterStations(){
     this.$emit('filterStations',this.filterBy)
-  }
+  },
+  
 }
 }
 </script>

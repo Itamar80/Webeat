@@ -1,37 +1,26 @@
 <template>
   <div v-if="stations" class="station-list">
     <button class="btn" v-if="genreFromUrl" @click="moveTo">Return to all stations</button>
-    <ul class="clean-list grid">
-            <station-preview
-            v-for="station in stations" :key="station._id"
-              class="station"
-              :genre="genre"
-              :station="station"
-              @toggleLike="toggleLike"
-            ></station-preview>
+    <ul v-if="isPreview" class="clean-list grid preview">
+      <station-preview
+        v-for="station in getRandomFour"
+        :key="station._id"
+        class="station"
+        :genre="genre"
+        :station="station"
+        @toggleLike="toggleLike"
+      ></station-preview>
     </ul>
-      <!-- <station-preview class="station" :station="station" @toggleLike="toggleLike"></station-preview> -->
-      <!-- <div class="block">
-        <el-carousel trigger="click" height="150px">
-         <el-carousel-item v-for="station in filteredGenres" :key="station._id"> -->
-        
-          <!-- </el-carousel-item>
-        </el-carousel>
-      </div> --> 
-
-
-      <!-- <vueper-slides
-  class="no-shadow"
-  :visible-slides="3"
-  slide-multiple
-  :gap="3"
-  :slide-ratio="1 / 4"
-  :dragging-distance="200"
-  :breakpoints="{ 800: { visibleSlides: 2, slideMultiple: 2 } }">
-  <vueper-slide v-for="i in filteredGenres" :key="i" :title="i.toString()" />
-</vueper-slides> -->
-
-    <!-- <div class="block"></div> -->
+    <ul v-else class="clean-list grid">
+      <station-preview
+        v-for="station in stations"
+        :key="station._id"
+        class="station"
+        :genre="genre"
+        :station="station"
+        @toggleLike="toggleLike"
+      ></station-preview>
+    </ul>
   </div>
 </template>
 
@@ -40,17 +29,41 @@
 // import 'vueperslides/dist/vueperslides.css'
 import stationPreview from "./station-preview.vue";
 export default {
-  props: ["stations", "genre"],
+  props: ["stations", "genre", "isPreview"],
   data() {
     return {
       genreFromUrl: "",
       filteredStations: [],
     };
   },
-  computed: {},
+  computed: {
+    getRandomFour() {
+      var stationsForPreview = [];
+      var stationByGenre = this.stations.filter(station => {
+        if (station.genre === this.genre){
+          return station}
+          else return
+      });
+      for (var i = 1; i <= 4; i++) {
+        var station = stationByGenre[Math.floor(Math.random() * stationByGenre.length)];
+        // var douplicatedStation = stationsForPreview.find(
+        //   (stationInArray) => stationInArray._id === station._id
+        // );
+        // if (douplicatedStation) {
+        //   i--;
+        //   continue;
+        // }
+        // console.log(stations);
+        stationsForPreview.push(station);
+      }
+      console.log(stationsForPreview);
+      return stationsForPreview;
+    },
+  },
   created() {
     let genre = this.$route.params.genre;
     this.genreFromUrl = genre;
+
     // this.filterGenre();
   },
   methods: {
@@ -61,7 +74,8 @@ export default {
       this.$router.push(`/stations`);
       location.reload();
     },
-    // filterGenre() {     
+
+    // filterGenre() {
     //   this.filteredStations = this.stations.filter(
     //     (station) => station.genre === this.genre
     //   );

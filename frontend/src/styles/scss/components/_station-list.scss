@@ -1,12 +1,22 @@
 .station-list {
+    max-width: fit-content;
     .grid {
         display: grid;
-        //responsivity changes require
         grid-template-columns: repeat(4, 250px);
-        grid-auto-rows: auto;
         gap: 16px;
     }
     .station {
         margin: 16px;
+    }
+}
+
+@media screen and (max-width: $narrow-breakpoint) {
+    .grid {
+        grid-template-columns: repeat(3, 250px);
+    }
+    .preview {
+        li:last-of-type {
+            display: none;
+        }
     }
 }

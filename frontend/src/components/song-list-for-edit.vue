@@ -1,14 +1,4 @@
 <template>
-  <!-- <section class="song-list song-list-edit flex row"> -->
-    <!-- <section class="flex col">
-      <div class="flex row align-center">
-        <input type="text" v-model="songToFindYoutube" />
-        <button class="btn edit-sub-btn" @click.prevent="searchSongs">Search new songs</button>
-      </div>
-      <vue-custom-scrollbar class="scroll-area" :settings="settings" @ps-scroll-y="scrollHanle">
-        <youtubeSongs @addSong="addSong" :songList="songList" />
-      </vue-custom-scrollbar> 
-    </section>-->
     <section class=" song-list song-list-edit flex col justify-center align-center ">
       <div class="flex row align-center space-between">
         <input type="text" v-model="songTofindStation" />
@@ -20,8 +10,8 @@
       <section v-else class="songlist-container">
         <vue-custom-scrollbar suppressScrollX class="scroll-area" :settings="settings" @ps-scroll-y="scrollHanle">
           <ul class="clean-list">
-            <li v-for="song in songs" :key="song._id">
-              <songListPrev @deleteSong="deleteSong" :song="song" :edit="true" />
+            <li v-for="(song, index) in songs" :key="song._id">
+              <songListPrev @deleteSong="deleteSong" :index="index" :song="song" :edit="true" />
             </li>
           </ul>
         </vue-custom-scrollbar>
