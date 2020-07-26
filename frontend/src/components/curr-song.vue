@@ -9,7 +9,7 @@
         @ended="ended"
         ref="youtube"
       ></youtube>
-      <div class="flex row justify-center align-center space-between">
+      <div class="song-details flex row justify-center align-center space-between">
       <img v-if="currStation" @click="goToStation" :src="currStation.imgUrl" />
       <div v-if="currStation">
       <img class="gif" v-if="isPlaying" src="@/assets/sound-gif2.gif" />
@@ -23,7 +23,7 @@
         No station chosen
       </p>
       </div>
-      <div class=" controllers flex row justify-center align-center space-between">
+      <div class="controllers flex row justify-center align-center space-between">
       <div class="flex row justify-center align-center">
         <font-awesome-icon @click="toggleMute" :icon="volumeIcon" class="volume-icon control-icon" />
         <input id="volume" @input="changeVolume" value="100" type="range" />
