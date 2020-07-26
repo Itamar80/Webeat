@@ -154,7 +154,11 @@
                     width: 200px
                 }
             }
+            .song-details {
+                width: 100%;
+            }
             .currPlaying {
+                margin: 0 auto;
                 h5 {
                     display: inline;
                     margin-right: 5px;
