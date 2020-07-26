@@ -38,7 +38,7 @@ library.add(faSearch)
 export default {
   data(){
     return {
-      genres:['hiphop','arabic','easy','electronic','country','flamenco','jazz','rock','pop'],
+      genres:['hiphop','arabic','easy','electronic','country','latin','jazz','rock','pop','classical','alternative','folk','soul','blues','disco','metal'],
       genre:'',
     }
   },
