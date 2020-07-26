@@ -107,6 +107,7 @@ export default {
     // }
   },
   methods: {
+    //TODO:get station from backend 
     async setStation(id) {
       await this.$store.dispatch({ type: "getCurrStation", id });
       this.setCurrSong(this.station.songs[0]);

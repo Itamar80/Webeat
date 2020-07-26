@@ -29,6 +29,7 @@ function query(filterBy, genre) {
 
 async function getById(id) {
     const station = await axios.get(`${_getURL(id)}`)
+        // console.log('station iss', station);
     return station.data
 }
 //make sessionStorage for guest and update the like in the station per user.

@@ -131,6 +131,8 @@ export const stationStore = {
 
         },
         async getCurrStation({ commit }, { id }) {
+            // console.log(id);
+            // console.log('staion iss', station);
             var station = await stationService.getById(id)
             commit({ type: 'setCurrStation', station })
         },

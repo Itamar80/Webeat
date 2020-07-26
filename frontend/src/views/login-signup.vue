@@ -1,6 +1,5 @@
 <template>
 <section>
-    <h1>This is the login/signup page</h1>
 <h2>{{msg}}</h2>
 <div class="logged-in flex justify-center align-center col" v-if="loggedinUser && loggedinUser.fullName !=='Guest'">
        <h3> Welcome : {{loggedinUser.fullName}}
@@ -26,7 +25,7 @@
       </form>
       </div>
     <span class="change-sign-log">
-       New around? <button class="signupfree" @click="changeForm">{{button.txt}}</button>
+       <span v-if="isLogin">New around?</span> <button class="signupfree" @click="changeForm">{{button.txt}}</button>
       </span>
   </div>
 </section>
@@ -52,7 +51,7 @@ export default {
       msg:'',
       img:'',
       button:{
-        txt:'Signup for free'
+        txt:'Login now'
       },
       isLogin:false,
     }
