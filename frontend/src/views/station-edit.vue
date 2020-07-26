@@ -109,8 +109,8 @@ export default {
           label: "Country",
         },
         {
-          value: "flamenco",
-          label: "Flamenco",
+          value: "latin",
+          label: "Latin",
         },
         {
           value: "jazz",
@@ -123,6 +123,34 @@ export default {
         {
           value: "pop",
           label: "Pop",
+        },
+        {
+          value: "classical",
+          label: "Classical",
+        },
+        {
+          value: "alternative",
+          label: "Alternative",
+        },
+        {
+          value: "folk",
+          label: "Folk",
+        },
+        {
+          value: "soul",
+          label: "Soul",
+        },
+        {
+          value: "blues",
+          label: "Blues",
+        },
+        {
+          value: "disco",
+          label: "Disco",
+        },
+        {
+          value: "metal",
+          label: "Metal",
         },
       ],
       tagToAdd: "",
