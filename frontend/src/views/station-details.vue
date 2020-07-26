@@ -12,7 +12,7 @@
           <!-- <div></div> -->
           <span class="creator-info flex align-center" v-if="station.createdBy.fullName">
             Created By:
-            <img class="creator-img" :src="station.createdBy.imgUrl" alt />
+            <img class="creator-img" src="@/assets/creator pictures/itamar.jpg" alt />
             {{station.createdBy.fullName}}
           </span>
           </div>
