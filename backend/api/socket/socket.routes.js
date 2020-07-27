@@ -23,6 +23,9 @@ function connectSockets(io) {
             socket.myStation = stationId;
             io.to(socket.myStation).emit('joined new station', stationId)
         })
+        socket.on('song time changed', timestamp => {
+            io.to(socket.myStation).emit('update song time', timestamp)
+        })
         socket.on('set currSong', currSong => {
             io.to(socket.myStation).emit('song changed', currSong)
         })
@@ -31,9 +34,6 @@ function connectSockets(io) {
         })
         socket.on('station songs changed', station => {
             io.to(socket.myStation).emit('station changed', station)
-        })
-        socket.on('song time changed', timestamp => {
-            io.to(socket.myStation).emit('update song time', timestamp)
         })
     })
 }

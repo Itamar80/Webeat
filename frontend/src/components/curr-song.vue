@@ -163,11 +163,19 @@ export default {
       this.$store.commit({ type: "setSongStatus", isPlaying });
       this.playOrPauseVideo(isPlaying, true);
     });
-    socket.on("update song time", (timestamp) => {
+     socket.on("update song time", (timestamp) => {
       this.updateSongTime(timestamp);
     });
   },
   methods: {
+    changeSongTime() {
+      this.player.seekTo(event.target.value);
+      socket.emit("song time changed", event.target.value);
+    },
+    updateSongTime(timestamp) {
+      this.songCurrTime = timestamp;
+      this.player.seekTo(timestamp);
+    },
     async playOrPauseVideo(play, isFromSocket) {
       this.isPlaying = play;
       if (play) await this.player.playVideo();
@@ -222,17 +230,9 @@ export default {
       } else {
         this.player.unMute();
         const elVolumeInput = document.getElementById("volume");
-        console.log(elVolumeInput.value)
+        console.log(elVolumeInput.value);
         this.changeVolumeIcon(elVolumeInput.value);
       }
-    },
-    changeSongTime() {
-      this.player.seekTo(event.target.value);
-      socket.emit("song time changed", event.target.value);
-    },
-    updateSongTime(timestamp) {
-      this.songCurrTime = timestamp;
-      this.player.seekTo(timestamp);
     },
     async playing() {
       this.isPlaying = true;
