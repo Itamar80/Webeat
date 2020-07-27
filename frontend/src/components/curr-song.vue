@@ -163,7 +163,7 @@ export default {
       this.$store.commit({ type: "setSongStatus", isPlaying });
       this.playOrPauseVideo(isPlaying, true);
     });
-     socket.on("update song time", (timestamp) => {
+    socket.on("update song time", (timestamp) => {
       this.updateSongTime(timestamp);
     });
   },

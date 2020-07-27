@@ -1,4 +1,5 @@
 .genre-stations {
+    min-height: 80vh;
     margin: 0 auto;
     ul {
         width: fit-content;
@@ -113,6 +114,9 @@
         grid-template-columns: repeat(4, 250px);
     }
     @media screen and (max-width: $narrow-breakpoint) {
+        .stations-by-gener {
+            margin-top: 90px;
+        }
         .grid {
             grid-template-columns: repeat(3, 250px);
             grid-row: 1;

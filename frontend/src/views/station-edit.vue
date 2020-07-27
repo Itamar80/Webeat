@@ -1,11 +1,19 @@
 <template>
   <div class="editor flex">
-    <div :class="isSaved">Station saved successfully</div>
-    <button @click="toggleModal">send banana</button>
+    <div :class="isSaved">
+      <div class="chack-container flex align-center justify-center">
+        <font-awesome-icon class="check-icon" icon="check-circle" />
+      </div>
+      <h3>Station saved successfully</h3>
+      <div class="buttons flex align-center justify-center">
+        <router-link to="/stations">Back to stations</router-link>
+        <span @click="goToStation" to>Go to my new station</span>
+      </div>
+    </div>
     <!-- <div class="form-songs-container flex"> -->
     <section class="station-form flex align-center justify-center col">
       <h1>Create your station</h1>
-      <form @submit="addStation" class="flex col">
+      <form @submit.prevent="addStation" class="flex col">
         <label>
           <h3>Station Name:</h3>
           <input type="text" placeholder="Enter the station name" v-model="station.name" ref="name" />
@@ -91,6 +99,11 @@ import vueCustomScrollbar from "vue-custom-scrollbar";
 import songListEdit from "../components/song-list-for-edit.vue";
 import songList from "../components/song-list.vue";
 import youtubeSongs from "../components/youtube-songs.vue";
+import { fontAwsomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faCheckCircle);
 
 export default {
   data() {
@@ -179,7 +192,8 @@ export default {
         maxScrollbarLength: 60,
         suppressScrollX: true,
       },
-        isModalActive: false,
+      isModalActive: false,
+      newStationId: "",
     };
   },
   computed: {
@@ -222,7 +236,7 @@ export default {
         type: "saveStation",
         station: this.station,
       });
-      this.$router.push(`/stations`);
+      this.newStationId = newStation._id;
     },
     toggleModal() {
       this.isModalActive = !this.isModalActive;
@@ -238,6 +252,9 @@ export default {
         type: "searchSong",
         songStr: this.songToFindYoutube,
       });
+    },
+    goToStation() {
+      this.$router.push(`/stations/details/${this.newStationId}`);
     },
     addSong(song) {
       this.station.songs.push(song);
@@ -271,7 +288,7 @@ export default {
   },
   components: {
     vueCustomScrollbar,
-
+    fontAwsomeIcon,
     songListEdit,
     youtubeSongs,
     songList,

@@ -16,6 +16,7 @@
         max-width: 100%;
         margin: 0 16px;
         .message {
+            display: flex;
             width: max-content;
             border-radius: 20px;
             padding: 8px 15px;
@@ -24,8 +25,12 @@
             border-bottom-left-radius: 0;
             background-color: $clr4;
             font-weight: 800;
+            .msg-time {
+                align-self: flex-end;
+            }
         }
         .message-strange {
+            display: flex;
             font-weight: 800;
             align-self: flex-end;
             width: max-content;
@@ -35,6 +40,9 @@
             margin-top: 5px;
             margin-bottom: 8px;
             border-bottom-right-radius: 0;
+            .msg-time {
+                align-self: flex-start;
+            }
         }
         .user-chat-img {
             object-fit: cover;

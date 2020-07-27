@@ -18,10 +18,12 @@
         <ul class="clean-list flex col">
           <li :class="classMessage(msg)" v-for="(msg,idx) in msgs" :key="idx">
             <!-- <img class="user-chat-img" src="@/assets/default-guest.jpg" alt="User image"> -->
+            <span>
             {{msg.from.fullName}} : {{msg.txt}}
-            <span
-              class="msg-time"
-            >{{new Date().getHours()}}:{{new Date().getMinutes()}}</span>
+            </span>
+            <span class="msg-time">
+              {{new Date().getHours()}}:{{new Date().getMinutes()}}
+            </span>
           </li>
         </ul>
       </vue-custom-scrollbar>
@@ -87,7 +89,6 @@ export default {
     scrollToEnd() {
       var content = this.$refs.chat;
       content.scrollTop = content.scrollHeight;
-      
     },
     classMessage(msg) {
       if (msg.from._id === this.loggedinUser._id) {
