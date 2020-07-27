@@ -1,5 +1,7 @@
 <template>
   <div class="editor flex">
+    <div :class="isSaved">Station saved successfully</div>
+    <button @click="toggleModal">send banana</button>
     <!-- <div class="form-songs-container flex"> -->
     <section class="station-form flex align-center justify-center col">
       <h1>Create your station</h1>
@@ -10,7 +12,7 @@
         </label>
         <label>
           <h3>Station Description:</h3>
-          <input type="text" placeholder="Enter the station description" v-model="station.desc"  />
+          <input type="text" placeholder="Enter the station description" v-model="station.desc" />
         </label>
         <input @change="onUploadImg" type="file" name="file" id="file" class="inputfile" />
         <label for="file">Upload Station Image</label>
@@ -25,8 +27,16 @@
         </el-select>
         <section class="flex col">
           <input type="text" placeholder="Add song to the station" v-model="songToFindYoutube" />
-          <button v-if="station.songs.length===0 || !station.songs.length" class="btn edit-sub-btn" @click.prevent="searchSongs">Search song </button>
-          <button v-else class="btn edit-sub-btn" @click.prevent="searchSongs">{{station.songs.length}} Songs added</button>
+          <button
+            v-if="station.songs.length===0 || !station.songs.length"
+            class="btn edit-sub-btn"
+            @click.prevent="searchSongs"
+          >Search song</button>
+          <button
+            v-else
+            class="btn edit-sub-btn"
+            @click.prevent="searchSongs"
+          >{{station.songs.length}} Songs added</button>
           <vue-custom-scrollbar
             suppressScrollX
             class="scroll-area"
@@ -87,7 +97,7 @@ export default {
     return {
       station: {
         name: "",
-        desc:'',
+        desc: "",
         createdBy: null,
         genre: "",
         songs: [],
@@ -169,6 +179,7 @@ export default {
         maxScrollbarLength: 60,
         suppressScrollX: true,
       },
+        isModalActive: false,
     };
   },
   computed: {
@@ -177,6 +188,13 @@ export default {
     },
     loggedInUser() {
       return this.$store.getters.loggedinUser;
+    },
+    isSaved() {
+      if (this.isModalActive) {
+        return "save-modal active";
+      } else {
+        return "save-modal";
+      }
     },
   },
   // watch:{},
@@ -187,11 +205,8 @@ export default {
     this.focusInput();
   },
   methods: {
-    addTag() {
-      this.station.tags.push(this.tagToAdd);
-      this.tagToAdd = "";
-    },
     async addStation() {
+      this.isModalActive = true;
       this.$store.commit({
         type: "updateGenresMap",
         genre: this.station.genre,
@@ -208,6 +223,10 @@ export default {
         station: this.station,
       });
       this.$router.push(`/stations/details/${newStation._id}`);
+    },
+    toggleModal() {
+      this.isModalActive = !this.isModalActive;
+      console.log("saved", this.isModalActive);
     },
     async onUploadImg(ev) {
       const res = await uploadImg(ev);

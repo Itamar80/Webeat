@@ -60,8 +60,8 @@ export default {
       return moment(this.station.createdAt).subtract(10, "days").calendar();
     },
     name() {
-      return this.station.name.length > 9
-        ? this.station.name.substring(0, 9) + "..."
+      return this.station.name.length > 11
+        ? this.station.name.substring(0, 11) + "..."
         : this.station.name;
     },
    
