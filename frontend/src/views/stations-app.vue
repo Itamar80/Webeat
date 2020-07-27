@@ -106,8 +106,8 @@ export default {
     async toggleLike(id, isLiked) {
       const loggedInUser = this.$store.getters.loggedInUser;
       await stationService.toggleLike(id, loggedInUser, isLiked);
-      // this.currStation;
-      this.loadStations();
+      // this.currStation; 
+      // this.loadStations();
     },
     async loadStations() {
       this.stations = await this.$store.dispatch({ type: "loadStations" });

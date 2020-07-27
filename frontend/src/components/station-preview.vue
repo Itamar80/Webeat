@@ -17,7 +17,7 @@
           </section>
         </div>
         <section class="like-section">
-          <span>{{station.likedByUsers.length}}</span>
+          <span>{{likes}}</span>
           <font-awesome-icon
             icon="heart"
             size="lg"
@@ -52,6 +52,7 @@ export default {
   data() {
     return {
       isLiked: false,
+       likes: this.station.likedByUsers.length
     };
   },
   computed: {
@@ -63,6 +64,8 @@ export default {
         ? this.station.name.substring(0, 15) + "..."
         : this.station.name;
     },
+   
+
   },
   methods: {
     openDetails(id) {
@@ -72,6 +75,11 @@ export default {
     },
     toggleLike(id) {
       this.isLiked = !this.isLiked;
+      if (this.isLiked){
+        this.likes++
+      }else{
+        this.likes--
+      }
       this.$emit("toggleLike", id, this.isLiked);
     },
   },
