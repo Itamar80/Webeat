@@ -45,7 +45,7 @@
         </div>
       </div> 
       <song-list
-      class="station-list"
+      class="song-list"
         v-if="station"
         :songList="youtubeSongList"
         :currSong="currSong"
