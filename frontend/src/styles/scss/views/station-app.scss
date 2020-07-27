@@ -8,6 +8,7 @@
         height: auto;
     }
     .scroll-btn {
+        font-size: rem(18px);
         position: absolute;
         bottom: 40%;
         left: 50%;
@@ -84,10 +85,14 @@
         .marketing {
             position: absolute;
             left: 50%;
-            top: 25%;
+            transform: translate(-50%, -50%);
+            top: 35%;
             max-width: max-content;
             // width: 100%;
             // transform: translateX(-50%);
+        }
+        h1 {
+            font-weight: 800;
         }
         h1,
         h3 {
@@ -98,7 +103,7 @@
             font-family: $font1;
             font-size: 4.8rem;
             font-weight: 800;
-            transform: translate(-50%, -50%);
+            // transform: translate(-50%, -50%);
             text-align: center;
         }
         h3 {

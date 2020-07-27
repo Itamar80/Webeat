@@ -15,14 +15,9 @@
           @click.prevent="searchInStation"
         >Search in Station</button>
       </div>
-      <button class="toggle-songs flex align-center space-between">
+      <button @click="isAddSong=!isAddSong" class="toggle-songs flex align-center space-between">
         <p>{{toggleAddText}}</p>
-        <font-awesome-icon
-          @click="isAddSong=!isAddSong"
-          :icon="toggleAdd"
-          size="lg"
-          class="icon "
-        />
+        <font-awesome-icon :icon="toggleAdd" size="lg" class="icon" />
       </button>
       <!-- <button class="add-btn" @click="addSong=!addSong">{{toggleAdd}}</button> -->
     </section>
