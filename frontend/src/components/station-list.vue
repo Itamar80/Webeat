@@ -46,14 +46,13 @@ export default {
       });
       for (var i = 1; i <= 4; i++) {
         var station = stationByGenre[Math.floor(Math.random() * stationByGenre.length)];
-        // var douplicatedStation = stationsForPreview.find(
-        //   (stationInArray) => stationInArray._id === station._id
-        // );
-        // if (douplicatedStation) {
-        //   i--;
-        //   continue;
-        // }
-        // console.log(stations);
+        var douplicatedStation = stationsForPreview.find(
+          (stationInArray) => stationInArray._id === station._id
+        );
+        if (douplicatedStation) {
+          i--;
+          continue;
+        }
         stationsForPreview.push(station);
       }
       console.log(stationsForPreview);

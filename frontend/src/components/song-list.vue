@@ -15,12 +15,10 @@
           @click.prevent="searchInStation"
         >Search in Station</button>
       </div>
-      <font-awesome-icon
-        @click="isAddSong=!isAddSong"
-        :icon="toggleAdd"
-        size="lg"
-        class="icon toggle-songs"
-      />
+      <button @click="isAddSong=!isAddSong" class="toggle-songs flex align-center space-between">
+        <p>{{toggleAddText}}</p>
+        <font-awesome-icon :icon="toggleAdd" size="lg" class="icon" />
+      </button>
       <!-- <button class="add-btn" @click="addSong=!addSong">{{toggleAdd}}</button> -->
     </section>
     <vue-custom-scrollbar
@@ -39,8 +37,8 @@
               @drop-ready="onDropReady"
               drag-class="onDrag"
             >
-              <Draggable  v-for="(song, index) in station.songs" :key="song._id">
-                <div class="draggable-item" >
+              <Draggable v-for="(song, index) in station.songs" :key="song._id">
+                <div class="draggable-item">
                   <songListPrev
                     :index="index"
                     :currSong="currSong"
@@ -101,6 +99,9 @@ export default {
     toggleAdd() {
       return this.isAddSong ? "times" : "plus";
     },
+    toggleAddText() {
+      return this.isAddSong ? "Back" : "Add Songs";
+    },
   },
   watch: {
     songTofindStation: function (input) {
@@ -130,19 +131,19 @@ export default {
     playSong(song) {
       this.$emit("playSong", song);
     },
-    
+
     scrollHanle(evt) {},
-    onDrop (dropResult) {
-      let songsToDrag =  JSON.parse(JSON.stringify(this.station.songs))
-    songsToDrag = applyDrag(songsToDrag, dropResult)
-     this.$emit('updateSongList', songsToDrag)
+    onDrop(dropResult) {
+      let songsToDrag = JSON.parse(JSON.stringify(this.station.songs));
+      songsToDrag = applyDrag(songsToDrag, dropResult);
+      this.$emit("updateSongList", songsToDrag);
     },
-    getGhostParent(){
+    getGhostParent() {
       return document.body;
     },
-    onDropReady(dropResult){
-      console.log('drop ready', dropResult);
-    }
+    onDropReady(dropResult) {
+      console.log("drop ready", dropResult);
+    },
   },
   components: {
     songListPrev,
