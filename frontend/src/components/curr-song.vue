@@ -145,9 +145,11 @@ export default {
       return this.$store.getters.currSong;
     },
     currSongTitle() {
-      return this.currSong.title.length > 30
-        ? this.currSong.title.substring(0, 30) + "..."
-        : this.currSong.title;
+      if(this.currSong.title){
+        return this.currSong.title.length > 30 ? this.currSong.title.substring(0, 30) + "..." : this.currSong.title;
+      }else{
+        return ''
+      }
     },
     // isPlaying(){
     //   return this.$store.getters.isPlaying;
