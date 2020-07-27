@@ -13,8 +13,15 @@ $narrow-breakpoint:1080px;
 $normal-breakpoint:1300px;
 //Layout?
 //fonts
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&family=Raleway:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&family=Raleway:wght@300&family=Zilla+Slab:ital@1&family=Zilla+Slab:ital,wght@0,300;1,400&family=Staatliches&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&family=Raleway:wght@300&family=Staatliches&display=swap');
 $font1:'Oswald',
 sans-serif;
 $font2: 'Raleway',
 sans-serif;
+$font3: 'Zilla Slab',
+serif;
+// $font4: 'Zilla Slab',
+// serif;
+$font5: 'Staatliches',
+cursive;
