@@ -123,6 +123,15 @@
             grid-template-columns: repeat(3, 200px);
             grid-row: 1;
         }
+        // .btn:before {
+        //     content: hide;
+        // }
+        // .btn:after {
+        //     content: "return";
+        // }
+        .input-container {
+            top: 165px;
+        }
         .preview-details {
             width: 100%;
             h2 {
@@ -148,7 +157,7 @@
     }
     @media screen and (max-width: 650px) {
         .grid {
-            grid-template-columns: repeat(3, 120px);
+            grid-template-columns: repeat(2, 120px);
             gap: 30px;
             // grid-row: 1;
         }

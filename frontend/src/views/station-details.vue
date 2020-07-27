@@ -1,41 +1,49 @@
 <template>
   <div class="station-details flex space-between">
     <chat-app v-if="station" :station="station" />
+
     <section v-if="station" class="container">
       <div class="top-section flex justify-center space-between">
         <div class="flex col text-details">
           <div class="flex col title-creator">
-          <h1>
-            <!-- <font-awesome-icon class="play-station-btn" icon="play-circle" size="lg" /> -->
-            {{station.name}}
-          </h1>
-          <!-- <div></div> -->
-          <span class="creator-info flex align-center" v-if="station.createdBy.fullName">
-            Created By:
-            <img class="creator-img" src="@/assets/creator pictures/itamar.jpg" alt />
-            {{station.createdBy.fullName}}
-          </span>
+            <span class="capitalize">Station</span>
+            <h1>
+              {{station.name}}
+              <!-- <font-awesome-icon class="play-station-btn" icon="play-circle" size="lg" /> -->
+            </h1>
+            <p>{{station.desc}}</p>
+            <div class="flex space-between">
+            <div class="flex col">
+            <span class="creator-info flex align-center" v-if="station.createdBy.fullName">
+              Created By:
+              <img class="creator-img" src="@/assets/creator pictures/itamar.jpg" alt />
+              {{station.createdBy.fullName}}
+            </span>
+              <span class="genre capitalize">{{station.genre}}</span>
+            </div>
+              <div class="flex tracks-likes col flex-end">
+                <span>
+                  {{station.likedByUsers.length}}
+                  <font-awesome-icon
+                    icon="heart"
+                    size="lg"
+                    class="icon heart-icon"
+                    :class="{liked:isLiked}"
+                    @click.stop="toggleLike(station._id)"
+                  />
+                </span>
+                <span>
+                   {{station.songs.length}} 
+                  <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
+                </span>
+              </div>
+            </div>
           </div>
-          <span class="genre capitalize">{{station.genre}}</span>
-          <div class="flex col tracks-likes">
-          <span>
-            <font-awesome-icon
-              icon="heart"
-              size="lg"
-              class="icon heart-icon"
-              :class="{liked:isLiked}"
-              @click.stop="toggleLike(station._id)"
-            />
-            {{station.likedByUsers.length}}
-          </span>
-          <span>
-            <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
-            {{station.songs.length}} tracks
-          </span>
-          </div>
-          <p>Now Playing: {{currSong.title}}</p>
+          <!-- <p>Now Playing: {{currSong.title}}</p> -->
         </div>
-        <img class="cover-img" :src="station.imgUrl" />
+        <div class="flex col">
+          <img class="cover-img" :src="station.imgUrl" />
+        </div>
       </div>
       <song-list
         v-if="station"
@@ -107,7 +115,7 @@ export default {
     // }
   },
   methods: {
-    //TODO:get station from backend 
+    //TODO:get station from backend
     async setStation(id) {
       await this.$store.dispatch({ type: "getCurrStation", id });
       this.setCurrSong(this.station.songs[0]);
@@ -158,9 +166,9 @@ export default {
       }
     },
     async toggleLike(id, isLiked) {
-      this.isLiked=!this.isLiked
+      this.isLiked = !this.isLiked;
       const loggedInUser = this.$store.getters.loggedInUser;
-      await stationService.toggleLike(id, loggedInUser,  this.isLiked);
+      await stationService.toggleLike(id, loggedInUser, this.isLiked);
       this.setStation(id);
     },
   },

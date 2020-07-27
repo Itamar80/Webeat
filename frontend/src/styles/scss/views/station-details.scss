@@ -12,6 +12,9 @@
                 border-radius: 10px;
                 object-fit: cover;
             }
+            .text-details {
+                width: 100%;
+            }
             .creator-info {
                 display: flex;
                 .creator-img {
@@ -53,6 +56,7 @@
                 color: $clr7;
                 border: none;
                 padding: 0;
+                transition: .3s;
                 &:hover {
                     cursor: pointer;
                     color: $clr4;
@@ -60,6 +64,10 @@
             }
             .liked {
                 color: $clr4;
+            }
+            .tracks-likes {
+                margin-right: 10px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             }
         }
     }
