@@ -1,6 +1,6 @@
 <template>
   <section class="curr-song flex justify-center align-center">
-    <section class="song-controllers flex row justify-center align-center space-between">
+    <section class="song-controllers flex row justify-center align-center">
       <youtube
         v-if="currStation"
         :video-id="videoId"
@@ -9,28 +9,8 @@
         @ended="ended"
         ref="youtube"
       ></youtube>
-      <div class="song-details flex row justify-center align-center space-around">
-        <img v-if="currStation" @click="goToStation" :src="currStation.imgUrl" />
-        <div v-if="currStation">
-          <img class="gif" v-if="isPlaying" src="@/assets/sound-gif2.gif" />
-          <img class="gif" v-else src="@/assets/preview.png" />
-        </div>
-        <div v-if="currStation" class="currPlaying">
-          <h5>Now Playing:</h5>
-          <p>{{currSongTitle}}</p>
-        </div>
-        <p v-else>No station chosen</p>
-      </div>
-      <div class="controllers flex row justify-center align-center space-around">
-        <div class="flex row justify-center align-center">
-          <font-awesome-icon
-            @click="toggleMute"
-            :icon="volumeIcon"
-            class="volume-icon control-icon"
-          />
-          <input id="volume" @input="changeVolume" value="100" type="range" />
-        </div>
-        <div class="flex row justify-center align-center">
+      <div class="controllers flex row justify-center align-center">
+        <div class="control-icons flex row justify-center align-center">
           <font-awesome-icon
             @click="changeSong('prevSong')"
             icon="backward"
@@ -58,8 +38,8 @@
             class="control-icon"
           />
         </div>
-        <span class="flex row justify-center align-center">
-          {{ time }}
+        <div class="progress-bar flex row justify-center align-center">
+          <span>{{ time }}</span>
           <input
             @input="changeSongTime()"
             @mousedown="playOrPauseVideo(false)"
@@ -71,8 +51,28 @@
             id="progressBar"
             type="range"
           />
-          {{ duration }}
-        </span>
+          <span>{{ duration }}</span>
+        </div>
+        <div class="volume flex row justify-center align-center">
+          <font-awesome-icon
+            @click="toggleMute"
+            :icon="volumeIcon"
+            class="volume-icon control-icon"
+          />
+          <input id="volume" @input="changeVolume" value="100" type="range" />
+        </div>
+      </div>
+      <div class="song-details flex row justify-center align-center space-around">
+        <div v-if="currStation">
+          <img class="gif" v-if="isPlaying" src="@/assets/sound-gif2.gif" />
+          <img class="gif" v-else src="@/assets/preview.png" />
+        </div>
+        <div v-if="currStation" class="currPlaying">
+          <h5>Now Playing:</h5>
+          <p>{{currSongTitle}}</p>
+        </div>
+        <p v-else>No station chosen</p>
+        <img v-if="currStation" @click="goToStation" :src="currStation.imgUrl" />
       </div>
     </section>
   </section>
@@ -112,8 +112,6 @@ export default {
   name: "curr-song",
   data() {
     return {
-      // currStation: null,
-      // currSong: null,
       playerVars: {
         autoplay: 1,
         controls: 0,
@@ -145,15 +143,14 @@ export default {
       return this.$store.getters.currSong;
     },
     currSongTitle() {
-      if(this.currSong.title){
-        return this.currSong.title.length > 30 ? this.currSong.title.substring(0, 30) + "..." : this.currSong.title;
-      }else{
-        return ''
+      if (this.currSong.title) {
+        return this.currSong.title.length > 30
+          ? this.currSong.title.substring(0, 30) + "..."
+          : this.currSong.title;
+      } else {
+        return "";
       }
     },
-    // isPlaying(){
-    //   return this.$store.getters.isPlaying;
-    // }
   },
   async created() {
     socket.on("joined new station", (time) => {
@@ -265,11 +262,11 @@ export default {
     },
   },
   async mounted() {
-    if(this.currStation) {
-    this.duration = this.formatTime(await this.player.getDuration());
-    this.getSongEndTime();
-    }else{
-      this.duration = '00:00'
+    if (this.currStation) {
+      this.duration = this.formatTime(await this.player.getDuration());
+      this.getSongEndTime();
+    } else {
+      this.duration = "00:00";
     }
   },
   components: {

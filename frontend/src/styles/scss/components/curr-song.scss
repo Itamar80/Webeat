@@ -6,17 +6,24 @@
     height: 70px;
     width: 100%;
     .song-details {
-        width: 30%;
+        width: 25%;
     }
     .controllers {
         // margin: 0 auto;
-        width: 70%;
+        width: 75%;
     }
     .song-controllers {
-        width: 90%;
+        width: 97%;
+        .progress-bar {
+            span {
+                margin: 0 5px;
+            }
+            width: 100%;
+            margin: 0 20px;
+        }
         img {
             // margin: 0 auto;
-            width: 60px;
+            width: 40px;
             height: 40px;
             object-fit: cover;
             border-radius: 5px;
@@ -27,7 +34,7 @@
         .gif {
             // margin: 0 auto;
             margin: 0 5px;
-            width: 60px;
+            width: 40px;
             filter: grayscale(100%);
         }
         .control-icon {
@@ -38,11 +45,17 @@
                 transform: scale( 1.1);
             }
         }
+        .volume-icon {
+            font-size: rem(20px);
+        }
         .volume {
-            font-size: rem(22px);
+            margin: 0 10px;
         }
         span {
             font-size: rem(13px);
+        }
+        .control-icons {
+            margin: 0 10px;
         }
         input[type=range] {
             outline: none;
@@ -55,7 +68,7 @@
             background: linear-gradient(119deg, rgba(255, 97, 0, 1) 0%, rgba(213, 1, 1, 1) 48%, rgba(162, 24, 24, 1) 100%);
             border-radius: 2px;
             &#progressBar {
-                width: 250px
+                min-width: 90%;
             }
             &:hover {
                 cursor: pointer;
@@ -71,10 +84,10 @@
         }
         .currPlaying {
             h5 {
-                font-size: rem(17px);
+                font-size: rem(16px);
             }
             p {
-                font-size: rem(16px);
+                font-size: rem(14px);
             }
         }
     }
