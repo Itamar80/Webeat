@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.b8363bad36e112afab0c881fc6f8d9a0.js"
+  "/precache-manifest.061bc19713e212c2720c43fd59eb96d3.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "webeat"});
