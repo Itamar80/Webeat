@@ -5,8 +5,12 @@
       <h1>Create your station</h1>
       <form @submit="addStation" class="flex col">
         <label>
-          <h3>Station name:</h3>
+          <h3>Station Name:</h3>
           <input type="text" placeholder="Enter the station name" v-model="station.name" ref="name" />
+        </label>
+        <label>
+          <h3>Station Description:</h3>
+          <input type="text" placeholder="Enter the station description" v-model="station.desc"  />
         </label>
         <input @change="onUploadImg" type="file" name="file" id="file" class="inputfile" />
         <label for="file">Upload Station Image</label>
@@ -40,6 +44,8 @@
         <div class="info flex col">
           <h1 v-if="station.name">{{station.name}}</h1>
           <h1 v-else>Station name</h1>
+          <p v-if="station.desc">{{station.desc}}</p>
+          <p v-else>Station Description</p>
           <span class="creator-info align-center" v-if="loggedInUser.fullName !== 'Guest'">
             Created By:
             <img class="creator-img" :src="loggedInUser.imgUrl" alt="creator img" />
@@ -81,6 +87,7 @@ export default {
     return {
       station: {
         name: "",
+        desc:'',
         createdBy: null,
         genre: "",
         songs: [],
