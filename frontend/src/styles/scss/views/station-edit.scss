@@ -218,6 +218,19 @@
         }
     }
     
+    @media (max-width: 880px) {
+        .editor {
+            .details-section {
+                .station-details {
+                    flex: .2;
+                    img {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    
     @media (max-width:$mobile-breakpoint) {
         .editor {
             .details-section {

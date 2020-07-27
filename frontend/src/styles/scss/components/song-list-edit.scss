@@ -92,3 +92,9 @@
         width: 5px;
     }
 }
+
+@media (max-width: $narrow-breakpoint) {
+    .edit-sub-btn {
+        font-size: rem(12px);
+    }
+}
