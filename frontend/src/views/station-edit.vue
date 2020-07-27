@@ -207,7 +207,7 @@ export default {
         type: "saveStation",
         station: this.station,
       });
-      this.$router.push(`/stations/details/${newStation._id}`);
+      this.$router.push(`/stations`);
     },
     async onUploadImg(ev) {
       const res = await uploadImg(ev);
