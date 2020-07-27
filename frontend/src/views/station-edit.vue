@@ -222,7 +222,7 @@ export default {
         type: "saveStation",
         station: this.station,
       });
-      this.$router.push(`/stations/details/${newStation._id}`);
+      this.$router.push(`/stations`);
     },
     toggleModal() {
       this.isModalActive = !this.isModalActive;
