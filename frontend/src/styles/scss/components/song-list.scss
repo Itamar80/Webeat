@@ -6,19 +6,16 @@
                 font-size: rem(14px);
             }
             .toggle-songs {
-                vertical-align: middle;
+                font-size: rem(13px);
                 color: $clr7;
-                background-color: $clr4;
-                border-radius: 50%;
-                box-shadow: none;
                 border: none;
                 outline: none;
-                padding: 0 5px;
-                width: 25px;
-                height: 25px;
-                margin-right: 25px;
+                width: fit-content;
                 &:hover {
                     cursor: pointer;
+                }
+                .icon {
+                    margin: 0 0 0 5px;
                 }
             }
         }
@@ -194,6 +191,7 @@
                 width: 100%;
                 button {
                     font-size: rem(12px);
+                    padding: 5px;
                 }
             }
             .sound-gif {
@@ -203,6 +201,14 @@
             input {
                 font-size: rem(14px);
                 padding: 8px;
+            }
+            .toggle-songs {
+                margin: 0;
+                font-size: rem(12px);
+                padding: 5px;
+                .icon {
+                    font-size: rem(12px);
+                }
             }
         }
     }
@@ -218,7 +224,10 @@
                     font-size: rem(10px);
                 }
                 .toggle-songs {
-                    margin: 0;
+                    font-size: rem(10px);
+                    .icon {
+                        margin-right: 3px;
+                    }
                 }
             }
         }
