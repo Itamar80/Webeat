@@ -220,8 +220,9 @@ export default {
         this.player.mute();
         this.changeVolumeIcon(-1);
       } else {
-        player.unMute();
+        this.player.unMute();
         const elVolumeInput = document.getElementById("volume");
+        console.log(elVolumeInput.value)
         this.changeVolumeIcon(elVolumeInput.value);
       }
     },
