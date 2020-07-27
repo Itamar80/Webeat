@@ -1,7 +1,6 @@
 <template>
   <div class="station-details flex space-between">
     <chat-app v-if="station" :station="station" />
-
     <section v-if="station" class="container">
       <div class="top-section flex justify-center space-between">
         <div class="flex col text-details">
@@ -11,8 +10,8 @@
               {{station.name}}
               <!-- <font-awesome-icon class="play-station-btn" icon="play-circle" size="lg" /> -->
             </h1>
-            <p>{{station.desc}}</p>
-            <div class="flex space-between">
+            <p class="desc">{{station.desc}}</p>
+            <div class="flex align-center justify-center space-between">
             <div class="flex col">
             <span class="creator-info flex align-center" v-if="station.createdBy.fullName">
               Created By:
@@ -44,8 +43,9 @@
         <div class="flex col">
           <img class="cover-img" :src="station.imgUrl" />
         </div>
-      </div>
+      </div> 
       <song-list
+      class="station-list"
         v-if="station"
         :songList="youtubeSongList"
         :currSong="currSong"

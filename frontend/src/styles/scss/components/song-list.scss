@@ -1,4 +1,5 @@
     .song-list {
+        height: 100%;
         .song-search {
             width: 100%;
             button {
@@ -97,7 +98,7 @@
     .scroll-area {
         position: relative;
         margin: auto;
-        height: 250px;
+        height: 100%;
     }
     
     .ps {
@@ -152,6 +153,7 @@
         -webkit-transition: background-color .2s linear, width .2s ease-in-out;
         width: 5px;
         height: 10px;
+        width: 5px;
         /* there must be 'right' for ps__thumb-y */
         right: 0px;
         /* please don't change 'position' */

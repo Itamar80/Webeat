@@ -1,5 +1,5 @@
 <template>
-    <section class=" song-list song-list-edit flex col justify-center align-center ">
+    <section class=" song-list song-list-edit flex col align-center ">
       <div class="flex row align-center space-between">
         <input type="text" v-model="songTofindStation" />
         <button class="btn edit-sub-btn" @click.prevent="searchInStation">Search in Station</button>

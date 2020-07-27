@@ -6,9 +6,11 @@
         width: 60%;
         .top-section {
             margin: 20px 0 10px;
+            height: fit-content;
             .cover-img {
                 width: 320px;
-                height: 190px;
+                // height: 190px;
+                height: 100%;
                 border-radius: 10px;
                 object-fit: cover;
             }
@@ -72,6 +74,9 @@
             }
         }
     }
+    .station-list {
+        height: 30vh;
+    }
     // margin: 10px 5%;
 }
 
@@ -80,6 +85,9 @@
         .container {
             .top-section {
                 margin: 15px 0 10px;
+                .desc {
+                    display: none;
+                }
                 .cover-img {
                     width: 250px;
                     height: 150px;
@@ -106,14 +114,14 @@
     }
 }
 
-@media screen and (max-width: $mobile-breakpoint) {
+@media screen and (max-width: 900px) {
     .station-details {
         height: 85vh;
         flex: 1;
         flex-direction: column-reverse;
         .container {
             margin: 0 auto;
-            width: 100%;
+            width: 80%;
             .top-section {
                 flex-direction: column-reverse;
                 margin: 20px 0 10px;
@@ -125,8 +133,12 @@
                 .text-details {
                     width: 70%;
                     margin: 0 auto;
+                    flex-direction: column;
+                    .desc {
+                        display: block;
+                    }
                     .title-creator {
-                        flex-direction: row;
+                        // flex-direction: row;
                         justify-content: space-between;
                         span {
                             font-size: rem(12px);
@@ -151,6 +163,22 @@
                 }
             }
         }
+        .station-list {
+            width: 80%;
+            margin: 0 auto;
+            height: 30vh;
+        }
         // margin: 10px 5%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .station-details {
+        .container {
+            width: 100%;
+        }
+        .station-list {
+            width: 100%;
+        }
     }
 }
