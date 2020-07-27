@@ -8,8 +8,8 @@
             margin: 20px 0 10px;
             height: fit-content;
             .cover-img {
+                margin-left: 10px;
                 width: 320px;
-                // height: 190px;
                 height: 100%;
                 border-radius: 10px;
                 object-fit: cover;
@@ -28,11 +28,12 @@
                 }
             }
             h1 {
+                color: white;
+                margin: 0 0 5px 0;
                 text-align: left;
                 font-weight: 700;
                 font-size: rem(43px);
                 font-family: $font1;
-                margin: 0;
                 .play-station-btn {
                     &:hover {
                         cursor: pointer;
@@ -51,7 +52,7 @@
                 text-align: center;
             }
             .icon {
-                margin: 0 5px 0 0;
+                margin: 0 0 0 5px;
             }
             .heart-icon {
                 background-color: transparent;
@@ -68,12 +69,12 @@
                 color: $clr4;
             }
             .tracks-likes {
-                margin-right: 10px;
+                // margin-right: 10px;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             }
         }
     }
-    .station-list {
+    .song-list {
         height: 30vh;
     }
     // margin: 10px 5%;
@@ -162,7 +163,7 @@
                 }
             }
         }
-        .station-list {
+        .song-list {
             width: 80%;
             margin: 0 auto;
             height: 30vh;
@@ -176,7 +177,7 @@
         .container {
             width: 100%;
         }
-        .station-list {
+        .song-list {
             width: 100%;
         }
     }

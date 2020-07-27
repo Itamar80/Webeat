@@ -32,7 +32,7 @@
                   />
                 </span>
                 <span>
-                   {{station.songs.length}} 
+                  {{station.songs.length}} tracks
                   <font-awesome-icon size="lg" :icon="['far', 'clock']" class="icon clock-icon" />
                 </span>
               </div>
@@ -45,7 +45,7 @@
         </div>
       </div> 
       <song-list
-      class="station-list"
+      class="song-list"
         v-if="station"
         :songList="youtubeSongList"
         :currSong="currSong"

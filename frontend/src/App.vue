@@ -23,7 +23,8 @@ import userService from "@/services/user-service.js";
 export default {
   data() {
     return {
-      isMenuOpen:false
+      isMenuOpen:false,
+      
     };
   },
   created() {
